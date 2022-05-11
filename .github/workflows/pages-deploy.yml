@@ -8,6 +8,8 @@ on:
       - README.md
       - LICENSE
 
+permissions: read-all|write-all
+
 jobs:
   continuous-delivery:
 
