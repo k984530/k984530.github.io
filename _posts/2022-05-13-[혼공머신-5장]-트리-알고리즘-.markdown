@@ -1,0 +1,87 @@
+---
+layout: post
+title:  "[ML 트리 알고리즘]"
+author: one
+date:   2022-05-13 02:45:00 +0900
+categories: [AI Begginer study]
+tags: [ML] , [Tree] , [Ensemble]
+math: true
+mermaid: true
+---
+
+## 1\. DecisionTreeClassifier (결정 트리 분류기)
+데이터 특성 하나씩 특정 임곗값과의 비교로 분류하는 일을 여러 번하는 알고리즘입니다.
+임곗값은 정보이득이 최대가 되도록 정합니다.
+
+정보이득 : 부모 노드의 불순도보다 자식 노드들의 불순도가 작을 때 그 차이만큼 정보이득이 발생했다고 할 수 있습니다.
+지니 불순도와 엔트로피 불순도가 있는데 결과적으로 서로 다른 종류의 데이터가 많을수록 불순도가 커집니다.
+
+특징은 결과를 이해하기 쉽고, 표준화 전처리가 따로 필요없습니다.
+
+"""python
+from sklearn.tree import DecisionTreeClassifier
+ModelName = DecisionTreeClassifier(random_state = Seed_int))
+ModelName.fit(train_data, train_result)
+"""
+
+## 2\. RandomForestClassifier (결정 트리 분류기 앙상블)
+전체 특성 중 일부 특성을 무작위로 선정하고, 무작위로 샘플을 일부 선정합니다. 여러 결정 트리 분류기를 만들고, 각 분류기의 결과를 평균하여 예측하는 알고리즘입니다.
+기본적으로 일부 특성을 선정할 때 전체 특성 갯수의 제곱근으로 나눈 갯수만큼 선정합니다.
+
+특징은 과대적합되는 것을 막아주고, 안전적인 성능을 얻을 수 있습니다. 종종 기본 매개변수 설정만으로 좋은 결과를 거두므로 쉽게 사용 가능합니다.
+
+"""python
+from sklearn.ensemble import RandomForestClassifier
+ModelName = RandomForestClassifier(oob_score=Use_Bool, n_jobs=CPU_int, random_state=Seed_int)
+"""
+
+## 3\. ExtraTree (결정 트리 분류기 앙상블)
+RandomForestClassifier와 원리는 동일합니다. 차이점은 bootstrap 기능을 사용하지 않고 샘플을 선정하고, 임곗값을 정할 때 정보이득이 최대가 되는 방향이 아닌 무작위로 선정합니다.
+
+bootstrap : 샘플을 선정할 때 선정된 샘플을 다시 선정할 수 있도록 중복을 허용하는 기능입니다.
+
+특징은 RandomForest보다 과대적합되는 것을 잘 막아주지만, 무작위성이 더 짙어서 성능 또한 비교적으로 무작위성을 띌 것으로 예측됩니다.
+
+"""python
+from sklearn.ensemble import ExtraTreesClassifier
+ModelName = ExtraTreeClassifier(m_jobs =CPU_int, random_state=Seed_int)
+"""
+
+## 4\. GradientBoostingClassifier(깊이가 얕은 결정 트리 분류기 앙상블 - 그레이디언트 부스팅)
+깊이가 얕은 결정 트리를 사용하여 이전 트리의 오차를 보완하는 방식으로 앙상블 합니다. 기본적으로 깊이가 3인 결정 트리를 100개(n_estimators) 사용합니다. 경사하강법과 원리가 비슷하게 결정 트리를 추가하면서 모델의 가중치와 절편을 조금씩(learning_rate) 변경합니다.
+
+특징은 과대적합에 강하고, 높은 일반화 성능을 기대할 수 있습니다.
+
+"""python
+from sklearn.ensemble import GradientBoostingClassifier
+ModelName = GradientBoostingClassifier(n_estimators=tree_int ,learning_rate=lr_float , random_state=Seed_int)
+"""
+
+
+## 5\. HistGradientBoostingClassifer(히스토그램 기반 그레이디언트 부스팅)
+입력 특성을 256개로 나누고 그 나누어진 구간을 토대로 임곗값을 정합니다. 256개의 구간 중 하나는 누락된 값을 위해서 사용합니다. 결정 트리 갯수(n_estimators)를 정하는 대신에 부스팅 반복 횟수를 지정하는 max_iter 매개변수를 사용합니다.
+
+특징은 결측치를 따로 관리할 필요가 없고, 최적의 분할을 매우 빠르게 찾습니다.
+
+"""python
+from sklearn.ensemble import HistGradientBoostingClassifer
+ModelName = HistGradientBoostingClassifer(random_state=Seed_int)
+"""
+
+# 6\. 히스토그램 기반 그레이디언트 부스팅에서 파생된 모델 
+## 6-1\. XGBClassifier
+가장 대표적인 라이브러리입니다. colab에서 사용 가능할 분만 아니라 sklearn의 cross_validate()함수도 사용 가능합니다.
+
+"""python
+from xgboost import XGBClassifier
+ModelName = XGBClassifier(tree_method='hist'(Method_str), random_state=Seed_int)
+"""
+
+## 6-2\. LGBMClassifier
+
+마이크로소프트에서 만든 라이브러리입니다.
+
+"""python
+from lightgbm import LGBMClassifier
+ModelName = LGBMClassifier(random_state=Seed_int)
+"""
