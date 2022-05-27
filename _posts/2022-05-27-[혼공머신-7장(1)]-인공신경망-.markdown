@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[인공신경망 - Dense layer]"
-author: one
+author: ["one"]
 date:   2022-05-27 12:30:00 +0900
 categories: [AI-Begginer-study]
 tags: [ML, DeepLearning, DenseLayer]

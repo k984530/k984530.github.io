@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[주성분 분석 - PCA]"
-author: one
+author: [one]
 date:   2022-05-25 12:30:00 +0900
 categories: [AI-Begginer-study]
 tags: [ML, PCA]
