@@ -13,6 +13,8 @@ mermaid: true
 
 인공신경망을 블랙박스라고도 부릅니다. 원하는 결과를 도출하였으나 그 결과가 어떻게 도출되었는지 설명하기 어렵기 때문입니다. 이해하기 어려운 블랙박스를 조금이라도 더 이해하기위해 훈련 과정을 시각화하는 것은 괜찮은 선택일 것입니다. 이번 페이지에서는 모델의 history를 살펴보고 그래프로 나타내는 방법과 callback함수의 기초를 살펴볼 것입니다.
 
+### 1\.history
+
 ```python
 from tensorflow import keras
 dense = keras.layers.Dense(뉴런 개수_int, activation=출력에 적용할 함수_str, input_shape=입력크기_(,))
@@ -39,6 +41,8 @@ plt.show()
 ```
 
 ![blog1](https://user-images.githubusercontent.com/80746359/170985013-de316928-dff8-4bde-beeb-52fb5e2fedea.png)
+
+
 history객체의 손실을 그래프로 그리면, x축은 epoch를 y축은 손실을 나타내는 그래프를 그릴 수 있습니다.
 
 ```python
@@ -49,6 +53,8 @@ plt.show()
 ```
 
 ![blog2](https://user-images.githubusercontent.com/80746359/170985470-9cb7030e-d615-4ad7-89fb-91dc116731e8.png)
+
+
 history객체의 평가 지표를 그래프로 그리면, x축은 epoch를 y축은 평가지표를 나타내는 그래프를 그릴 수 있습니다.
 
 ```python
@@ -74,4 +80,36 @@ plt.show()
 
 ![blog3](https://user-images.githubusercontent.com/80746359/170986299-753a5530-532e-4f6f-ab58-e97d6b45709c.png)
 
+
 위와 같이 훈련 데이터의 손실은 줄어들고 있지만 검증 데이터의 손실은 점차 커지면서 과대적합이 발생하고 있음을 볼 수 있습니다.
+
+
+### 2\.callback
+
+훈련한 모델의 파라미터 또는 모델 자체를 저장해서 보관할 수 있습니다.
+
+```python
+model.save_weights('model-weights.h5')
+model.save('model-whole.h5')
+
+model.load_weights('model-weights.h5')
+model = keras.models.load_model('model-whole.h5')
+```
+
+save_weights는 파라미터 값들을 저장합니다.
+load_weights함수로 저장 값들을 불러오는데, 저장한 모델의 파라미터 갯수와 정확하게 동일해야합니다.
+
+save는 모델을 저장합니다
+keras.models.load_model로 모델을 불러옵니다.
+
+훈련 중에 과대적합이 일어나거나 모델의 성능 향상이 없을 때 훈련을 그만하고 싶은 경우가 있습니다. 이런 경우에 callbacks 함수를 사용할 수 있습니다.
+
+```python
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics='accuracy')
+checkpoint_cb = keras.callbacks.ModelCheckpoint('best-model.h5',save_best_only=True)
+early_stopping_cb = keras.callbacks.EarlyStopping(patience=2,restore_best_weights=True)
+history = model.fit(train_scaled, train_target, epochs=20, verbose=0,validation_data=(val_scaled, val_target), callbacks=[checkpoint_cb, early_stopping_cb])
+```
+
+keras.callbacks.ModelCheckpoint() epoch마다 모델의 파라미터 값을 저장합니다. 만약에 save_best_only를 True로 지정하면 가장 좋은 결과를 낸 파라미터 값만을 저장합니다.
+keras.callbacks.EarlyStopping() patience값만큼 epoch를 진행하면서 모델의 결과값이 향상 되지않을 경우 훈련을 멈춥니다.
