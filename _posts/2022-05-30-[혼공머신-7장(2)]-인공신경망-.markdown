@@ -1,0 +1,77 @@
+---
+layout: post
+title:  "[인공신경망 - history]"
+author: [one]
+date:   2022-05-30 12:30:00 +0900
+categories: [AI-Begginer-study]
+tags: [ML, DeepLearning]
+math: true
+mermaid: true
+---
+
+## 인공신경망
+
+인공신경망을 블랙박스라고도 부릅니다. 원하는 결과를 도출하였으나 그 결과가 어떻게 도출되었는지 설명하기 어렵기 때문입니다. 이해하기 어려운 블랙박스를 조금이라도 더 이해하기위해 훈련 과정을 시각화하는 것은 괜찮은 선택일 것입니다. 이번 페이지에서는 모델의 history를 살펴보고 그래프로 나타내는 방법과 callback함수의 기초를 살펴볼 것입니다.
+
+```python
+from tensorflow import keras
+dense = keras.layers.Dense(뉴런 개수_int, activation=출력에 적용할 함수_str, input_shape=입력크기_(,))
+model = kears.Sequential(dense)
+model.compile(loss='sparse_categorical_crossentropy',metrics='accuracy')
+history=model.fit(train_data,train_target, epochs=반복횟수, verbose=훈련과정출력_int)
+print(history.history.keys())
+```
+    ```
+    dict_keys(['loss', 'accuracy'])
+    ```
+verbose는 훈련 과정 출력을 조절합니다. 기본값은 1로 에포크마다 진행 막대와 함께 손실등의 지표를 출력합니다.
+0은 훈련 과정을 나타내지 않습니다.
+2는 진행 막대를 빼고 출력합니다.
+
+history 객체에는 훈련 측정값이 담겨있는 history 딕셔너리가 있습니다. 손실과 평가 지표 등이 있습니다.
+
+```python
+import matplotlib.pyplot as plt
+plt.plot(history.history['loss'])
+plt.xlabel('epoch')
+plt.ylabel('loss')
+plt.show()
+```
+
+![blog1](https://user-images.githubusercontent.com/80746359/170985013-de316928-dff8-4bde-beeb-52fb5e2fedea.png)
+history객체의 손실을 그래프로 그리면, x축은 epoch를 y축은 손실을 나타내는 그래프를 그릴 수 있습니다.
+
+```python
+plt.plot(history.history['accuracy'])
+plt.xlabel('epoch')
+plt.ylabel('accuracy')
+plt.show()
+```
+
+![blog2](https://user-images.githubusercontent.com/80746359/170985470-9cb7030e-d615-4ad7-89fb-91dc116731e8.png)
+history객체의 평가 지표를 그래프로 그리면, x축은 epoch를 y축은 평가지표를 나타내는 그래프를 그릴 수 있습니다.
+
+```python
+model.compile(loss='sparse_categorical_crossentropy', metrics='accuracy')
+history = model.fit(train_data, train_target, epochs=20, verbose=0, validation_data=(val_data, val_target))
+print(history.history.keys())
+```
+
+    ```
+    dict_keys(['loss', 'accuracy', 'val_loss', 'val_accuracy'])
+    ```
+
+모델을 fit할 때 검증(validation_data)을 추가하면 history객체의 history 속성에 검증 손실과 검증 평가 지표가 추가로 포함되는 것을 볼 수 있습니다. 검증 데이터에 대한 결과를 함께 비교한다면 과대적합의 유무를 확인할 수 있습니다.
+
+```python
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.xlabel('epoch')
+plt.ylabel('loss')
+plt.legend(['train','val'])
+plt.show()
+```
+
+![blog3](https://user-images.githubusercontent.com/80746359/170986299-753a5530-532e-4f6f-ab58-e97d6b45709c.png)
+
+위와 같이 훈련 데이터의 손실은 줄어들고 있지만 검증 데이터의 손실은 점차 커지면서 과대적합이 발생하고 있음을 볼 수 있습니다.
