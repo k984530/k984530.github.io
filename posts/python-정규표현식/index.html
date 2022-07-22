@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="ko" data-mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="[정규표현식]" /><meta property="og:locale" content="ko" /><meta name="description" content="정규표현식 (Regular Expressions)" /><meta property="og:description" content="정규표현식 (Regular Expressions)" /><link rel="canonical" href="https://k984530.github.io/posts/python-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/" /><meta property="og:url" content="https://k984530.github.io/posts/python-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/" /><meta property="og:site_name" content="One" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-07-22T00:00:00+09:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="[정규표현식]" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-07-22T16:57:34+09:00","datePublished":"2022-07-22T00:00:00+09:00","description":"정규표현식 (Regular Expressions)","headline":"[정규표현식]","mainEntityOfPage":{"@type":"WebPage","@id":"https://k984530.github.io/posts/python-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/"},"url":"https://k984530.github.io/posts/python-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/"}</script><title>[정규표현식] | One</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="One"><meta name="application-name" content="One"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> </a></div><div class="site-title mt-3"> <a href="/">One</a></div><div class="site-subtitle font-italic">AIBeginner</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <a href="https://github.com/k984530" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['2017253020','yonsei.ac.kr'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>[정규표현식]</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>[정규표현식]</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1658415600" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jul 22, 2022 </em> </span> <span> Updated <em class="" data-ts="1658476654" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jul 22, 2022 </em> </span><div class="d-flex justify-content-between"> <span> By <em> One </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1052 words"> <em>5 min</em> read</span></div></div></div><div class="post-content"><h1 id="정규표현식-regular-expressions">정규표현식 (Regular Expressions)</h1><h2 id="수식-기호"><span class="mr-2">수식 기호</span><a href="#수식-기호" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+</pre><td class="rouge-code"><pre>    [] : 대괄호 안에 포함된 문자들 중 하나
+        ex) [abc] # abc 중 하나와 매치
+    [ - ] : [] 안의 두 문자에 -을 사용하면 두 문자 사이의 범위
+        ex) [a-c] = [abc], [0-9] = [0123456789]
+    [ ^ ] : [] 안의 문자를 제외한 범위
+        ex) [^abc] # abc를 제외한 모든 문자 중 하나와 매치
+
+    문자클래스 (문자를 대문자로 바꾸면 반대의 의미를 갖습니다)
+
+    \d : [0-9]
+    \w : [a-zA-Z0-9_]
+    \t : [ \t] # 공백과 탭 문자
+    \s : [ \t\n\r\f\v] # 공백 문자
+    \b : [(?&lt;=\W)(?=\w)|(?&lt;=\w)(?=\W)] # 단어 사이의 경계
+
+    . : 줄바꿈 문자인 \n을 제외한 모든 문자 단, [.]은 마침표 하나와 매치
+        ex) a.b # ab사이에 \n을 제외한 모든 문자
+    * : '*' 문자 앞에 문자가 0개를 포함하여 몇 개가 오든 매치
+        ex) a*b
+    + : '+' 문자 앞에 문자가 1개 이상인 경우 매치  
+        ex) a+b
+    ? : '?' 문자 앞에 문자가 0개이거나 1개일 경우 매치
+        ex) a?b
+    {m, n} : '{}' 문자 앞에 문자가 m번에서 n번까지 반복될 때 매치
+        ex) a{3,5}b
+    {m} : '{}' 문자 앞에 문자가 m번 반복할 때 매치
+        ex) a{3}b
+    | : 여러 개의 정규표현식 중 하나와 매치될 때 매치
+        ex) a|b|c
+    ^ : 문자열의 첫 문자가 '^' 뒤의 문자로 시작될 때 매치, 여러 줄의 문자열일 경우 첫 줄만 적용(단, re.MULTILINE를 선언하면 각 줄의 첫 문자를 검사하여 매치)
+        ex) ^a
+    $ : 문자열의 마지막 문자가 '$' 앞의 문자로 끝날 때 매치, '^'와 조건이 동일
+        ex) a$
+    \A : '^'와 동일하나, re.MULTILINE옵션을 무시하고 문자열 첫 줄의 시작 문자를 검사
+    \Z : '$'와 동일하나, 위의 조건과 동일
+    식1 (?= 식2 ) : 식1을 만족하고, 그 뒤의 문자열이 식2를 만족시 식1 매치
+        ex) hello(?=world)
+    식1 (?! 식2 ) : 식 1을 만족하고, 그 뒤의 문자열이 식2를 불만족시 식1 매치
+        ex) hello(?!world)
+    (?&lt;= 식1) 식2 : 식 2를 만족하고, 그 앞의 문자열이 식1을 만족시 식2 매치
+        ex) (?&lt;=hello)wolrd
+    (?&lt;! 식1) 식2 : 식 2를 만족하고, 그 앞의 문자열이 식1을 불만족시 식2 매치
+</pre></table></code></div></div><h2 id="re-클래스"><span class="mr-2">re 클래스</span><a href="#re-클래스" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">re</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'[abc]'</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">option</span><span class="p">)</span> <span class="c1"># 표현식을 re.compile() 함수로 매칭, compile할 때 option 지정 가능
+</span>    <span class="n">result0</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="c1"># 문자열의 처음부터 검색하여 불일치할 때 까지 매칭
+</span>    <span class="n">result1</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="c1"># match와 동일..?
+</span>    <span class="n">result2</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="c1"># 문자열 내에서 일치하는 모든 패턴을 list로 반환
+</span>    <span class="n">result3</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="n">finditer</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="c1"># 문자열 내에서 일치하는 모든 패턴을 반복가능한 객체로 반환
+</span>
+    <span class="n">result0</span><span class="p">.</span><span class="n">group</span><span class="p">()</span> <span class="c1"># 매칭된 문자열 반환
+</span>    <span class="n">result0</span><span class="p">.</span><span class="n">start</span><span class="p">()</span> <span class="c1"># 매칭된 문자열의 첫 문자 위치 반환
+</span>    <span class="n">result0</span><span class="p">.</span><span class="n">end</span><span class="p">()</span> <span class="c1"># 매칭된 문자열의 마지막 문자 위치 반환
+</span>    <span class="n">result</span><span class="p">.</span><span class="n">span</span><span class="p">()</span> <span class="c1"># 매칭된 문자열의 첫 문자 위치와 마지막 문자 위치를 튜플 형태로 반환
+</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(hello)(wolrd)'</span><span class="p">,</span> <span class="s">'hellowolrd'</span><span class="p">)</span> <span class="c1"># 정규표현식을 () 안에 넣으면 그 부분만 그룹화된다
+</span>    <span class="n">groiping</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="n">groups</span><span class="p">()</span> <span class="c1"># 그룹화된 매칭을 튜플 형태로 리턴
+</span>
+    <span class="n">name</span><span class="p">.</span><span class="n">group</span><span class="p">()</span> <span class="c1"># 전체 매치 결과
+</span>    <span class="n">name</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 위와 동일
+</span>    <span class="n">name</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 1번 그룹 매치 결과
+</span>    <span class="n">name</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># 2번 그룹 매치 결과
+</span>    
+    <span class="c1">#(?P&lt;그룹이름&gt;표현식)
+</span>    <span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'(?P&lt;first&gt;a)(?P&lt;second&gt;b)'</span><span class="p">,</span> <span class="s">'ab'</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>    re.option
+    - re.DOTALL, re.S : 기호 .을 사용할 때 \n까지 매치
+    - re.IGNORECASE, re.I : 대소문자를 구별하지 않고 매치
+    - re.MULTILINE, re.M : 여러 줄의 문자열에 기호 ^, $를 매치
+    - re.VERBOSE, re.X : 정규표현식을 여러 줄에 걸쳐서 작성 가능 
+</pre></table></code></div></div></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/python/'>python</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/regularexpression/" class="post-tag no-text-decoration" >RegularExpression</a> <a href="/tags/python/" class="post-tag no-text-decoration" >python</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=%5B%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D%5D+-+One&url=https%3A%2F%2Fk984530.github.io%2Fposts%2Fpython-%25EC%25A0%2595%25EA%25B7%259C%25ED%2591%259C%25ED%2598%2584%25EC%258B%259D%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=%5B%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D%5D+-+One&u=https%3A%2F%2Fk984530.github.io%2Fposts%2Fpython-%25EC%25A0%2595%25EA%25B7%259C%25ED%2591%259C%25ED%2598%2584%25EC%258B%259D%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fk984530.github.io%2Fposts%2Fpython-%25EC%25A0%2595%25EA%25B7%259C%25ED%2591%259C%25ED%2598%2584%25EC%258B%259D%2F&text=%5B%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D%5D+-+One" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div><script src="https://giscus.app/client.js" data-repo="k984530/k984530.github.io" data-repo-id="R_kgDOHUTBmA" data-category="[ENTER CATEGORY NAME HERE]" data-category-id="[ENTER CATEGORY ID HERE]" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="dark" data-lang="ko" crossorigin="anonymous" async> </script></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/python-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D/">[정규표현식]</a><li><a href="/posts/python-%ED%8F%B4%EB%8D%94-%EB%82%B4-%EA%B0%AF%EC%88%98/">[함수 - 폴더 내 파일 갯수]</a><li><a href="/posts/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0-7%EC%9E%A5(2)-%EC%9D%B8%EA%B3%B5%EC%8B%A0%EA%B2%BD%EB%A7%9D/">[인공신경망 - history]</a><li><a href="/posts/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0-7%EC%9E%A5(1)-%EC%9D%B8%EA%B3%B5%EC%8B%A0%EA%B2%BD%EB%A7%9D/">[인공신경망 - Dense layer]</a><li><a href="/posts/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0-5%EC%9E%A5-%ED%8A%B8%EB%A6%AC-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">[ML 트리 알고리즘]</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/ml/">ML</a> <a class="post-tag" href="/tags/deeplearning/">DeepLearning</a> <a class="post-tag" href="/tags/python/">python</a> <a class="post-tag" href="/tags/denselayer/">DenseLayer</a> <a class="post-tag" href="/tags/function/">function</a> <a class="post-tag" href="/tags/pca/">PCA</a> <a class="post-tag" href="/tags/regularexpression/">RegularExpression</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">Contents</div><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="tail-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/python-%ED%8F%B4%EB%8D%94-%EB%82%B4-%EA%B0%AF%EC%88%98/"><div class="card-body"> <em class="small" data-ts="1656991800" data-df="ll" > Jul 5, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>[함수 - 폴더 내 파일 갯수]</h3><div class="text-muted small"><p> 폴더 내 파일 갯수 구하기 kaggle의 AI4Code 대회를 참여하다가 train 폴더 내의 json 파일 갯수를 불러와야할 상황이 있었습니다. 다른 상황에도 유용하게 쓰일 수 있을 것 같아 블로깅합니다. import os def get_files_count(folder_path): dirListing = os.listdir(folder_pa...</p></div></div></a></div><div class="card"> <a href="/posts/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0-7%EC%9E%A5(2)-%EC%9D%B8%EA%B3%B5%EC%8B%A0%EA%B2%BD%EB%A7%9D/"><div class="card-body"> <em class="small" data-ts="1653881400" data-df="ll" > May 30, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>[인공신경망 - history]</h3><div class="text-muted small"><p> 인공신경망 인공신경망을 블랙박스라고도 부릅니다. 원하는 결과를 도출하였으나 그 결과가 어떻게 도출되었는지 설명하기 어렵기 때문입니다. 이해하기 어려운 블랙박스를 조금이라도 더 이해하기위해 훈련 과정을 시각화하는 것은 괜찮은 선택일 것입니다. 이번 페이지에서는 모델의 history를 살펴보고 그래프로 나타내는 방법과 callback함수의 기초를 살펴볼...</p></div></div></a></div><div class="card"> <a href="/posts/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0-7%EC%9E%A5(1)-%EC%9D%B8%EA%B3%B5%EC%8B%A0%EA%B2%BD%EB%A7%9D/"><div class="card-body"> <em class="small" data-ts="1653622200" data-df="ll" > May 27, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>[인공신경망 - Dense layer]</h3><div class="text-muted small"><p> 인공신경망 각 데이터의 특성들을 가중치와 편향, 활성화 함수를 조합해서 층을 만들고 이 층을 쌓아서 복잡한 결과를 도출하는 기법입니다. 텐서플로의 고수준 API인 keras를 이용해서 인공신경망의 기초만 살짝 다뤄보도록 하겠습니다. import tensorflow as tf from tensorflow import keras dense = ker...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/python-%ED%8F%B4%EB%8D%94-%EB%82%B4-%EA%B0%AF%EC%88%98/" class="btn btn-outline-primary" prompt="Older"><p>[함수 - 폴더 내 파일 갯수]</p></a><div class="btn btn-outline-primary disabled" prompt="Newer"><p>-</p></div></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center text-muted"><div class="footer-left"><p class="mb-0"> © 2022 <a href="https://github.com/k984530">One</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/ml/">ML</a> <a class="post-tag" href="/tags/deeplearning/">DeepLearning</a> <a class="post-tag" href="/tags/python/">python</a> <a class="post-tag" href="/tags/denselayer/">DenseLayer</a> <a class="post-tag" href="/tags/function/">function</a> <a class="post-tag" href="/tags/pca/">PCA</a> <a class="post-tag" href="/tags/regularexpression/">RegularExpression</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><script src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js"></script> <script> $(function() { function updateMermaid(event) { if (event.source === window && event.data && event.data.direction === ModeToggle.ID) { const mode = event.data.message; if (typeof mermaid === "undefined") { return; } let expectedTheme = (mode === ModeToggle.DARK_MODE? "dark" : "default"); let config = { theme: expectedTheme }; /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */ $(".mermaid").each(function() { let svgCode = $(this).prev().children().html(); $(this).removeAttr("data-processed"); $(this).html(svgCode); }); mermaid.initialize(config); mermaid.init(undefined, ".mermaid"); } } let initTheme = "default"; if ($("html[data-mode=dark]").length > 0 || ($("html[data-mode]").length == 0 && window.matchMedia("(prefers-color-scheme: dark)").matches ) ) { initTheme = "dark"; } let mermaidConf = { theme: initTheme /* <default|dark|forest|neutral> */ }; /* Markdown converts to HTML */ $("pre").has("code.language-mermaid").each(function() { let svgCode = $(this).children().html(); $(this).addClass("unloaded"); $(this).after(`<div class=\"mermaid\">${svgCode}</div>`); }); mermaid.initialize(mermaidConf); window.addEventListener("message", updateMermaid); }); </script><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/ko.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script> /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */ MathJax = { tex: { inlineMath: [ /* start/end delimiter pairs for in-line math */ ['$','$'], ['\\(','\\)'] ], displayMath: [ /* start/end delimiter pairs for display math */ ['$$', '$$'], ['\\[', '\\]'] ] } }; </script> <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"> </script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-VZFNETK06C"></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VZFNETK06C'); }); </script>
