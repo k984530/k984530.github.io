@@ -1,0 +1,93 @@
+---
+layout: post
+title:  "[함수 - 폴더 내 파일 갯수]"
+author: [one]
+date:   2022-07-22 00:00:00 +0900
+categories: [python]
+tags: [RegularExpression, python]
+math: true
+mermaid: true
+---
+
+# 정규표현식 (Regular Expressions)
+
+## 수식 기호
+```
+    [] : 대괄호 안에 포함된 문자들 중 하나
+        ex) [abc] # abc 중 하나와 매치
+    [ - ] : [] 안의 두 문자에 -을 사용하면 두 문자 사이의 범위
+        ex) [a-c] = [abc], [0-9] = [0123456789]
+    [ ^ ] : [] 안의 문자를 제외한 범위
+        ex) [^abc] # abc를 제외한 모든 문자 중 하나와 매치
+
+    문자클래스 (문자를 대문자로 바꾸면 반대의 의미를 갖습니다)
+
+    \d : [0-9]
+    \w : [a-zA-Z0-9_]
+    \t : [ \t] # 공백과 탭 문자
+    \s : [ \t\n\r\f\v] # 공백 문자
+    \b : [(?<=\W)(?=\w)|(?<=\w)(?=\W)] # 단어 사이의 경계
+
+    . : 줄바꿈 문자인 \n을 제외한 모든 문자 단, [.]은 마침표 하나와 매치
+        ex) a.b # ab사이에 \n을 제외한 모든 문자
+    * : '*' 문자 앞에 문자가 0개를 포함하여 몇 개가 오든 매치
+        ex) a*b
+    + : '+' 문자 앞에 문자가 1개 이상인 경우 매치  
+        ex) a+b
+    ? : '?' 문자 앞에 문자가 0개이거나 1개일 경우 매치
+        ex) a?b
+    {m, n} : '{}' 문자 앞에 문자가 m번에서 n번까지 반복될 때 매치
+        ex) a{3,5}b
+    {m} : '{}' 문자 앞에 문자가 m번 반복할 때 매치
+        ex) a{3}b
+    | : 여러 개의 정규표현식 중 하나와 매치될 때 매치
+        ex) a|b|c
+    ^ : 문자열의 첫 문자가 '^' 뒤의 문자로 시작될 때 매치, 여러 줄의 문자열일 경우 첫 줄만 적용(단, re.MULTILINE를 선언하면 각 줄의 첫 문자를 검사하여 매치)
+        ex) ^a
+    $ : 문자열의 마지막 문자가 '$' 앞의 문자로 끝날 때 매치, '^'와 조건이 동일
+        ex) a$
+    \A : '^'와 동일하나, re.MULTILINE옵션을 무시하고 문자열 첫 줄의 시작 문자를 검사
+    \Z : '$'와 동일하나, 위의 조건과 동일
+    식1 (?= 식2 ) : 식1을 만족하고, 그 뒤의 문자열이 식2를 만족시 식1 매치
+        ex) hello(?=world)
+    식1 (?! 식2 ) : 식 1을 만족하고, 그 뒤의 문자열이 식2를 불만족시 식1 매치
+        ex) hello(?!world)
+    (?<= 식1) 식2 : 식 2를 만족하고, 그 앞의 문자열이 식1을 만족시 식2 매치
+        ex) (?<=hello)wolrd
+    (?<! 식1) 식2 : 식 2를 만족하고, 그 앞의 문자열이 식1을 불만족시 식2 매치
+```
+
+## re 클래스
+
+```python
+import re
+    name = re.compile('[abc]', re.option) # 표현식을 re.compile() 함수로 매칭, compile할 때 option 지정 가능
+    result0 = name.match(str) # 문자열의 처음부터 검색하여 불일치할 때 까지 매칭
+    result1 = name.search(str) # match와 동일..?
+    result2 = name.findall(str) # 문자열 내에서 일치하는 모든 패턴을 list로 반환
+    result3 = name.finditer(str) # 문자열 내에서 일치하는 모든 패턴을 반복가능한 객체로 반환
+
+    result0.group() # 매칭된 문자열 반환
+    result0.start() # 매칭된 문자열의 첫 문자 위치 반환
+    result0.end() # 매칭된 문자열의 마지막 문자 위치 반환
+    result.span() # 매칭된 문자열의 첫 문자 위치와 마지막 문자 위치를 튜플 형태로 반환
+
+    name = re.search('(hello)(wolrd)', 'hellowolrd') # 정규표현식을 () 안에 넣으면 그 부분만 그룹화된다
+    groiping = name.groups() # 그룹화된 매칭을 튜플 형태로 리턴
+
+    name.group() # 전체 매치 결과
+    name.group(0) # 위와 동일
+    name.group(1) # 1번 그룹 매치 결과
+    name.group(2) # 2번 그룹 매치 결과
+    
+    #(?P<그룹이름>표현식)
+    re.match('(?P<first>a)(?P<second>b)', 'ab')
+```
+
+```
+    re.option
+    - re.DOTALL, re.S : 기호 .을 사용할 때 \n까지 매치
+    - re.IGNORECASE, re.I : 대소문자를 구별하지 않고 매치
+    - re.MULTILINE, re.M : 여러 줄의 문자열에 기호 ^, $를 매치
+    - re.VERBOSE, re.X : 정규표현식을 여러 줄에 걸쳐서 작성 가능 
+```
