@@ -1,0 +1,11 @@
+{
+  "applinks": {
+      "apps": [],
+      "details": [
+      {
+        "appID": "YTP3F9TLMS.com.one.Someone",
+        "paths": ["*"]
+      }
+    ]
+  }
+}
