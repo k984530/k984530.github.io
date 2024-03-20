@@ -1,14 +1,11 @@
-[
-    {
-        "relation": [
-            "delegate_permission/common.handle_all_urls"
-        ],
-        "target": {
-            "namespace": "android_app",
-            "package_name": "com.eoground.quavatar",
-            "sha256_cert_fingerprints": [
-                "DB:9A:0F:19:E2:45:A0:74:69:C8:C6:0C:79:6F:D6:CB:0A:0A:C6:E9:4E:7A:07:FB:2F:EA:6C:0C:EA:2E:EE:D0"
-            ]
-        }
-    }
-]
+{
+  "applinks": {
+      "apps": [],
+      "details": [
+      {
+        "appID": "MGN9XXHV8Z.com.eoground.quavatar",
+        "paths": ["*"]
+      }
+    ]
+  }
+}
