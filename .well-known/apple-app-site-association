@@ -1,0 +1,11 @@
+{
+  "applinks": {
+      "apps": [],
+      "details": [
+      {
+        "appID": "MGN9XXHV8Z.com.eoground.quavatar",
+        "paths": ["*"]
+      }
+    ]
+  }
+}
