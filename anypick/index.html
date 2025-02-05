@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Won's Space - AnyPick</title>
+    <script>
+        function getMobileOperatingSystem() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return "iOS";
+            }
+
+            if (/android/i.test(userAgent)) {
+                return "Android";
+            }
+
+            return "unknown";
+        }
+
+        window.onload = function() {
+            var os = getMobileOperatingSystem();
+            var currentUrl = window.location.href;
+
+            if (currentUrl.includes("won-space.com/anypick")) {
+                if (os === "iOS") {
+                    window.location.href = "https://apps.apple.com/app/id[YOUR_APP_STORE_ID]";
+                } else if (os === "Android") {
+                    window.location.href = "https://play.google.com/store/apps/details?id=[YOUR_PLAY_STORE_ID]";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: center; padding: 20px;">
+        <h1>AnyPick 앱으로 이동중입니다...</h1>
+        <p>자동으로 이동하지 않는 경우:</p>
+        <p>
+            <a href="https://apps.apple.com/app/id[YOUR_APP_STORE_ID]">iOS 앱스토어로 이동</a>
+            <br>
+            <a href="https://play.google.com/store/apps/details?id=[YOUR_PLAY_STORE_ID]">안드로이드 플레이스토어로 이동</a>
+        </p>
+    </div>
+</body>
+</html>

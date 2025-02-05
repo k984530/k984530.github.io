@@ -2,23 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Flutter Web</title>
-  <script>
-    // URL이 /anypick인 경우에만 리다이렉션 실행
-    if (window.location.pathname === '/anypick') {
-      // 사용자 에이전트 문자열을 확인
-      var userAgent = navigator.userAgent.toLowerCase();
-      
-      // iOS 기기 확인 (iPhone, iPad, iPod)
-      if (/iphone|ipad|ipod/.test(userAgent)) {
-        window.location.href = 'https://apps.apple.com/your_app_store_link';
-      }
-      // Android 기기 확인
-      else if (/android/.test(userAgent)) {
-        window.location.href = 'https://play.google.com/store/your_play_store_link';
-      }
-    }
-  </script>
+  <title>Won's Space</title>
 </head>
 <body>
   <script src="main.dart.js" type="application/javascript"></script>
