@@ -25,8 +25,10 @@
             if (currentUrl.includes("won-space.com/anypick")) {
                 if (os === "iOS") {
                     window.location.href = "https://apps.apple.com/kr/app/anypick/id6740760810";
+                    window.close();
                 } else if (os === "Android") {
                     window.location.href = "https://play.google.com/store/apps/details?id=com.aly.anypick";
+                    window.close();
                 }
             }
         }
@@ -37,9 +39,9 @@
         <h1>AnyPick 앱으로 이동중입니다...</h1>
         <p>자동으로 이동하지 않는 경우:</p>
         <p>
-            <a href="https://apps.apple.com/kr/app/anypick/id6740760810">iOS 앱스토어로 이동</a>
+            <a href="https://apps.apple.com/kr/app/anypick/id6740760810" onclick="window.close()">iOS 앱스토어로 이동</a>
             <br>
-            <a href="https://play.google.com/store/apps/details?id=com.aly.anypick">안드로이드 플레이스토어로 이동</a>
+            <a href="https://play.google.com/store/apps/details?id=com.aly.anypick" onclick="window.close()">안드로이드 플레이스토어로 이동</a>
         </p>
     </div>
 </body>
