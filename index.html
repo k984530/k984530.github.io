@@ -3,30 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Won's Space</title>
-  <script>
-    // URL 경로 확인
-    if (window.location.pathname === '/anypick') {
-      var userAgent = navigator.userAgent.toLowerCase();
-      
-      if (/iphone|ipad|ipod/.test(userAgent)) {
-        window.location.href = 'https://apps.apple.com/kr/app/anypick/id6475511488';
-      }
-      else if (/android/.test(userAgent)) {
-        window.location.href = 'https://play.google.com/store/apps/details?id=com.anypick.app';
-      }
-    }
-    // FaceMatch 리다이렉션
-    else if (window.location.pathname === '/faceMatch') {
-      var userAgent = navigator.userAgent.toLowerCase();
-      
-      if (/iphone|ipad|ipod/.test(userAgent)) {
-        window.location.href = 'https://apps.apple.com/kr/app/facematch/id6474476765';
-      }
-      else if (/android/.test(userAgent)) {
-        window.location.href = 'https://play.google.com/store/apps/details?id=com.facematch.app';
-      }
-    }
-  </script>
 </head>
 <body>
   <script src="main.dart.js" type="application/javascript"></script>

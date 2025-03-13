@@ -21,11 +21,26 @@
 
             return "unknown";
         }
+
+        window.onload = function() {
+            var os = getMobileOperatingSystem();
+            var currentUrl = window.location.href;
+
+            if (currentUrl.includes("won-space.com/faceMatch")) {
+                if (os === "iOS") {
+                    window.location.href = "https://apps.apple.com/app/face-match-ai/id6743154306";
+                    window.close();
+                } else if (os === "Android") {
+                    window.location.href = "https://play.google.com/store/apps/details?id=com.aly.faceMatch";
+                    window.close();
+                }
+            }
+        }
     </script>
 </head>
 <body>
     <div style="text-align: center; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh;">
-        <h1>faceMatchAI Download</h1>
+        <h1>Download</h1>
         <p>
             <a href="https://apps.apple.com/app/face-match-ai/id6743154306" onclick="window.close()">
                 <img src="../appstore.png" alt="App Store" style="width: 200px; margin: 10px;">
@@ -34,9 +49,6 @@
             <a href="https://play.google.com/store/apps/details?id=com.aly.faceMatch" onclick="window.close()">
                 <img src="../googleplay.png" alt="Google Play" style="width: 200px; margin: 10px;">
             </a>
-        </p>
-        <p>
-            <h1>faceMatchAI Contact : alyduho984530@gmail.com</h1>
         </p>
     </div>
 </body>
