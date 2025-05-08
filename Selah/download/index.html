@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Won's Space - Selah</title>
+    <meta property="og:title" content="Selah">
+    <meta property="og:description" content="Selah Download">
+    <meta property="og:image" content="https://won-space.com/Selah/download/Icon.png">
+    <meta property="og:url" content="https://won-space.com/Selah/download">
+    <script>
+        function getMobileOperatingSystem() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return "iOS";
+            }
+
+            if (/android/i.test(userAgent)) {
+                return "Android";
+            }
+
+            return "unknown";
+        }
+
+        window.onload = function() {
+            var os = getMobileOperatingSystem();
+            var currentUrl = window.location.href;
+
+            if (currentUrl.includes("won-space.com/Selah")) {
+                if (os === "iOS") {
+                    window.location.href = "https://apps.apple.com/us/app/a-bible-verse-selah/id6745543908";
+                    window.close();
+                } else if (os === "Android") {
+                    window.location.href = "https://play.google.com/store/apps/details?id=com.aly.Selah";
+                    window.close();
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: center; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh;">
+        <h1>Download</h1>
+        <p>
+            <a href="https://apps.apple.com/app/genie-planner/id6743991901" onclick="window.close()">
+                <img src="../../appstore.png" alt="App Store" style="width: 200px; margin: 10px;">
+            </a>
+            <br>
+            <a href="https://play.google.com/store/apps/details?id=com.aly.GeniePlanner" onclick="window.close()">
+                <img src="../../googleplay.png" alt="Google Play" style="width: 200px; margin: 10px;">
+            </a>
+        </p>
+    </div>
+</body>
+</html>
