@@ -355,119 +355,196 @@ body {
     line-height: 1.6;
 }
 
-/* Pricing Section */
-.pricing {
+/* Server Download Section */
+.server-download {
     padding: 80px 0;
     background: white;
 }
 
-.pricing-cards {
+.download-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin: 60px 0;
 }
 
-.pricing-card {
+.download-card {
     background: var(--bg-light);
-    padding: 40px 30px;
-    border-radius: 16px;
-    position: relative;
-    transition: transform 0.3s ease;
-}
-
-.pricing-card.popular {
-    background: var(--gradient);
-    color: white;
-    transform: scale(1.05);
-}
-
-.pricing-card:hover {
-    transform: translateY(-5px);
-}
-
-.popular-badge, .value-badge {
-    position: absolute;
-    top: -15px;
-    right: 30px;
-    background: #ff6b6b;
-    color: white;
-    padding: 5px 20px;
+    padding: 50px 40px;
     border-radius: 20px;
-    font-size: 0.875rem;
-    font-weight: 600;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.value-badge {
-    background: #27c93f;
+.download-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
-.plan-name {
-    font-size: 1.5rem;
+.os-icon {
+    font-size: 4rem;
     margin-bottom: 1.5rem;
 }
 
-.plan-price {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
+.download-card h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.os-requirement {
+    color: var(--text-light);
     margin-bottom: 2rem;
+    font-size: 0.9rem;
 }
 
-.price {
-    font-size: 3rem;
-    font-weight: 800;
-}
-
-.duration {
-    font-size: 1rem;
-    opacity: 0.8;
-}
-
-.plan-features {
-    list-style: none;
-    margin-bottom: 2rem;
-}
-
-.plan-features li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.pricing-card.popular .plan-features li {
-    border-bottom-color: rgba(255,255,255,0.2);
-}
-
-.plan-features li.disabled {
-    opacity: 0.5;
-    text-decoration: line-through;
-}
-
-/* Download Section */
-.download {
-    padding: 80px 0;
-    background: var(--gradient);
-    color: white;
-    text-align: center;
-}
-
-.download-title {
-    font-size: 2.5rem;
-    font-weight: 800;
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
     margin-bottom: 1rem;
 }
 
-.download-description {
-    font-size: 1.125rem;
-    margin-bottom: 3rem;
-    opacity: 0.9;
+.download-btn svg {
+    width: 20px;
+    height: 20px;
 }
 
-.download-buttons {
+.file-info {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+.setup-info {
+    background: linear-gradient(135deg, #667eea15, #764ba215);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.setup-info h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+}
+
+.setup-info ol {
+    list-style: none;
+    counter-reset: step-counter;
+}
+
+.setup-info ol li {
+    counter-increment: step-counter;
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+
+.setup-info ol li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background: var(--gradient);
+    color: white;
+    border-radius: 50%;
     display: flex;
-    gap: 1.5rem;
+    align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    font-weight: 600;
+}
+
+/* Mobile Download Section */
+.mobile-download {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
+
+.mobile-download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin: 60px 0;
+}
+
+.mobile-card {
+    background: white;
+    padding: 50px 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mobile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.mobile-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.mobile-card h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.mobile-requirement {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.app-info {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: 1rem;
+}
+
+.app-features {
+    background: linear-gradient(135deg, #667eea15, #764ba215);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.app-features h4 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+.app-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.app-feature {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.feature-emoji {
+    font-size: 1.5rem;
 }
 
 .store-button img {

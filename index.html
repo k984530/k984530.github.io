@@ -1,10 +1,444 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>Won's Space</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Won's Portfolio - Mobile Developer</title>
+    <meta name="description" content="모바일 앱 개발자 Won의 포트폴리오. iOS, Android 앱 개발 프로젝트를 확인하세요.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <script src="main.dart.js" type="application/javascript"></script>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#home" class="logo">Won's Portfolio</a>
+                <div class="nav-links">
+                    <a href="#home">홈</a>
+                    <a href="#about">소개</a>
+                    <a href="#projects">프로젝트</a>
+                    <a href="#contact">연락처</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="gradient-overlay"></div>
+            <div class="animated-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    안녕하세요,<br>
+                    <span class="gradient-text">모바일 개발자 Won</span>입니다
+                </h1>
+                <p class="hero-description">
+                    사용자 경험을 중심으로 iOS와 Android 앱을 개발합니다.<br>
+                    혁신적인 아이디어를 현실로 만들어갑니다.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-folder"></i> 프로젝트 보기
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> 연락하기
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">출시된 앱</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">활성 사용자</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4.5+</span>
+                        <span class="stat-label">평균 평점</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>스크롤</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">모바일 앱 개발에 열정을 가진 개발자</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>창의적인 문제 해결을 좋아하는 개발자</h3>
+                    <p>
+                        사용자의 일상을 더 편리하고 즐겁게 만드는 모바일 앱을 개발합니다. 
+                        iOS와 Android 플랫폼 모두에서 네이티브 앱을 개발하며, 
+                        Flutter를 활용한 크로스 플랫폼 개발도 진행합니다.
+                    </p>
+                    <p>
+                        새로운 기술을 배우고 적용하는 것을 즐기며, 
+                        사용자 피드백을 바탕으로 지속적으로 앱을 개선해 나갑니다.
+                    </p>
+                    <div class="skills">
+                        <h4>기술 스택</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Swift</span>
+                            <span class="skill-tag">Kotlin</span>
+                            <span class="skill-tag">Flutter</span>
+                            <span class="skill-tag">React Native</span>
+                            <span class="skill-tag">Firebase</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">UI/UX Design</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <div class="image-bg"></div>
+                        <div class="code-snippet">
+                            <pre><code>class Developer {
+  String name = "Won";
+  List<String> skills = [
+    "iOS Development",
+    "Android Development",
+    "Flutter",
+    "UI/UX Design"
+  ];
+  
+  String passion = "Creating amazing apps!";
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Projects</h2>
+                <p class="section-subtitle">제가 개발한 모바일 애플리케이션들입니다</p>
+            </div>
+            
+            <!-- Project Filter -->
+            <div class="project-filter">
+                <button class="filter-btn active" data-filter="all">전체</button>
+                <button class="filter-btn" data-filter="ios">iOS</button>
+                <button class="filter-btn" data-filter="android">Android</button>
+                <button class="filter-btn" data-filter="utility">유틸리티</button>
+                <button class="filter-btn" data-filter="social">소셜</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid">
+                <!-- Mobile Code -->
+                <div class="project-card" data-category="utility">
+                    <div class="project-image">
+                        <img src="assets/assets/posters/poster1.png" alt="Mobile Code">
+                        <div class="project-overlay">
+                            <a href="MobileCode/" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Mobile Code</h3>
+                        <p>모바일에서 터미널에 접속할 수 있는 강력한 도구</p>
+                        <div class="project-tech">
+                            <span>Flutter</span>
+                            <span>SSH</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="MobileCode/" class="link-btn">
+                                <i class="fas fa-globe"></i> 웹사이트
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AnyThoughts -->
+                <div class="project-card" data-category="social">
+                    <div class="project-image">
+                        <img src="AnyThoughts/download/Icon.png" alt="AnyThoughts">
+                        <div class="project-overlay">
+                            <a href="AnyThoughts/" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>AnyThoughts</h3>
+                        <p>감정을 기록하고 공유하는 카메라 앱</p>
+                        <div class="project-tech">
+                            <span>iOS</span>
+                            <span>Android</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="AnyThoughts/" class="link-btn">
+                                <i class="fas fa-mobile-alt"></i> 상세보기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BlahChat -->
+                <div class="project-card" data-category="social">
+                    <div class="project-image">
+                        <img src="BlahChat/download/Icon.png" alt="BlahChat">
+                        <div class="project-overlay">
+                            <a href="BlahChat/" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>BlahChat</h3>
+                        <p>실시간 채팅 애플리케이션</p>
+                        <div class="project-tech">
+                            <span>React Native</span>
+                            <span>Firebase</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="BlahChat/" class="link-btn">
+                                <i class="fas fa-mobile-alt"></i> 상세보기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CryptoSkills -->
+                <div class="project-card" data-category="utility">
+                    <div class="project-image">
+                        <img src="CryptoSkills/download/Icon.png" alt="CryptoSkills">
+                        <div class="project-overlay">
+                            <a href="CryptoSkills/" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>CryptoSkills</h3>
+                        <p>암호화폐 관련 정보와 도구 제공</p>
+                        <div class="project-tech">
+                            <span>Flutter</span>
+                            <span>API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="CryptoSkills/" class="link-btn">
+                                <i class="fas fa-mobile-alt"></i> 상세보기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CatsThoughts -->
+                <div class="project-card" data-category="social">
+                    <div class="project-image">
+                        <img src="CatsThoughts/download/Icon.png" alt="CatsThoughts">
+                        <div class="project-overlay">
+                            <a href="CatsThoughts/" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>CatsThoughts</h3>
+                        <p>고양이와 함께하는 일상 기록 앱</p>
+                        <div class="project-tech">
+                            <span>iOS</span>
+                            <span>SwiftUI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="CatsThoughts/" class="link-btn">
+                                <i class="fas fa-mobile-alt"></i> 상세보기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DogsThoughts -->
+                <div class="project-card" data-category="social">
+                    <div class="project-image">
+                        <img src="DogsThoughts/download/Icon.png" alt="DogsThoughts">
+                        <div class="project-overlay">
+                            <a href="DogsThoughts/" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>DogsThoughts</h3>
+                        <p>강아지와 함께하는 일상 기록 앱</p>
+                        <div class="project-tech">
+                            <span>Android</span>
+                            <span>Kotlin</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="DogsThoughts/" class="link-btn">
+                                <i class="fas fa-mobile-alt"></i> 상세보기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- faceMatch -->
+                <div class="project-card" data-category="utility">
+                    <div class="project-image">
+                        <img src="faceMatch/download/Icon.png" alt="faceMatch">
+                        <div class="project-overlay">
+                            <a href="faceMatch/" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>faceMatch</h3>
+                        <p>AI 기반 얼굴 매칭 애플리케이션</p>
+                        <div class="project-tech">
+                            <span>ML Kit</span>
+                            <span>Flutter</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="faceMatch/" class="link-btn">
+                                <i class="fas fa-mobile-alt"></i> 상세보기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GeniePlanner -->
+                <div class="project-card" data-category="utility">
+                    <div class="project-image">
+                        <img src="GeniePlanner/download/Icon.png" alt="GeniePlanner">
+                        <div class="project-overlay">
+                            <a href="GeniePlanner/" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>GeniePlanner</h3>
+                        <p>스마트한 일정 관리 플래너</p>
+                        <div class="project-tech">
+                            <span>iOS</span>
+                            <span>Calendar API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="GeniePlanner/" class="link-btn">
+                                <i class="fas fa-mobile-alt"></i> 상세보기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More projects... -->
+                <div class="project-card" data-category="utility">
+                    <div class="project-image">
+                        <img src="Lookey/download/Icon.png" alt="Lookey">
+                        <div class="project-overlay">
+                            <a href="Lookey/" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Lookey</h3>
+                        <p>혁신적인 검색 도구</p>
+                        <div class="project-tech">
+                            <span>iOS</span>
+                            <span>Android</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="Lookey/" class="link-btn">
+                                <i class="fas fa-mobile-alt"></i> 상세보기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-subtitle">프로젝트에 대해 이야기 나누고 싶으신가요?</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>함께 멋진 앱을 만들어요!</h3>
+                    <p>새로운 프로젝트나 협업에 대해 언제든지 연락주세요.</p>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <a href="https://won-space.com" target="_blank">won-space.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/k984530" target="_blank">github.com/k984530</a>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="이름" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="이메일" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" placeholder="메시지" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> 메시지 보내기
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Won's Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
