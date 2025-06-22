@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Code - 어디서나 터미널에 접속하세요</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <span class="logo-icon">⌨️</span>
+                    <span class="logo-text">Mobile Code</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">기능</a>
+                    <a href="#pricing">요금제</a>
+                    <a href="#download">다운로드</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">🚀 새로운 모바일 터미널 경험</div>
+                <h1 class="hero-title">
+                    어디서나<br>
+                    <span class="gradient-text">터미널에 접속하세요</span>
+                </h1>
+                <p class="hero-description">
+                    Mobile Code는 모바일 기기에서 강력한 터미널 기능을<br>
+                    제공하는 혁신적인 앱입니다.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary">
+                        무료로 시작하기
+                    </a>
+                    <a href="#demo" class="btn btn-secondary">
+                        데모 보기
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">활성 사용자</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4.8</span>
+                        <span class="stat-label">평균 평점</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">가동률</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="terminal-window">
+                            <div class="terminal-header">
+                                <span class="terminal-dot red"></span>
+                                <span class="terminal-dot yellow"></span>
+                                <span class="terminal-dot green"></span>
+                            </div>
+                            <div class="terminal-content">
+                                <p><span class="prompt">$</span> ssh user@server</p>
+                                <p><span class="prompt">$</span> cd /var/www</p>
+                                <p><span class="prompt">$</span> git pull origin main</p>
+                                <p class="output">Already up to date.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">강력한 기능들</h2>
+                <p class="section-description">
+                    Mobile Code가 제공하는 다양한 기능을 확인해보세요
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>보안 연결</h3>
+                    <p>SSH 프로토콜을 통한 안전한 서버 연결</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>빠른 성능</h3>
+                    <p>최적화된 코드로 빠른 응답 속도 제공</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>모바일 최적화</h3>
+                    <p>터치 친화적인 인터페이스와 제스처 지원</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>다중 세션</h3>
+                    <p>여러 서버에 동시 연결 가능</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>커스터마이징</h3>
+                    <p>테마와 폰트 등 개인 설정 가능</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>파일 전송</h3>
+                    <p>서버와 기기 간 쉬운 파일 전송</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">합리적인 요금제</h2>
+                <p class="section-description">
+                    당신에게 맞는 플랜을 선택하세요
+                </p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3 class="plan-name">무료</h3>
+                    <div class="plan-price">
+                        <span class="price">₩0</span>
+                        <span class="duration">/월</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li>✓ 기본 터미널 기능</li>
+                        <li>✓ 최대 1개 연결</li>
+                        <li>✓ 커뮤니티 지원</li>
+                        <li class="disabled">✗ 파일 전송</li>
+                        <li class="disabled">✗ 다중 세션</li>
+                    </ul>
+                    <button class="btn btn-outline">시작하기</button>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">인기</div>
+                    <h3 class="plan-name">월간 구독</h3>
+                    <div class="plan-price">
+                        <span class="price">₩8,900</span>
+                        <span class="duration">/월</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li>✓ 모든 터미널 기능</li>
+                        <li>✓ 무제한 연결</li>
+                        <li>✓ 파일 전송 지원</li>
+                        <li>✓ 우선 고객 지원</li>
+                        <li>✓ 신규 기능 우선 제공</li>
+                    </ul>
+                    <button class="btn btn-primary">구독하기</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="value-badge">최고의 가치</div>
+                    <h3 class="plan-name">평생 구독</h3>
+                    <div class="plan-price">
+                        <span class="price">₩199,000</span>
+                        <span class="duration">단 한 번</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li>✓ 모든 프리미엄 기능</li>
+                        <li>✓ 평생 업데이트</li>
+                        <li>✓ 베타 기능 접근</li>
+                        <li>✓ VIP 고객 지원</li>
+                        <li>✓ 맞춤 설정 지원</li>
+                    </ul>
+                    <button class="btn btn-primary">구매하기</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="container">
+            <div class="download-content">
+                <h2 class="download-title">지금 시작하세요</h2>
+                <p class="download-description">
+                    iOS와 Android에서 Mobile Code를 다운로드하고<br>
+                    어디서나 터미널에 접속하세요
+                </p>
+                <div class="download-buttons">
+                    <a href="#" class="store-button">
+                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr?size=250x83&amp;releaseDate=1276560000&h=7e7b68fad19738b5649a1bfb78ff46e9" alt="Download on App Store">
+                    </a>
+                    <a href="#" class="store-button">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ko_badge_web_generic.png" alt="Get it on Google Play">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Mobile Code</h4>
+                    <p>모바일 터미널의 새로운 기준</p>
+                </div>
+                <div class="footer-section">
+                    <h5>제품</h5>
+                    <ul>
+                        <li><a href="#features">기능</a></li>
+                        <li><a href="#pricing">요금제</a></li>
+                        <li><a href="#download">다운로드</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h5>지원</h5>
+                    <ul>
+                        <li><a href="#">문서</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">문의하기</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h5>법적 고지</h5>
+                    <ul>
+                        <li><a href="#">이용약관</a></li>
+                        <li><a href="#">개인정보처리방침</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Mobile Code. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
