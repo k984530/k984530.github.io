@@ -89,27 +89,10 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Project filter
-const filterButtons = document.querySelectorAll('.filter-btn');
+// All project cards are now visible by default
 const projectCards = document.querySelectorAll('.project-card');
-
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        const filter = button.getAttribute('data-filter');
-        
-        projectCards.forEach(card => {
-            if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                card.style.display = 'block';
-                card.style.animation = 'fadeIn 0.5s ease';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
+projectCards.forEach(card => {
+    card.style.display = 'block';
 });
 
 // Intersection Observer for animations
@@ -161,18 +144,22 @@ const contactForm = document.getElementById('contactForm');
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-    };
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
     
-    // Here you would normally send the form data to a server
-    console.log('Form submitted:', formData);
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`[포트폴리오 문의] ${name}님의 메시지`);
+    const body = encodeURIComponent(`이름: ${name}\n이메일: ${email}\n\n메시지:\n${message}`);
+    const mailtoLink = `mailto:alyduho984530@gmail.com?subject=${subject}&body=${body}`;
     
-    // Show success message
-    alert('메시지가 성공적으로 전송되었습니다!');
-    contactForm.reset();
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Reset form after a delay
+    setTimeout(() => {
+        contactForm.reset();
+    }, 1000);
 });
 
 // Parallax effect for hero section
