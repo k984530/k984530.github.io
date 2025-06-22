@@ -1,44 +1,274 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Won's Space - Cat's Thoughts</title>
-    <meta property="og:title" content="Cat's Thoughts">
-    <meta property="og:description" content="Cat's Thoughts Download">
-    <meta property="og:image" content="https://won-space.com/CatsThoughts/Icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatsThoughts - 고양이 생각 및 감정 분석 앱</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="AI로 고양이의 생각과 감정을 분석해보세요. 반려묘와 더 깊은 교감을 나누는 스마트한 방법.">
+    <meta name="keywords" content="고양이 감정 분석, AI 펫 케어, 고양이 심리, 반려묘 앱, 고양이 행동 분석">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="CatsThoughts - 고양이 생각 및 감정 분석 앱">
+    <meta property="og:description" content="AI 기술로 고양이의 마음을 읽고 감정을 분석해보세요.">
+    <meta property="og:image" content="https://won-space.com/CatsThoughts/download/Icon.png">
     <meta property="og:url" content="https://won-space.com/CatsThoughts">
-    <script>
-        function getMobileOperatingSystem() {
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return "iOS";
-            }
-
-            if (/android/i.test(userAgent)) {
-                return "Android";
-            }
-
-            return "unknown";
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CatsThoughts - 고양이 생각 및 감정 분석 앱">
+    <meta name="twitter:description" content="AI 기술로 고양이의 마음을 읽고 감정을 분석해보세요.">
+    <meta name="twitter:image" content="https://won-space.com/CatsThoughts/download/Icon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    </script>
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: white;
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .download-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .download-btn img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .features {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #fa709a;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .feature-description {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .contact {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+        
+        .contact h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .contact a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .contact a:hover {
+            border-bottom-color: white;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .tagline {
+                font-size: 1.2em;
+            }
+            
+            .features h2 {
+                font-size: 2em;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div style="text-align: center; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh;">
-        <img src="download/Icon.png" alt="Cat's Thoughts Icon" style="width: 150px; height: 150px; margin: 20px;">
-        <h1>Cat's Thoughts Download</h1>
-        <p>
-            <a href="https://apps.apple.com/app/cats-thoughts/id6743672789" onclick="window.close()">
-                <img src="../appstore.png" alt="App Store" style="width: 200px; margin: 10px;">
-            </a>
-            <br>
-            <a href="https://play.google.com/store/apps/details?id=com.aly.CatsThoughts" onclick="window.close()">
-                <img src="../googleplay.png" alt="Google Play" style="width: 200px; margin: 10px;">
-            </a>
-        </p>
-        <p>
-            <h1>Contact : alyduho984530@gmail.com</h1>
-        </p>
-    </div>
+    <header>
+        <div class="container">
+            <img src="download/Icon.png" alt="CatsThoughts App Icon" class="app-icon">
+            <h1>CatsThoughts</h1>
+            <p class="tagline">AI로 이해하는 내 고양이의 마음</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="download-section">
+            <div class="download-buttons">
+                <a href="https://apps.apple.com/app/cats-thoughts/id6743672789" class="download-btn" target="_blank">
+                    <img src="../appstore.png" alt="Download on the App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.aly.CatsThoughts" class="download-btn" target="_blank">
+                    <img src="../googleplay.png" alt="Get it on Google Play">
+                </a>
+            </div>
+            <p style="text-align: center; color: #666; font-size: 1.1em;">
+                Available on iOS and Android devices
+            </p>
+        </div>
+        
+        <div class="features">
+            <h2>주요 기능</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">😺</div>
+                    <h3 class="feature-title">고양이 감정 분석</h3>
+                    <p class="feature-description">사진이나 동영상으로 고양이의 현재 감정 상태를 정확히 파악합니다.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">생각 번역기</h3>
+                    <p class="feature-description">AI가 고양이의 행동을 분석해 생각을 인간의 언어로 번역해드립니다.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">행동 패턴 추적</h3>
+                    <p class="feature-description">일상생활 패턴을 기록하고 고양이의 감정 변화를 시각화합니다.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">맞춤형 케어 가이드</h3>
+                    <p class="feature-description">분석 결과에 기반한 개인별 돌봄 방법과 조언을 제공합니다.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔔</div>
+                    <h3 class="feature-title">실시간 알림</h3>
+                    <p class="feature-description">고양이의 특이 행동이나 감정 변화를 즉시 알려드립니다.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">😻</div>
+                    <h3 class="feature-title">고양이 성격 분석</h3>
+                    <p class="feature-description">장기간 데이터를 분석해 고양이의 성격 유형을 파악합니다.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="contact">
+        <h2>문의하기</h2>
+        <p>질문이나 피드백이 있으신가요?</p>
+        <p><a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></p>
+    </footer>
+    
+    <script>
+        // Smooth scroll for any future anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

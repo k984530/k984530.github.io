@@ -1,44 +1,274 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Won's Space - faceMatchAI</title>
-    <meta property="og:title" content="faceMatchAI">
-    <meta property="og:description" content="faceMatchAI Download">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>faceMatch - 궁합 및 관상 앱</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="AI 기반 얼굴 분석으로 궁합을 확인하고 관상을 해석해보세요. 사랑, 친구, 비즈니스 관계를 예측합니다.">
+    <meta name="keywords" content="궁합 측정, 관상 해석, AI 얼굴 분석, 사주, 연애 궁합">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="faceMatch - 궁합 및 관상 앱">
+    <meta property="og:description" content="AI로 분석하는 두 사람의 궁합과 얼굴에 담긴 운명을 확인해보세요.">
     <meta property="og:image" content="https://won-space.com/faceMatch/download/Icon.png">
-    <meta property="og:url" content="https://won-space.com/faceMatch/download">
-    <script>
-        function getMobileOperatingSystem() {
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return "iOS";
-            }
-
-            if (/android/i.test(userAgent)) {
-                return "Android";
-            }
-
-            return "unknown";
+    <meta property="og:url" content="https://won-space.com/faceMatch">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="faceMatch - 궁합 및 관상 앱">
+    <meta name="twitter:description" content="AI로 분석하는 두 사람의 궁합과 얼굴에 담긴 운명을 확인해보세요.">
+    <meta name="twitter:image" content="https://won-space.com/faceMatch/download/Icon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    </script>
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: white;
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .download-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .download-btn img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .features {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #FF6B6B;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .feature-description {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .contact {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+        
+        .contact h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .contact a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .contact a:hover {
+            border-bottom-color: white;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .tagline {
+                font-size: 1.2em;
+            }
+            
+            .features h2 {
+                font-size: 2em;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div style="text-align: center; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh;">
-        <img src="download/Icon.png" alt="faceMatchAI Icon" style="width: 150px; height: 150px; margin: 20px;">
-        <h1>faceMatchAI Download</h1>
-        <p>
-            <a href="https://apps.apple.com/app/face-match-ai/id6743154306" onclick="window.close()">
-                <img src="../appstore.png" alt="App Store" style="width: 200px; margin: 10px;">
-            </a>
-            <br>
-            <a href="https://play.google.com/store/apps/details?id=com.aly.faceMatch" onclick="window.close()">
-                <img src="../googleplay.png" alt="Google Play" style="width: 200px; margin: 10px;">
-            </a>
-        </p>
-        <p>
-            <h1>faceMatchAI Contact : alyduho984530@gmail.com</h1>
-        </p>
-    </div>
+    <header>
+        <div class="container">
+            <img src="download/Icon.png" alt="faceMatch App Icon" class="app-icon">
+            <h1>faceMatch</h1>
+            <p class="tagline">얼굴로 보는 운명과 궁합</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="download-section">
+            <div class="download-buttons">
+                <a href="https://apps.apple.com/app/face-match-ai/id6743154306" class="download-btn" target="_blank">
+                    <img src="../appstore.png" alt="Download on the App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.aly.faceMatch" class="download-btn" target="_blank">
+                    <img src="../googleplay.png" alt="Get it on Google Play">
+                </a>
+            </div>
+            <p style="text-align: center; color: #666; font-size: 1.1em;">
+                Available on iOS and Android devices
+            </p>
+        </div>
+        
+        <div class="features">
+            <h2>주요 기능</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">💑</div>
+                    <h3 class="feature-title">연애 궁합 분석</h3>
+                    <p class="feature-description">두 사람의 얼굴을 분석해 사랑의 궁합도를 확인합니다.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🕯️</div>
+                    <h3 class="feature-title">관상 해석</h3>
+                    <p class="feature-description">얼굴의 특징을 분석해 성격, 재운, 미래를 예측합니다.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <h3 class="feature-title">친구 궁합</h3>
+                    <p class="feature-description">친구와의 우정 궁합도를 측정하고 관계를 분석합니다.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💼</div>
+                    <h3 class="feature-title">비즈니스 궁합</h3>
+                    <p class="feature-description">동료나 파트너와의 업무 궁합도를 확인합니다.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">상세 분석 리포트</h3>
+                    <p class="feature-description">각 항목별 점수와 함께 상세한 분석 결과를 제공합니다.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌟</div>
+                    <h3 class="feature-title">운세 예측</h3>
+                    <p class="feature-description">얼굴 분석에 기반한 오늘의 운세와 행운 지수를 확인합니다.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="contact">
+        <h2>문의하기</h2>
+        <p>질문이나 피드백이 있으신가요?</p>
+        <p><a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></p>
+    </footer>
+    
+    <script>
+        // Smooth scroll for any future anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

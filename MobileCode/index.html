@@ -1,256 +1,274 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Code - 어디서나 터미널에 접속하세요</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>MobileCode - 모바일 코딩 앱</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="언제 어디서나 코딩을 배우세요. 모바일에 최적화된 코드 에디터와 학습 커리큘럼.">
+    <meta name="keywords" content="모바일 코딩, 프로그래밍 학습, 코드 에디터, 코딩 교육, 개발 앱">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="MobileCode - 모바일 코딩 앱">
+    <meta property="og:description" content="스마트폰에서 쉽게 코딩을 배우고 연습하는 모바일 코딩 학습 플랫폼.">
+    <meta property="og:image" content="https://won-space.com/MobileCode/download/Icon.png">
+    <meta property="og:url" content="https://won-space.com/MobileCode">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MobileCode - 모바일 코딩 앱">
+    <meta name="twitter:description" content="스마트폰에서 쉽게 코딩을 배우고 연습하는 모바일 코딩 학습 플랫폼.">
+    <meta name="twitter:image" content="https://won-space.com/MobileCode/download/Icon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: white;
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .download-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .download-btn img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .features {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #1e3c72;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .feature-description {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .contact {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+        
+        .contact h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .contact a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .contact a:hover {
+            border-bottom-color: white;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .tagline {
+                font-size: 1.2em;
+            }
+            
+            .features h2 {
+                font-size: 2em;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <header>
         <div class="container">
-            <div class="nav-wrapper">
-                <div class="logo">
-                    <span class="logo-icon">⌨️</span>
-                    <span class="logo-text">Mobile Code</span>
-                </div>
-                <div class="nav-links">
-                    <a href="#features">기능</a>
-                    <a href="#server-download">서버 다운로드</a>
-                    <a href="#mobile-download">모바일 다운로드</a>
-                </div>
-            </div>
+            <img src="download/Icon.png" alt="MobileCode App Icon" class="app-icon">
+            <h1>MobileCode</h1>
+            <p class="tagline">언제 어디서나 코딩을</p>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="badge">🚀 새로운 모바일 터미널 경험</div>
-                <h1 class="hero-title">
-                    어디서나<br>
-                    <span class="gradient-text">터미널에 접속하세요</span>
-                </h1>
-                <p class="hero-description">
-                    Mobile Code는 모바일 기기에서 강력한 터미널 기능을<br>
-                    제공하는 혁신적인 앱입니다.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#server-download" class="btn btn-primary">
-                        서버 다운로드
-                    </a>
-                    <a href="#mobile-download" class="btn btn-secondary">
-                        모바일 다운로드
-                    </a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">10K+</span>
-                        <span class="stat-label">활성 사용자</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">4.8</span>
-                        <span class="stat-label">평균 평점</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">99.9%</span>
-                        <span class="stat-label">가동률</span>
-                    </div>
-                </div>
+    </header>
+    
+    <main class="container">
+        <div class="download-section">
+            <div class="download-buttons">
+                <a href="#" class="download-btn" target="_blank">
+                    <img src="../appstore.png" alt="Download on the App Store">
+                </a>
+                <a href="#" class="download-btn" target="_blank">
+                    <img src="../googleplay.png" alt="Get it on Google Play">
+                </a>
             </div>
-            <div class="hero-image">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="terminal-window">
-                            <div class="terminal-header">
-                                <span class="terminal-dot red"></span>
-                                <span class="terminal-dot yellow"></span>
-                                <span class="terminal-dot green"></span>
-                            </div>
-                            <div class="terminal-content">
-                                <p><span class="prompt">$</span> ssh user@server</p>
-                                <p><span class="prompt">$</span> cd /var/www</p>
-                                <p><span class="prompt">$</span> git pull origin main</p>
-                                <p class="output">Already up to date.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p style="text-align: center; color: #666; font-size: 1.1em;">
+                Available on iOS and Android devices
+            </p>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">강력한 기능들</h2>
-                <p class="section-description">
-                    Mobile Code가 제공하는 다양한 기능을 확인해보세요
-                </p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>빠른 성능</h3>
-                    <p>최적화된 코드로 빠른 응답 속도 제공</p>
-                </div>
-                <div class="feature-card">
+        
+        <div class="features">
+            <h2>주요 기능</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
                     <div class="feature-icon">📱</div>
-                    <h3>모바일 최적화</h3>
-                    <p>터치 친화적인 인터페이스와 제스처 지원</p>
+                    <h3 class="feature-title">모바일 코드 에디터</h3>
+                    <p class="feature-description">모바일 환경에 최적화된 강력한 코드 편집 기능을 제공합니다.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🖥️</div>
-                    <h3>크로스 플랫폼</h3>
-                    <p>Windows, macOS, Android, iOS 모두 지원</p>
+                <div class="feature-item">
+                    <div class="feature-icon">🎓</div>
+                    <h3 class="feature-title">체계적인 학습 커리큘럼</h3>
+                    <p class="feature-description">초급부터 고급까지 단계별 코딩 학습 코스를 제공합니다.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Server Download Section -->
-    <section id="server-download" class="server-download">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">서버 다운로드</h2>
-                <p class="section-description">
-                    데스크톱에서 Mobile Code 서버를 실행하세요
-                </p>
-            </div>
-            <div class="download-grid">
-                <div class="download-card">
-                    <div class="os-icon">🪟</div>
-                    <h3>Windows</h3>
-                    <p class="os-requirement">Windows 10 이상</p>
-                    <a href="#" class="btn btn-primary download-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-                        </svg>
-                        Windows 다운로드
-                    </a>
-                    <p class="file-info">MobileCodeServer.exe (12.5 MB)</p>
+                <div class="feature-item">
+                    <div class="feature-icon">▶️</div>
+                    <h3 class="feature-title">실시간 코드 실행</h3>
+                    <p class="feature-description">작성한 코드를 바로 실행하고 결과를 확인할 수 있습니다.</p>
                 </div>
-                <div class="download-card">
-                    <div class="os-icon">🍎</div>
-                    <h3>macOS</h3>
-                    <p class="os-requirement">macOS 10.15 이상</p>
-                    <a href="#" class="btn btn-primary download-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-                        </svg>
-                        macOS 다운로드
-                    </a>
-                    <p class="file-info">MobileCodeServer.dmg (15.3 MB)</p>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">코딩 문제 풀이</h3>
+                    <p class="feature-description">매일 새로운 코딩 문제로 실력을 향상시키세요.</p>
                 </div>
-            </div>
-            <div class="setup-info">
-                <h4>간단한 설치 과정</h4>
-                <ol>
-                    <li>위에서 운영체제에 맞는 서버를 다운로드하세요</li>
-                    <li>다운로드한 파일을 실행하여 설치를 진행하세요</li>
-                    <li>서버가 실행되면 IP 주소와 포트 번호가 표시됩니다</li>
-                    <li>모바일 앱에서 해당 정보를 입력하여 연결하세요</li>
-                </ol>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mobile Download Section -->
-    <section id="mobile-download" class="mobile-download">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">모바일 다운로드</h2>
-                <p class="section-description">
-                    스마트폰에서 Mobile Code 앱을 다운로드하세요
-                </p>
-            </div>
-            <div class="mobile-download-grid">
-                <div class="mobile-card">
-                    <div class="mobile-icon">🤖</div>
-                    <h3>Android</h3>
-                    <p class="mobile-requirement">Android 7.0 이상</p>
-                    <a href="#" class="store-button">
-                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/ko_badge_web_generic.png" alt="Get it on Google Play">
-                    </a>
-                    <p class="app-info">버전 2.0.1 • 25MB</p>
+                <div class="feature-item">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">다양한 프로그래밍 언어</h3>
+                    <p class="feature-description">Python, JavaScript, Java 등 다양한 언어를 학습합니다.</p>
                 </div>
-                <div class="mobile-card">
-                    <div class="mobile-icon">🍏</div>
-                    <h3>iOS</h3>
-                    <p class="mobile-requirement">iOS 13.0 이상</p>
-                    <a href="#" class="store-button">
-                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr?size=250x83&amp;releaseDate=1276560000&h=7e7b68fad19738b5649a1bfb78ff46e9" alt="Download on App Store">
-                    </a>
-                    <p class="app-info">버전 2.0.1 • 30MB</p>
-                </div>
-            </div>
-            <div class="app-features">
-                <h4>모바일 앱 주요 기능</h4>
-                <div class="app-features-grid">
-                    <div class="app-feature">
-                        <span class="feature-emoji">📱</span>
-                        <span>직관적인 터치 인터페이스</span>
-                    </div>
-                    <div class="app-feature">
-                        <span class="feature-emoji">🔗</span>
-                        <span>간편한 서버 연결</span>
-                    </div>
-                    <div class="app-feature">
-                        <span class="feature-emoji">⌨️</span>
-                        <span>강력한 터미널 기능</span>
-                    </div>
-                    <div class="app-feature">
-                        <span class="feature-emoji">🌙</span>
-                        <span>다크 모드 지원</span>
-                    </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">학습 진도 추적</h3>
+                    <p class="feature-description">개인별 학습 진행 상황과 성취도를 확인할 수 있습니다.</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Mobile Code</h4>
-                    <p>모바일 터미널의 새로운 기준</p>
-                </div>
-                <div class="footer-section">
-                    <h5>다운로드</h5>
-                    <ul>
-                        <li><a href="#server-download">Windows 서버</a></li>
-                        <li><a href="#server-download">macOS 서버</a></li>
-                        <li><a href="#mobile-download">Android 앱</a></li>
-                        <li><a href="#mobile-download">iOS 앱</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h5>지원</h5>
-                    <ul>
-                        <li><a href="#">문서</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">문의하기</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h5>법적 고지</h5>
-                    <ul>
-                        <li><a href="#">이용약관</a></li>
-                        <li><a href="#">개인정보처리방침</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Mobile Code. All rights reserved.</p>
-            </div>
-        </div>
+    </main>
+    
+    <footer class="contact">
+        <h2>문의하기</h2>
+        <p>질문이나 피드백이 있으신가요?</p>
+        <p><a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></p>
     </footer>
-
-    <script src="script.js"></script>
+    
+    <script>
+        // Smooth scroll for any future anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

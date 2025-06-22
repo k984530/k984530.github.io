@@ -1,44 +1,274 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Won's Space - Rizzet</title>
-    <meta property="og:title" content="Rizzet">
-    <meta property="og:description" content="Rizzet Download">
-    <meta property="og:image" content="https://won-space.com/rizzet/Icon.png">
-    <meta property="og:url" content="https://won-space.com/rizzet">
-    <script>
-        function getMobileOperatingSystem() {
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return "iOS";
-            }
-
-            if (/android/i.test(userAgent)) {
-                return "Android";
-            }
-
-            return "unknown";
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rizzet - Level Up Your Rizz</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Improve your conversation skills and charisma. Get AI-powered tips to enhance your social interactions.">
+    <meta name="keywords" content="conversation skills, dating app, charisma training, social skills, rizz improvement">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Rizzet - Level Up Your Rizz">
+    <meta property="og:description" content="Improve your conversation skills and charisma. Get AI-powered tips to enhance your social interactions.">
+    <meta property="og:image" content="https://won-space.com/Rizzet/download/Icon.png">
+    <meta property="og:url" content="https://won-space.com/Rizzet">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rizzet - Level Up Your Rizz">
+    <meta name="twitter:description" content="Improve your conversation skills and charisma. Get AI-powered tips to enhance your social interactions.">
+    <meta name="twitter:image" content="https://won-space.com/Rizzet/download/Icon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    </script>
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #E100FF 0%, #7F00FF 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: white;
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .download-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .download-btn img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .features {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #E100FF;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .feature-description {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .contact {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+        
+        .contact h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .contact a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .contact a:hover {
+            border-bottom-color: white;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .tagline {
+                font-size: 1.2em;
+            }
+            
+            .features h2 {
+                font-size: 2em;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div style="text-align: center; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh;">
-        <img src="download/Icon.png" alt="Rizzet Icon" style="width: 150px; height: 150px; margin: 20px;">
-        <h1>Rizzet Download</h1>
-        <p>
-            <a href="https://apps.apple.com/app/rizzet/id6742974140" onclick="window.close()">
-                <img src="../appstore.png" alt="App Store" style="width: 200px; margin: 10px;">
-            </a>
-            <br>
-            <a href="https://play.google.com/store/apps/details?id=com.aly.rizzChat" onclick="window.close()">
-                <img src="../googleplay.png" alt="Google Play" style="width: 200px; margin: 10px;">
-            </a>
-        </p>
-        <p>
-            <h1>Rizzet Contact : alyduho984530@gmail.com</h1>
-        </p>
-    </div>
+    <header>
+        <div class="container">
+            <img src="download/Icon.png" alt="Rizzet App Icon" class="app-icon">
+            <h1>Rizzet</h1>
+            <p class="tagline">Master the Art of Conversation</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="download-section">
+            <div class="download-buttons">
+                <a href="https://apps.apple.com/app/rizzet/id6742974140" class="download-btn" target="_blank">
+                    <img src="../appstore.png" alt="Download on the App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.aly.rizzChat" class="download-btn" target="_blank">
+                    <img src="../googleplay.png" alt="Get it on Google Play">
+                </a>
+            </div>
+            <p style="text-align: center; color: #666; font-size: 1.1em;">
+                Available on iOS and Android devices
+            </p>
+        </div>
+        
+        <div class="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">Conversation Coach</h3>
+                    <p class="feature-description">Get real-time tips to improve your conversation flow.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Pickup Lines</h3>
+                    <p class="feature-description">Creative and context-aware conversation starters.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📝</div>
+                    <h3 class="feature-title">Message Analyzer</h3>
+                    <p class="feature-description">Get feedback on your messages before sending.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎭</div>
+                    <h3 class="feature-title">Scenario Practice</h3>
+                    <p class="feature-description">Practice conversations in different social scenarios.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Rizz Score</h3>
+                    <p class="feature-description">Track your conversation skills improvement over time.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💡</div>
+                    <h3 class="feature-title">Daily Tips</h3>
+                    <p class="feature-description">Daily tips to boost your charisma and confidence.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="contact">
+        <h2>Get in Touch</h2>
+        <p>Have questions or feedback?</p>
+        <p><a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></p>
+    </footer>
+    
+    <script>
+        // Smooth scroll for any future anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
