@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Code - Build Instructions</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .build-content {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .build-content h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .build-content h3 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .platform-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="container">
+            <header>
+                <img src="download/Icon.png" alt="Mobile Code Icon" class="app-icon">
+                <h1>Mobile Code</h1>
+                <p class="tagline">Build from Source</p>
+            </header>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="build-content">
+            <a href="index.html" class="back-btn">← Back to Downloads</a>
+            
+            <h2>Building Mobile Code from Source</h2>
+            
+            <p>Mobile Code is built with Flutter, allowing you to compile it for multiple platforms. However, each platform has specific build requirements.</p>
+            
+            <div class="platform-section">
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li>Flutter SDK 3.0 or higher</li>
+                    <li>Git</li>
+                    <li>Platform-specific development tools (see below)</li>
+                </ul>
+                
+                <h4>Install Flutter</h4>
+                <div class="code-block">
+# Download Flutter from https://flutter.dev/docs/get-started/install
+# Add Flutter to your PATH
+export PATH="$PATH:`pwd`/flutter/bin"
+                </div>
+            </div>
+            
+            <div class="platform-section">
+                <h3>🪟 Building for Windows</h3>
+                <p><strong>Requirements:</strong> Windows 10 or higher, Visual Studio 2022</p>
+                
+                <div class="code-block">
+# Clone the repository
+git clone https://github.com/yourusername/mobile-code.git
+cd mobile-code
+
+# Install dependencies
+flutter pub get
+
+# Build for Windows
+flutter build windows --release
+
+# Output will be in build/windows/runner/Release/
+                </div>
+                
+                <p><strong>Note:</strong> Windows builds can only be created on Windows machines.</p>
+            </div>
+            
+            <div class="platform-section">
+                <h3>🐧 Building for Linux</h3>
+                <p><strong>Requirements:</strong> Ubuntu 20.04 or higher, build-essential, cmake</p>
+                
+                <div class="code-block">
+# Install Linux dependencies
+sudo apt-get update
+sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev
+
+# Clone the repository
+git clone https://github.com/yourusername/mobile-code.git
+cd mobile-code
+
+# Install dependencies
+flutter pub get
+
+# Build for Linux
+flutter build linux --release
+
+# Output will be in build/linux/x64/release/bundle/
+                </div>
+                
+                <p><strong>Note:</strong> Linux builds can only be created on Linux machines.</p>
+            </div>
+            
+            <div class="platform-section">
+                <h3>🍎 Building for macOS</h3>
+                <p><strong>Requirements:</strong> macOS 10.15 or higher, Xcode 14+</p>
+                
+                <div class="code-block">
+# Clone the repository
+git clone https://github.com/yourusername/mobile-code.git
+cd mobile-code
+
+# Install dependencies
+flutter pub get
+
+# Build for macOS
+flutter build macos --release
+
+# Output will be in build/macos/Build/Products/Release/Mobile Code.app
+                </div>
+                
+                <p><strong>Note:</strong> macOS builds can only be created on macOS machines.</p>
+            </div>
+            
+            <div class="platform-section">
+                <h3>📱 Building for Mobile</h3>
+                
+                <h4>iOS</h4>
+                <div class="code-block">
+# Requires macOS with Xcode
+flutter build ios --release
+                </div>
+                
+                <h4>Android</h4>
+                <div class="code-block">
+# Works on any platform
+flutter build apk --release
+flutter build appbundle --release
+                </div>
+            </div>
+            
+            <div class="platform-section">
+                <h3>Development Setup</h3>
+                <p>For development and testing:</p>
+                
+                <div class="code-block">
+# Run in debug mode
+flutter run
+
+# Run on specific device
+flutter run -d macos
+flutter run -d windows
+flutter run -d linux
+
+# Run tests
+flutter test
+
+# Analyze code
+flutter analyze
+                </div>
+            </div>
+            
+            <div class="platform-section">
+                <h3>Troubleshooting</h3>
+                <ul>
+                    <li><strong>Flutter not found:</strong> Make sure Flutter is in your PATH</li>
+                    <li><strong>Platform not supported:</strong> You need to be on the target platform to build for it</li>
+                    <li><strong>Build errors:</strong> Run <code>flutter doctor</code> to check your setup</li>
+                    <li><strong>Dependencies issues:</strong> Try <code>flutter clean && flutter pub get</code></li>
+                </ul>
+            </div>
+            
+            <div class="platform-section">
+                <h3>Contact</h3>
+                <p>For build support or to report issues:</p>
+                <ul>
+                    <li>Email: support@won-space.com</li>
+                    <li>GitHub Issues: <a href="https://github.com/yourusername/mobile-code/issues">Report a bug</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mobile Code. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

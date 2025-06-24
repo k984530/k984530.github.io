@@ -1,0 +1,34 @@
+Mobile Code Desktop Build Instructions
+=====================================
+
+Due to Flutter's platform-specific build requirements, each desktop version must be built on its respective operating system.
+
+Windows Build Instructions:
+--------------------------
+1. Install Flutter on Windows
+2. Clone the repository: git clone [repository-url]
+3. Navigate to project: cd MobileCode
+4. Install dependencies: flutter pub get
+5. Build: flutter build windows --release
+6. Output location: build\windows\runner\Release\
+
+Linux Build Instructions:
+------------------------
+1. Install Flutter on Linux
+2. Install build dependencies: sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev
+3. Clone the repository: git clone [repository-url]
+4. Navigate to project: cd MobileCode
+5. Install dependencies: flutter pub get
+6. Build: flutter build linux --release
+7. Output location: build/linux/x64/release/bundle/
+
+macOS Build Instructions:
+------------------------
+1. Install Flutter on macOS
+2. Clone the repository: git clone [repository-url]
+3. Navigate to project: cd MobileCode
+4. Install dependencies: flutter pub get
+5. Build: flutter build macos --release
+6. Output location: build/macos/Build/Products/Release/Mobile Code.app
+
+For automated builds, consider using GitHub Actions or other CI/CD services that support multi-platform builds.
