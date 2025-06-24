@@ -3,272 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MobileCode - Mobile Coding App</title>
+    <title>Mobile Code - Remote Desktop Control</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Learn to code anytime, anywhere. Mobile-optimized code editor and learning curriculum.">
-    <meta name="keywords" content="mobile coding, programming learning, code editor, coding education, development app">
+    <meta name="description" content="Control your desktop remotely from your mobile device. Stream desktop, control terminal, and code on the go.">
+    <meta name="keywords" content="remote desktop, mobile control, terminal access, desktop streaming, remote coding">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="MobileCode - Mobile Coding App">
-    <meta property="og:description" content="Mobile coding learning platform to easily learn and practice coding on your smartphone.">
+    <meta property="og:title" content="Mobile Code - Remote Desktop Control">
+    <meta property="og:description" content="Control your desktop computer from your mobile device. Stream desktop, access terminal, and code remotely.">
     <meta property="og:image" content="https://won-space.com/MobileCode/download/Icon.png">
     <meta property="og:url" content="https://won-space.com/MobileCode">
     <meta property="og:type" content="website">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MobileCode - Mobile Coding App">
-    <meta name="twitter:description" content="Mobile coding learning platform to easily learn and practice coding on your smartphone.">
+    <meta name="twitter:title" content="Mobile Code - Remote Desktop Control">
+    <meta name="twitter:description" content="Control your desktop computer from your mobile device. Stream desktop, access terminal, and code remotely.">
     <meta name="twitter:image" content="https://won-space.com/MobileCode/download/Icon.png">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 60px 20px 40px;
-            color: white;
-        }
-        
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            margin-bottom: 30px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        .tagline {
-            font-size: 1.5em;
-            opacity: 0.9;
-            margin-bottom: 40px;
-        }
-        
-        .download-section {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-        }
-        
-        .download-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-        
-        .download-btn {
-            display: inline-block;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .download-btn img {
-            height: 60px;
-            width: auto;
-        }
-        
-        .features {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .features h2 {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            color: #1e3c72;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-item {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .feature-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-        
-        .feature-title {
-            font-size: 1.3em;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .feature-description {
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        .contact {
-            text-align: center;
-            color: white;
-            padding: 40px 20px;
-        }
-        
-        .contact h2 {
-            font-size: 2em;
-            margin-bottom: 15px;
-        }
-        
-        .contact a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2em;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-        
-        .contact a:hover {
-            border-bottom-color: white;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
-            
-            .tagline {
-                font-size: 1.2em;
-            }
-            
-            .features h2 {
-                font-size: 2em;
-            }
-            
-            .download-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <div class="hero-section">
         <div class="container">
-            <img src="download/Icon.png" alt="MobileCode App Icon" class="app-icon">
-            <h1>MobileCode</h1>
-            <p class="tagline">Code Anytime, Anywhere</p>
+            <header>
+                <img src="download/Icon.png" alt="Mobile Code Icon" class="app-icon">
+                <h1>Mobile Code</h1>
+                <p class="tagline">Control Your Desktop from Anywhere</p>
+                <p class="subtitle">Stream your desktop, access terminal, and code remotely from your mobile device</p>
+            </header>
         </div>
-    </header>
-    
+    </div>
+
     <main class="container">
-        <div class="download-section">
-            <div class="download-buttons">
-                <a href="#" class="download-btn" target="_blank">
-                    <img src="../appstore.png" alt="Download on the App Store">
-                </a>
-                <a href="#" class="download-btn" target="_blank">
-                    <img src="../googleplay.png" alt="Get it on Google Play">
-                </a>
+        <!-- Quick Download Section -->
+        <section class="quick-download">
+            <h2>Get Started in Two Steps</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Install Desktop Server</h3>
+                    <p>Run the server on your computer</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Download Mobile App</h3>
+                    <p>Control from your phone or tablet</p>
+                </div>
             </div>
-            <p style="text-align: center; color: #666; font-size: 1.1em;">
-                Available on iOS and Android devices
-            </p>
-        </div>
-        
-        <div class="features">
-            <h2>Key Features</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
+        </section>
+
+        <!-- Desktop Server Downloads -->
+        <section class="download-section desktop-downloads">
+            <h2><i class="icon-desktop"></i> Desktop Server</h2>
+            <p class="section-desc">Install the server application on your computer to enable remote access</p>
+            
+            <div class="platform-grid">
+                <div class="platform-card macos available">
+                    <div class="platform-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11.93,7.9C12.24,7.5 12.65,7.25 13.16,7.16C13.18,7.64 13.03,8.11 12.7,8.5C12.41,8.88 11.97,9.14 11.5,9.1C11.47,8.64 11.66,8.2 11.93,7.9M14.95,15.89C14.5,16.8 13.83,17.18 13.16,17.18C12.5,17.18 12.14,16.81 11.54,16.81C10.91,16.81 10.5,17.19 9.88,17.19C9.27,17.19 8.64,16.82 8.06,15.79C7.38,14.59 6.85,13 6.85,11.47C6.85,9.39 8.17,8.26 9.47,8.26C10.09,8.26 10.61,8.67 10.96,8.67C11.29,8.67 11.85,8.24 12.6,8.24C12.89,8.24 13.85,8.26 14.56,9.54C14.5,9.58 13.32,10.26 13.34,11.67C13.35,13.36 14.78,13.93 14.8,13.94C14.78,14 14.54,14.86 13.94,15.7L14.95,15.89Z"/>
+                        </svg>
+                    </div>
+                    <h3>macOS</h3>
+                    <p class="version">Version 1.0.0</p>
+                    <p class="requirements">Requires macOS 10.15 or later</p>
+                    <a href="#" class="download-btn primary">
+                        <i class="icon-download"></i> Download for Mac
+                    </a>
+                    <p class="file-info">DMG • 45 MB</p>
+                </div>
+
+                <div class="platform-card windows coming-soon">
+                    <div class="platform-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3,12V6.75L9,5.43V11.91L3,12M20,3V11.75L10,11.9V5.21L20,3M3,13L9,13.09V19.9L3,18.75V13M20,13.25V22L10,20.09V13.1L20,13.25Z"/>
+                        </svg>
+                    </div>
+                    <h3>Windows</h3>
+                    <p class="version">Coming Soon</p>
+                    <p class="requirements">Will support Windows 10/11</p>
+                    <div class="download-btn disabled">
+                        <i class="icon-clock"></i> In Development
+                    </div>
+                    <p class="file-info">EXE • Estimated Q2 2025</p>
+                </div>
+
+                <div class="platform-card linux coming-soon">
+                    <div class="platform-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13.18,14.5C12.53,15.26 11.47,15.26 10.82,14.5L7.44,10.5C7.16,11.28 7,12.12 7,13C7,14.67 7.57,16.18 8.5,17.27L10,16.87L10.39,19.2L10.89,19.6C11.24,19.85 11.6,20 12,20C12.4,20 12.76,19.85 13.11,19.6L13.61,19.2L14,16.87L15.5,17.27C16.43,16.18 17,14.67 17,13C17,12.12 16.84,11.28 16.56,10.5L13.18,14.5M20,20.75C20,21.3 19.3,22 18.75,22H13.75C14.15,21.75 14.5,21.5 14.75,21.17C15,20.83 15.25,20.36 15.44,19.87L16.38,20.13C16.88,18.7 17.18,17.04 17.18,15.19C17.18,13.5 16.93,12 16.46,10.77C16.38,10.5 16.28,10.24 16.18,10H17.5A0.5,0.5 0 0,0 18,9.5A0.5,0.5 0 0,0 17.5,9H9C8.31,9 7.75,8.31 7.75,7.5C7.75,6.69 8.31,6 9,6H10.25V5.75C10.25,4.22 11.47,3 13,3H16A1,1 0 0,1 17,4A1,1 0 0,1 16,5H13C12.58,5 12.25,5.33 12.25,5.75V6H18A2,2 0 0,1 20,8V20.75M4.5,8H6.5A0.5,0.5 0 0,1 7,8.5A0.5,0.5 0 0,1 6.5,9H5.82C5.72,9.24 5.62,9.5 5.54,9.77C5.07,12 4.82,13.5 4.82,15.19C4.82,17.04 5.12,18.7 5.62,20.13L6.56,19.87C6.75,20.36 7,20.83 7.25,21.17C7.5,21.5 7.85,21.75 8.25,22H5.25C4.7,22 4,21.3 4,20.75V8C4,6.9 4.9,6 6,6C6,5.45 6.45,5 7,5C7.55,5 8,5.45 8,6C7.18,6 6.5,6.68 6.5,7.5C6.5,8.32 5.82,8 5,8H4.5Z"/>
+                        </svg>
+                    </div>
+                    <h3>Linux</h3>
+                    <p class="version">Coming Soon</p>
+                    <p class="requirements">Will support Ubuntu 20.04+</p>
+                    <div class="download-btn disabled">
+                        <i class="icon-clock"></i> In Development
+                    </div>
+                    <p class="file-info">AppImage • Estimated Q2 2025</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mobile App Downloads -->
+        <section class="download-section mobile-downloads">
+            <h2><i class="icon-mobile"></i> Mobile Apps</h2>
+            <p class="section-desc">Download the app on your mobile device to connect to your desktop</p>
+            
+            <div class="mobile-platforms">
+                <div class="mobile-card ios">
+                    <div class="phone-mockup iphone">
+                        <div class="screen">
+                            <img src="download/Icon.png" alt="iOS App Preview" class="app-preview">
+                        </div>
+                    </div>
+                    <div class="mobile-info">
+                        <h3>iOS</h3>
+                        <p class="requirements">Requires iOS 14.0 or later</p>
+                        <p class="compatibility">Compatible with iPhone and iPad</p>
+                        <a href="#" class="store-badge">
+                            <img src="../appstore.png" alt="Download on the App Store">
+                        </a>
+                        <div class="qr-code">
+                            <p>Scan to download</p>
+                            <div class="qr-placeholder">QR Code</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mobile-card android">
+                    <div class="phone-mockup android">
+                        <div class="screen">
+                            <img src="download/Icon.png" alt="Android App Preview" class="app-preview">
+                        </div>
+                    </div>
+                    <div class="mobile-info">
+                        <h3>Android</h3>
+                        <p class="requirements">Requires Android 7.0 or later</p>
+                        <p class="compatibility">Compatible with phones and tablets</p>
+                        <a href="#" class="store-badge">
+                            <img src="../googleplay.png" alt="Get it on Google Play">
+                        </a>
+                        <div class="qr-code">
+                            <p>Scan to download</p>
+                            <div class="qr-placeholder">QR Code</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2>Why Mobile Code?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🖥️</div>
+                    <h3>Desktop Streaming</h3>
+                    <p>View and control your desktop screen in real-time from your mobile device</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⌨️</div>
+                    <h3>Terminal Access</h3>
+                    <p>Full terminal control with command execution and output streaming</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Connection</h3>
+                    <p>Encrypted WebSocket connection for secure remote access</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Low Latency</h3>
+                    <p>Optimized for minimal delay and smooth performance</p>
+                </div>
+                <div class="feature-card">
                     <div class="feature-icon">📱</div>
-                    <h3 class="feature-title">Mobile Code Editor</h3>
-                    <p class="feature-description">Powerful code editing features optimized for mobile environments.</p>
+                    <h3>Mobile Optimized</h3>
+                    <p>Intuitive touch controls designed for mobile devices</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🎓</div>
-                    <h3 class="feature-title">Structured Learning Curriculum</h3>
-                    <p class="feature-description">Step-by-step coding courses from beginner to advanced levels.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">▶️</div>
-                    <h3 class="feature-title">Real-time Code Execution</h3>
-                    <p class="feature-description">Run your code instantly and see the results immediately.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Coding Challenges</h3>
-                    <p class="feature-description">Improve your skills with new coding problems every day.</p>
-                </div>
-                <div class="feature-item">
+                <div class="feature-card">
                     <div class="feature-icon">🌐</div>
-                    <h3 class="feature-title">Multiple Programming Languages</h3>
-                    <p class="feature-description">Learn various languages including Python, JavaScript, Java, and more.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📈</div>
-                    <h3 class="feature-title">Learning Progress Tracking</h3>
-                    <p class="feature-description">Monitor your individual learning progress and achievements.</p>
+                    <h3>Cross Platform</h3>
+                    <p>Works seamlessly across iOS, Android, and desktop platforms</p>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Setup Instructions -->
+        <section class="setup-section">
+            <h2>Quick Setup Guide</h2>
+            <div class="setup-steps">
+                <div class="setup-step">
+                    <span class="step-num">1</span>
+                    <div class="step-content">
+                        <h4>Install Desktop Server</h4>
+                        <p>Download and run the server application on your Mac</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <span class="step-num">2</span>
+                    <div class="step-content">
+                        <h4>Launch Server</h4>
+                        <p>Start the server and note the connection code</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <span class="step-num">3</span>
+                    <div class="step-content">
+                        <h4>Connect Mobile App</h4>
+                        <p>Enter the connection code in your mobile app</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <span class="step-num">4</span>
+                    <div class="step-content">
+                        <h4>Start Controlling</h4>
+                        <p>You're ready to control your desktop remotely!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-    
-    <footer class="contact">
-        <h2>Contact</h2>
-        <p>Have questions or feedback?</p>
-        <p><a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></p>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Mobile Code</h4>
+                    <p>Remote desktop control for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <p>Email: support@won-space.com</p>
+                    <p><a href="https://github.com/yourusername/mobile-code">GitHub</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <p><a href="#">Privacy Policy</a></p>
+                    <p><a href="#">Terms of Service</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mobile Code. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
-    
-    <script>
-        // Smooth scroll for any future anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
