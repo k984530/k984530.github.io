@@ -1,0 +1,20 @@
+Windows Build Required
+======================
+
+The Windows version of Mobile Code needs to be built on a Windows machine.
+
+Flutter does not support cross-platform builds, meaning:
+- Windows apps must be built on Windows
+- Linux apps must be built on Linux
+- macOS apps must be built on macOS
+
+To create the Windows build:
+
+1. Set up a Windows development environment
+2. Install Flutter for Windows
+3. Clone the Mobile Code repository
+4. Run: flutter build windows --release
+5. Package the output from build\windows\x64\runner\Release\
+6. Upload the packaged file here
+
+For now, the Windows download is marked as "Coming Soon" on the website.

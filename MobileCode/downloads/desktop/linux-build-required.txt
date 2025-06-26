@@ -1,0 +1,22 @@
+Linux Build Required
+====================
+
+The Linux version of Mobile Code needs to be built on a Linux machine.
+
+Flutter does not support cross-platform builds, meaning:
+- Windows apps must be built on Windows
+- Linux apps must be built on Linux
+- macOS apps must be built on macOS
+
+To create the Linux build:
+
+1. Set up a Linux development environment (Ubuntu recommended)
+2. Install Flutter for Linux
+3. Install required dependencies:
+   sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev
+4. Clone the Mobile Code repository
+5. Run: flutter build linux --release
+6. Package the output from build/linux/x64/release/bundle/
+7. Upload the packaged file here
+
+For now, the Linux download is marked as "Coming Soon" on the website.
