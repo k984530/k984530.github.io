@@ -149,8 +149,8 @@ contactForm.addEventListener('submit', (e) => {
     const message = document.getElementById('message').value;
     
     // Create mailto link with form data
-    const subject = encodeURIComponent(`[포트폴리오 문의] ${name}님의 메시지`);
-    const body = encodeURIComponent(`이름: ${name}\n이메일: ${email}\n\n메시지:\n${message}`);
+    const subject = encodeURIComponent(`[Portfolio Inquiry] Message from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
     const mailtoLink = `mailto:alyduho984530@gmail.com?subject=${subject}&body=${body}`;
     
     // Open email client
