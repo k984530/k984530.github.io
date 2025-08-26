@@ -3,787 +3,599 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Won's Portfolio - Mobile Developer</title>
-    <meta name="description" content="모바일 앱 개발자 Won의 포트폴리오. iOS, Android 앱 개발 프로젝트를 확인하세요.">
+    <title>Won - Mobile Developer</title>
+    <meta name="description" content="모바일 앱 개발자 Won의 포트폴리오">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="#home" class="logo">Won's Portfolio</a>
-                <div class="nav-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="profile">
+                    <h1 class="name">Won</h1>
+                    <p class="title">Mobile Developer</p>
                 </div>
-                <button class="mobile-menu-btn">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg">
-            <div class="gradient-overlay"></div>
-            <div class="animated-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Hello,<br>
-                    <span class="gradient-text">I'm Won, Mobile Developer</span>
-                </h1>
-                <p class="hero-description">
-                    I develop iOS and Android apps focused on user experience.<br>
-                    Turning innovative ideas into reality.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-folder"></i> View Projects
+                
+                <nav class="nav-menu">
+                    <a href="#projects" class="nav-item active">
+                        <span class="nav-icon">●</span>
+                        <span class="nav-text">Projects</span>
                     </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i> Contact Me
+                    <a href="#about" class="nav-item">
+                        <span class="nav-icon">●</span>
+                        <span class="nav-text">About</span>
                     </a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">24+</span>
-                        <span class="stat-label">Apps Released</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">2,000+</span>
-                        <span class="stat-label">Active Users</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">4.5+</span>
-                        <span class="stat-label">Average Rating</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <span>Scroll</span>
-        </div>
-    </section>
+                    <a href="#contact" class="nav-item">
+                        <span class="nav-icon">●</span>
+                        <span class="nav-text">Contact</span>
+                    </a>
+                </nav>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">A passionate mobile app developer</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>A developer who loves creative problem solving</h3>
-                    <p>
-                        I develop mobile apps that make users' daily lives more convenient and enjoyable. 
-                        I develop native apps for both iOS and Android platforms, 
-                        and also work on cross-platform development using Flutter.
-                    </p>
-                    <p>
-                        I enjoy learning and applying new technologies, 
-                        and continuously improve apps based on user feedback.
-                    </p>
-                    <div class="skills">
-                        <h4>Tech Stack</h4>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Flutter</span>
-                        </div>
+                <div class="sidebar-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">24+</span>
+                        <span class="stat-label">Apps</span>
                     </div>
-                </div>
-                <div class="about-image">
-                    <div class="image-wrapper">
-                        <div class="image-bg"></div>
-                        <div class="code-snippet">
-                            <pre><code>class Developer {
-  String name = "Won";
-  List<String> skills = [
-    "iOS Development",
-    "Android Development",
-    "Flutter",
-    "UI/UX Design"
-  ];
-  
-  String passion = "Creating amazing apps!";
-}</code></pre>
-                        </div>
+                    <div class="stat-item">
+                        <span class="stat-value">2K+</span>
+                        <span class="stat-label">Users</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Projects</h2>
-                <p class="section-subtitle">Mobile applications developed with Flutter</p>
-            </div>
-            
-            <!-- Projects Grid -->
-            <div class="projects-grid">
-                <!-- Mobile Code -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="MobileCode/download/Icon.png" alt="Mobile Code">
-                        <div class="project-overlay">
-                            <a href="MobileCode/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Mobile Code</h3>
-                        <p>Mobile coding app</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>SSH</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="MobileCode/" class="link-btn">
-                                <i class="fas fa-globe"></i> Website
-                            </a>
-                        </div>
+                    <div class="stat-item">
+                        <span class="stat-value">4.5</span>
+                        <span class="stat-label">Rating</span>
                     </div>
                 </div>
 
-                <!-- AnyThoughts -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="AnyThoughts/download/Icon.png" alt="AnyThoughts">
-                        <div class="project-overlay">
-                            <a href="AnyThoughts/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>AnyThoughts</h3>
-                        <p>Emotion analysis app</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Camera</span>
-                            <span>Social</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="AnyThoughts/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BlahChat -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="BlahChat/download/Icon.png" alt="BlahChat">
-                        <div class="project-overlay">
-                            <a href="BlahChat/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>BlahChat</h3>
-                        <p>Global chat platform for anonymous communication</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Firebase</span>
-                            <span>Chat</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="BlahChat/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CryptoSkills -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="CryptoSkills/download/Icon.png" alt="CryptoSkills">
-                        <div class="project-overlay">
-                            <a href="CryptoSkills/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>CryptoSkills</h3>
-                        <p>AI-based cryptocurrency trading signal provider</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>API</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="CryptoSkills/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CatsThoughts -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="CatsThoughts/download/Icon.png" alt="CatsThoughts">
-                        <div class="project-overlay">
-                            <a href="CatsThoughts/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>CatsThoughts</h3>
-                        <p>Cat thought and emotion analysis app</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Pet</span>
-                            <span>Diary</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="CatsThoughts/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DogsThoughts -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="DogsThoughts/download/Icon.png" alt="DogsThoughts">
-                        <div class="project-overlay">
-                            <a href="DogsThoughts/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>DogsThoughts</h3>
-                        <p>AI pet care app that reads your dog's mind</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Pet</span>
-                            <span>Diary</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="DogsThoughts/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- faceMatch -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="faceMatch/download/Icon.png" alt="faceMatch">
-                        <div class="project-overlay">
-                            <a href="faceMatch/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>faceMatch</h3>
-                        <p>Compatibility and face reading app</p>
-                        <div class="project-tech">
-                            <span>ML Kit</span>
-                            <span>Flutter</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="faceMatch/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- GeniePlanner -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="GeniePlanner/download/Icon.png" alt="GeniePlanner">
-                        <div class="project-overlay">
-                            <a href="GeniePlanner/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>GeniePlanner</h3>
-                        <p>AI goal achievement app</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Calendar</span>
-                            <span>Planner</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="GeniePlanner/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Lookey -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="Lookey/download/Icon.png" alt="Lookey">
-                        <div class="project-overlay">
-                            <a href="Lookey/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Lookey</h3>
-                        <p>Compatibility app</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>iOS</span>
-                            <span>Android</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="Lookey/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MODEE -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="MODEE/download/Icon.png" alt="MODEE">
-                        <div class="project-overlay">
-                            <a href="MODEE/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>MODEE</h3>
-                        <p>Complete your style with AI fashion assistant</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>iOS</span>
-                            <span>Android</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="MODEE/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Rizzet -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="Rizzet/download/Icon.png" alt="Rizzet">
-                        <div class="project-overlay">
-                            <a href="Rizzet/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Rizzet</h3>
-                        <p>Dating coach app to level up your charm</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Firebase</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="Rizzet/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Selah -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="Selah/download/Icon.png" alt="Selah">
-                        <div class="project-overlay">
-                            <a href="Selah/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Selah</h3>
-                        <p>Find peace of mind with daily Bible verses</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Audio</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="Selah/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Anypick -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="Anypick/download/Icon.png" alt="Anypick">
-                        <div class="project-overlay">
-                            <a href="Anypick/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Anypick</h3>
-                        <p>Anonymous compliment app</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>AI</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="Anypick/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ChartingSkills -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="ChartingSkills/download/Icon.png" alt="ChartingSkills">
-                        <div class="project-overlay">
-                            <a href="ChartingSkills/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>ChartingSkills</h3>
-                        <p>Learning app to master trading charts</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Charts</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="ChartingSkills/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ChatVibe -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="ChatVibe/download/Icon.png" alt="ChatVibe">
-                        <div class="project-overlay">
-                            <a href="ChatVibe/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>ChatVibe</h3>
-                        <p>Relationship analysis tool for chat chemistry</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Chat</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="ChatVibe/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Growvi -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="Growvi/download/Icon.png" alt="Growvi">
-                        <div class="project-overlay">
-                            <a href="Growvi/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Growvi</h3>
-                        <p>Parenting tips and child growth management assistant</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Growth</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="Growvi/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Wealtha -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="Wealtha/download/Icon.png" alt="Wealtha">
-                        <div class="project-overlay">
-                            <a href="Wealtha/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Wealtha</h3>
-                        <p>Smart investment app to increase financial intelligence</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Finance</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="Wealtha/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AppHub -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="AppHub/download/Icon.png" alt="AppHub">
-                        <div class="project-overlay">
-                            <a href="AppHub/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>AppHub</h3>
-                        <p>Your Personal App Manager</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Productivity</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="AppHub/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VibePlanning -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="VibePlanning/download/Icon.png" alt="VibePlanning">
-                        <div class="project-overlay">
-                            <a href="VibePlanning/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>VibePlanning</h3>
-                        <p>Smart planning made simple with AI</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>AI</span>
-                            <span>Planning</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="VibePlanning/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SeductionRules -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="SeductionRules/download/Icon.png" alt="SeductionRules">
-                        <div class="project-overlay">
-                            <a href="SeductionRules/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>SeductionRules</h3>
-                        <p>Guide to mastering the art of seduction</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Psychology</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="SeductionRules/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Friend AI -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="FriendAI/download/Icon.png" alt="Friend AI">
-                        <div class="project-overlay">
-                            <a href="FriendAI/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Friend AI</h3>
-                        <p>Turn your contacts into personalized AI friends</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>AI</span>
-                            <span>Chat</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="FriendAI/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Crypto AI -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="CryptoAI/download/Icon.png" alt="Crypto AI">
-                        <div class="project-overlay">
-                            <a href="CryptoAI/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Crypto AI</h3>
-                        <p>Create your personalized AI trading tool</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>AI</span>
-                            <span>Trading</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="CryptoAI/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sweet Sleep -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="SweetSleep/download/Icon.png" alt="Sweet Sleep">
-                        <div class="project-overlay">
-                            <a href="SweetSleep/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Sweet Sleep</h3>
-                        <p>Solving insomnia with personalized sleep solutions</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Health</span>
-                            <span>Sleep</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="SweetSleep/" class="link-btn">
-                                <i class="fas fa-mobile-alt"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Contact</h2>
-                <p class="section-subtitle">Want to discuss a project?</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's create amazing apps together!</h3>
-                    <p>Feel free to reach out for new projects or collaborations.</p>
-                    <div class="contact-items">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-                            <a href="https://won-space.com" target="_blank">won-space.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-github"></i>
-                            <a href="https://github.com/k984530" target="_blank">github.com/k984530</a>
-                        </div>
-                    </div>
+                <div class="sidebar-footer">
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/k984530" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:alyduho984530@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder="Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" placeholder="Message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-                </form>
             </div>
-        </div>
-    </section>
+        </aside>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Won's Portfolio. All rights reserved.</p>
-        </div>
-    </footer>
+        <!-- Content Area -->
+        <main class="content">
+            <!-- Projects Section -->
+            <section id="projects" class="section active">
+                <div class="section-header">
+                    <h2 class="section-title">My Apps</h2>
+                    <p class="section-subtitle">Flutter & Native Mobile Applications</p>
+                </div>
+
+                <div class="projects-container">
+                    <!-- Mobile Code -->
+                    <article class="project-item">
+                        <div class="project-icon">
+                            <img src="MobileCode/download/Icon.png" alt="Mobile Code">
+                        </div>
+                        <div class="project-details">
+                            <h3>Mobile Code</h3>
+                            <p>Mobile coding environment with SSH support</p>
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>SSH</span>
+                            </div>
+                        </div>
+                        <a href="MobileCode/" class="project-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- AppHub -->
+                    <article class="project-item">
+                        <div class="project-icon">
+                            <img src="AppHub/download/Icon.png" alt="AppHub">
+                        </div>
+                        <div class="project-details">
+                            <h3>AppHub</h3>
+                            <p>Your personal app manager and organizer</p>
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>Productivity</span>
+                            </div>
+                        </div>
+                        <a href="AppHub/" class="project-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- Sweet Sleep -->
+                    <article class="project-item">
+                        <div class="project-icon">
+                            <img src="SweetSleep/download/Icon.png" alt="Sweet Sleep">
+                        </div>
+                        <div class="project-details">
+                            <h3>Sweet Sleep</h3>
+                            <p>Personalized sleep solutions for better rest</p>
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>Health</span>
+                            </div>
+                        </div>
+                        <a href="SweetSleep/" class="project-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- AnyThoughts -->
+                    <article class="project-item">
+                        <div class="project-icon">
+                            <img src="AnyThoughts/download/Icon.png" alt="AnyThoughts">
+                        </div>
+                        <div class="project-details">
+                            <h3>AnyThoughts</h3>
+                            <p>Emotion analysis and mood tracking app</p>
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>AI</span>
+                            </div>
+                        </div>
+                        <a href="AnyThoughts/" class="project-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- Growvi -->
+                    <article class="project-item">
+                        <div class="project-icon">
+                            <img src="Growvi/download/Icon.png" alt="Growvi">
+                        </div>
+                        <div class="project-details">
+                            <h3>Growvi</h3>
+                            <p>Parenting tips and child growth management</p>
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>Parenting</span>
+                            </div>
+                        </div>
+                        <a href="Growvi/" class="project-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- Wealtha -->
+                    <article class="project-item">
+                        <div class="project-icon">
+                            <img src="Wealtha/download/Icon.png" alt="Wealtha">
+                        </div>
+                        <div class="project-details">
+                            <h3>Wealtha</h3>
+                            <p>Smart investment and financial intelligence</p>
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>Finance</span>
+                            </div>
+                        </div>
+                        <a href="Wealtha/" class="project-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- Friend AI -->
+                    <article class="project-item">
+                        <div class="project-icon">
+                            <img src="FriendAI/download/Icon.png" alt="Friend AI">
+                        </div>
+                        <div class="project-details">
+                            <h3>Friend AI</h3>
+                            <p>Turn contacts into AI companions</p>
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>AI</span>
+                            </div>
+                        </div>
+                        <a href="FriendAI/" class="project-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- Crypto AI -->
+                    <article class="project-item">
+                        <div class="project-icon">
+                            <img src="CryptoAI/download/Icon.png" alt="Crypto AI">
+                        </div>
+                        <div class="project-details">
+                            <h3>Crypto AI</h3>
+                            <p>AI-powered cryptocurrency trading assistant</p>
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>Trading</span>
+                            </div>
+                        </div>
+                        <a href="CryptoAI/" class="project-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- VibePlanning -->
+                    <article class="project-item">
+                        <div class="project-icon">
+                            <img src="VibePlanning/download/Icon.png" alt="VibePlanning">
+                        </div>
+                        <div class="project-details">
+                            <h3>VibePlanning</h3>
+                            <p>Smart planning made simple with AI</p>
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>AI</span>
+                            </div>
+                        </div>
+                        <a href="VibePlanning/" class="project-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- SeductionRules -->
+                    <article class="project-item">
+                        <div class="project-icon">
+                            <img src="SeductionRules/download/Icon.png" alt="SeductionRules">
+                        </div>
+                        <div class="project-details">
+                            <h3>SeductionRules</h3>
+                            <p>Master the art of seduction</p>
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>Lifestyle</span>
+                            </div>
+                        </div>
+                        <a href="SeductionRules/" class="project-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- Anypick -->
+                    <article class="project-item">
+                        <div class="project-icon">
+                            <img src="Anypick/download/Icon.png" alt="Anypick">
+                        </div>
+                        <div class="project-details">
+                            <h3>Anypick</h3>
+                            <p>Decision making helper</p>
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>Tools</span>
+                            </div>
+                        </div>
+                        <a href="Anypick/" class="project-link">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- Hidden Projects (initially) -->
+                    <div id="more-projects-container" style="display: none;">
+                        <!-- BlahChat -->
+                        <article class="project-item">
+                            <div class="project-icon">
+                                <img src="BlahChat/download/Icon.png" alt="BlahChat">
+                            </div>
+                            <div class="project-details">
+                                <h3>BlahChat</h3>
+                                <p>Chat application</p>
+                                <div class="project-tags">
+                                    <span>Flutter</span>
+                                    <span>Chat</span>
+                                </div>
+                            </div>
+                            <a href="BlahChat/" class="project-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </article>
+
+                        <!-- CatsThoughts -->
+                        <article class="project-item">
+                            <div class="project-icon">
+                                <img src="CatsThoughts/download/Icon.png" alt="CatsThoughts">
+                            </div>
+                            <div class="project-details">
+                                <h3>CatsThoughts</h3>
+                                <p>Cat emotion analyzer</p>
+                                <div class="project-tags">
+                                    <span>Flutter</span>
+                                    <span>Pets</span>
+                                </div>
+                            </div>
+                            <a href="CatsThoughts/" class="project-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </article>
+
+                        <!-- ChartingSkills -->
+                        <article class="project-item">
+                            <div class="project-icon">
+                                <img src="ChartingSkills/download/Icon.png" alt="ChartingSkills">
+                            </div>
+                            <div class="project-details">
+                                <h3>ChartingSkills</h3>
+                                <p>Data visualization tools</p>
+                                <div class="project-tags">
+                                    <span>Flutter</span>
+                                    <span>Analytics</span>
+                                </div>
+                            </div>
+                            <a href="ChartingSkills/" class="project-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </article>
+
+                        <!-- ChatVibe -->
+                        <article class="project-item">
+                            <div class="project-icon">
+                                <img src="ChatVibe/download/Icon.png" alt="ChatVibe">
+                            </div>
+                            <div class="project-details">
+                                <h3>ChatVibe</h3>
+                                <p>Social messaging platform</p>
+                                <div class="project-tags">
+                                    <span>Flutter</span>
+                                    <span>Social</span>
+                                </div>
+                            </div>
+                            <a href="ChatVibe/" class="project-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </article>
+
+                        <!-- CryptoSkills -->
+                        <article class="project-item">
+                            <div class="project-icon">
+                                <img src="CryptoSkills/download/Icon.png" alt="CryptoSkills">
+                            </div>
+                            <div class="project-details">
+                                <h3>CryptoSkills</h3>
+                                <p>Learn cryptocurrency trading</p>
+                                <div class="project-tags">
+                                    <span>Flutter</span>
+                                    <span>Education</span>
+                                </div>
+                            </div>
+                            <a href="CryptoSkills/" class="project-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </article>
+
+                        <!-- DogsThoughts -->
+                        <article class="project-item">
+                            <div class="project-icon">
+                                <img src="DogsThoughts/download/Icon.png" alt="DogsThoughts">
+                            </div>
+                            <div class="project-details">
+                                <h3>DogsThoughts</h3>
+                                <p>Dog emotion analyzer</p>
+                                <div class="project-tags">
+                                    <span>Flutter</span>
+                                    <span>Pets</span>
+                                </div>
+                            </div>
+                            <a href="DogsThoughts/" class="project-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </article>
+
+                        <!-- faceMatch -->
+                        <article class="project-item">
+                            <div class="project-icon">
+                                <img src="faceMatch/download/Icon.png" alt="faceMatch">
+                            </div>
+                            <div class="project-details">
+                                <h3>faceMatch</h3>
+                                <p>Face matching game</p>
+                                <div class="project-tags">
+                                    <span>Flutter</span>
+                                    <span>Game</span>
+                                </div>
+                            </div>
+                            <a href="faceMatch/" class="project-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </article>
+
+                        <!-- GeniePlanner -->
+                        <article class="project-item">
+                            <div class="project-icon">
+                                <img src="GeniePlanner/download/Icon.png" alt="GeniePlanner">
+                            </div>
+                            <div class="project-details">
+                                <h3>GeniePlanner</h3>
+                                <p>Intelligent planning assistant</p>
+                                <div class="project-tags">
+                                    <span>Flutter</span>
+                                    <span>Productivity</span>
+                                </div>
+                            </div>
+                            <a href="GeniePlanner/" class="project-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </article>
+
+                        <!-- Lookey -->
+                        <article class="project-item">
+                            <div class="project-icon">
+                                <img src="Lookey/download/Icon.png" alt="Lookey">
+                            </div>
+                            <div class="project-details">
+                                <h3>Lookey</h3>
+                                <p>Visual search tool</p>
+                                <div class="project-tags">
+                                    <span>Flutter</span>
+                                    <span>Tools</span>
+                                </div>
+                            </div>
+                            <a href="Lookey/" class="project-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </article>
+
+                        <!-- MODEE -->
+                        <article class="project-item">
+                            <div class="project-icon">
+                                <img src="MODEE/download/Icon.png" alt="MODEE">
+                            </div>
+                            <div class="project-details">
+                                <h3>MODEE</h3>
+                                <p>Fashion and style guide</p>
+                                <div class="project-tags">
+                                    <span>Flutter</span>
+                                    <span>Fashion</span>
+                                </div>
+                            </div>
+                            <a href="MODEE/" class="project-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </article>
+
+                        <!-- Rizzet -->
+                        <article class="project-item">
+                            <div class="project-icon">
+                                <img src="Rizzet/download/Icon.png" alt="Rizzet">
+                            </div>
+                            <div class="project-details">
+                                <h3>Rizzet</h3>
+                                <p>Social confidence builder</p>
+                                <div class="project-tags">
+                                    <span>Flutter</span>
+                                    <span>Lifestyle</span>
+                                </div>
+                            </div>
+                            <a href="Rizzet/" class="project-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </article>
+
+                        <!-- Selah -->
+                        <article class="project-item">
+                            <div class="project-icon">
+                                <img src="Selah/download/Icon.png" alt="Selah">
+                            </div>
+                            <div class="project-details">
+                                <h3>Selah</h3>
+                                <p>Meditation and mindfulness</p>
+                                <div class="project-tags">
+                                    <span>Flutter</span>
+                                    <span>Wellness</span>
+                                </div>
+                            </div>
+                            <a href="Selah/" class="project-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </article>
+                    </div>
+
+                    <!-- More Projects Button -->
+                    <div class="more-projects">
+                        <button id="show-more-btn" class="show-more-btn">
+                            Show More Apps <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            I'm a mobile app developer passionate about creating intuitive and beautiful applications 
+                            that solve real-world problems. With expertise in Flutter and native development, 
+                            I've launched over 24 apps serving thousands of users worldwide.
+                        </p>
+                        <p>
+                            My focus is on crafting pixel-perfect interfaces with smooth animations 
+                            and exceptional user experiences. I believe in the power of mobile technology 
+                            to make people's lives easier and more enjoyable.
+                        </p>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <h3>Tech Stack</h3>
+                        <div class="tech-grid">
+                            <div class="tech-category">
+                                <h4>Mobile</h4>
+                                <div class="tech-items">
+                                    <span>Flutter</span>
+                                    <span>Swift</span>
+                                    <span>Kotlin</span>
+                                    <span>React Native</span>
+                                </div>
+                            </div>
+                            <div class="tech-category">
+                                <h4>Backend</h4>
+                                <div class="tech-items">
+                                    <span>Firebase</span>
+                                    <span>Node.js</span>
+                                    <span>REST API</span>
+                                    <span>MongoDB</span>
+                                </div>
+                            </div>
+                            <div class="tech-category">
+                                <h4>Tools</h4>
+                                <div class="tech-items">
+                                    <span>VS Code</span>
+                                    <span>Xcode</span>
+                                    <span>Android Studio</span>
+                                    <span>Figma</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-subtitle">Let's create something amazing together</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <a href="mailto:alyduho984530@gmail.com" class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>alyduho984530@gmail.com</span>
+                        </a>
+                        
+                        <a href="https://github.com/k984530" target="_blank" class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <span>github.com/k984530</span>
+                        </a>
+                        
+                        <a href="https://won-space.com" target="_blank" class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <span>won-space.com</span>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-cta">
+                        <p>Interested in working together?</p>
+                        <a href="mailto:alyduho984530@gmail.com" class="cta-button">
+                            Send me an email
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <button class="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
     <script src="script.js"></script>
 </body>
