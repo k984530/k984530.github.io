@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart AI – Personal Friend</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Heart AI is an AI conversation app that lets you chat with a personal AI friend. Experience meaningful conversations with your AI companion anytime, anywhere.">
+    <meta name="keywords" content="heart AI, AI chatbot, personal AI friend, AI companion, AI conversation, personalized chatbot">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Heart AI – Personal Friend">
+    <meta property="og:description" content="Heart AI is an AI conversation app that lets you chat with a personal AI friend. Experience meaningful conversations with your AI companion anytime, anywhere.">
+    <meta property="og:image" content="https://won-space.com/HeartAI/download/Icon.png">
+    <meta property="og:url" content="https://won-space.com/HeartAI">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Heart AI – Personal Friend">
+    <meta name="twitter:description" content="Heart AI is an AI conversation app that lets you chat with a personal AI friend. Experience meaningful conversations with your AI companion anytime, anywhere.">
+    <meta name="twitter:image" content="https://won-space.com/HeartAI/download/Icon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: white;
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .download-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .download-btn img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .features {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #667eea;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .feature-description {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .contact {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+        
+        .contact h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .contact a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .contact a:hover {
+            border-bottom-color: white;
+        }
+        
+        .quote {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            color: white;
+            font-size: 1.3em;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .tagline {
+                font-size: 1.2em;
+            }
+            
+            .features h2 {
+                font-size: 2em;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="download/Icon.png" alt="Heart AI App Icon" class="app-icon">
+            <h1>Heart AI</h1>
+            <p class="tagline">Your Personal AI Friend for Meaningful Conversations</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="download-section">
+            <div class="download-buttons">
+                <a href="https://apps.apple.com/us/app/heart-ai-personal-friend/id6749819872" class="download-btn" target="_blank">
+                    <img src="../appstore.png" alt="Download on the App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.aly.HeartAI" class="download-btn" target="_blank">
+                    <img src="../googleplay.png" alt="Get it on Google Play">
+                </a>
+            </div>
+            <p style="text-align: center; color: #666; font-size: 1.1em;">
+                Available on iOS and Android devices
+            </p>
+        </div>
+        
+        <div class="quote">
+            "With Heart AI, you're never alone. Start meaningful conversations with your AI friend today."
+        </div>
+        
+        <div class="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Personal AI Companion</h3>
+                    <p class="feature-description">Chat with your dedicated AI friend designed to understand and engage with you.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎭</div>
+                    <h3 class="feature-title">Personality Customization</h3>
+                    <p class="feature-description">Customize each AI friend's emotions, tone, and personality traits.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Privacy Protected</h3>
+                    <p class="feature-description">Your conversations are private and secure, ensuring your data stays protected.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">Endless Conversations</h3>
+                    <p class="feature-description">Enjoy unlimited conversations with your AI friends anytime, anywhere.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Style Customization</h3>
+                    <p class="feature-description">Adjust conversation styles to match your preferences and needs.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌟</div>
+                    <h3 class="feature-title">Situational Context</h3>
+                    <p class="feature-description">Set situational contexts for more realistic and relevant conversations.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">Intelligent Conversations</h3>
+                    <p class="feature-description">Experience natural and engaging conversations powered by advanced AI technology.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <h3 class="feature-title">Always Available</h3>
+                    <p class="feature-description">Your AI friends are always there when you need someone to talk to.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="contact">
+        <h2>Get in Touch</h2>
+        <p>Have questions or feedback?</p>
+        <p><a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></p>
+    </footer>
+    
+    <script>
+        // Smooth scroll for any future anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
