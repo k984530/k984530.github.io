@@ -54,11 +54,17 @@ showMoreBtn?.addEventListener('click', () => {
         // Animate new items
         const newItems = moreProjectsContainer.querySelectorAll('.project-item');
         newItems.forEach((item, index) => {
+            const link = item.querySelector('.project-link');
+            const title = item.querySelector('h3')?.textContent?.trim();
+            if (link && title) {
+                link.setAttribute('aria-label', `View ${title}`);
+            }
             item.style.opacity = '0';
             item.style.animation = 'none';
             setTimeout(() => {
                 item.style.animation = 'fadeIn 0.5s ease forwards';
             }, index * 50);
+            observer.observe(item);
         });
     } else {
         // Hide projects
@@ -101,6 +107,11 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe project items
 document.querySelectorAll('.project-item').forEach(item => {
+    const link = item.querySelector('.project-link');
+    const title = item.querySelector('h3')?.textContent?.trim();
+    if (link && title) {
+        link.setAttribute('aria-label', `View ${title}`);
+    }
     observer.observe(item);
 });
 
@@ -115,3 +126,4 @@ window.addEventListener('load', () => {
         projectsNavItem.classList.add('active');
     }
 });
+
