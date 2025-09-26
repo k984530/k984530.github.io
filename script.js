@@ -39,6 +39,11 @@ navItems.forEach(item => {
     });
 });
 
+// Track most visible project tile
+const visibleProjects = new Map();
+let activeProjectId = null;
+let projectSequence = 0;
+
 // Show More Projects Button
 const showMoreBtn = document.getElementById('show-more-btn');
 const moreProjectsContainer = document.getElementById('more-projects-container');
@@ -54,17 +59,12 @@ showMoreBtn?.addEventListener('click', () => {
         // Animate new items
         const newItems = moreProjectsContainer.querySelectorAll('.project-item');
         newItems.forEach((item, index) => {
-            const link = item.querySelector('.project-link');
-            const title = item.querySelector('h3')?.textContent?.trim();
-            if (link && title) {
-                link.setAttribute('aria-label', `View ${title}`);
-            }
+            enhanceProjectItem(item);
             item.style.opacity = '0';
             item.style.animation = 'none';
             setTimeout(() => {
                 item.style.animation = 'fadeIn 0.5s ease forwards';
             }, index * 50);
-            observer.observe(item);
         });
     } else {
         // Hide projects
@@ -74,6 +74,18 @@ showMoreBtn?.addEventListener('click', () => {
         
         // Scroll back to projects section
         document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+
+        moreProjectsContainer.querySelectorAll('.project-item').forEach(item => {
+            const id = item.dataset.projectId;
+            if (id) {
+                visibleProjects.delete(id);
+            }
+        });
+
+        const fallback = document.querySelector('.projects-container .project-item');
+        if (fallback) {
+            setActiveProject(fallback);
+        }
     }
 });
 
@@ -105,15 +117,99 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe project items
-document.querySelectorAll('.project-item').forEach(item => {
+const activeObserver = new IntersectionObserver(handleActiveEntries, {
+    threshold: [0.15, 0.4, 0.65],
+    rootMargin: '-25% 0px -35% 0px'
+});
+
+const projectItems = Array.from(document.querySelectorAll('.project-item'));
+projectItems.forEach(item => enhanceProjectItem(item));
+
+const initialProject = projectItems[0];
+if (initialProject) {
+    setActiveProject(initialProject);
+}
+
+function enhanceProjectItem(item) {
+    if (!item || item.dataset.projectEnhanced === 'true') {
+        return;
+    }
+
+    item.dataset.projectId = item.dataset.projectId ?? String(projectSequence++);
+    item.dataset.projectEnhanced = 'true';
+
     const link = item.querySelector('.project-link');
     const title = item.querySelector('h3')?.textContent?.trim();
     if (link && title) {
         link.setAttribute('aria-label', `View ${title}`);
     }
+
     observer.observe(item);
-});
+    activeObserver.observe(item);
+
+    item.addEventListener('focusin', () => setActiveProject(item));
+}
+
+function handleActiveEntries(entries) {
+    let changed = false;
+
+    entries.forEach(entry => {
+        const id = entry.target.dataset.projectId;
+        if (!id) {
+            return;
+        }
+
+        if (entry.isIntersecting) {
+            visibleProjects.set(id, {
+                element: entry.target,
+                ratio: entry.intersectionRatio
+            });
+        } else {
+            visibleProjects.delete(id);
+        }
+
+        changed = true;
+    });
+
+    if (!changed) {
+        return;
+    }
+
+    let candidate = null;
+    let bestRatio = -Infinity;
+
+    visibleProjects.forEach(({ element, ratio }) => {
+        if (ratio > bestRatio) {
+            bestRatio = ratio;
+            candidate = element;
+        }
+    });
+
+    if (candidate) {
+        setActiveProject(candidate);
+    }
+}
+
+function setActiveProject(item) {
+    if (!item) {
+        return;
+    }
+
+    const id = item.dataset.projectId;
+    if (id && activeProjectId === id) {
+        return;
+    }
+
+    activeProjectId = id ?? null;
+
+    document.querySelectorAll('.project-item.active-feed').forEach(activeItem => {
+        if (activeItem !== item) {
+            activeItem.classList.remove('active-feed');
+        }
+    });
+
+    item.classList.add('active-feed');
+}
 
 // Initial page load
 window.addEventListener('load', () => {
@@ -126,4 +222,3 @@ window.addEventListener('load', () => {
         projectsNavItem.classList.add('active');
     }
 });
-
