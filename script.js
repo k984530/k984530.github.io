@@ -41,7 +41,6 @@ navItems.forEach(item => {
 
 // Track most visible project tile
 const visibleProjects = new Map();
-let activeProjectId = null;
 let projectSequence = 0;
 
 // Show More Projects Button
@@ -195,20 +194,11 @@ function setActiveProject(item) {
         return;
     }
 
-    const id = item.dataset.projectId;
-    if (id && activeProjectId === id) {
-        return;
-    }
-
-    activeProjectId = id ?? null;
-
-    document.querySelectorAll('.project-item.active-feed').forEach(activeItem => {
-        if (activeItem !== item) {
-            activeItem.classList.remove('active-feed');
-        }
+    const rowTop = item.offsetTop;
+    document.querySelectorAll('.project-item').forEach(tile => {
+        const sameRow = Math.abs(tile.offsetTop - rowTop) <= 2;
+        tile.classList.toggle('active-feed', sameRow);
     });
-
-    item.classList.add('active-feed');
 }
 
 // Initial page load
@@ -220,5 +210,12 @@ window.addEventListener('load', () => {
     if (projectsSection && projectsNavItem) {
         projectsSection.classList.add('active');
         projectsNavItem.classList.add('active');
+    }
+});
+
+window.addEventListener('resize', () => {
+    const activeTile = document.querySelector('.project-item.active-feed');
+    if (activeTile) {
+        setActiveProject(activeTile);
     }
 });
