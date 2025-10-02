@@ -110,6 +110,7 @@ function handleActiveEntries(entries) {
     let changed = false;
     const allProjects = document.querySelectorAll('.project-item');
     const lastProject = allProjects[allProjects.length - 1];
+    const secondLastProject = allProjects[allProjects.length - 2];
 
     entries.forEach(entry => {
         const id = entry.target.dataset.projectId;
@@ -117,8 +118,8 @@ function handleActiveEntries(entries) {
             return;
         }
 
-        // Skip last project from normal intersection handling
-        if (entry.target === lastProject) {
+        // Skip last two projects from normal intersection handling
+        if (entry.target === lastProject || entry.target === secondLastProject) {
             return;
         }
 
@@ -184,17 +185,25 @@ window.addEventListener('resize', () => {
     }
 });
 
-// Activate last row when scrolled to bottom
+// Activate last rows when scrolled near bottom
 window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight;
     const clientHeight = window.innerHeight;
+    const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
 
-    // Check if scrolled to bottom (within 5px for precision)
-    if (scrollHeight - scrollTop - clientHeight < 5) {
-        const allProjects = document.querySelectorAll('.project-item');
-        if (allProjects.length > 0) {
-            const lastProject = allProjects[allProjects.length - 1];
+    const allProjects = document.querySelectorAll('.project-item');
+    if (allProjects.length > 0) {
+        const lastProject = allProjects[allProjects.length - 1];
+        const secondLastProject = allProjects[allProjects.length - 2];
+
+        // Activate second-to-last row when approaching bottom (within 200px)
+        if (distanceFromBottom < 200 && secondLastProject) {
+            setActiveProject(secondLastProject);
+        }
+
+        // Activate last row only at the very bottom (within 5px)
+        if (distanceFromBottom < 5) {
             setActiveProject(lastProject);
         }
     }
