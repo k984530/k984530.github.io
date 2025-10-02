@@ -705,8 +705,9 @@ body {
         480px 1680px #FFF, 1820px 380px #FFF, 720px 1180px #FFF, 1420px 1420px #FFF,
         300px 620px #FFF, 1700px 1620px #FFF, 880px 920px #FFF, 1540px 280px #FFF,
         540px 1340px #FFF, 1780px 1080px #FFF, 800px 1740px #FFF, 1480px 580px #FFF;
-    width: 2px;
-    height: 2px;
+    width: 3px;
+    height: 3px;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     animation: twinkle 3s infinite;
     filter: drop-shadow(0 0 2px #FFF) drop-shadow(0 0 4px #FFF);
 }
@@ -730,8 +731,9 @@ body {
         470px 750px #FFF, 1470px 1350px #FFF, 870px 950px #FFF, 1670px 450px #FFF,
         550px 1750px #FFF, 1250px 1650px #FFF, 950px 550px #FFF, 1950px 1250px #FFF,
         370px 1150px #FFF, 1570px 750px #FFF, 770px 1450px #FFF, 1370px 950px #FFF;
-    width: 3px;
-    height: 3px;
+    width: 4px;
+    height: 4px;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     animation: twinkle 5s infinite;
     filter: drop-shadow(0 0 3px #FFF) drop-shadow(0 0 6px #FFF);
 }
@@ -748,8 +750,9 @@ body {
         420px 1420px #FFF, 1620px 1620px #FFF, 820px 520px #FFF, 1820px 1220px #FFF,
         220px 1220px #FFF, 1420px 820px #FFF, 720px 1720px #FFF, 1220px 420px #FFF,
         520px 620px #FFF, 1920px 1420px #FFF, 920px 1320px #FFF, 1320px 720px #FFF;
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    height: 5px;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     animation: twinkle 7s infinite;
     filter: drop-shadow(0 0 4px #FFF) drop-shadow(0 0 8px #FFF);
 }
