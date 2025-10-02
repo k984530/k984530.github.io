@@ -197,12 +197,12 @@ window.addEventListener('scroll', () => {
         const lastProject = allProjects[allProjects.length - 1];
         const secondLastProject = allProjects[allProjects.length - 2];
 
-        // Activate last row only at the very bottom (within 10px)
-        if (distanceFromBottom < 10) {
+        // Activate last row only at the absolute bottom (within 1px)
+        if (distanceFromBottom < 1) {
             setActiveProject(lastProject);
         }
-        // Activate second-to-last row when approaching bottom (10-300px range)
-        else if (distanceFromBottom >= 10 && distanceFromBottom < 300 && secondLastProject) {
+        // Activate second-to-last row when near bottom (1-150px range)
+        else if (distanceFromBottom >= 1 && distanceFromBottom < 150 && secondLastProject) {
             setActiveProject(secondLastProject);
         }
     }
