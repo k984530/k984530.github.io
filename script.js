@@ -211,12 +211,24 @@ function createStars() {
     const starSizeMultiplier = isMobile ? 5 : 1;
     const spawnMargin = isMobile ? 0 : 300;
 
-    // Create far stars (1000 stars or 200 on mobile) - distant, slow - distributed across entire screen
+    // Create far stars (1000 stars or 200 on mobile) - spawn from top and right
     for (let i = 0; i < 1000 * starMultiplier; i++) {
         const star = document.createElement('div');
         star.className = 'star star-far';
-        const startX = -spawnMargin + Math.random() * (window.innerWidth + spawnMargin * 2);
-        const startY = -spawnMargin + Math.random() * (window.innerHeight + spawnMargin * 2);
+
+        // Spawn only from top or right
+        const spawnSide = Math.random();
+        let startX, startY;
+        if (spawnSide < 0.5) {
+            // Top edge
+            startX = Math.random() * window.innerWidth;
+            startY = -Math.random() * 300;
+        } else {
+            // Right edge
+            startX = window.innerWidth + Math.random() * 300;
+            startY = Math.random() * window.innerHeight;
+        }
+
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 3) + 's';
@@ -231,12 +243,24 @@ function createStars() {
         starsContainer1?.appendChild(star);
     }
 
-    // Create medium stars (600 stars or 120 on mobile) - middle distance - distributed across entire screen
+    // Create medium stars (600 stars or 120 on mobile) - spawn from top and right
     for (let i = 0; i < 600 * starMultiplier; i++) {
         const star = document.createElement('div');
         star.className = 'star star-mid';
-        const startX = -spawnMargin + Math.random() * (window.innerWidth + spawnMargin * 2);
-        const startY = -spawnMargin + Math.random() * (window.innerHeight + spawnMargin * 2);
+
+        // Spawn only from top or right
+        const spawnSide = Math.random();
+        let startX, startY;
+        if (spawnSide < 0.5) {
+            // Top edge
+            startX = Math.random() * window.innerWidth;
+            startY = -Math.random() * 300;
+        } else {
+            // Right edge
+            startX = window.innerWidth + Math.random() * 300;
+            startY = Math.random() * window.innerHeight;
+        }
+
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 4) + 's';
@@ -251,12 +275,24 @@ function createStars() {
         starsContainer2?.appendChild(star);
     }
 
-    // Create near stars (200 stars or 40 on mobile) - close, fast - distributed across entire screen
+    // Create near stars (200 stars or 40 on mobile) - spawn from top and right
     for (let i = 0; i < 200 * starMultiplier; i++) {
         const star = document.createElement('div');
         star.className = 'star star-near';
-        const startX = -spawnMargin + Math.random() * (window.innerWidth + spawnMargin * 2);
-        const startY = -spawnMargin + Math.random() * (window.innerHeight + spawnMargin * 2);
+
+        // Spawn only from top or right
+        const spawnSide = Math.random();
+        let startX, startY;
+        if (spawnSide < 0.5) {
+            // Top edge
+            startX = Math.random() * window.innerWidth;
+            startY = -Math.random() * 300;
+        } else {
+            // Right edge
+            startX = window.innerWidth + Math.random() * 300;
+            startY = Math.random() * window.innerHeight;
+        }
+
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 5) + 's';
