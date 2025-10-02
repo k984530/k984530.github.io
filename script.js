@@ -205,8 +205,12 @@ function createStars() {
     const starsContainer2 = document.querySelector('.stars2');
     const starsContainer3 = document.querySelector('.stars3');
 
-    // Create far stars (1000 stars) - distant, slow - distributed across entire screen
-    for (let i = 0; i < 1000; i++) {
+    // Reduce star count on mobile for performance
+    const isMobile = window.innerWidth <= 768;
+    const starMultiplier = isMobile ? 0.2 : 1;
+
+    // Create far stars (1000 stars or 200 on mobile) - distant, slow - distributed across entire screen
+    for (let i = 0; i < 1000 * starMultiplier; i++) {
         const star = document.createElement('div');
         star.className = 'star star-far';
         const startX = -300 + Math.random() * (window.innerWidth + 600);
@@ -225,8 +229,8 @@ function createStars() {
         starsContainer1?.appendChild(star);
     }
 
-    // Create medium stars (600 stars) - middle distance - distributed across entire screen
-    for (let i = 0; i < 600; i++) {
+    // Create medium stars (600 stars or 120 on mobile) - middle distance - distributed across entire screen
+    for (let i = 0; i < 600 * starMultiplier; i++) {
         const star = document.createElement('div');
         star.className = 'star star-mid';
         const startX = -300 + Math.random() * (window.innerWidth + 600);
@@ -245,8 +249,8 @@ function createStars() {
         starsContainer2?.appendChild(star);
     }
 
-    // Create near stars (200 stars) - close, fast - distributed across entire screen
-    for (let i = 0; i < 200; i++) {
+    // Create near stars (200 stars or 40 on mobile) - close, fast - distributed across entire screen
+    for (let i = 0; i < 200 * starMultiplier; i++) {
         const star = document.createElement('div');
         star.className = 'star star-near';
         const startX = -300 + Math.random() * (window.innerWidth + 600);
@@ -279,7 +283,18 @@ document.querySelectorAll('.nebula').forEach((nebula, index) => {
 });
 
 // Move stars and nebulae continuously - creating 3D parallax depth effect
+const isMobile = window.innerWidth <= 768;
+let frameCounter = 0;
+
 function moveStars() {
+    frameCounter++;
+
+    // On mobile, update every 2 frames for better performance
+    if (isMobile && frameCounter % 2 !== 0) {
+        requestAnimationFrame(moveStars);
+        return;
+    }
+
     // Move stars
     document.querySelectorAll('.star').forEach(star => {
         const speed = parseFloat(star.dataset.speed) || 0.3;
