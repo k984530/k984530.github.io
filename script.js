@@ -254,31 +254,24 @@ function createStars() {
 createStars();
 
 // Move stars continuously - creating parallax depth effect
-let lastFrameTime = 0;
-const frameInterval = 1000 / 120; // 120 FPS
+function moveStars() {
+    document.querySelectorAll('.star').forEach(star => {
+        const currentLeft = parseFloat(star.style.left);
+        const currentTop = parseFloat(star.style.top);
+        const speed = parseFloat(star.dataset.speed) || 0.02;
 
-function moveStars(currentTime) {
-    if (currentTime - lastFrameTime >= frameInterval) {
-        document.querySelectorAll('.star').forEach(star => {
-            const currentLeft = parseFloat(star.style.left);
-            const currentTop = parseFloat(star.style.top);
-            const speed = parseFloat(star.dataset.speed) || 0.02;
+        const newLeft = currentLeft - speed; // Move left based on speed
+        const newTop = currentTop + speed; // Move down based on speed
 
-            const newLeft = currentLeft - speed; // Move left based on speed
-            const newTop = currentTop + speed; // Move down based on speed
+        star.style.left = newLeft + 'px';
+        star.style.top = newTop + 'px';
 
-            star.style.left = newLeft + 'px';
-            star.style.top = newTop + 'px';
-
-            // Reset if completely off screen - spread across entire edge
-            if (newTop > window.innerHeight + 100 || newLeft < -100) {
-                star.style.left = (window.innerWidth + Math.random() * 500) + 'px';
-                star.style.top = (-Math.random() * window.innerHeight) + 'px';
-            }
-        });
-
-        lastFrameTime = currentTime;
-    }
+        // Reset if completely off screen - spread across entire edge
+        if (newTop > window.innerHeight + 100 || newLeft < -100) {
+            star.style.left = (window.innerWidth + Math.random() * 500) + 'px';
+            star.style.top = (-Math.random() * window.innerHeight) + 'px';
+        }
+    });
 
     requestAnimationFrame(moveStars);
 }
