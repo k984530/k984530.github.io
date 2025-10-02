@@ -213,8 +213,8 @@ function createStars() {
         star.style.top = (Math.random() * window.innerHeight) + 'px';
         star.style.animationDelay = (Math.random() * 10) + 's';
         star.style.animationDuration = (4 + Math.random() * 6) + 's';
-        star.style.width = '0.7px';
-        star.style.height = '0.7px';
+        star.style.width = '0.5px';
+        star.style.height = '0.5px';
         starsContainer1?.appendChild(star);
     }
 
@@ -226,8 +226,8 @@ function createStars() {
         star.style.top = (Math.random() * window.innerHeight) + 'px';
         star.style.animationDelay = (Math.random() * 12) + 's';
         star.style.animationDuration = (5 + Math.random() * 8) + 's';
-        star.style.width = '1px';
-        star.style.height = '1px';
+        star.style.width = '0.7px';
+        star.style.height = '0.7px';
         starsContainer2?.appendChild(star);
     }
 
@@ -239,8 +239,8 @@ function createStars() {
         star.style.top = (Math.random() * window.innerHeight) + 'px';
         star.style.animationDelay = (Math.random() * 14) + 's';
         star.style.animationDuration = (6 + Math.random() * 10) + 's';
-        star.style.width = '1.3px';
-        star.style.height = '1.3px';
+        star.style.width = '1px';
+        star.style.height = '1px';
         starsContainer3?.appendChild(star);
     }
 
