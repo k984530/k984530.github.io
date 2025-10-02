@@ -684,54 +684,66 @@ body {
 /* Nebula Background */
 .nebula {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     pointer-events: none;
     z-index: 0;
+    border-radius: 50%;
+    filter: blur(100px);
 }
 
-.nebula::before {
-    content: '';
-    position: absolute;
-    top: 150px;
-    left: 100px;
-    width: 1600px;
-    height: 1600px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(245, 245, 255, 0.12) 30%, rgba(235, 235, 255, 0.05) 50%, transparent 70%);
-    filter: blur(80px);
-    animation: nebulaDrift1 200s linear infinite;
+.nebula1 {
+    top: 100px;
+    left: 200px;
+    width: 1200px;
+    height: 1200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(230, 230, 250, 0.08) 40%, transparent 70%);
+    animation: nebulaDrift1 180s linear infinite;
 }
 
-.nebula::after {
-    content: '';
-    position: absolute;
-    top: 400px;
-    right: 80px;
+.nebula2 {
+    top: 300px;
+    right: 150px;
+    width: 1000px;
+    height: 1000px;
+    background: radial-gradient(circle, rgba(200, 180, 255, 0.12) 0%, rgba(220, 200, 255, 0.06) 40%, transparent 70%);
+    animation: nebulaDrift2 200s linear infinite;
+}
+
+.nebula3 {
+    bottom: 200px;
+    left: 300px;
     width: 1400px;
     height: 1400px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, rgba(250, 245, 255, 0.1) 30%, rgba(240, 235, 255, 0.04) 50%, transparent 70%);
-    filter: blur(80px);
-    animation: nebulaDrift2 180s linear infinite;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(240, 240, 255, 0.05) 40%, transparent 70%);
+    animation: nebulaDrift3 220s linear infinite;
+}
+
+.nebula4 {
+    top: 500px;
+    left: 50%;
+    width: 1100px;
+    height: 1100px;
+    background: radial-gradient(circle, rgba(180, 160, 255, 0.1) 0%, rgba(210, 200, 255, 0.05) 40%, transparent 70%);
+    animation: nebulaDrift4 190s linear infinite;
 }
 
 @keyframes nebulaDrift1 {
-    from {
-        transform: translate(0, 0);
-    }
-    to {
-        transform: translate(-300px, 200px);
-    }
+    from { transform: translate(0, 0); }
+    to { transform: translate(-200px, 150px); }
 }
 
 @keyframes nebulaDrift2 {
-    from {
-        transform: translate(0, 0);
-    }
-    to {
-        transform: translate(-250px, 180px);
-    }
+    from { transform: translate(0, 0); }
+    to { transform: translate(-180px, 120px); }
+}
+
+@keyframes nebulaDrift3 {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-150px, -100px); }
+}
+
+@keyframes nebulaDrift4 {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-220px, 80px); }
 }
 
 
