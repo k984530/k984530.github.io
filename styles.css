@@ -681,6 +681,60 @@ body {
     background: rgba(255,255,255,0.2);
 }
 
+/* Nebula Background */
+.nebula {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+}
+
+.nebula::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+    filter: blur(80px);
+    animation: nebulaDrift1 30s infinite ease-in-out;
+}
+
+.nebula::after {
+    content: '';
+    position: absolute;
+    bottom: 20%;
+    right: 15%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%);
+    filter: blur(70px);
+    animation: nebulaDrift2 25s infinite ease-in-out;
+}
+
+@keyframes nebulaDrift1 {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(50px, -30px);
+    }
+}
+
+@keyframes nebulaDrift2 {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-40px, 40px);
+    }
+}
+
 
 /* Stars Background */
 .stars,
@@ -701,7 +755,7 @@ body {
     position: absolute;
     background: #FFF;
     border-radius: 50%;
-    animation: twinkle 3s infinite;
+    animation: twinkle 3s infinite, float 20s infinite ease-in-out;
     box-shadow: 0 0 2px 1px rgba(255,255,255,0.3), 0 0 4px 2px rgba(255,255,255,0.2);
 }
 
@@ -721,5 +775,20 @@ body {
     75% {
         opacity: 1;
         transform: scale(1.3);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(15px, -10px);
+    }
+    50% {
+        transform: translate(-10px, 15px);
+    }
+    75% {
+        transform: translate(10px, -15px);
     }
 }
