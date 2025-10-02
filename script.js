@@ -299,12 +299,21 @@ function moveStars() {
         const currentTop = baseTop + translateY;
 
         if (currentTop > window.innerHeight + 100 || currentLeft < -100 || translateZ > 100) {
-            star.style.left = (window.innerWidth + Math.random() * 500) + 'px';
-            star.style.top = (-Math.random() * window.innerHeight) + 'px';
-            star.style.transform = 'translate3d(0, 0, -500px) scale(0.5)';
+            // Respawn from right edge or top edge randomly
+            const spawnFromTop = Math.random() > 0.5;
+            if (spawnFromTop) {
+                star.style.left = (Math.random() * window.innerWidth) + 'px';
+                star.style.top = (-Math.random() * 500) + 'px';
+            } else {
+                star.style.left = (window.innerWidth + Math.random() * 500) + 'px';
+                star.style.top = (Math.random() * window.innerHeight) + 'px';
+            }
+
+            const resetZ = star.className.includes('far') ? -500 : star.className.includes('mid') ? -300 : -100;
+            star.style.transform = `translate3d(0, 0, ${resetZ}px) scale(0.5)`;
             star.dataset.translateX = '0';
             star.dataset.translateY = '0';
-            star.dataset.translateZ = '-500';
+            star.dataset.translateZ = resetZ;
         }
     });
 
