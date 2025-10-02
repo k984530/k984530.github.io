@@ -691,59 +691,87 @@ body {
 }
 
 .nebula1 {
-    top: 100px;
-    left: 200px;
-    width: 1200px;
-    height: 1200px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(230, 230, 250, 0.08) 40%, transparent 70%);
-    animation: nebulaDrift1 180s linear infinite;
+    top: 50px;
+    left: 150px;
+    width: 1800px;
+    height: 1800px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(230, 220, 255, 0.04) 35%, transparent 65%);
+    animation: nebulaDrift1 300s linear infinite;
 }
 
 .nebula2 {
-    top: 300px;
-    right: 150px;
-    width: 1000px;
-    height: 1000px;
-    background: radial-gradient(circle, rgba(200, 180, 255, 0.12) 0%, rgba(220, 200, 255, 0.06) 40%, transparent 70%);
-    animation: nebulaDrift2 200s linear infinite;
+    top: 200px;
+    right: 100px;
+    width: 1600px;
+    height: 1600px;
+    background: radial-gradient(circle, rgba(200, 180, 255, 0.07) 0%, rgba(220, 200, 255, 0.03) 35%, transparent 65%);
+    animation: nebulaDrift2 280s linear infinite;
 }
 
 .nebula3 {
-    bottom: 200px;
-    left: 300px;
-    width: 1400px;
-    height: 1400px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(240, 240, 255, 0.05) 40%, transparent 70%);
-    animation: nebulaDrift3 220s linear infinite;
+    top: 400px;
+    left: 400px;
+    width: 2000px;
+    height: 2000px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, rgba(240, 235, 255, 0.03) 35%, transparent 65%);
+    animation: nebulaDrift3 320s linear infinite;
 }
 
 .nebula4 {
-    top: 500px;
-    left: 50%;
-    width: 1100px;
-    height: 1100px;
-    background: radial-gradient(circle, rgba(180, 160, 255, 0.1) 0%, rgba(210, 200, 255, 0.05) 40%, transparent 70%);
-    animation: nebulaDrift4 190s linear infinite;
+    bottom: 100px;
+    left: 50px;
+    width: 1500px;
+    height: 1500px;
+    background: radial-gradient(circle, rgba(180, 160, 255, 0.06) 0%, rgba(210, 190, 255, 0.03) 35%, transparent 65%);
+    animation: nebulaDrift4 290s linear infinite;
+}
+
+.nebula5 {
+    top: 600px;
+    right: 300px;
+    width: 1700px;
+    height: 1700px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(245, 240, 255, 0.02) 35%, transparent 65%);
+    animation: nebulaDrift5 310s linear infinite;
+}
+
+.nebula6 {
+    bottom: 300px;
+    right: 200px;
+    width: 1400px;
+    height: 1400px;
+    background: radial-gradient(circle, rgba(190, 170, 255, 0.05) 0%, rgba(220, 210, 255, 0.02) 35%, transparent 65%);
+    animation: nebulaDrift6 270s linear infinite;
 }
 
 @keyframes nebulaDrift1 {
     from { transform: translate(0, 0); }
-    to { transform: translate(-200px, 150px); }
+    to { transform: translate(-400px, 300px); }
 }
 
 @keyframes nebulaDrift2 {
     from { transform: translate(0, 0); }
-    to { transform: translate(-180px, 120px); }
+    to { transform: translate(-350px, 250px); }
 }
 
 @keyframes nebulaDrift3 {
     from { transform: translate(0, 0); }
-    to { transform: translate(-150px, -100px); }
+    to { transform: translate(-300px, 200px); }
 }
 
 @keyframes nebulaDrift4 {
     from { transform: translate(0, 0); }
-    to { transform: translate(-220px, 80px); }
+    to { transform: translate(-380px, 280px); }
+}
+
+@keyframes nebulaDrift5 {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-320px, 240px); }
+}
+
+@keyframes nebulaDrift6 {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-360px, 260px); }
 }
 
 

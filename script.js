@@ -205,42 +205,45 @@ function createStars() {
     const starsContainer2 = document.querySelector('.stars2');
     const starsContainer3 = document.querySelector('.stars3');
 
-    // Create small stars (500 stars)
-    for (let i = 0; i < 500; i++) {
+    // Create far stars (1000 stars) - distant, slow
+    for (let i = 0; i < 1000; i++) {
         const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = (Math.random() * window.innerWidth) + 'px';
-        star.style.top = (Math.random() * window.innerHeight) + 'px';
+        star.className = 'star star-far';
+        star.style.left = (Math.random() * window.innerWidth * 1.5) + 'px';
+        star.style.top = (Math.random() * window.innerHeight * 1.5) + 'px';
         star.style.animationDelay = (Math.random() * 10) + 's';
         star.style.animationDuration = (4 + Math.random() * 6) + 's';
-        star.style.width = '0.2px';
-        star.style.height = '0.2px';
+        star.style.width = '0.15px';
+        star.style.height = '0.15px';
+        star.dataset.speed = '0.02';
         starsContainer1?.appendChild(star);
     }
 
-    // Create medium stars (300 stars)
-    for (let i = 0; i < 300; i++) {
+    // Create medium stars (600 stars) - middle distance
+    for (let i = 0; i < 600; i++) {
         const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = (Math.random() * window.innerWidth) + 'px';
-        star.style.top = (Math.random() * window.innerHeight) + 'px';
+        star.className = 'star star-mid';
+        star.style.left = (Math.random() * window.innerWidth * 1.5) + 'px';
+        star.style.top = (Math.random() * window.innerHeight * 1.5) + 'px';
         star.style.animationDelay = (Math.random() * 12) + 's';
         star.style.animationDuration = (5 + Math.random() * 8) + 's';
-        star.style.width = '0.2px';
-        star.style.height = '0.2px';
+        star.style.width = '0.25px';
+        star.style.height = '0.25px';
+        star.dataset.speed = '0.05';
         starsContainer2?.appendChild(star);
     }
 
-    // Create large stars (100 stars)
-    for (let i = 0; i < 100; i++) {
+    // Create near stars (200 stars) - close, fast
+    for (let i = 0; i < 200; i++) {
         const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = (Math.random() * window.innerWidth) + 'px';
-        star.style.top = (Math.random() * window.innerHeight) + 'px';
+        star.className = 'star star-near';
+        star.style.left = (Math.random() * window.innerWidth * 1.5) + 'px';
+        star.style.top = (Math.random() * window.innerHeight * 1.5) + 'px';
         star.style.animationDelay = (Math.random() * 14) + 's';
         star.style.animationDuration = (6 + Math.random() * 10) + 's';
-        star.style.width = '0.2px';
-        star.style.height = '0.2px';
+        star.style.width = '0.4px';
+        star.style.height = '0.4px';
+        star.dataset.speed = '0.1';
         starsContainer3?.appendChild(star);
     }
 
@@ -250,7 +253,7 @@ function createStars() {
 // Initialize stars on page load (only once)
 createStars();
 
-// Move stars continuously from upper right to lower left
+// Move stars continuously - creating parallax depth effect
 let lastFrameTime = 0;
 const frameInterval = 1000 / 120; // 120 FPS
 
@@ -259,13 +262,19 @@ function moveStars(currentTime) {
         document.querySelectorAll('.star').forEach(star => {
             const currentLeft = parseFloat(star.style.left);
             const currentTop = parseFloat(star.style.top);
-            const newLeft = currentLeft - 0.01; // Move 0.01px per frame (left)
-            const newTop = currentTop + 0.01; // Move 0.01px per frame (down)
+            const speed = parseFloat(star.dataset.speed) || 0.02;
+
+            const newLeft = currentLeft - speed; // Move left based on speed
+            const newTop = currentTop + speed; // Move down based on speed
 
             star.style.left = newLeft + 'px';
             star.style.top = newTop + 'px';
 
-            // Stars continue moving infinitely - no reset
+            // Reset if completely off screen
+            if (newTop > window.innerHeight + 100 || newLeft < -100) {
+                star.style.left = (window.innerWidth + Math.random() * 200) + 'px';
+                star.style.top = (-Math.random() * 200) + 'px';
+            }
         });
 
         lastFrameTime = currentTime;
