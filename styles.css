@@ -705,63 +705,76 @@ body {
         480px 1680px #FFF, 1820px 380px #FFF, 720px 1180px #FFF, 1420px 1420px #FFF,
         300px 620px #FFF, 1700px 1620px #FFF, 880px 920px #FFF, 1540px 280px #FFF,
         540px 1340px #FFF, 1780px 1080px #FFF, 800px 1740px #FFF, 1480px 580px #FFF;
-    width: 1px;
-    height: 1px;
+    width: 2px;
+    height: 2px;
     border-radius: 50%;
     animation: twinkle 3s infinite;
-    box-shadow: 0 0 3px 1px rgba(255,255,255,0.8), 0 0 6px 2px rgba(255,255,255,0.5), 0 0 10px 3px rgba(255,255,255,0.3);
+}
+
+.stars::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #FFF;
+    border-radius: 50%;
+    box-shadow:
+        100px 200px #FFF, 300px 100px #FFF, 500px 300px #FFF, 700px 150px #FFF,
+        200px 400px #FFF, 400px 250px #FFF, 600px 450px #FFF, 800px 350px #FFF,
+        150px 600px #FFF, 350px 500px #FFF, 550px 650px #FFF, 750px 550px #FFF,
+        250px 800px #FFF, 450px 700px #FFF, 650px 850px #FFF, 850px 750px #FFF,
+        50px 50px #FFF, 900px 50px #FFF, 50px 900px #FFF, 900px 900px #FFF,
+        400px 400px #FFF, 600px 200px #FFF, 200px 600px #FFF, 800px 600px #FFF,
+        300px 300px #FFF, 700px 700px #FFF, 500px 100px #FFF, 100px 500px #FFF;
 }
 
 .stars2 {
     background: #FFF;
-    box-shadow:
-        779px 1531px #FFF, 324px 831px #FFF, 1976px 1743px #FFF, 1196px 1699px #FFF,
-        1824px 1468px #FFF, 1929px 1902px #FFF, 1333px 1025px #FFF, 1888px 1031px #FFF,
-        1865px 1756px #FFF, 1294px 1288px #FFF, 1046px 1522px #FFF, 1634px 1219px #FFF,
-        1036px 1835px #FFF, 1201px 1155px #FFF, 1472px 1712px #FFF, 1960px 1887px #FFF,
-        1128px 1667px #FFF, 1449px 1663px #FFF, 1853px 1783px #FFF, 1689px 1909px #FFF,
-        1484px 1354px #FFF, 1600px 1397px #FFF, 1858px 1904px #FFF, 1308px 1108px #FFF,
-        1904px 1110px #FFF, 1836px 1684px #FFF, 1297px 1816px #FFF, 1935px 1030px #FFF,
-        1665px 1342px #FFF, 1604px 1737px #FFF, 1459px 1548px #FFF, 1050px 1612px #FFF,
-        1988px 1690px #FFF, 1502px 1050px #FFF, 1840px 1059px #FFF, 1431px 1016px #FFF,
-        1853px 1072px #FFF, 1686px 1291px #FFF, 1665px 1654px #FFF, 1040px 1643px #FFF,
-        250px 1250px #FFF, 1150px 550px #FFF, 570px 1650px #FFF, 1650px 850px #FFF,
-        430px 450px #FFF, 1430px 1850px #FFF, 750px 1050px #FFF, 1550px 650px #FFF,
-        350px 1450px #FFF, 1350px 350px #FFF, 650px 1550px #FFF, 1750px 1150px #FFF,
-        470px 750px #FFF, 1470px 1350px #FFF, 870px 950px #FFF, 1670px 450px #FFF,
-        550px 1750px #FFF, 1250px 1650px #FFF, 950px 550px #FFF, 1950px 1250px #FFF,
-        370px 1150px #FFF, 1570px 750px #FFF, 770px 1450px #FFF, 1370px 950px #FFF;
-    width: 2px;
-    height: 2px;
+    width: 3px;
+    height: 3px;
     border-radius: 50%;
     animation: twinkle 5s infinite;
-    box-shadow: 0 0 4px 2px rgba(255,255,255,0.8), 0 0 8px 3px rgba(255,255,255,0.5), 0 0 12px 4px rgba(255,255,255,0.3);
+}
+
+.stars2::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #FFF;
+    border-radius: 50%;
+    box-shadow:
+        150px 250px #FFF, 350px 150px #FFF, 550px 350px #FFF, 750px 200px #FFF,
+        250px 450px #FFF, 450px 300px #FFF, 650px 500px #FFF, 850px 400px #FFF,
+        200px 650px #FFF, 400px 550px #FFF, 600px 700px #FFF, 800px 600px #FFF,
+        300px 850px #FFF, 500px 750px #FFF, 700px 900px #FFF, 900px 800px #FFF;
 }
 
 .stars3 {
     background: #FFF;
-    box-shadow:
-        1351px 1344px #FFF, 423px 1119px #FFF, 1539px 1690px #FFF, 748px 1112px #FFF,
-        1959px 1173px #FFF, 1601px 1160px #FFF, 1505px 1290px #FFF, 1756px 1868px #FFF,
-        1095px 1643px #FFF, 1653px 1064px #FFF, 1564px 1680px #FFF, 1387px 1379px #FFF,
-        1791px 1532px #FFF, 1948px 1215px #FFF, 1996px 1654px #FFF, 1658px 1753px #FFF,
-        1014px 1616px #FFF, 1978px 1034px #FFF, 1569px 1543px #FFF, 1820px 1191px #FFF,
-        320px 720px #FFF, 1520px 1520px #FFF, 620px 920px #FFF, 1720px 320px #FFF,
-        420px 1420px #FFF, 1620px 1620px #FFF, 820px 520px #FFF, 1820px 1220px #FFF,
-        220px 1220px #FFF, 1420px 820px #FFF, 720px 1720px #FFF, 1220px 420px #FFF,
-        520px 620px #FFF, 1920px 1420px #FFF, 920px 1320px #FFF, 1320px 720px #FFF;
-    width: 3px;
-    height: 3px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     animation: twinkle 7s infinite;
-    box-shadow: 0 0 5px 3px rgba(255,255,255,0.8), 0 0 10px 5px rgba(255,255,255,0.5), 0 0 15px 7px rgba(255,255,255,0.3);
+}
+
+.stars3::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #FFF;
+    border-radius: 50%;
+    box-shadow:
+        200px 300px #FFF, 400px 200px #FFF, 600px 400px #FFF, 800px 250px #FFF,
+        300px 500px #FFF, 500px 350px #FFF, 700px 550px #FFF, 900px 450px #FFF;
 }
 
 @keyframes twinkle {
     0%, 100% {
-        opacity: 0.6;
+        opacity: 1;
     }
     50% {
-        opacity: 1;
+        opacity: 0.7;
     }
 }
