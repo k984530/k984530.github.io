@@ -270,10 +270,10 @@ function moveStars(currentTime) {
             star.style.left = newLeft + 'px';
             star.style.top = newTop + 'px';
 
-            // Reset if completely off screen
+            // Reset if completely off screen - spread across entire edge
             if (newTop > window.innerHeight + 100 || newLeft < -100) {
-                star.style.left = (window.innerWidth + Math.random() * 200) + 'px';
-                star.style.top = (-Math.random() * 200) + 'px';
+                star.style.left = (window.innerWidth + Math.random() * 500) + 'px';
+                star.style.top = (-Math.random() * window.innerHeight) + 'px';
             }
         });
 
