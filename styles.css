@@ -755,7 +755,7 @@ body {
     background: #FFF;
     border-radius: 50%;
     animation: twinkle 3s infinite;
-    box-shadow: 0 0 2px 1px rgba(255,255,255,0.3), 0 0 4px 2px rgba(255,255,255,0.2);
+    box-shadow: 0 0 1px 0.5px rgba(255,255,255,0.5);
 }
 
 @keyframes twinkle {

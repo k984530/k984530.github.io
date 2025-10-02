@@ -213,8 +213,8 @@ function createStars() {
         star.style.top = (Math.random() * window.innerHeight) + 'px';
         star.style.animationDelay = (Math.random() * 10) + 's';
         star.style.animationDuration = (4 + Math.random() * 6) + 's';
-        star.style.width = '0.3px';
-        star.style.height = '0.3px';
+        star.style.width = '0.2px';
+        star.style.height = '0.2px';
         starsContainer1?.appendChild(star);
     }
 
@@ -226,8 +226,8 @@ function createStars() {
         star.style.top = (Math.random() * window.innerHeight) + 'px';
         star.style.animationDelay = (Math.random() * 12) + 's';
         star.style.animationDuration = (5 + Math.random() * 8) + 's';
-        star.style.width = '0.3px';
-        star.style.height = '0.3px';
+        star.style.width = '0.2px';
+        star.style.height = '0.2px';
         starsContainer2?.appendChild(star);
     }
 
@@ -239,8 +239,8 @@ function createStars() {
         star.style.top = (Math.random() * window.innerHeight) + 'px';
         star.style.animationDelay = (Math.random() * 14) + 's';
         star.style.animationDuration = (6 + Math.random() * 10) + 's';
-        star.style.width = '0.3px';
-        star.style.height = '0.3px';
+        star.style.width = '0.2px';
+        star.style.height = '0.2px';
         starsContainer3?.appendChild(star);
     }
 
@@ -265,11 +265,7 @@ function moveStars(currentTime) {
             star.style.left = newLeft + 'px';
             star.style.top = newTop + 'px';
 
-            // If star moved off the bottom or left edge, reset to upper right
-            if (newTop > window.innerHeight + 50 || newLeft < -50) {
-                star.style.left = (window.innerWidth + 50) + 'px';
-                star.style.top = (Math.random() * window.innerHeight) + 'px';
-            }
+            // Stars continue moving infinitely - no reset
         });
 
         lastFrameTime = currentTime;
