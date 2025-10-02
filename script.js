@@ -239,8 +239,8 @@ function createStars() {
         star.className = 'star';
         star.style.left = (pos.x * 20) + 'px';
         star.style.top = (pos.y * 10) + 'px';
-        star.style.animationDelay = (i * 0.1) + 's';
-        star.style.animationDuration = (3 + (i % 3)) + 's';
+        star.style.animationDelay = (i * 0.05) + 's';
+        star.style.animationDuration = (1 + (i % 2) * 0.5) + 's';
         star.style.width = '2px';
         star.style.height = '2px';
         starsContainer1?.appendChild(star);
@@ -252,8 +252,8 @@ function createStars() {
         star.className = 'star';
         star.style.left = (pos.x * 20) + 'px';
         star.style.top = (pos.y * 10) + 'px';
-        star.style.animationDelay = (i * 0.2) + 's';
-        star.style.animationDuration = (4 + (i % 4)) + 's';
+        star.style.animationDelay = (i * 0.1) + 's';
+        star.style.animationDuration = (1.5 + (i % 3) * 0.5) + 's';
         star.style.width = '3px';
         star.style.height = '3px';
         starsContainer2?.appendChild(star);
@@ -265,8 +265,8 @@ function createStars() {
         star.className = 'star';
         star.style.left = (pos.x * 20) + 'px';
         star.style.top = (pos.y * 10) + 'px';
-        star.style.animationDelay = (i * 0.7) + 's';
-        star.style.animationDuration = (5 + (i % 5)) + 's';
+        star.style.animationDelay = (i * 0.3) + 's';
+        star.style.animationDuration = (2 + (i % 3) * 0.5) + 's';
         star.style.width = '4px';
         star.style.height = '4px';
         starsContainer3?.appendChild(star);
