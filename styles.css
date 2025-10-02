@@ -279,6 +279,7 @@ body {
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
+    filter: brightness(0.7);
 }
 
 /* Removed hover image scale */
