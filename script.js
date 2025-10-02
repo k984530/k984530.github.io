@@ -209,13 +209,14 @@ function createStars() {
     const isMobile = window.innerWidth <= 768;
     const starMultiplier = isMobile ? 0.2 : 1;
     const starSizeMultiplier = isMobile ? 10 : 1;
+    const spawnMargin = isMobile ? 0 : 300;
 
     // Create far stars (1000 stars or 200 on mobile) - distant, slow - distributed across entire screen
     for (let i = 0; i < 1000 * starMultiplier; i++) {
         const star = document.createElement('div');
         star.className = 'star star-far';
-        const startX = -300 + Math.random() * (window.innerWidth + 600);
-        const startY = -300 + Math.random() * (window.innerHeight + 600);
+        const startX = -spawnMargin + Math.random() * (window.innerWidth + spawnMargin * 2);
+        const startY = -spawnMargin + Math.random() * (window.innerHeight + spawnMargin * 2);
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 3) + 's';
@@ -234,8 +235,8 @@ function createStars() {
     for (let i = 0; i < 600 * starMultiplier; i++) {
         const star = document.createElement('div');
         star.className = 'star star-mid';
-        const startX = -300 + Math.random() * (window.innerWidth + 600);
-        const startY = -300 + Math.random() * (window.innerHeight + 600);
+        const startX = -spawnMargin + Math.random() * (window.innerWidth + spawnMargin * 2);
+        const startY = -spawnMargin + Math.random() * (window.innerHeight + spawnMargin * 2);
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 4) + 's';
@@ -254,8 +255,8 @@ function createStars() {
     for (let i = 0; i < 200 * starMultiplier; i++) {
         const star = document.createElement('div');
         star.className = 'star star-near';
-        const startX = -300 + Math.random() * (window.innerWidth + 600);
-        const startY = -300 + Math.random() * (window.innerHeight + 600);
+        const startX = -spawnMargin + Math.random() * (window.innerWidth + spawnMargin * 2);
+        const startY = -spawnMargin + Math.random() * (window.innerHeight + spawnMargin * 2);
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 5) + 's';
@@ -284,14 +285,14 @@ document.querySelectorAll('.nebula').forEach((nebula, index) => {
 });
 
 // Move stars and nebulae continuously - creating 3D parallax depth effect
-const isMobile = window.innerWidth <= 768;
+const isMobileDevice = window.innerWidth <= 768;
 let frameCounter = 0;
 
 function moveStars() {
     frameCounter++;
 
     // On mobile, update every 2 frames for better performance
-    if (isMobile && frameCounter % 2 !== 0) {
+    if (isMobileDevice && frameCounter % 2 !== 0) {
         requestAnimationFrame(moveStars);
         return;
     }
@@ -323,20 +324,22 @@ function moveStars() {
         const currentTop = baseTop + translateY;
 
         if (currentTop > window.innerHeight + 100 || currentLeft < -100 || translateZ > 100) {
+            const respawnMargin = isMobileDevice ? 0 : 300;
+
             // Respawn from top-left, top-right, or bottom-right edges
             const spawnEdge = Math.random();
 
             if (spawnEdge < 0.33) {
                 // Left edge + top area
-                star.style.left = (-Math.random() * 300) + 'px';
+                star.style.left = (-respawnMargin) + 'px';
                 star.style.top = (Math.random() * window.innerHeight * 0.5) + 'px';
             } else if (spawnEdge < 0.66) {
                 // Top edge (full width)
                 star.style.left = (Math.random() * window.innerWidth) + 'px';
-                star.style.top = (-Math.random() * 500) + 'px';
+                star.style.top = (-respawnMargin) + 'px';
             } else {
                 // Right edge (full height)
-                star.style.left = (window.innerWidth + Math.random() * 500) + 'px';
+                star.style.left = (window.innerWidth + respawnMargin) + 'px';
                 star.style.top = (Math.random() * window.innerHeight) + 'px';
             }
 
