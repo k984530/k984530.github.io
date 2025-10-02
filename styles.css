@@ -667,16 +667,13 @@ body {
     height: 3000px;
     border-radius: 50%;
     background: radial-gradient(circle at 50% 30%,
-        #2563eb 0%,
-        #1e40af 20%,
-        #1e3a8a 30%,
-        #172554 45%,
-        #0f172a 60%,
+        #0f1729 0%,
+        #0a0e1a 30%,
+        #050508 60%,
         #000000 80%);
     box-shadow:
-        0 -80px 200px rgba(37, 99, 235, 0.4),
-        0 -40px 100px rgba(30, 64, 175, 0.3),
-        inset 0 80px 150px rgba(0, 0, 0, 0.5);
+        0 -60px 120px rgba(15, 23, 41, 0.15),
+        inset 0 80px 150px rgba(0, 0, 0, 0.7);
     pointer-events: none;
     z-index: 0;
 }
