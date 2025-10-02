@@ -193,6 +193,57 @@ window.addEventListener('resize', () => {
     }
 });
 
+// Create random twinkling stars
+function createStars() {
+    const starsContainer1 = document.querySelector('.stars');
+    const starsContainer2 = document.querySelector('.stars2');
+    const starsContainer3 = document.querySelector('.stars3');
+
+    // Clear existing content
+    if (starsContainer1) starsContainer1.innerHTML = '';
+    if (starsContainer2) starsContainer2.innerHTML = '';
+    if (starsContainer3) starsContainer3.innerHTML = '';
+
+    // Create small stars (150 stars)
+    for (let i = 0; i < 150; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        star.style.width = '2px';
+        star.style.height = '2px';
+        starsContainer1?.appendChild(star);
+    }
+
+    // Create medium stars (80 stars)
+    for (let i = 0; i < 80; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 5 + 's';
+        star.style.width = '3px';
+        star.style.height = '3px';
+        starsContainer2?.appendChild(star);
+    }
+
+    // Create large stars (40 stars)
+    for (let i = 0; i < 40; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 7 + 's';
+        star.style.width = '4px';
+        star.style.height = '4px';
+        starsContainer3?.appendChild(star);
+    }
+}
+
+// Initialize stars on page load
+createStars();
+
 // Activate last rows when scrolled near bottom
 window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
