@@ -118,6 +118,24 @@ When updating Flutter assets:
 - **Verification**: `google162eca4edabef93b.html` for Google Search Console
 - Always test locally before pushing to `main`
 
+## Auto-Push Policy
+**IMPORTANT**: Whenever you modify any files in this repository (including CLAUDE.md, index.html, styles.css, script.js, or any app files), you MUST immediately commit and push the changes to the remote repository using the following commands:
+
+```bash
+git add <modified-files>
+git commit -m "$(cat <<'EOF'
+<commit message>
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+EOF
+)"
+git push
+```
+
+**Exception**: Only skip auto-push if the user explicitly says "don't push" or "don't commit".
+
 ## Commit Style
 Follow existing patterns from git history:
 - Short, imperative summaries (e.g., "Update portfolio", "Add Sweet Sleep", "Restyle app feed grid")
