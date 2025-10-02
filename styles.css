@@ -256,10 +256,7 @@ body {
     isolation: isolate;
 }
 
-.project-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 26px 48px rgba(17, 24, 39, 0.16);
-}
+/* Removed hover transform - only scroll-based interaction */
 
 .project-item.active-feed {
     box-shadow: 0 26px 48px rgba(17, 24, 39, 0.16);
@@ -278,9 +275,7 @@ body {
     transition: transform 0.6s ease;
 }
 
-.project-item:hover .project-icon img {
-    transform: scale(1.06);
-}
+/* Removed hover image scale */
 
 .project-item.active-feed .project-icon img {
     transform: scale(1.04);
@@ -315,9 +310,7 @@ body {
     z-index: 1;
 }
 
-.project-item:hover .project-details {
-    opacity: 1;
-}
+/* Removed hover details - only scroll-based activation */
 
 .project-item.active-feed .project-details {
     opacity: 1;

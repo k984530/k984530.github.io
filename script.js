@@ -43,50 +43,7 @@ navItems.forEach(item => {
 const visibleProjects = new Map();
 let projectSequence = 0;
 
-// Show More Projects Button
-const showMoreBtn = document.getElementById('show-more-btn');
-const moreProjectsContainer = document.getElementById('more-projects-container');
-let isExpanded = false;
-
-showMoreBtn?.addEventListener('click', () => {
-    if (!isExpanded) {
-        // Show more projects
-        moreProjectsContainer.style.display = 'contents';
-        showMoreBtn.innerHTML = 'Show Less <i class="fas fa-chevron-up"></i>';
-        isExpanded = true;
-        
-        // Animate new items
-        const newItems = moreProjectsContainer.querySelectorAll('.project-item');
-        newItems.forEach((item, index) => {
-            enhanceProjectItem(item);
-            item.style.opacity = '0';
-            item.style.animation = 'none';
-            setTimeout(() => {
-                item.style.animation = 'fadeIn 0.5s ease forwards';
-            }, index * 50);
-        });
-    } else {
-        // Hide projects
-        moreProjectsContainer.style.display = 'none';
-        showMoreBtn.innerHTML = 'Show More Apps <i class="fas fa-chevron-down"></i>';
-        isExpanded = false;
-        
-        // Scroll back to projects section
-        document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
-
-        moreProjectsContainer.querySelectorAll('.project-item').forEach(item => {
-            const id = item.dataset.projectId;
-            if (id) {
-                visibleProjects.delete(id);
-            }
-        });
-
-        const fallback = document.querySelector('.projects-container .project-item');
-        if (fallback) {
-            setActiveProject(fallback);
-        }
-    }
-});
+// Show More button removed - all projects now visible by default
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -118,7 +75,7 @@ const observer = new IntersectionObserver((entries) => {
 
 const activeObserver = new IntersectionObserver(handleActiveEntries, {
     threshold: [0.15, 0.4, 0.65],
-    rootMargin: '-25% 0px -35% 0px'
+    rootMargin: '-25% 0px -10% 0px'
 });
 
 const projectItems = Array.from(document.querySelectorAll('.project-item'));
@@ -217,5 +174,21 @@ window.addEventListener('resize', () => {
     const activeTile = document.querySelector('.project-item.active-feed');
     if (activeTile) {
         setActiveProject(activeTile);
+    }
+});
+
+// Activate last row when scrolled to bottom
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = window.innerHeight;
+
+    // Check if scrolled near bottom (within 100px)
+    if (scrollHeight - scrollTop - clientHeight < 100) {
+        const allProjects = document.querySelectorAll('.project-item');
+        if (allProjects.length > 0) {
+            const lastProject = allProjects[allProjects.length - 1];
+            setActiveProject(lastProject);
+        }
     }
 });
