@@ -5,22 +5,43 @@ const sections = document.querySelectorAll('.section');
 navItems.forEach(item => {
     item.addEventListener('click', (e) => {
         e.preventDefault();
-        
-        // Remove active class from all nav items and sections
-        navItems.forEach(nav => nav.classList.remove('active'));
-        sections.forEach(section => section.classList.remove('active'));
-        
-        // Add active class to clicked nav item
-        item.classList.add('active');
-        
-        // Show corresponding section
+
+        // Scroll to corresponding section
         const targetId = item.getAttribute('href').substring(1);
         const targetSection = document.getElementById(targetId);
         if (targetSection) {
-            targetSection.classList.add('active');
+            targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     });
 });
+
+// Update active nav based on scroll position
+const updateActiveNav = () => {
+    let currentSection = '';
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const scrollPosition = window.scrollY + 200;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+
+    navItems.forEach(nav => {
+        nav.classList.remove('active');
+        if (nav.getAttribute('href') === `#${currentSection}`) {
+            nav.classList.add('active');
+        }
+    });
+};
+
+window.addEventListener('scroll', updateActiveNav);
+window.addEventListener('load', updateActiveNav);
 
 // Mobile Menu Toggle
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -166,17 +187,6 @@ function setActiveProject(item) {
     });
 }
 
-// Initial page load
-window.addEventListener('load', () => {
-    // Ensure projects section is active by default
-    const projectsSection = document.getElementById('projects');
-    const projectsNavItem = document.querySelector('a[href="#projects"]');
-    
-    if (projectsSection && projectsNavItem) {
-        projectsSection.classList.add('active');
-        projectsNavItem.classList.add('active');
-    }
-});
 
 window.addEventListener('resize', () => {
     const activeTile = document.querySelector('.project-item.active-feed');
@@ -239,20 +249,4 @@ function createStars() {
 // Initialize stars on page load
 createStars();
 
-// Learn more link functionality
-const learnMoreLink = document.querySelector('.learn-more-link');
-learnMoreLink?.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    // Remove active class from all nav items and sections
-    navItems.forEach(nav => nav.classList.remove('active'));
-    sections.forEach(section => section.classList.remove('active'));
-
-    // Activate About nav item and section
-    const aboutNavItem = document.querySelector('a[href="#about"]');
-    const aboutSection = document.getElementById('about');
-
-    if (aboutNavItem) aboutNavItem.classList.add('active');
-    if (aboutSection) aboutSection.classList.add('active');
-});
 

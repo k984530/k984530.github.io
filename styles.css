@@ -194,12 +194,9 @@ body {
 
 /* Section */
 .section {
-    display: none;
-    animation: fadeIn 0.5s ease;
-}
-
-.section.active {
     display: block;
+    padding-bottom: 4rem;
+    animation: fadeIn 0.5s ease;
 }
 
 @keyframes fadeIn {
@@ -247,57 +244,6 @@ body {
     display: none !important;
 }
 
-/* Thank You Message */
-.thank-you-message {
-    grid-column: 1 / -1;
-    text-align: center;
-    margin-top: 15rem;
-}
-
-.thank-you-message p {
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--text-secondary);
-    opacity: 0.6;
-    letter-spacing: 0.1em;
-    margin-bottom: 2rem;
-}
-
-.learn-more-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 2rem;
-    background: rgba(99, 102, 241, 0.1);
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    border-radius: 8px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.learn-more-link:hover {
-    background: rgba(99, 102, 241, 0.2);
-    border-color: var(--primary-color);
-    color: #A5B4FC;
-    transform: translateY(-2px);
-}
-
-.learn-more-link i {
-    font-size: 0.85rem;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(5px);
-    }
-}
 
 /* Project Feed */
 .project-item {
@@ -594,24 +540,33 @@ body {
 .mobile-menu-btn {
     display: none;
     position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
+    bottom: 2rem;
+    right: 2rem;
     z-index: 1001;
-    background: rgba(15, 23, 42, 0.9);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 0.75rem;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
     cursor: pointer;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 4px;
-    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 32px rgba(99, 102, 241, 0.6);
 }
 
 .mobile-menu-btn span {
     display: block;
     width: 20px;
     height: 2px;
-    background: var(--text-primary);
+    background: #FFFFFF;
     transition: all 0.3s ease;
 }
 
