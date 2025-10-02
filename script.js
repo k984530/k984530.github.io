@@ -224,8 +224,9 @@ function createStars() {
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 3) + 's';
         star.style.animationDuration = (0.5 + Math.random() * 1.5) + 's';
-        star.style.width = (0.5 * starSizeMultiplier) + 'px';
-        star.style.height = (0.5 * starSizeMultiplier) + 'px';
+        const size1 = (0.8 + Math.random() * 0.6) * starSizeMultiplier;
+        star.style.width = size1 + 'px';
+        star.style.height = size1 + 'px';
         star.dataset.speed = '0.3';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
@@ -247,8 +248,9 @@ function createStars() {
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 4) + 's';
         star.style.animationDuration = (0.6 + Math.random() * 2) + 's';
-        star.style.width = (0.7 * starSizeMultiplier) + 'px';
-        star.style.height = (0.7 * starSizeMultiplier) + 'px';
+        const size2 = (1.2 + Math.random() * 0.8) * starSizeMultiplier;
+        star.style.width = size2 + 'px';
+        star.style.height = size2 + 'px';
         star.dataset.speed = '0.5';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
@@ -270,8 +272,9 @@ function createStars() {
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 5) + 's';
         star.style.animationDuration = (0.7 + Math.random() * 2.5) + 's';
-        star.style.width = (1 * starSizeMultiplier) + 'px';
-        star.style.height = (1 * starSizeMultiplier) + 'px';
+        const size3 = (1.5 + Math.random() * 1) * starSizeMultiplier;
+        star.style.width = size3 + 'px';
+        star.style.height = size3 + 'px';
         star.dataset.speed = '1';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
@@ -333,18 +336,9 @@ function moveStars() {
         const currentTop = baseTop + translateY;
 
         if (currentTop > window.innerHeight + 200 || currentLeft < -200 || translateZ > 200) {
-            // Respawn from upper-right area to maintain even distribution
-            const spawnType = Math.random();
-
-            if (spawnType < 0.5) {
-                // Spawn from top edge
-                star.style.left = (Math.random() * window.innerWidth) + 'px';
-                star.style.top = (-100 - Math.random() * 200) + 'px';
-            } else {
-                // Spawn from right edge
-                star.style.left = (window.innerWidth + 100 + Math.random() * 200) + 'px';
-                star.style.top = (Math.random() * window.innerHeight) + 'px';
-            }
+            // Respawn across entire screen area to maintain even distribution
+            star.style.left = (Math.random() * window.innerWidth) + 'px';
+            star.style.top = (Math.random() * window.innerHeight) + 'px';
 
             star.style.transform = `translate3d(0, 0, 0) scale(1)`;
             star.dataset.translateX = '0';
