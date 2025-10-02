@@ -195,7 +195,7 @@ window.addEventListener('resize', () => {
     }
 });
 
-// Fixed star positions for consistency
+// Fixed star positions for consistency (using vw/vh units)
 const starPositions = {
     small: [
         {x: 5, y: 10}, {x: 15, y: 25}, {x: 8, y: 45}, {x: 22, y: 15}, {x: 35, y: 8},
@@ -223,23 +223,22 @@ const starPositions = {
     ]
 };
 
-// Create random twinkling stars with fixed positions
+let starsCreated = false;
+
+// Create twinkling stars with fixed positions (run once)
 function createStars() {
+    if (starsCreated) return;
+
     const starsContainer1 = document.querySelector('.stars');
     const starsContainer2 = document.querySelector('.stars2');
     const starsContainer3 = document.querySelector('.stars3');
-
-    // Clear existing content
-    if (starsContainer1) starsContainer1.innerHTML = '';
-    if (starsContainer2) starsContainer2.innerHTML = '';
-    if (starsContainer3) starsContainer3.innerHTML = '';
 
     // Create small stars (50 stars)
     starPositions.small.forEach((pos, i) => {
         const star = document.createElement('div');
         star.className = 'star';
-        star.style.left = pos.x + '%';
-        star.style.top = pos.y + '%';
+        star.style.left = pos.x + 'vw';
+        star.style.top = pos.y + 'vh';
         star.style.animationDelay = (i * 0.1) + 's';
         star.style.animationDuration = (3 + (i % 3)) + 's';
         star.style.width = '2px';
@@ -251,8 +250,8 @@ function createStars() {
     starPositions.medium.forEach((pos, i) => {
         const star = document.createElement('div');
         star.className = 'star';
-        star.style.left = pos.x + '%';
-        star.style.top = pos.y + '%';
+        star.style.left = pos.x + 'vw';
+        star.style.top = pos.y + 'vh';
         star.style.animationDelay = (i * 0.2) + 's';
         star.style.animationDuration = (4 + (i % 4)) + 's';
         star.style.width = '3px';
@@ -264,17 +263,19 @@ function createStars() {
     starPositions.large.forEach((pos, i) => {
         const star = document.createElement('div');
         star.className = 'star';
-        star.style.left = pos.x + '%';
-        star.style.top = pos.y + '%';
+        star.style.left = pos.x + 'vw';
+        star.style.top = pos.y + 'vh';
         star.style.animationDelay = (i * 0.7) + 's';
         star.style.animationDuration = (5 + (i % 5)) + 's';
         star.style.width = '4px';
         star.style.height = '4px';
         starsContainer3?.appendChild(star);
     });
+
+    starsCreated = true;
 }
 
-// Initialize stars on page load
+// Initialize stars on page load (only once)
 createStars();
 
 
