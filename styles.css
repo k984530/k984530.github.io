@@ -825,6 +825,7 @@ body {
     background: #FFF;
     border-radius: 50%;
     animation: twinkle 3s infinite;
+    will-change: transform;
 }
 
 @keyframes twinkle {

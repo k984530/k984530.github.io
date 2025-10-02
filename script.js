@@ -209,13 +209,17 @@ function createStars() {
     for (let i = 0; i < 1000; i++) {
         const star = document.createElement('div');
         star.className = 'star star-far';
-        star.style.left = (Math.random() * window.innerWidth * 1.5) + 'px';
-        star.style.top = (Math.random() * window.innerHeight * 1.5) + 'px';
+        const startX = Math.random() * window.innerWidth * 1.5;
+        const startY = Math.random() * window.innerHeight * 1.5;
+        star.style.left = startX + 'px';
+        star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 3) + 's';
         star.style.animationDuration = (0.5 + Math.random() * 1.5) + 's';
         star.style.width = '0.15px';
         star.style.height = '0.15px';
-        star.dataset.speed = '0.02';
+        star.dataset.speed = '0.3';
+        star.dataset.translateX = '0';
+        star.dataset.translateY = '0';
         starsContainer1?.appendChild(star);
     }
 
@@ -223,13 +227,17 @@ function createStars() {
     for (let i = 0; i < 600; i++) {
         const star = document.createElement('div');
         star.className = 'star star-mid';
-        star.style.left = (Math.random() * window.innerWidth * 1.5) + 'px';
-        star.style.top = (Math.random() * window.innerHeight * 1.5) + 'px';
+        const startX = Math.random() * window.innerWidth * 1.5;
+        const startY = Math.random() * window.innerHeight * 1.5;
+        star.style.left = startX + 'px';
+        star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 4) + 's';
         star.style.animationDuration = (0.6 + Math.random() * 2) + 's';
         star.style.width = '0.25px';
         star.style.height = '0.25px';
-        star.dataset.speed = '0.05';
+        star.dataset.speed = '0.5';
+        star.dataset.translateX = '0';
+        star.dataset.translateY = '0';
         starsContainer2?.appendChild(star);
     }
 
@@ -237,13 +245,17 @@ function createStars() {
     for (let i = 0; i < 200; i++) {
         const star = document.createElement('div');
         star.className = 'star star-near';
-        star.style.left = (Math.random() * window.innerWidth * 1.5) + 'px';
-        star.style.top = (Math.random() * window.innerHeight * 1.5) + 'px';
+        const startX = Math.random() * window.innerWidth * 1.5;
+        const startY = Math.random() * window.innerHeight * 1.5;
+        star.style.left = startX + 'px';
+        star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 5) + 's';
         star.style.animationDuration = (0.7 + Math.random() * 2.5) + 's';
         star.style.width = '0.4px';
         star.style.height = '0.4px';
-        star.dataset.speed = '0.1';
+        star.dataset.speed = '1';
+        star.dataset.translateX = '0';
+        star.dataset.translateY = '0';
         starsContainer3?.appendChild(star);
     }
 
@@ -253,23 +265,32 @@ function createStars() {
 // Initialize stars on page load (only once)
 createStars();
 
-// Move stars continuously - creating parallax depth effect
+// Move stars continuously - creating parallax depth effect using transform
 function moveStars() {
     document.querySelectorAll('.star').forEach(star => {
-        const currentLeft = parseFloat(star.style.left);
-        const currentTop = parseFloat(star.style.top);
-        const speed = parseFloat(star.dataset.speed) || 0.02;
+        const speed = parseFloat(star.dataset.speed) || 0.3;
+        let translateX = parseFloat(star.dataset.translateX) || 0;
+        let translateY = parseFloat(star.dataset.translateY) || 0;
 
-        const newLeft = currentLeft - speed; // Move left based on speed
-        const newTop = currentTop + speed; // Move down based on speed
+        translateX -= speed; // Move left based on speed
+        translateY += speed; // Move down based on speed
 
-        star.style.left = newLeft + 'px';
-        star.style.top = newTop + 'px';
+        star.style.transform = `translate(${translateX}px, ${translateY}px)`;
+        star.dataset.translateX = translateX;
+        star.dataset.translateY = translateY;
 
         // Reset if completely off screen - spread across entire edge
-        if (newTop > window.innerHeight + 100 || newLeft < -100) {
+        const baseLeft = parseFloat(star.style.left);
+        const baseTop = parseFloat(star.style.top);
+        const currentLeft = baseLeft + translateX;
+        const currentTop = baseTop + translateY;
+
+        if (currentTop > window.innerHeight + 100 || currentLeft < -100) {
             star.style.left = (window.innerWidth + Math.random() * 500) + 'px';
             star.style.top = (-Math.random() * window.innerHeight) + 'px';
+            star.style.transform = 'translate(0, 0)';
+            star.dataset.translateX = '0';
+            star.dataset.translateY = '0';
         }
     });
 
