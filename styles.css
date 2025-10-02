@@ -250,12 +250,13 @@ body {
     position: relative;
     overflow: hidden;
     border-radius: 22px;
-    background: #000000;
-    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
     aspect-ratio: 1 / 1;
     isolation: isolate;
+    backdrop-filter: blur(5px);
 }
 
 /* Removed hover transform - only scroll-based interaction */
@@ -380,8 +381,8 @@ body {
 
 .show-more-btn {
     padding: 0.75rem 2rem;
-    background: transparent;
-    border: 2px solid var(--border-color);
+    background: rgba(99, 102, 241, 0.1);
+    border: 2px solid rgba(99, 102, 241, 0.3);
     border-radius: 8px;
     color: var(--text-secondary);
     font-size: 0.95rem;
@@ -394,8 +395,9 @@ body {
 }
 
 .show-more-btn:hover {
+    background: rgba(99, 102, 241, 0.2);
     border-color: var(--primary-color);
-    color: var(--primary-color);
+    color: #A5B4FC;
     transform: translateY(-2px);
 }
 
@@ -417,10 +419,11 @@ body {
 
 /* Tech Stack */
 .tech-stack {
-    background: var(--bg-primary);
+    background: rgba(15, 23, 42, 0.2);
     border-radius: 12px;
     padding: 2rem;
-    border: 1px solid var(--border-color);
+    border: 2px solid rgba(99, 102, 241, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .tech-stack h3 {
@@ -452,7 +455,8 @@ body {
 
 .tech-items span {
     padding: 0.5rem 1rem;
-    background: var(--bg-secondary);
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.3);
     border-radius: 6px;
     font-size: 0.95rem;
     color: var(--text-primary);
@@ -461,8 +465,9 @@ body {
 }
 
 .tech-items span:hover {
-    background: var(--primary-color);
-    color: white;
+    background: rgba(99, 102, 241, 0.2);
+    border-color: var(--primary-color);
+    color: #A5B4FC;
     transform: translateY(-2px);
 }
 
@@ -481,15 +486,17 @@ body {
     gap: 1rem;
     padding: 1rem;
     margin-bottom: 1rem;
-    background: var(--bg-primary);
+    background: rgba(15, 23, 42, 0.2);
     border-radius: 8px;
-    border: 1px solid var(--border-color);
+    border: 2px solid rgba(99, 102, 241, 0.3);
     text-decoration: none;
     color: var(--text-primary);
     transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
 }
 
 .contact-item:hover {
+    background: rgba(99, 102, 241, 0.15);
     border-color: var(--primary-color);
     transform: translateX(5px);
 }
@@ -508,9 +515,10 @@ body {
 .contact-cta {
     text-align: center;
     padding: 2rem;
-    background: var(--bg-primary);
+    background: rgba(15, 23, 42, 0.2);
     border-radius: 12px;
-    border: 1px solid var(--border-color);
+    border: 2px solid rgba(99, 102, 241, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .contact-cta p {
@@ -522,8 +530,9 @@ body {
 .cta-button {
     display: inline-block;
     padding: 0.875rem 2rem;
-    background: var(--primary-color);
-    color: white;
+    background: rgba(99, 102, 241, 0.15);
+    border: 2px solid rgba(99, 102, 241, 0.6);
+    color: #A5B4FC;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
@@ -531,9 +540,11 @@ body {
 }
 
 .cta-button:hover {
-    background: var(--secondary-color);
+    background: rgba(99, 102, 241, 0.25);
+    border-color: var(--primary-color);
+    color: #FFFFFF;
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
 }
 
 /* Mobile Menu Button */
@@ -543,8 +554,8 @@ body {
     bottom: 2rem;
     right: 2rem;
     z-index: 1001;
-    background: var(--primary-color);
-    border: none;
+    background: rgba(99, 102, 241, 0.15);
+    border: 2px solid rgba(99, 102, 241, 0.6);
     border-radius: 50%;
     width: 56px;
     height: 56px;
@@ -553,13 +564,16 @@ body {
     align-items: center;
     justify-content: center;
     gap: 4px;
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .mobile-menu-btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 12px 32px rgba(99, 102, 241, 0.6);
+    background: rgba(99, 102, 241, 0.25);
+    border-color: var(--primary-color);
+    box-shadow: 0 12px 32px rgba(99, 102, 241, 0.4);
 }
 
 .mobile-menu-btn span {
