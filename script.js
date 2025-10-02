@@ -227,7 +227,7 @@ function createStars() {
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
         star.dataset.translateZ = '0';
-        star.dataset.zSpeed = '0';
+        star.dataset.zSpeed = '0.5';
         starsContainer1?.appendChild(star);
     }
 
@@ -247,7 +247,7 @@ function createStars() {
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
         star.dataset.translateZ = '0';
-        star.dataset.zSpeed = '0';
+        star.dataset.zSpeed = '1';
         starsContainer2?.appendChild(star);
     }
 
@@ -267,7 +267,7 @@ function createStars() {
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
         star.dataset.translateZ = '0';
-        star.dataset.zSpeed = '0';
+        star.dataset.zSpeed = '2';
         starsContainer3?.appendChild(star);
     }
 
@@ -307,8 +307,12 @@ function moveStars() {
 
         translateX -= speed; // Move left based on speed
         translateY += speed; // Move down based on speed
+        translateZ += zSpeed; // Move forward toward viewer
 
-        star.style.transform = `translate(${translateX}px, ${translateY}px)`;
+        // Calculate scale based on Z position for depth effect
+        const scale = Math.max(0.5, 1 + translateZ / 200);
+
+        star.style.transform = `translate3d(${translateX}px, ${translateY}px, ${translateZ}px) scale(${scale})`;
         star.dataset.translateX = translateX;
         star.dataset.translateY = translateY;
         star.dataset.translateZ = translateZ;
@@ -319,14 +323,15 @@ function moveStars() {
         const currentLeft = baseLeft + translateX;
         const currentTop = baseTop + translateY;
 
-        if (currentTop > window.innerHeight + 200 || currentLeft < -200 || currentTop < -200 || currentLeft > window.innerWidth + 200) {
+        if (currentTop > window.innerHeight + 200 || currentLeft < -200 || currentTop < -200 || currentLeft > window.innerWidth + 200 || translateZ > 200) {
             // Respawn across entire screen area evenly
             star.style.left = (Math.random() * window.innerWidth) + 'px';
             star.style.top = (Math.random() * window.innerHeight) + 'px';
 
-            star.style.transform = `translate(0, 0)`;
+            star.style.transform = `translate3d(0, 0, 0) scale(1)`;
             star.dataset.translateX = '0';
             star.dataset.translateY = '0';
+            star.dataset.translateZ = '0';
         }
     });
 
