@@ -213,8 +213,8 @@ function createStars() {
         const startY = -300 + Math.random() * (window.innerHeight + 600);
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
-        star.style.animationDelay = (Math.random() * 1800) + 's';
-        star.style.animationDuration = (900 + Math.random() * 900) + 's';
+        star.style.animationDelay = (Math.random() * 3) + 's';
+        star.style.animationDuration = (0.5 + Math.random() * 1.5) + 's';
         star.style.width = '0.15px';
         star.style.height = '0.15px';
         star.dataset.speed = '0.3';
@@ -233,8 +233,8 @@ function createStars() {
         const startY = -300 + Math.random() * (window.innerHeight + 600);
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
-        star.style.animationDelay = (Math.random() * 1800) + 's';
-        star.style.animationDuration = (900 + Math.random() * 900) + 's';
+        star.style.animationDelay = (Math.random() * 4) + 's';
+        star.style.animationDuration = (0.6 + Math.random() * 2) + 's';
         star.style.width = '0.25px';
         star.style.height = '0.25px';
         star.dataset.speed = '0.5';
@@ -253,8 +253,8 @@ function createStars() {
         const startY = -300 + Math.random() * (window.innerHeight + 600);
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
-        star.style.animationDelay = (Math.random() * 1800) + 's';
-        star.style.animationDuration = (900 + Math.random() * 900) + 's';
+        star.style.animationDelay = (Math.random() * 5) + 's';
+        star.style.animationDuration = (0.7 + Math.random() * 2.5) + 's';
         star.style.width = '0.4px';
         star.style.height = '0.4px';
         star.dataset.speed = '1';
