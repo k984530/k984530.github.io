@@ -216,9 +216,9 @@ function createStars() {
         const star = document.createElement('div');
         star.className = 'star star-far';
 
-        // Initial spawn: distribute broadly across and beyond screen
-        const startX = -200 + Math.random() * (window.innerWidth + 400);
-        const startY = -200 + Math.random() * (window.innerHeight + 400);
+        // Initial spawn: distribute broadly with emphasis on filling right side
+        const startX = -300 + Math.random() * (window.innerWidth + 600);
+        const startY = -300 + Math.random() * (window.innerHeight + 600);
 
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
@@ -240,9 +240,9 @@ function createStars() {
         const star = document.createElement('div');
         star.className = 'star star-mid';
 
-        // Initial spawn: distribute broadly across and beyond screen
-        const startX = -200 + Math.random() * (window.innerWidth + 400);
-        const startY = -200 + Math.random() * (window.innerHeight + 400);
+        // Initial spawn: distribute broadly with emphasis on filling right side
+        const startX = -300 + Math.random() * (window.innerWidth + 600);
+        const startY = -300 + Math.random() * (window.innerHeight + 600);
 
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
@@ -264,9 +264,9 @@ function createStars() {
         const star = document.createElement('div');
         star.className = 'star star-near';
 
-        // Initial spawn: distribute broadly across and beyond screen
-        const startX = -200 + Math.random() * (window.innerWidth + 400);
-        const startY = -200 + Math.random() * (window.innerHeight + 400);
+        // Initial spawn: distribute broadly with emphasis on filling right side
+        const startX = -300 + Math.random() * (window.innerWidth + 600);
+        const startY = -300 + Math.random() * (window.innerHeight + 600);
 
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
