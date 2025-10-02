@@ -39,6 +39,14 @@ navItems.forEach(item => {
     });
 });
 
+// Close mobile menu when clicking content area
+const content = document.querySelector('.content');
+content?.addEventListener('click', () => {
+    if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+    }
+});
+
 // Track most visible project tile
 const visibleProjects = new Map();
 let projectSequence = 0;
