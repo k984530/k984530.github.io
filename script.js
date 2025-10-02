@@ -220,6 +220,8 @@ function createStars() {
         star.dataset.speed = '0.3';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
+        star.dataset.translateZ = '-500';
+        star.dataset.zSpeed = '0.5';
         starsContainer1?.appendChild(star);
     }
 
@@ -238,6 +240,8 @@ function createStars() {
         star.dataset.speed = '0.5';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
+        star.dataset.translateZ = '-300';
+        star.dataset.zSpeed = '1';
         starsContainer2?.appendChild(star);
     }
 
@@ -256,6 +260,8 @@ function createStars() {
         star.dataset.speed = '1';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
+        star.dataset.translateZ = '-100';
+        star.dataset.zSpeed = '2';
         starsContainer3?.appendChild(star);
     }
 
@@ -265,32 +271,40 @@ function createStars() {
 // Initialize stars on page load (only once)
 createStars();
 
-// Move stars continuously - creating parallax depth effect using transform
+// Move stars continuously - creating 3D parallax depth effect
 function moveStars() {
     document.querySelectorAll('.star').forEach(star => {
         const speed = parseFloat(star.dataset.speed) || 0.3;
+        const zSpeed = parseFloat(star.dataset.zSpeed) || 0.5;
         let translateX = parseFloat(star.dataset.translateX) || 0;
         let translateY = parseFloat(star.dataset.translateY) || 0;
+        let translateZ = parseFloat(star.dataset.translateZ) || -500;
 
         translateX -= speed; // Move left based on speed
         translateY += speed; // Move down based on speed
+        translateZ += zSpeed; // Move forward (toward viewer)
 
-        star.style.transform = `translate(${translateX}px, ${translateY}px)`;
+        // Calculate scale based on Z position (closer = bigger)
+        const scale = Math.max(0.5, 1 + (translateZ + 500) / 500);
+
+        star.style.transform = `translate3d(${translateX}px, ${translateY}px, ${translateZ}px) scale(${scale})`;
         star.dataset.translateX = translateX;
         star.dataset.translateY = translateY;
+        star.dataset.translateZ = translateZ;
 
-        // Reset if completely off screen - spread across entire edge
+        // Reset if completely off screen or too close
         const baseLeft = parseFloat(star.style.left);
         const baseTop = parseFloat(star.style.top);
         const currentLeft = baseLeft + translateX;
         const currentTop = baseTop + translateY;
 
-        if (currentTop > window.innerHeight + 100 || currentLeft < -100) {
+        if (currentTop > window.innerHeight + 100 || currentLeft < -100 || translateZ > 100) {
             star.style.left = (window.innerWidth + Math.random() * 500) + 'px';
             star.style.top = (-Math.random() * window.innerHeight) + 'px';
-            star.style.transform = 'translate(0, 0)';
+            star.style.transform = 'translate3d(0, 0, -500px) scale(0.5)';
             star.dataset.translateX = '0';
             star.dataset.translateY = '0';
+            star.dataset.translateZ = '-500';
         }
     });
 

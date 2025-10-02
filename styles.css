@@ -818,6 +818,7 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: 1;
+    perspective: 1000px;
 }
 
 .star {
@@ -826,6 +827,7 @@ body {
     border-radius: 50%;
     animation: twinkle 3s infinite;
     will-change: transform;
+    transform-style: preserve-3d;
 }
 
 @keyframes twinkle {
