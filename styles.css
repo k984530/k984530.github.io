@@ -9,15 +9,15 @@
     --primary-color: #6366F1;
     --secondary-color: #8B5CF6;
     --accent-color: #EC4899;
-    --bg-primary: #0F172A;
-    --bg-secondary: #1E293B;
-    --bg-sidebar: #020617;
+    --bg-primary: #030712;
+    --bg-secondary: #0F172A;
+    --bg-sidebar: #000000;
     --text-primary: #F1F5F9;
     --text-secondary: #94A3B8;
     --text-light: #64748B;
-    --border-color: #334155;
+    --border-color: #1E293B;
     --sidebar-text: #E2E8F0;
-    --sidebar-hover: #1E293B;
+    --sidebar-hover: #0F172A;
 }
 
 body {
@@ -251,8 +251,8 @@ body {
     position: relative;
     overflow: hidden;
     border-radius: 22px;
-    background: #0F172A;
-    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.4);
+    background: #030712;
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
     aspect-ratio: 1 / 1;
@@ -627,7 +627,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
+    background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
