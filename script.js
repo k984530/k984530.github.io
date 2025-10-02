@@ -201,8 +201,8 @@ window.addEventListener('scroll', () => {
         if (distanceFromBottom < 1) {
             setActiveProject(lastProject);
         }
-        // Activate second-to-last row when near bottom (1-150px range)
-        else if (distanceFromBottom >= 1 && distanceFromBottom < 150 && secondLastProject) {
+        // Activate second-to-last row when near bottom (1-50px range)
+        else if (distanceFromBottom >= 1 && distanceFromBottom < 50 && secondLastProject) {
             setActiveProject(secondLastProject);
         }
     }
