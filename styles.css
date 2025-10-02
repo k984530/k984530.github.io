@@ -171,7 +171,8 @@ body {
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: var(--sidebar-hover);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     color: var(--sidebar-text);
     text-decoration: none;
@@ -179,7 +180,8 @@ body {
 }
 
 .social-link:hover {
-    background: rgba(79, 70, 229, 0.2);
+    background: rgba(99, 102, 241, 0.2);
+    border-color: var(--primary-color);
     color: #A5B4FC;
     transform: translateY(-2px);
 }
