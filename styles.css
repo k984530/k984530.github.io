@@ -247,6 +247,21 @@ body {
     display: none !important;
 }
 
+/* Thank You Message */
+.thank-you-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.thank-you-message p {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    letter-spacing: 0.1em;
+}
+
 /* Project Feed */
 .project-item {
     position: relative;
