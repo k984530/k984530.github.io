@@ -204,37 +204,40 @@ function createStars() {
     if (starsContainer2) starsContainer2.innerHTML = '';
     if (starsContainer3) starsContainer3.innerHTML = '';
 
-    // Create small stars (150 stars)
-    for (let i = 0; i < 150; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.animationDelay = Math.random() * 3 + 's';
-        star.style.width = '2px';
-        star.style.height = '2px';
-        starsContainer1?.appendChild(star);
-    }
-
-    // Create medium stars (80 stars)
-    for (let i = 0; i < 80; i++) {
+    // Create small stars (50 stars)
+    for (let i = 0; i < 50; i++) {
         const star = document.createElement('div');
         star.className = 'star';
         star.style.left = Math.random() * 100 + '%';
         star.style.top = Math.random() * 100 + '%';
         star.style.animationDelay = Math.random() * 5 + 's';
+        star.style.animationDuration = (3 + Math.random() * 3) + 's';
+        star.style.width = '2px';
+        star.style.height = '2px';
+        starsContainer1?.appendChild(star);
+    }
+
+    // Create medium stars (30 stars)
+    for (let i = 0; i < 30; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 6 + 's';
+        star.style.animationDuration = (4 + Math.random() * 4) + 's';
         star.style.width = '3px';
         star.style.height = '3px';
         starsContainer2?.appendChild(star);
     }
 
-    // Create large stars (40 stars)
-    for (let i = 0; i < 40; i++) {
+    // Create large stars (10 stars)
+    for (let i = 0; i < 10; i++) {
         const star = document.createElement('div');
         star.className = 'star';
         star.style.left = Math.random() * 100 + '%';
         star.style.top = Math.random() * 100 + '%';
-        star.style.animationDelay = Math.random() * 7 + 's';
+        star.style.animationDelay = Math.random() * 8 + 's';
+        star.style.animationDuration = (5 + Math.random() * 5) + 's';
         star.style.width = '4px';
         star.style.height = '4px';
         starsContainer3?.appendChild(star);
