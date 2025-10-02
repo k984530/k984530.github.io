@@ -208,7 +208,7 @@ function createStars() {
     // Reduce star count on mobile for performance
     const isMobile = window.innerWidth <= 768;
     const starMultiplier = isMobile ? 0.2 : 1;
-    const starSizeMultiplier = isMobile ? 3 : 1;
+    const starSizeMultiplier = isMobile ? 10 : 1;
 
     // Create far stars (1000 stars or 200 on mobile) - distant, slow - distributed across entire screen
     for (let i = 0; i < 1000 * starMultiplier; i++) {
