@@ -425,7 +425,7 @@ body {
     border-radius: 12px;
     padding: 2rem;
     border: 2px solid rgba(99, 102, 241, 0.3);
-    backdrop-filter: blur(0.5px);
+    backdrop-filter: blur(1px);
 }
 
 .tech-stack h3 {
@@ -494,7 +494,7 @@ body {
     text-decoration: none;
     color: var(--text-primary);
     transition: all 0.2s ease;
-    backdrop-filter: blur(0.5px);
+    backdrop-filter: blur(1px);
 }
 
 .contact-item:hover {
@@ -520,7 +520,7 @@ body {
     background: rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     border: 2px solid rgba(99, 102, 241, 0.3);
-    backdrop-filter: blur(0.5px);
+    backdrop-filter: blur(1px);
 }
 
 .contact-cta p {
