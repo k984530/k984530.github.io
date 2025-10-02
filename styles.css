@@ -65,12 +65,13 @@ body {
     font-weight: 800;
     color: #FFFFFF;
     margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .title {
-    color: var(--sidebar-text);
+    color: #CBD5E1;
     font-size: 0.95rem;
-    opacity: 0.9;
+    opacity: 1;
 }
 
 /* Navigation Menu */
@@ -142,14 +143,15 @@ body {
     font-weight: 700;
     color: #FFFFFF;
     margin-bottom: 0.25rem;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 .stat-label {
     font-size: 0.75rem;
-    color: var(--sidebar-text);
+    color: #CBD5E1;
     text-transform: uppercase;
     letter-spacing: 1px;
-    opacity: 0.7;
+    opacity: 0.9;
 }
 
 /* Social Links */
