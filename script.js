@@ -205,12 +205,12 @@ function createStars() {
     const starsContainer2 = document.querySelector('.stars2');
     const starsContainer3 = document.querySelector('.stars3');
 
-    // Create far stars (1000 stars) - distant, slow
+    // Create far stars (1000 stars) - distant, slow - distributed across entire screen
     for (let i = 0; i < 1000; i++) {
         const star = document.createElement('div');
         star.className = 'star star-far';
-        const startX = Math.random() * window.innerWidth * 1.5;
-        const startY = Math.random() * window.innerHeight * 1.5;
+        const startX = -300 + Math.random() * (window.innerWidth + 600);
+        const startY = -300 + Math.random() * (window.innerHeight + 600);
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 3) + 's';
@@ -225,12 +225,12 @@ function createStars() {
         starsContainer1?.appendChild(star);
     }
 
-    // Create medium stars (600 stars) - middle distance
+    // Create medium stars (600 stars) - middle distance - distributed across entire screen
     for (let i = 0; i < 600; i++) {
         const star = document.createElement('div');
         star.className = 'star star-mid';
-        const startX = Math.random() * window.innerWidth * 1.5;
-        const startY = Math.random() * window.innerHeight * 1.5;
+        const startX = -300 + Math.random() * (window.innerWidth + 600);
+        const startY = -300 + Math.random() * (window.innerHeight + 600);
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 4) + 's';
@@ -245,12 +245,12 @@ function createStars() {
         starsContainer2?.appendChild(star);
     }
 
-    // Create near stars (200 stars) - close, fast
+    // Create near stars (200 stars) - close, fast - distributed across entire screen
     for (let i = 0; i < 200; i++) {
         const star = document.createElement('div');
         star.className = 'star star-near';
-        const startX = Math.random() * window.innerWidth * 1.5;
-        const startY = Math.random() * window.innerHeight * 1.5;
+        const startX = -300 + Math.random() * (window.innerWidth + 600);
+        const startY = -300 + Math.random() * (window.innerHeight + 600);
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 5) + 's';
