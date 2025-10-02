@@ -251,7 +251,7 @@ body {
 .thank-you-message {
     grid-column: 1 / -1;
     text-align: center;
-    margin-top: 4rem;
+    margin-top: 15rem;
 }
 
 .thank-you-message p {
