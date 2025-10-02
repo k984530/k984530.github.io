@@ -207,7 +207,7 @@ function createStars() {
 
     // Reduce star count on mobile for performance
     const isMobile = window.innerWidth <= 768;
-    const starMultiplier = isMobile ? 0.2 : 1;
+    const starMultiplier = isMobile ? 0.5 : 1;
     const starSizeMultiplier = isMobile ? 10 : 1;
     const spawnMargin = isMobile ? 0 : 300;
 
