@@ -118,7 +118,6 @@ function handleActiveEntries(entries) {
     let changed = false;
     const allProjects = document.querySelectorAll('.project-item');
     const lastProject = allProjects[allProjects.length - 1];
-    const secondLastProject = allProjects[allProjects.length - 2];
 
     entries.forEach(entry => {
         const id = entry.target.dataset.projectId;
@@ -126,8 +125,8 @@ function handleActiveEntries(entries) {
             return;
         }
 
-        // Skip last two projects from normal intersection handling
-        if (entry.target === lastProject || entry.target === secondLastProject) {
+        // Skip only last project from normal intersection handling
+        if (entry.target === lastProject) {
             return;
         }
 
@@ -247,7 +246,7 @@ function createStars() {
 // Initialize stars on page load
 createStars();
 
-// Activate last rows when scrolled near bottom
+// Activate last row when scrolled to bottom
 window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight;
@@ -257,15 +256,10 @@ window.addEventListener('scroll', () => {
     const allProjects = document.querySelectorAll('.project-item');
     if (allProjects.length > 0) {
         const lastProject = allProjects[allProjects.length - 1];
-        const secondLastProject = allProjects[allProjects.length - 2];
 
         // Activate last row only at the absolute bottom (within 1px)
         if (distanceFromBottom < 1) {
             setActiveProject(lastProject);
-        }
-        // Activate second-to-last row when near bottom (1-50px range)
-        else if (distanceFromBottom >= 1 && distanceFromBottom < 50 && secondLastProject) {
-            setActiveProject(secondLastProject);
         }
     }
 });
