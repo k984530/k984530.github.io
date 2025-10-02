@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="rocketGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366F1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Rocket Body -->
+  <ellipse cx="50" cy="60" rx="15" ry="30" fill="url(#rocketGrad)"/>
+
+  <!-- Rocket Nose -->
+  <path d="M 50 20 L 35 35 L 65 35 Z" fill="#EC4899"/>
+
+  <!-- Window -->
+  <circle cx="50" cy="50" r="6" fill="#FFFFFF" opacity="0.9"/>
+
+  <!-- Flames -->
+  <ellipse cx="50" cy="90" rx="8" ry="12" fill="#FF6B6B" opacity="0.8"/>
+  <ellipse cx="50" cy="95" rx="6" ry="8" fill="#FFA500" opacity="0.9"/>
+  <ellipse cx="50" cy="98" rx="4" ry="5" fill="#FFFF00"/>
+</svg>
