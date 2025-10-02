@@ -271,8 +271,16 @@ function createStars() {
 // Initialize stars on page load (only once)
 createStars();
 
-// Move stars continuously - creating 3D parallax depth effect
+// Initialize nebula positions
+document.querySelectorAll('.nebula').forEach((nebula, index) => {
+    nebula.dataset.translateX = '0';
+    nebula.dataset.translateY = '0';
+    nebula.dataset.driftSpeed = (0.005 + index * 0.002).toString();
+});
+
+// Move stars and nebulae continuously - creating 3D parallax depth effect
 function moveStars() {
+    // Move stars
     document.querySelectorAll('.star').forEach(star => {
         const speed = parseFloat(star.dataset.speed) || 0.3;
         const zSpeed = parseFloat(star.dataset.zSpeed) || 0.5;
@@ -322,6 +330,20 @@ function moveStars() {
             star.dataset.translateY = '0';
             star.dataset.translateZ = resetZ;
         }
+    });
+
+    // Move nebulae continuously (no reset - infinite drift)
+    document.querySelectorAll('.nebula').forEach(nebula => {
+        const driftSpeed = parseFloat(nebula.dataset.driftSpeed) || 0.005;
+        let translateX = parseFloat(nebula.dataset.translateX) || 0;
+        let translateY = parseFloat(nebula.dataset.translateY) || 0;
+
+        translateX -= driftSpeed;
+        translateY += driftSpeed * 0.75;
+
+        nebula.style.transform = `translate(${translateX}px, ${translateY}px)`;
+        nebula.dataset.translateX = translateX;
+        nebula.dataset.translateY = translateY;
     });
 
     requestAnimationFrame(moveStars);
