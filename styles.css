@@ -421,11 +421,10 @@ body {
 
 /* Tech Stack */
 .tech-stack {
-    background: rgba(15, 23, 42, 0.05);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 12px;
     padding: 2rem;
     border: 2px solid rgba(99, 102, 241, 0.3);
-    backdrop-filter: blur(5px);
 }
 
 .tech-stack h3 {
@@ -488,13 +487,12 @@ body {
     gap: 1rem;
     padding: 1rem;
     margin-bottom: 1rem;
-    background: rgba(15, 23, 42, 0.2);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 8px;
     border: 2px solid rgba(99, 102, 241, 0.3);
     text-decoration: none;
     color: var(--text-primary);
     transition: all 0.2s ease;
-    backdrop-filter: blur(10px);
 }
 
 .contact-item:hover {
@@ -517,10 +515,9 @@ body {
 .contact-cta {
     text-align: center;
     padding: 2rem;
-    background: rgba(15, 23, 42, 0.2);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 12px;
     border: 2px solid rgba(99, 102, 241, 0.3);
-    backdrop-filter: blur(10px);
 }
 
 .contact-cta p {
