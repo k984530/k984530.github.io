@@ -278,14 +278,17 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
-    filter: brightness(0.7);
+    transition: transform 0.6s ease, opacity 0.6s ease, filter 0.6s ease;
+    filter: brightness(0.6);
+    opacity: 0.4;
 }
 
 /* Removed hover image scale */
 
 .project-item.active-feed .project-icon img {
     transform: scale(1.04);
+    opacity: 1;
+    filter: brightness(1);
 }
 
 .project-item:focus-within {
@@ -300,6 +303,8 @@ body {
 
 .project-item:focus-within .project-icon img {
     transform: scale(1.04);
+    opacity: 1;
+    filter: brightness(1);
 }
 
 .project-details {
@@ -697,7 +702,7 @@ body {
     width: 2500px;
     height: 2500px;
     background: radial-gradient(ellipse, rgba(255, 255, 255, 0.08) 0%, rgba(230, 220, 255, 0.04) 30%, transparent 60%);
-    animation: nebulaWave1 20s ease-in-out infinite;
+    animation: nebulaWave1 1800s ease-in-out infinite;
     will-change: transform;
 }
 
@@ -707,7 +712,7 @@ body {
     width: 2200px;
     height: 2200px;
     background: radial-gradient(ellipse, rgba(200, 180, 255, 0.07) 0%, rgba(220, 200, 255, 0.03) 30%, transparent 60%);
-    animation: nebulaWave2 25s ease-in-out infinite;
+    animation: nebulaWave2 1800s ease-in-out infinite;
     will-change: transform;
 }
 
@@ -717,7 +722,7 @@ body {
     width: 2800px;
     height: 2800px;
     background: radial-gradient(ellipse, rgba(255, 255, 255, 0.06) 0%, rgba(240, 235, 255, 0.03) 30%, transparent 60%);
-    animation: nebulaWave3 30s ease-in-out infinite;
+    animation: nebulaWave3 1800s ease-in-out infinite;
     will-change: transform;
 }
 
@@ -727,7 +732,7 @@ body {
     width: 2400px;
     height: 2400px;
     background: radial-gradient(ellipse, rgba(180, 160, 255, 0.06) 0%, rgba(210, 190, 255, 0.03) 30%, transparent 60%);
-    animation: nebulaWave4 22s ease-in-out infinite;
+    animation: nebulaWave4 1800s ease-in-out infinite;
     will-change: transform;
 }
 
@@ -737,7 +742,7 @@ body {
     width: 2600px;
     height: 2600px;
     background: radial-gradient(ellipse, rgba(255, 255, 255, 0.05) 0%, rgba(245, 240, 255, 0.02) 30%, transparent 60%);
-    animation: nebulaWave5 28s ease-in-out infinite;
+    animation: nebulaWave5 1800s ease-in-out infinite;
     will-change: transform;
 }
 
@@ -747,7 +752,7 @@ body {
     width: 2300px;
     height: 2300px;
     background: radial-gradient(ellipse, rgba(190, 170, 255, 0.05) 0%, rgba(220, 210, 255, 0.02) 30%, transparent 60%);
-    animation: nebulaWave6 24s ease-in-out infinite;
+    animation: nebulaWave6 1800s ease-in-out infinite;
     will-change: transform;
 }
 
