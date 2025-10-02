@@ -75,7 +75,7 @@ const observer = new IntersectionObserver((entries) => {
 
 const activeObserver = new IntersectionObserver(handleActiveEntries, {
     threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-    rootMargin: '-25% 0px -50% 0px'
+    rootMargin: '-35% 0px -45% 0px'
 });
 
 const projectItems = Array.from(document.querySelectorAll('.project-item'));
@@ -108,10 +108,17 @@ function enhanceProjectItem(item) {
 
 function handleActiveEntries(entries) {
     let changed = false;
+    const allProjects = document.querySelectorAll('.project-item');
+    const lastProject = allProjects[allProjects.length - 1];
 
     entries.forEach(entry => {
         const id = entry.target.dataset.projectId;
         if (!id) {
+            return;
+        }
+
+        // Skip last project from normal intersection handling
+        if (entry.target === lastProject) {
             return;
         }
 
@@ -183,8 +190,8 @@ window.addEventListener('scroll', () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const clientHeight = window.innerHeight;
 
-    // Check if scrolled near bottom (within 100px)
-    if (scrollHeight - scrollTop - clientHeight < 100) {
+    // Check if scrolled to bottom (within 5px for precision)
+    if (scrollHeight - scrollTop - clientHeight < 5) {
         const allProjects = document.querySelectorAll('.project-item');
         if (allProjects.length > 0) {
             const lastProject = allProjects[allProjects.length - 1];
