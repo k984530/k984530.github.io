@@ -239,3 +239,20 @@ function createStars() {
 // Initialize stars on page load
 createStars();
 
+// Learn more link functionality
+const learnMoreLink = document.querySelector('.learn-more-link');
+learnMoreLink?.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Remove active class from all nav items and sections
+    navItems.forEach(nav => nav.classList.remove('active'));
+    sections.forEach(section => section.classList.remove('active'));
+
+    // Activate About nav item and section
+    const aboutNavItem = document.querySelector('a[href="#about"]');
+    const aboutSection = document.getElementById('about');
+
+    if (aboutNavItem) aboutNavItem.classList.add('active');
+    if (aboutSection) aboutSection.classList.add('active');
+});
+
