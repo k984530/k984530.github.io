@@ -283,8 +283,8 @@ function moveStars() {
     document.querySelectorAll('.star').forEach(star => {
         const currentLeft = parseFloat(star.style.left);
         const currentTop = parseFloat(star.style.top);
-        const newLeft = currentLeft + 0.02; // Move 0.02px per frame (very slow drift right)
-        const newTop = currentTop - 0.02; // Move 0.02px per frame (very slow drift up)
+        const newLeft = currentLeft + 0.001; // Move 0.001px per frame (extremely slow drift right)
+        const newTop = currentTop - 0.001; // Move 0.001px per frame (extremely slow drift up)
 
         star.style.left = newLeft + 'px';
         star.style.top = newTop + 'px';

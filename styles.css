@@ -690,30 +690,29 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.3;
 }
 
 .nebula::before {
     content: '';
     position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 1200px;
-    height: 1200px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(99, 102, 241, 0.12) 30%, rgba(99, 102, 241, 0.05) 50%, transparent 70%);
-    filter: blur(60px);
+    top: 10%;
+    left: 5%;
+    width: 1400px;
+    height: 1400px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, rgba(99, 102, 241, 0.2) 25%, rgba(99, 102, 241, 0.1) 45%, transparent 65%);
+    filter: blur(50px);
     animation: nebulaDrift1 120s infinite linear;
 }
 
 .nebula::after {
     content: '';
     position: absolute;
-    bottom: 15%;
-    right: 10%;
-    width: 1000px;
-    height: 1000px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.1) 30%, rgba(139, 92, 246, 0.04) 50%, transparent 70%);
-    filter: blur(60px);
+    bottom: 10%;
+    right: 5%;
+    width: 1200px;
+    height: 1200px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0.18) 25%, rgba(139, 92, 246, 0.08) 45%, transparent 65%);
+    filter: blur(50px);
     animation: nebulaDrift2 100s infinite linear;
 }
 
