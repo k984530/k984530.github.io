@@ -226,8 +226,8 @@ function createStars() {
         star.dataset.speed = '0.3';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
-        star.dataset.translateZ = '-500';
-        star.dataset.zSpeed = '0.5';
+        star.dataset.translateZ = '0';
+        star.dataset.zSpeed = '0';
         starsContainer1?.appendChild(star);
     }
 
@@ -246,8 +246,8 @@ function createStars() {
         star.dataset.speed = '0.5';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
-        star.dataset.translateZ = '-300';
-        star.dataset.zSpeed = '1';
+        star.dataset.translateZ = '0';
+        star.dataset.zSpeed = '0';
         starsContainer2?.appendChild(star);
     }
 
@@ -266,8 +266,8 @@ function createStars() {
         star.dataset.speed = '1';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
-        star.dataset.translateZ = '-100';
-        star.dataset.zSpeed = '2';
+        star.dataset.translateZ = '0';
+        star.dataset.zSpeed = '0';
         starsContainer3?.appendChild(star);
     }
 
@@ -307,12 +307,8 @@ function moveStars() {
 
         translateX -= speed; // Move left based on speed
         translateY += speed; // Move down based on speed
-        translateZ += zSpeed; // Move forward (toward viewer)
 
-        // Calculate scale based on Z position (closer = bigger)
-        const scale = Math.max(0.5, 1 + (translateZ + 500) / 500);
-
-        star.style.transform = `translate3d(${translateX}px, ${translateY}px, ${translateZ}px) scale(${scale})`;
+        star.style.transform = `translate(${translateX}px, ${translateY}px)`;
         star.dataset.translateX = translateX;
         star.dataset.translateY = translateY;
         star.dataset.translateZ = translateZ;
@@ -323,16 +319,14 @@ function moveStars() {
         const currentLeft = baseLeft + translateX;
         const currentTop = baseTop + translateY;
 
-        if (currentTop > window.innerHeight + 100 || currentLeft < -100 || translateZ > 100) {
-            // Respawn across entire screen area (not just edges)
-            star.style.left = (-200 + Math.random() * (window.innerWidth + 400)) + 'px';
-            star.style.top = (-200 + Math.random() * (window.innerHeight + 400)) + 'px';
+        if (currentTop > window.innerHeight + 200 || currentLeft < -200 || currentTop < -200 || currentLeft > window.innerWidth + 200) {
+            // Respawn across entire screen area evenly
+            star.style.left = (Math.random() * window.innerWidth) + 'px';
+            star.style.top = (Math.random() * window.innerHeight) + 'px';
 
-            const resetZ = star.className.includes('far') ? -500 : star.className.includes('mid') ? -300 : -100;
-            star.style.transform = `translate3d(0, 0, ${resetZ}px) scale(0.5)`;
+            star.style.transform = `translate(0, 0)`;
             star.dataset.translateX = '0';
             star.dataset.translateY = '0';
-            star.dataset.translateZ = resetZ;
         }
     });
 
