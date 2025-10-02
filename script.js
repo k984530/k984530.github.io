@@ -239,8 +239,8 @@ function createStars() {
         star.className = 'star';
         star.style.left = (pos.x * 20) + 'px';
         star.style.top = (pos.y * 10) + 'px';
-        star.style.animationDelay = (i * 0.05) + 's';
-        star.style.animationDuration = (1 + (i % 2) * 0.5) + 's';
+        star.style.animationDelay = (i * 0.2) + 's';
+        star.style.animationDuration = (4 + (i % 3) * 2) + 's';
         star.style.width = '2px';
         star.style.height = '2px';
         starsContainer1?.appendChild(star);
@@ -252,8 +252,8 @@ function createStars() {
         star.className = 'star';
         star.style.left = (pos.x * 20) + 'px';
         star.style.top = (pos.y * 10) + 'px';
-        star.style.animationDelay = (i * 0.1) + 's';
-        star.style.animationDuration = (1.5 + (i % 3) * 0.5) + 's';
+        star.style.animationDelay = (i * 0.3) + 's';
+        star.style.animationDuration = (5 + (i % 4) * 2) + 's';
         star.style.width = '3px';
         star.style.height = '3px';
         starsContainer2?.appendChild(star);
@@ -265,8 +265,8 @@ function createStars() {
         star.className = 'star';
         star.style.left = (pos.x * 20) + 'px';
         star.style.top = (pos.y * 10) + 'px';
-        star.style.animationDelay = (i * 0.3) + 's';
-        star.style.animationDuration = (2 + (i % 3) * 0.5) + 's';
+        star.style.animationDelay = (i * 0.5) + 's';
+        star.style.animationDuration = (6 + (i % 4) * 2) + 's';
         star.style.width = '4px';
         star.style.height = '4px';
         starsContainer3?.appendChild(star);
@@ -278,18 +278,21 @@ function createStars() {
 // Initialize stars on page load (only once)
 createStars();
 
-// Move stars continuously to the left
+// Move stars continuously to the upper right
 function moveStars() {
     document.querySelectorAll('.star').forEach(star => {
         const currentLeft = parseFloat(star.style.left);
-        const newLeft = currentLeft - 0.1; // Move 0.1px per frame (slow drift)
+        const currentTop = parseFloat(star.style.top);
+        const newLeft = currentLeft + 0.05; // Move 0.05px per frame (slower drift right)
+        const newTop = currentTop - 0.05; // Move 0.05px per frame (slower drift up)
 
         star.style.left = newLeft + 'px';
+        star.style.top = newTop + 'px';
 
-        // If star moved off the left edge, reset to right side
-        if (newLeft < -50) {
-            star.style.left = (window.innerWidth + 50) + 'px';
-            star.style.top = (Math.random() * window.innerHeight) + 'px';
+        // If star moved off the top or right edge, reset to bottom left
+        if (newTop < -50 || newLeft > window.innerWidth + 50) {
+            star.style.left = (Math.random() * window.innerWidth) + 'px';
+            star.style.top = (window.innerHeight + 50) + 'px';
         }
     });
 
