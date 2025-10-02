@@ -217,11 +217,11 @@ function createStars() {
         star.style.animationDuration = (0.5 + Math.random() * 1.5) + 's';
         star.style.width = '0.15px';
         star.style.height = '0.15px';
-        star.dataset.speed = '0.3';
+        star.dataset.speed = '0.01';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
         star.dataset.translateZ = '-500';
-        star.dataset.zSpeed = '0.5';
+        star.dataset.zSpeed = '0.015';
         starsContainer1?.appendChild(star);
     }
 
@@ -237,11 +237,11 @@ function createStars() {
         star.style.animationDuration = (0.6 + Math.random() * 2) + 's';
         star.style.width = '0.25px';
         star.style.height = '0.25px';
-        star.dataset.speed = '0.5';
+        star.dataset.speed = '0.02';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
         star.dataset.translateZ = '-300';
-        star.dataset.zSpeed = '1';
+        star.dataset.zSpeed = '0.03';
         starsContainer2?.appendChild(star);
     }
 
@@ -257,11 +257,11 @@ function createStars() {
         star.style.animationDuration = (0.7 + Math.random() * 2.5) + 's';
         star.style.width = '0.4px';
         star.style.height = '0.4px';
-        star.dataset.speed = '1';
+        star.dataset.speed = '0.04';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
         star.dataset.translateZ = '-100';
-        star.dataset.zSpeed = '2';
+        star.dataset.zSpeed = '0.06';
         starsContainer3?.appendChild(star);
     }
 
@@ -275,7 +275,7 @@ createStars();
 document.querySelectorAll('.nebula').forEach((nebula, index) => {
     nebula.dataset.translateX = '0';
     nebula.dataset.translateY = '0';
-    nebula.dataset.driftSpeed = (0.005 + index * 0.002).toString();
+    nebula.dataset.driftSpeed = (0.001 + index * 0.0005).toString();
 });
 
 // Move stars and nebulae continuously - creating 3D parallax depth effect
