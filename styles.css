@@ -67,7 +67,6 @@ body {
     font-weight: 800;
     color: #FFFFFF;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .title {
@@ -131,6 +130,8 @@ body {
     justify-content: space-around;
     padding: 1.5rem 0;
     margin: 2rem 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .stat-item {
@@ -143,7 +144,6 @@ body {
     font-weight: 700;
     color: #FFFFFF;
     margin-bottom: 0.25rem;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 .stat-label {
@@ -731,7 +731,7 @@ body {
 
 @keyframes twinkle {
     0%, 100% {
-        opacity: 0;
+        opacity: 0.3;
     }
     50% {
         opacity: 1;
