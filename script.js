@@ -208,6 +208,7 @@ function createStars() {
     // Reduce star count on mobile for performance
     const isMobile = window.innerWidth <= 768;
     const starMultiplier = isMobile ? 0.2 : 1;
+    const starSizeMultiplier = isMobile ? 3 : 1;
 
     // Create far stars (1000 stars or 200 on mobile) - distant, slow - distributed across entire screen
     for (let i = 0; i < 1000 * starMultiplier; i++) {
@@ -219,8 +220,8 @@ function createStars() {
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 3) + 's';
         star.style.animationDuration = (0.5 + Math.random() * 1.5) + 's';
-        star.style.width = '0.15px';
-        star.style.height = '0.15px';
+        star.style.width = (0.15 * starSizeMultiplier) + 'px';
+        star.style.height = (0.15 * starSizeMultiplier) + 'px';
         star.dataset.speed = '0.3';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
@@ -239,8 +240,8 @@ function createStars() {
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 4) + 's';
         star.style.animationDuration = (0.6 + Math.random() * 2) + 's';
-        star.style.width = '0.25px';
-        star.style.height = '0.25px';
+        star.style.width = (0.25 * starSizeMultiplier) + 'px';
+        star.style.height = (0.25 * starSizeMultiplier) + 'px';
         star.dataset.speed = '0.5';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
@@ -259,8 +260,8 @@ function createStars() {
         star.style.top = startY + 'px';
         star.style.animationDelay = (Math.random() * 5) + 's';
         star.style.animationDuration = (0.7 + Math.random() * 2.5) + 's';
-        star.style.width = '0.4px';
-        star.style.height = '0.4px';
+        star.style.width = (0.4 * starSizeMultiplier) + 'px';
+        star.style.height = (0.4 * starSizeMultiplier) + 'px';
         star.dataset.speed = '1';
         star.dataset.translateX = '0';
         star.dataset.translateY = '0';
