@@ -116,17 +116,10 @@ function enhanceProjectItem(item) {
 
 function handleActiveEntries(entries) {
     let changed = false;
-    const allProjects = document.querySelectorAll('.project-item');
-    const lastProject = allProjects[allProjects.length - 1];
 
     entries.forEach(entry => {
         const id = entry.target.dataset.projectId;
         if (!id) {
-            return;
-        }
-
-        // Skip only last project from normal intersection handling
-        if (entry.target === lastProject) {
             return;
         }
 
@@ -246,20 +239,3 @@ function createStars() {
 // Initialize stars on page load
 createStars();
 
-// Activate last row when scrolled to bottom
-window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight;
-    const clientHeight = window.innerHeight;
-    const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
-
-    const allProjects = document.querySelectorAll('.project-item');
-    if (allProjects.length > 0) {
-        const lastProject = allProjects[allProjects.length - 1];
-
-        // Activate last row only at the absolute bottom (within 1px)
-        if (distanceFromBottom < 1) {
-            setActiveProject(lastProject);
-        }
-    }
-});

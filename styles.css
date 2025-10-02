@@ -236,6 +236,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.75rem;
     align-items: stretch;
+    padding-bottom: 15vh;
 }
 
 #more-projects-container {
@@ -657,26 +658,6 @@ body {
     background: rgba(255,255,255,0.2);
 }
 
-/* Earth */
-.earth {
-    position: fixed;
-    bottom: -1500px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 3000px;
-    height: 3000px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 50% 30%,
-        #0f1729 0%,
-        #0a0e1a 30%,
-        #050508 60%,
-        #000000 80%);
-    box-shadow:
-        0 -60px 120px rgba(15, 23, 41, 0.15),
-        inset 0 80px 150px rgba(0, 0, 0, 0.7);
-    pointer-events: none;
-    z-index: 0;
-}
 
 /* Stars Background */
 .stars,
