@@ -75,7 +75,7 @@ const observer = new IntersectionObserver((entries) => {
 
 const activeObserver = new IntersectionObserver(handleActiveEntries, {
     threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-    rootMargin: '-40% 0px -40% 0px'
+    rootMargin: '-25% 0px -50% 0px'
 });
 
 const projectItems = Array.from(document.querySelectorAll('.project-item'));
