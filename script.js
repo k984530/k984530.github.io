@@ -216,9 +216,9 @@ function createStars() {
         const star = document.createElement('div');
         star.className = 'star star-far';
 
-        // Initial spawn: distribute across entire visible area
-        const startX = Math.random() * window.innerWidth;
-        const startY = Math.random() * window.innerHeight;
+        // Initial spawn: distribute broadly across and beyond screen
+        const startX = -200 + Math.random() * (window.innerWidth + 400);
+        const startY = -200 + Math.random() * (window.innerHeight + 400);
 
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
@@ -240,9 +240,9 @@ function createStars() {
         const star = document.createElement('div');
         star.className = 'star star-mid';
 
-        // Initial spawn: distribute across entire visible area
-        const startX = Math.random() * window.innerWidth;
-        const startY = Math.random() * window.innerHeight;
+        // Initial spawn: distribute broadly across and beyond screen
+        const startX = -200 + Math.random() * (window.innerWidth + 400);
+        const startY = -200 + Math.random() * (window.innerHeight + 400);
 
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
@@ -264,9 +264,9 @@ function createStars() {
         const star = document.createElement('div');
         star.className = 'star star-near';
 
-        // Initial spawn: distribute across entire visible area
-        const startX = Math.random() * window.innerWidth;
-        const startY = Math.random() * window.innerHeight;
+        // Initial spawn: distribute broadly across and beyond screen
+        const startX = -200 + Math.random() * (window.innerWidth + 400);
+        const startY = -200 + Math.random() * (window.innerHeight + 400);
 
         star.style.left = startX + 'px';
         star.style.top = startY + 'px';
@@ -336,9 +336,18 @@ function moveStars() {
         const currentTop = baseTop + translateY;
 
         if (currentTop > window.innerHeight + 200 || currentLeft < -200 || translateZ > 200) {
-            // Respawn across entire screen area to maintain even distribution
-            star.style.left = (Math.random() * window.innerWidth) + 'px';
-            star.style.top = (Math.random() * window.innerHeight) + 'px';
+            // Respawn from top-right quadrant area heavily
+            const spawnFrom = Math.random();
+
+            if (spawnFrom < 0.6) {
+                // Right edge (emphasis on right)
+                star.style.left = (window.innerWidth + 50 + Math.random() * 250) + 'px';
+                star.style.top = (-100 + Math.random() * (window.innerHeight + 200)) + 'px';
+            } else {
+                // Top edge
+                star.style.left = (window.innerWidth * 0.3 + Math.random() * window.innerWidth * 0.7) + 'px';
+                star.style.top = (-50 - Math.random() * 200) + 'px';
+            }
 
             star.style.transform = `translate3d(0, 0, 0) scale(1)`;
             star.dataset.translateX = '0';
