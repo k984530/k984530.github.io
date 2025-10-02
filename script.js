@@ -324,26 +324,9 @@ function moveStars() {
         const currentTop = baseTop + translateY;
 
         if (currentTop > window.innerHeight + 100 || currentLeft < -100 || translateZ > 100) {
-            // Respawn from edges with random offset
-            const edge = Math.random();
-
-            if (edge < 0.25) {
-                // Top edge
-                star.style.left = (Math.random() * window.innerWidth) + 'px';
-                star.style.top = (-Math.random() * 100) + 'px';
-            } else if (edge < 0.5) {
-                // Right edge
-                star.style.left = (window.innerWidth + Math.random() * 100) + 'px';
-                star.style.top = (Math.random() * window.innerHeight) + 'px';
-            } else if (edge < 0.75) {
-                // Bottom edge
-                star.style.left = (Math.random() * window.innerWidth) + 'px';
-                star.style.top = (window.innerHeight + Math.random() * 100) + 'px';
-            } else {
-                // Left edge
-                star.style.left = (-Math.random() * 100) + 'px';
-                star.style.top = (Math.random() * window.innerHeight) + 'px';
-            }
+            // Respawn across entire screen area (not just edges)
+            star.style.left = (-200 + Math.random() * (window.innerWidth + 400)) + 'px';
+            star.style.top = (-200 + Math.random() * (window.innerHeight + 400)) + 'px';
 
             const resetZ = star.className.includes('far') ? -500 : star.className.includes('mid') ? -300 : -100;
             star.style.transform = `translate3d(0, 0, ${resetZ}px) scale(0.5)`;
