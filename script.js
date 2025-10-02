@@ -233,12 +233,12 @@ function createStars() {
     const starsContainer2 = document.querySelector('.stars2');
     const starsContainer3 = document.querySelector('.stars3');
 
-    // Create small stars (50 stars)
+    // Create small stars (50 stars) - using fixed px positions
     starPositions.small.forEach((pos, i) => {
         const star = document.createElement('div');
         star.className = 'star';
-        star.style.left = pos.x + 'vw';
-        star.style.top = pos.y + 'vh';
+        star.style.left = (pos.x * 20) + 'px';
+        star.style.top = (pos.y * 10) + 'px';
         star.style.animationDelay = (i * 0.1) + 's';
         star.style.animationDuration = (3 + (i % 3)) + 's';
         star.style.width = '2px';
@@ -246,12 +246,12 @@ function createStars() {
         starsContainer1?.appendChild(star);
     });
 
-    // Create medium stars (30 stars)
+    // Create medium stars (30 stars) - using fixed px positions
     starPositions.medium.forEach((pos, i) => {
         const star = document.createElement('div');
         star.className = 'star';
-        star.style.left = pos.x + 'vw';
-        star.style.top = pos.y + 'vh';
+        star.style.left = (pos.x * 20) + 'px';
+        star.style.top = (pos.y * 10) + 'px';
         star.style.animationDelay = (i * 0.2) + 's';
         star.style.animationDuration = (4 + (i % 4)) + 's';
         star.style.width = '3px';
@@ -259,12 +259,12 @@ function createStars() {
         starsContainer2?.appendChild(star);
     });
 
-    // Create large stars (10 stars)
+    // Create large stars (10 stars) - using fixed px positions
     starPositions.large.forEach((pos, i) => {
         const star = document.createElement('div');
         star.className = 'star';
-        star.style.left = pos.x + 'vw';
-        star.style.top = pos.y + 'vh';
+        star.style.left = (pos.x * 20) + 'px';
+        star.style.top = (pos.y * 10) + 'px';
         star.style.animationDelay = (i * 0.7) + 's';
         star.style.animationDuration = (5 + (i % 5)) + 's';
         star.style.width = '4px';
