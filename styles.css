@@ -754,7 +754,7 @@ body {
     position: absolute;
     background: #FFF;
     border-radius: 50%;
-    animation: twinkle 3s infinite, float 60s infinite linear;
+    animation: twinkle 3s infinite;
     box-shadow: 0 0 2px 1px rgba(255,255,255,0.3), 0 0 4px 2px rgba(255,255,255,0.2);
 }
 
@@ -777,11 +777,3 @@ body {
     }
 }
 
-@keyframes float {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-30px);
-    }
-}

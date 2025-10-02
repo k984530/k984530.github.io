@@ -278,19 +278,25 @@ function createStars() {
 // Initialize stars on page load (only once)
 createStars();
 
-// Recycle stars that move off screen
-setInterval(() => {
+// Move stars continuously to the left
+function moveStars() {
     document.querySelectorAll('.star').forEach(star => {
-        const rect = star.getBoundingClientRect();
+        const currentLeft = parseFloat(star.style.left);
+        const newLeft = currentLeft - 0.1; // Move 0.1px per frame (slow drift)
 
-        // If star moved off the left edge
-        if (rect.right < 0) {
-            // Reset to right side with random vertical position
-            const currentTop = star.style.top;
+        star.style.left = newLeft + 'px';
+
+        // If star moved off the left edge, reset to right side
+        if (newLeft < -50) {
             star.style.left = (window.innerWidth + 50) + 'px';
             star.style.top = (Math.random() * window.innerHeight) + 'px';
         }
     });
-}, 1000);
+
+    requestAnimationFrame(moveStars);
+}
+
+// Start continuous star movement
+moveStars();
 
 
