@@ -195,7 +195,35 @@ window.addEventListener('resize', () => {
     }
 });
 
-// Create random twinkling stars
+// Fixed star positions for consistency
+const starPositions = {
+    small: [
+        {x: 5, y: 10}, {x: 15, y: 25}, {x: 8, y: 45}, {x: 22, y: 15}, {x: 35, y: 8},
+        {x: 42, y: 28}, {x: 38, y: 52}, {x: 55, y: 12}, {x: 62, y: 35}, {x: 58, y: 58},
+        {x: 75, y: 18}, {x: 82, y: 42}, {x: 78, y: 65}, {x: 92, y: 22}, {x: 88, y: 48},
+        {x: 12, y: 72}, {x: 25, y: 85}, {x: 45, y: 75}, {x: 65, y: 82}, {x: 85, y: 78},
+        {x: 18, y: 38}, {x: 32, y: 62}, {x: 52, y: 42}, {x: 68, y: 55}, {x: 72, y: 28},
+        {x: 28, y: 92}, {x: 48, y: 88}, {x: 95, y: 35}, {x: 10, y: 55}, {x: 90, y: 62},
+        {x: 20, y: 5}, {x: 40, y: 95}, {x: 60, y: 5}, {x: 80, y: 95}, {x: 3, y: 30},
+        {x: 97, y: 70}, {x: 50, y: 20}, {x: 30, y: 48}, {x: 70, y: 68}, {x: 85, y: 12},
+        {x: 15, y: 88}, {x: 92, y: 58}, {x: 8, y: 78}, {x: 78, y: 8}, {x: 25, y: 55},
+        {x: 55, y: 85}, {x: 65, y: 15}, {x: 35, y: 72}, {x: 88, y: 88}, {x: 12, y: 12}
+    ],
+    medium: [
+        {x: 10, y: 20}, {x: 30, y: 10}, {x: 50, y: 30}, {x: 70, y: 15}, {x: 90, y: 25},
+        {x: 15, y: 50}, {x: 35, y: 40}, {x: 55, y: 60}, {x: 75, y: 45}, {x: 95, y: 55},
+        {x: 20, y: 75}, {x: 40, y: 70}, {x: 60, y: 85}, {x: 80, y: 75}, {x: 5, y: 65},
+        {x: 25, y: 35}, {x: 45, y: 50}, {x: 65, y: 25}, {x: 85, y: 40}, {x: 12, y: 82},
+        {x: 32, y: 22}, {x: 52, y: 78}, {x: 72, y: 32}, {x: 92, y: 72}, {x: 8, y: 42},
+        {x: 28, y: 68}, {x: 48, y: 12}, {x: 68, y: 88}, {x: 88, y: 18}, {x: 18, y: 58}
+    ],
+    large: [
+        {x: 20, y: 30}, {x: 40, y: 20}, {x: 60, y: 40}, {x: 80, y: 25}, {x: 15, y: 60},
+        {x: 35, y: 80}, {x: 55, y: 70}, {x: 75, y: 50}, {x: 90, y: 80}, {x: 10, y: 90}
+    ]
+};
+
+// Create random twinkling stars with fixed positions
 function createStars() {
     const starsContainer1 = document.querySelector('.stars');
     const starsContainer2 = document.querySelector('.stars2');
@@ -207,43 +235,43 @@ function createStars() {
     if (starsContainer3) starsContainer3.innerHTML = '';
 
     // Create small stars (50 stars)
-    for (let i = 0; i < 50; i++) {
+    starPositions.small.forEach((pos, i) => {
         const star = document.createElement('div');
         star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.animationDelay = Math.random() * 5 + 's';
-        star.style.animationDuration = (3 + Math.random() * 3) + 's';
+        star.style.left = pos.x + '%';
+        star.style.top = pos.y + '%';
+        star.style.animationDelay = (i * 0.1) + 's';
+        star.style.animationDuration = (3 + (i % 3)) + 's';
         star.style.width = '2px';
         star.style.height = '2px';
         starsContainer1?.appendChild(star);
-    }
+    });
 
     // Create medium stars (30 stars)
-    for (let i = 0; i < 30; i++) {
+    starPositions.medium.forEach((pos, i) => {
         const star = document.createElement('div');
         star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.animationDelay = Math.random() * 6 + 's';
-        star.style.animationDuration = (4 + Math.random() * 4) + 's';
+        star.style.left = pos.x + '%';
+        star.style.top = pos.y + '%';
+        star.style.animationDelay = (i * 0.2) + 's';
+        star.style.animationDuration = (4 + (i % 4)) + 's';
         star.style.width = '3px';
         star.style.height = '3px';
         starsContainer2?.appendChild(star);
-    }
+    });
 
     // Create large stars (10 stars)
-    for (let i = 0; i < 10; i++) {
+    starPositions.large.forEach((pos, i) => {
         const star = document.createElement('div');
         star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.animationDelay = Math.random() * 8 + 's';
-        star.style.animationDuration = (5 + Math.random() * 5) + 's';
+        star.style.left = pos.x + '%';
+        star.style.top = pos.y + '%';
+        star.style.animationDelay = (i * 0.7) + 's';
+        star.style.animationDuration = (5 + (i % 5)) + 's';
         star.style.width = '4px';
         star.style.height = '4px';
         starsContainer3?.appendChild(star);
-    }
+    });
 }
 
 // Initialize stars on page load
