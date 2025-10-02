@@ -664,14 +664,16 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 0;
+    z-index: 99;
 }
 
 .stars {
-    background: transparent;
+    background: #FFF;
     box-shadow:
         1840px 1456px #FFF, 1404px 1653px #FFF, 1976px 1818px #FFF, 1385px 666px #FFF,
         1940px 1504px #FFF, 138px 1266px #FFF, 914px 1365px #FFF, 1835px 1869px #FFF,
@@ -693,13 +695,14 @@ body {
         1055px 1368px #FFF, 1564px 1165px #FFF, 1986px 1123px #FFF, 1369px 1684px #FFF,
         1969px 1664px #FFF, 1249px 1692px #FFF, 1757px 1410px #FFF, 1665px 1257px #FFF,
         1024px 1523px #FFF, 1858px 1305px #FFF, 1835px 1684px #FFF, 1883px 1760px #FFF;
-    width: 1px;
-    height: 1px;
+    width: 2px;
+    height: 2px;
     animation: twinkle 3s infinite;
+    border-radius: 50%;
 }
 
 .stars2 {
-    background: transparent;
+    background: #FFF;
     box-shadow:
         779px 1531px #FFF, 324px 831px #FFF, 1976px 1743px #FFF, 1196px 1699px #FFF,
         1824px 1468px #FFF, 1929px 1902px #FFF, 1333px 1025px #FFF, 1888px 1031px #FFF,
@@ -711,27 +714,29 @@ body {
         1665px 1342px #FFF, 1604px 1737px #FFF, 1459px 1548px #FFF, 1050px 1612px #FFF,
         1988px 1690px #FFF, 1502px 1050px #FFF, 1840px 1059px #FFF, 1431px 1016px #FFF,
         1853px 1072px #FFF, 1686px 1291px #FFF, 1665px 1654px #FFF, 1040px 1643px #FFF;
-    width: 2px;
-    height: 2px;
+    width: 3px;
+    height: 3px;
     animation: twinkle 5s infinite;
+    border-radius: 50%;
 }
 
 .stars3 {
-    background: transparent;
+    background: #FFF;
     box-shadow:
         1351px 1344px #FFF, 423px 1119px #FFF, 1539px 1690px #FFF, 748px 1112px #FFF,
         1959px 1173px #FFF, 1601px 1160px #FFF, 1505px 1290px #FFF, 1756px 1868px #FFF,
         1095px 1643px #FFF, 1653px 1064px #FFF, 1564px 1680px #FFF, 1387px 1379px #FFF,
         1791px 1532px #FFF, 1948px 1215px #FFF, 1996px 1654px #FFF, 1658px 1753px #FFF,
         1014px 1616px #FFF, 1978px 1034px #FFF, 1569px 1543px #FFF, 1820px 1191px #FFF;
-    width: 3px;
-    height: 3px;
+    width: 4px;
+    height: 4px;
     animation: twinkle 7s infinite;
+    border-radius: 50%;
 }
 
 @keyframes twinkle {
     0%, 100% {
-        opacity: 0.3;
+        opacity: 0.6;
     }
     50% {
         opacity: 1;
