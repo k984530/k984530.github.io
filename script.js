@@ -323,10 +323,19 @@ function moveStars() {
         const currentLeft = baseLeft + translateX;
         const currentTop = baseTop + translateY;
 
-        if (currentTop > window.innerHeight + 200 || currentLeft < -200 || currentTop < -200 || currentLeft > window.innerWidth + 200 || translateZ > 200) {
-            // Respawn across entire screen area evenly
-            star.style.left = (Math.random() * window.innerWidth) + 'px';
-            star.style.top = (Math.random() * window.innerHeight) + 'px';
+        if (currentTop > window.innerHeight + 200 || currentLeft < -200 || translateZ > 200) {
+            // Respawn from upper-right area to maintain even distribution
+            const spawnType = Math.random();
+
+            if (spawnType < 0.5) {
+                // Spawn from top edge
+                star.style.left = (Math.random() * window.innerWidth) + 'px';
+                star.style.top = (-100 - Math.random() * 200) + 'px';
+            } else {
+                // Spawn from right edge
+                star.style.left = (window.innerWidth + 100 + Math.random() * 200) + 'px';
+                star.style.top = (Math.random() * window.innerHeight) + 'px';
+            }
 
             star.style.transform = `translate3d(0, 0, 0) scale(1)`;
             star.dataset.translateX = '0';
