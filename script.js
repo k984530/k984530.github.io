@@ -259,8 +259,8 @@ function moveStars(currentTime) {
         document.querySelectorAll('.star').forEach(star => {
             const currentLeft = parseFloat(star.style.left);
             const currentTop = parseFloat(star.style.top);
-            const newLeft = currentLeft - 0.001; // Move 0.001px per frame (left)
-            const newTop = currentTop + 0.001; // Move 0.001px per frame (down)
+            const newLeft = currentLeft - 0.01; // Move 0.01px per frame (left)
+            const newTop = currentTop + 0.01; // Move 0.01px per frame (down)
 
             star.style.left = newLeft + 'px';
             star.style.top = newTop + 'px';
