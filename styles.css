@@ -405,7 +405,7 @@ body {
 
 /* About Content */
 .about-content {
-    max-width: 800px;
+    width: 100%;
 }
 
 .about-text {
@@ -425,6 +425,7 @@ body {
     border-radius: 12px;
     padding: 2rem;
     border: 2px solid rgba(99, 102, 241, 0.3);
+    backdrop-filter: blur(0.5px);
 }
 
 .tech-stack h3 {
@@ -474,7 +475,7 @@ body {
 
 /* Contact Content */
 .contact-content {
-    max-width: 600px;
+    width: 100%;
 }
 
 .contact-info {
@@ -493,6 +494,7 @@ body {
     text-decoration: none;
     color: var(--text-primary);
     transition: all 0.2s ease;
+    backdrop-filter: blur(0.5px);
 }
 
 .contact-item:hover {
@@ -518,6 +520,7 @@ body {
     background: rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     border: 2px solid rgba(99, 102, 241, 0.3);
+    backdrop-filter: blur(0.5px);
 }
 
 .contact-cta p {
