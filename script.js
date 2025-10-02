@@ -299,12 +299,19 @@ function moveStars() {
         const currentTop = baseTop + translateY;
 
         if (currentTop > window.innerHeight + 100 || currentLeft < -100 || translateZ > 100) {
-            // Respawn from right edge or top edge randomly
-            const spawnFromTop = Math.random() > 0.5;
-            if (spawnFromTop) {
+            // Respawn from top-left, top-right, or bottom-right edges
+            const spawnEdge = Math.random();
+
+            if (spawnEdge < 0.33) {
+                // Left edge + top area
+                star.style.left = (-Math.random() * 300) + 'px';
+                star.style.top = (Math.random() * window.innerHeight * 0.5) + 'px';
+            } else if (spawnEdge < 0.66) {
+                // Top edge (full width)
                 star.style.left = (Math.random() * window.innerWidth) + 'px';
                 star.style.top = (-Math.random() * 500) + 'px';
             } else {
+                // Right edge (full height)
                 star.style.left = (window.innerWidth + Math.random() * 500) + 'px';
                 star.style.top = (Math.random() * window.innerHeight) + 'px';
             }
