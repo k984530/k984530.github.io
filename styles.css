@@ -709,6 +709,7 @@ body {
     height: 2px;
     border-radius: 50%;
     animation: twinkle 3s infinite;
+    box-shadow: 0 0 4px 2px rgba(255,255,255,0.8), 0 0 8px 4px rgba(255,255,255,0.4);
 }
 
 .stars::after {
@@ -719,13 +720,34 @@ body {
     background: #FFF;
     border-radius: 50%;
     box-shadow:
-        100px 200px #FFF, 300px 100px #FFF, 500px 300px #FFF, 700px 150px #FFF,
-        200px 400px #FFF, 400px 250px #FFF, 600px 450px #FFF, 800px 350px #FFF,
-        150px 600px #FFF, 350px 500px #FFF, 550px 650px #FFF, 750px 550px #FFF,
-        250px 800px #FFF, 450px 700px #FFF, 650px 850px #FFF, 850px 750px #FFF,
-        50px 50px #FFF, 900px 50px #FFF, 50px 900px #FFF, 900px 900px #FFF,
-        400px 400px #FFF, 600px 200px #FFF, 200px 600px #FFF, 800px 600px #FFF,
-        300px 300px #FFF, 700px 700px #FFF, 500px 100px #FFF, 100px 500px #FFF;
+        100px 200px 4px 2px rgba(255,255,255,0.8),
+        300px 100px 4px 2px rgba(255,255,255,0.8),
+        500px 300px 4px 2px rgba(255,255,255,0.8),
+        700px 150px 4px 2px rgba(255,255,255,0.8),
+        200px 400px 4px 2px rgba(255,255,255,0.8),
+        400px 250px 4px 2px rgba(255,255,255,0.8),
+        600px 450px 4px 2px rgba(255,255,255,0.8),
+        800px 350px 4px 2px rgba(255,255,255,0.8),
+        150px 600px 4px 2px rgba(255,255,255,0.8),
+        350px 500px 4px 2px rgba(255,255,255,0.8),
+        550px 650px 4px 2px rgba(255,255,255,0.8),
+        750px 550px 4px 2px rgba(255,255,255,0.8),
+        250px 800px 4px 2px rgba(255,255,255,0.8),
+        450px 700px 4px 2px rgba(255,255,255,0.8),
+        650px 850px 4px 2px rgba(255,255,255,0.8),
+        850px 750px 4px 2px rgba(255,255,255,0.8),
+        50px 50px 4px 2px rgba(255,255,255,0.8),
+        900px 50px 4px 2px rgba(255,255,255,0.8),
+        50px 900px 4px 2px rgba(255,255,255,0.8),
+        900px 900px 4px 2px rgba(255,255,255,0.8),
+        400px 400px 4px 2px rgba(255,255,255,0.8),
+        600px 200px 4px 2px rgba(255,255,255,0.8),
+        200px 600px 4px 2px rgba(255,255,255,0.8),
+        800px 600px 4px 2px rgba(255,255,255,0.8),
+        300px 300px 4px 2px rgba(255,255,255,0.8),
+        700px 700px 4px 2px rgba(255,255,255,0.8),
+        500px 100px 4px 2px rgba(255,255,255,0.8),
+        100px 500px 4px 2px rgba(255,255,255,0.8);
 }
 
 .stars2 {
@@ -734,6 +756,7 @@ body {
     height: 3px;
     border-radius: 50%;
     animation: twinkle 5s infinite;
+    box-shadow: 0 0 6px 3px rgba(255,255,255,0.8), 0 0 12px 6px rgba(255,255,255,0.4);
 }
 
 .stars2::after {
@@ -744,10 +767,22 @@ body {
     background: #FFF;
     border-radius: 50%;
     box-shadow:
-        150px 250px #FFF, 350px 150px #FFF, 550px 350px #FFF, 750px 200px #FFF,
-        250px 450px #FFF, 450px 300px #FFF, 650px 500px #FFF, 850px 400px #FFF,
-        200px 650px #FFF, 400px 550px #FFF, 600px 700px #FFF, 800px 600px #FFF,
-        300px 850px #FFF, 500px 750px #FFF, 700px 900px #FFF, 900px 800px #FFF;
+        150px 250px 6px 3px rgba(255,255,255,0.8),
+        350px 150px 6px 3px rgba(255,255,255,0.8),
+        550px 350px 6px 3px rgba(255,255,255,0.8),
+        750px 200px 6px 3px rgba(255,255,255,0.8),
+        250px 450px 6px 3px rgba(255,255,255,0.8),
+        450px 300px 6px 3px rgba(255,255,255,0.8),
+        650px 500px 6px 3px rgba(255,255,255,0.8),
+        850px 400px 6px 3px rgba(255,255,255,0.8),
+        200px 650px 6px 3px rgba(255,255,255,0.8),
+        400px 550px 6px 3px rgba(255,255,255,0.8),
+        600px 700px 6px 3px rgba(255,255,255,0.8),
+        800px 600px 6px 3px rgba(255,255,255,0.8),
+        300px 850px 6px 3px rgba(255,255,255,0.8),
+        500px 750px 6px 3px rgba(255,255,255,0.8),
+        700px 900px 6px 3px rgba(255,255,255,0.8),
+        900px 800px 6px 3px rgba(255,255,255,0.8);
 }
 
 .stars3 {
@@ -756,6 +791,7 @@ body {
     height: 4px;
     border-radius: 50%;
     animation: twinkle 7s infinite;
+    box-shadow: 0 0 8px 4px rgba(255,255,255,0.8), 0 0 16px 8px rgba(255,255,255,0.4);
 }
 
 .stars3::after {
@@ -766,8 +802,14 @@ body {
     background: #FFF;
     border-radius: 50%;
     box-shadow:
-        200px 300px #FFF, 400px 200px #FFF, 600px 400px #FFF, 800px 250px #FFF,
-        300px 500px #FFF, 500px 350px #FFF, 700px 550px #FFF, 900px 450px #FFF;
+        200px 300px 8px 4px rgba(255,255,255,0.8),
+        400px 200px 8px 4px rgba(255,255,255,0.8),
+        600px 400px 8px 4px rgba(255,255,255,0.8),
+        800px 250px 8px 4px rgba(255,255,255,0.8),
+        300px 500px 8px 4px rgba(255,255,255,0.8),
+        500px 350px 8px 4px rgba(255,255,255,0.8),
+        700px 550px 8px 4px rgba(255,255,255,0.8),
+        900px 450px 8px 4px rgba(255,255,255,0.8);
 }
 
 @keyframes twinkle {
