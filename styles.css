@@ -745,33 +745,51 @@ body {
 }
 
 @keyframes nebulaDrift1 {
-    from { transform: translate(0, 0); }
-    to { transform: translate(-400px, 300px); }
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-100px, 75px); }
+    50% { transform: translate(-200px, 150px); }
+    75% { transform: translate(-300px, 225px); }
+    100% { transform: translate(-400px, 300px); }
 }
 
 @keyframes nebulaDrift2 {
-    from { transform: translate(0, 0); }
-    to { transform: translate(-350px, 250px); }
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-87.5px, 62.5px); }
+    50% { transform: translate(-175px, 125px); }
+    75% { transform: translate(-262.5px, 187.5px); }
+    100% { transform: translate(-350px, 250px); }
 }
 
 @keyframes nebulaDrift3 {
-    from { transform: translate(0, 0); }
-    to { transform: translate(-300px, 200px); }
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-75px, 50px); }
+    50% { transform: translate(-150px, 100px); }
+    75% { transform: translate(-225px, 150px); }
+    100% { transform: translate(-300px, 200px); }
 }
 
 @keyframes nebulaDrift4 {
-    from { transform: translate(0, 0); }
-    to { transform: translate(-380px, 280px); }
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-95px, 70px); }
+    50% { transform: translate(-190px, 140px); }
+    75% { transform: translate(-285px, 210px); }
+    100% { transform: translate(-380px, 280px); }
 }
 
 @keyframes nebulaDrift5 {
-    from { transform: translate(0, 0); }
-    to { transform: translate(-320px, 240px); }
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-80px, 60px); }
+    50% { transform: translate(-160px, 120px); }
+    75% { transform: translate(-240px, 180px); }
+    100% { transform: translate(-320px, 240px); }
 }
 
 @keyframes nebulaDrift6 {
-    from { transform: translate(0, 0); }
-    to { transform: translate(-360px, 260px); }
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-90px, 65px); }
+    50% { transform: translate(-180px, 130px); }
+    75% { transform: translate(-270px, 195px); }
+    100% { transform: translate(-360px, 260px); }
 }
 
 @keyframes nebulaWave1 {
