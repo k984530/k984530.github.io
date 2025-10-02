@@ -211,8 +211,8 @@ function createStars() {
         star.className = 'star star-far';
         star.style.left = (Math.random() * window.innerWidth * 1.5) + 'px';
         star.style.top = (Math.random() * window.innerHeight * 1.5) + 'px';
-        star.style.animationDelay = (Math.random() * 10) + 's';
-        star.style.animationDuration = (4 + Math.random() * 6) + 's';
+        star.style.animationDelay = (Math.random() * 3) + 's';
+        star.style.animationDuration = (0.5 + Math.random() * 1.5) + 's';
         star.style.width = '0.15px';
         star.style.height = '0.15px';
         star.dataset.speed = '0.02';
@@ -225,8 +225,8 @@ function createStars() {
         star.className = 'star star-mid';
         star.style.left = (Math.random() * window.innerWidth * 1.5) + 'px';
         star.style.top = (Math.random() * window.innerHeight * 1.5) + 'px';
-        star.style.animationDelay = (Math.random() * 12) + 's';
-        star.style.animationDuration = (5 + Math.random() * 8) + 's';
+        star.style.animationDelay = (Math.random() * 4) + 's';
+        star.style.animationDuration = (0.6 + Math.random() * 2) + 's';
         star.style.width = '0.25px';
         star.style.height = '0.25px';
         star.dataset.speed = '0.05';
@@ -239,8 +239,8 @@ function createStars() {
         star.className = 'star star-near';
         star.style.left = (Math.random() * window.innerWidth * 1.5) + 'px';
         star.style.top = (Math.random() * window.innerHeight * 1.5) + 'px';
-        star.style.animationDelay = (Math.random() * 14) + 's';
-        star.style.animationDuration = (6 + Math.random() * 10) + 's';
+        star.style.animationDelay = (Math.random() * 5) + 's';
+        star.style.animationDuration = (0.7 + Math.random() * 2.5) + 's';
         star.style.width = '0.4px';
         star.style.height = '0.4px';
         star.dataset.speed = '0.1';
