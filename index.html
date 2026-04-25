@@ -1,699 +1,1699 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Won - Agent Engineer</title>
-    <meta name="description" content="에이전트 엔지니어 Won의 포트폴리오">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choi Won Portfolio 2026</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon.png?v=20260424">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico?v=20260424">
+  <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico?v=20260424">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=20260424">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --ink: #07100f;
+      --ink-2: #121918;
+      --graphite: #262626;
+      --paper: #f7f3ea;
+      --paper-2: #fffaf2;
+      --muted: #6d706b;
+      --line: rgba(7, 16, 15, 0.18);
+      --line-light: rgba(255, 250, 242, 0.18);
+      --pink: #ff72ac;
+      --pink-soft: #ffb3d1;
+      --blue: #078fdb;
+      --yellow: #f4bd18;
+      --green: #15be66;
+      --white: #ffffff;
+      --shadow: 0 24px 60px rgba(7, 16, 15, 0.24);
+    }
+
+    html {
+      background: var(--ink);
+      color: var(--ink);
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--pink) var(--ink);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 64px 64px,
+        linear-gradient(0deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px) 0 0 / 64px 64px,
+        var(--ink);
+      font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0.16;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1001;
+      width: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--pink) 0 28%, var(--blue) 28% 52%, var(--yellow) 52% 74%, var(--green) 74% 100%);
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      z-index: 900;
+      width: min(1120px, calc(100% - 32px));
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--paper-2);
+      mix-blend-mode: difference;
+      pointer-events: none;
+    }
+
+    .brand-chip,
+    .site-nav a {
+      pointer-events: auto;
+    }
+
+    .brand-chip {
+      display: inline-grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 2px solid currentColor;
+      border-radius: 6px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 1.04rem;
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .nav-links a {
+      padding: 8px 10px;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: currentColor;
+    }
+
+    .section {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .section-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 56px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 92px 0;
+    }
+
+    .dark-section {
+      background:
+        repeating-linear-gradient(92deg, transparent 0 18px, rgba(255, 255, 255, 0.025) 18px 19px),
+        linear-gradient(180deg, #07100f 0%, #0a1412 48%, #07100f 100%),
+        var(--ink);
+      color: var(--paper-2);
+    }
+
+    .paper-section {
+      background:
+        linear-gradient(90deg, rgba(7, 16, 15, 0.05) 1px, transparent 1px) 0 0 / 72px 72px,
+        linear-gradient(0deg, rgba(7, 16, 15, 0.035) 1px, transparent 1px) 0 0 / 72px 72px,
+        var(--paper);
+      color: var(--ink);
+    }
+
+    .pink-section {
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)),
+        var(--pink-soft);
+      color: var(--ink);
+    }
+
+    .micro-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .split-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 38px;
+    }
+
+    .split-label span:last-child {
+      text-align: right;
+    }
+
+    .hero .section-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.28fr) minmax(280px, 0.72fr);
+      align-items: center;
+      gap: 56px;
+      padding-top: 112px;
+    }
+
+    .hero-wordmark {
+      margin: 0;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 8rem;
+      line-height: 0.82;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .hero-wordmark span {
+      display: block;
+      width: max-content;
+      max-width: 100%;
+      padding: 0.05em 0.1em 0.1em;
+      color: var(--ink);
+      -webkit-text-stroke: 2px var(--ink);
+      text-shadow: 6px 6px 0 var(--white);
+      transform-origin: left center;
+    }
+
+    .hero-wordmark span:nth-child(1) {
+      background: var(--blue);
+    }
+
+    .hero-wordmark span:nth-child(2) {
+      margin-left: 0.62em;
+      background: var(--green);
+    }
+
+    .hero-wordmark span:nth-child(3) {
+      margin-left: 0.22em;
+      background: var(--yellow);
+    }
+
+    .hero-wordmark span:nth-child(4) {
+      margin-left: 0.82em;
+      background: var(--pink);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 28px;
+      min-height: 620px;
+    }
+
+    .hero-statement {
+      max-width: 420px;
+    }
+
+    .hero-statement h2 {
+      margin: 0 0 22px;
+      font-size: 2rem;
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+
+    .hero-statement p {
+      margin: 0;
+      color: rgba(255, 250, 242, 0.66);
+      font-size: 1rem;
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    .poster-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 20px;
+      max-width: 420px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line-light);
+    }
+
+    .poster-meta dt {
+      margin: 0 0 5px;
+      color: rgba(255, 250, 242, 0.44);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .poster-meta dd {
+      margin: 0;
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    .floating-stickers {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .stamp {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      font-family: "Archivo Black", sans-serif;
+      font-size: 2.5rem;
+      line-height: 0.9;
+      text-align: center;
+      text-transform: uppercase;
+      filter: drop-shadow(8px 10px 0 rgba(0, 0, 0, 0.24));
+    }
+
+    .stamp small {
+      display: block;
+      margin-top: 6px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.62rem;
+      line-height: 1;
+    }
+
+    .stamp-burst {
+      right: 7%;
+      bottom: 9%;
+      width: 170px;
+      height: 170px;
+      font-size: 1.92rem;
+      background: var(--pink);
+      clip-path: polygon(50% 0, 60% 28%, 86% 14%, 72% 40%, 100% 50%, 72% 60%, 86% 86%, 60% 72%, 50% 100%, 40% 72%, 14% 86%, 28% 60%, 0 50%, 28% 40%, 14% 14%, 40% 28%);
+      transform: rotate(-9deg);
+    }
+
+    .stamp-disc {
+      left: 7%;
+      top: 18%;
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      background: var(--yellow);
+      transform: rotate(12deg);
+    }
+
+    .sticker-icon {
+      position: absolute;
+      width: 76px;
+      height: 76px;
+      padding: 8px;
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      background: var(--paper-2);
+      box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.22);
+      object-fit: cover;
+    }
+
+    .sticker-icon:nth-child(3) {
+      left: 14%;
+      bottom: 16%;
+      transform: rotate(-10deg);
+    }
+
+    .sticker-icon:nth-child(4),
+    .sticker-icon:nth-child(5) {
+      display: none;
+    }
+
+    .ticker {
+      position: relative;
+      overflow: hidden;
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      background: var(--paper-2);
+      color: var(--ink);
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 32s linear infinite;
+    }
+
+    .ticker span {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .ticker i {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: var(--pink);
+      transform: rotate(45deg);
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      align-items: start;
+      gap: 96px;
+    }
+
+    .profile-headline {
+      margin: 0;
+      font-size: 2.35rem;
+      line-height: 1.22;
+      word-break: keep-all;
+    }
+
+    .profile-headline strong {
+      color: var(--pink);
+    }
+
+    .profile-copy {
+      max-width: 470px;
+      margin: 26px 0 34px;
+      color: rgba(255, 250, 242, 0.62);
+      font-size: 0.98rem;
+      line-height: 1.85;
+      word-break: keep-all;
+    }
+
+    .contact-rows {
+      display: grid;
+      gap: 9px;
+      margin-top: 28px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.83rem;
+    }
+
+    .contact-rows div {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 18px;
+    }
+
+    .contact-rows span:first-child {
+      color: rgba(255, 250, 242, 0.42);
+    }
+
+    .resume-list {
+      display: grid;
+      gap: 34px;
+    }
+
+    .resume-group h3 {
+      margin: 0 0 16px;
+      font-size: 1.08rem;
+    }
+
+    .resume-item {
+      display: grid;
+      grid-template-columns: 1fr 74px;
+      gap: 18px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line-light);
+      color: rgba(255, 250, 242, 0.68);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .resume-item time {
+      color: rgba(255, 250, 242, 0.45);
+      text-align: right;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+    }
+
+    .overview-layout {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+      gap: 82px;
+      align-items: center;
+    }
+
+    .mini-logo {
+      width: min(360px, 100%);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 100px;
+      gap: 0;
+      filter: drop-shadow(10px 12px 0 rgba(7, 16, 15, 0.12));
+    }
+
+    .mini-logo span {
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--ink);
+      font-family: "Archivo Black", sans-serif;
+      font-size: 3.8rem;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .mini-logo span:nth-child(1) { background: var(--blue); }
+    .mini-logo span:nth-child(2) { background: var(--green); transform: translateY(28px); }
+    .mini-logo span:nth-child(3) { background: var(--pink); transform: translateY(-18px); }
+    .mini-logo span:nth-child(4) { background: var(--yellow); transform: translate(38px, -8px); }
+    .mini-logo span:nth-child(5) { background: var(--paper-2); transform: translate(38px, 18px); }
+    .mini-logo span:nth-child(6) { background: var(--ink); color: var(--paper-2); transform: translate(38px, -8px); }
+
+    .project-index {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 42px 72px;
+    }
+
+    .index-item {
+      border-top: 2px solid var(--ink);
+      padding-top: 18px;
+    }
+
+    .index-item .num {
+      display: block;
+      margin-bottom: 18px;
+      color: var(--pink);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .index-item h3 {
+      margin: 0 0 7px;
+      font-size: 1.08rem;
+    }
+
+    .index-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+
+    .case-stage {
+      display: grid;
+      grid-template-columns: 1fr 1.12fr;
+      gap: 50px;
+      align-items: center;
+      min-height: calc(100vh - 184px);
+    }
+
+    .case-kicker {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 40px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .case-title {
+      position: relative;
+      width: min(520px, 100%);
+      min-height: 290px;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .case-title::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: var(--pink);
+      clip-path: polygon(50% 0, 58% 23%, 78% 8%, 74% 34%, 100% 28%, 82% 50%, 100% 72%, 74% 66%, 78% 92%, 58% 77%, 50% 100%, 42% 77%, 22% 92%, 26% 66%, 0 72%, 18% 50%, 0 28%, 26% 34%, 22% 8%, 42% 23%);
+      filter: drop-shadow(10px 12px 0 rgba(7, 16, 15, 0.12));
+    }
+
+    .case-title h2 {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Archivo Black", sans-serif;
+      font-size: 5.6rem;
+      line-height: 0.78;
+      text-align: center;
+      text-transform: uppercase;
+      -webkit-text-stroke: 2px var(--white);
+      text-shadow: 5px 5px 0 var(--ink);
+      transform: rotate(-4deg);
+    }
+
+    .case-details {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 58px;
+    }
+
+    .case-details b {
+      display: block;
+      margin-bottom: 9px;
+      font-size: 0.94rem;
+    }
+
+    .case-details span {
+      color: rgba(7, 16, 15, 0.67);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+
+    .video-composition {
+      position: relative;
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+    }
+
+    .device-frame {
+      position: relative;
+      width: min(760px, 100%);
+      aspect-ratio: 16 / 10;
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      background: var(--ink);
+      box-shadow: 14px 14px 0 rgba(7, 16, 15, 0.16);
+      overflow: hidden;
+      transform: rotate(1.6deg);
+    }
+
+    .device-frame video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+      background: #000;
+      opacity: 0.92;
+      filter: saturate(1.05) contrast(1.08);
+    }
+
+    .floating-icons {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .floating-icons img {
+      position: absolute;
+      width: 78px;
+      height: 78px;
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      background: var(--paper-2);
+      padding: 8px;
+      object-fit: cover;
+      box-shadow: 8px 8px 0 rgba(7, 16, 15, 0.15);
+    }
+
+    .floating-icons img:nth-child(1) { top: 4%; left: 4%; transform: rotate(-12deg); }
+    .floating-icons img:nth-child(2) { right: 0; top: 16%; transform: rotate(11deg); }
+    .floating-icons img:nth-child(3) { left: 8%; bottom: 10%; transform: rotate(7deg); }
+    .floating-icons img:nth-child(4) { right: 10%; bottom: 2%; transform: rotate(-8deg); }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+      gap: 78px;
+      align-items: center;
+    }
+
+    .process-copy h2 {
+      margin: 0;
+      font-size: 2rem;
+      line-height: 1.28;
+      word-break: keep-all;
+    }
+
+    .process-copy p {
+      margin: 22px 0 0;
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.85;
+      word-break: keep-all;
+    }
+
+    .process-flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: center;
+      gap: 24px;
+    }
+
+    .flow-shape {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 240px;
+      padding: 34px 26px;
+      color: var(--paper-2);
+      text-align: center;
+      background: var(--graphite);
+    }
+
+    .flow-shape:nth-child(1) {
+      border-radius: 46% 54% 50% 50% / 42% 39% 61% 58%;
+    }
+
+    .flow-shape:nth-child(2) {
+      clip-path: polygon(5% 14%, 74% 5%, 94% 42%, 76% 92%, 24% 88%, 0 52%);
+    }
+
+    .flow-shape:nth-child(3) {
+      clip-path: polygon(50% 0, 58% 26%, 86% 14%, 74% 40%, 100% 50%, 74% 60%, 86% 86%, 58% 74%, 50% 100%, 42% 74%, 14% 86%, 26% 60%, 0 50%, 26% 40%, 14% 14%, 42% 26%);
+    }
+
+    .flow-shape span {
+      display: block;
+      color: var(--pink);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .flow-shape h3 {
+      margin: 10px 0 9px;
+      color: var(--pink);
+      font-size: 1.1rem;
+    }
+
+    .flow-shape p {
+      margin: 0;
+      font-size: 0.83rem;
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+
+    .identity-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 70px;
+      align-items: end;
+    }
+
+    .identity-title h2 {
+      margin: 0 0 20px;
+      font-size: 2.08rem;
+      line-height: 1.22;
+    }
+
+    .identity-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.85;
+      word-break: keep-all;
+    }
+
+    .type-sample {
+      display: grid;
+      gap: 22px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 28px;
+      align-items: baseline;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+    }
+
+    .type-row span:first-child {
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .type-row b {
+      display: block;
+      font-size: 3rem;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .type-row small {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .type-row:first-child b {
+      font-family: "Archivo Black", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      width: 100%;
+      margin-top: 70px;
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .swatch {
+      min-height: 186px;
+      padding: 24px;
+      border-right: 2px solid var(--ink);
+      color: var(--ink);
+    }
+
+    .swatch:last-child {
+      border-right: 0;
+    }
+
+    .swatch b {
+      display: block;
+      margin-bottom: 76px;
+      font-size: 0.96rem;
+    }
+
+    .swatch span {
+      display: block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+      line-height: 1.55;
+    }
+
+    .swatch.black {
+      color: var(--paper-2);
+      background: var(--graphite);
+    }
+
+    .swatch.pink { background: var(--pink); }
+    .swatch.pink-soft { background: var(--pink-soft); }
+    .swatch.blue { background: var(--blue); }
+    .swatch.yellow { background: var(--yellow); }
+
+    .works-section .section-inner {
+      padding-bottom: 120px;
+    }
+
+    .works-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 56px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .works-head h2 {
+      margin: 0;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 5.3rem;
+      line-height: 0.84;
+      text-transform: uppercase;
+      color: var(--paper-2);
+      text-shadow: 5px 5px 0 var(--pink);
+    }
+
+    .works-head p {
+      margin: 0;
+      max-width: 540px;
+      color: rgba(255, 250, 242, 0.65);
+      font-size: 0.98rem;
+      line-height: 1.82;
+      word-break: keep-all;
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 38px;
+    }
+
+    .tab {
+      min-height: 38px;
+      padding: 8px 16px;
+      border: 2px solid var(--paper-2);
+      border-radius: 6px;
+      background: transparent;
+      color: var(--paper-2);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .tab:hover,
+    .tab.active {
+      background: var(--pink);
+      color: var(--ink);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 var(--paper-2);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      position: relative;
+      min-height: 214px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px;
+      border: 2px solid var(--paper-2);
+      border-radius: 8px;
+      background: var(--paper-2);
+      color: var(--ink);
+      box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 420ms ease, transform 420ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card:hover,
+    .project-card:focus-visible {
+      outline: none;
+      transform: translate(-4px, -4px);
+      box-shadow: 7px 7px 0 var(--pink);
+    }
+
+    .project-card[data-cat="ai"]:hover,
+    .project-card[data-cat="ai"]:focus-visible { background: var(--blue); }
+    .project-card[data-cat="finance"]:hover,
+    .project-card[data-cat="finance"]:focus-visible { background: var(--green); }
+    .project-card[data-cat="social"]:hover,
+    .project-card[data-cat="social"]:focus-visible { background: var(--pink); }
+    .project-card[data-cat="lifestyle"]:hover,
+    .project-card[data-cat="lifestyle"]:focus-visible { background: var(--yellow); }
+
+    .project-card img {
+      width: 58px;
+      height: 58px;
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      object-fit: cover;
+      background: var(--white);
+    }
+
+    .project-card h3 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.15;
+      word-break: break-word;
+    }
+
+    .project-card footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: end;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      background: none;
+    }
+
+    .project-card .cat,
+    .project-card .idx {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .project-card .cat {
+      max-width: 72px;
+    }
+
+    .contact-section .section-inner {
+      display: grid;
+      grid-template-columns: 1fr 0.72fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .contact-title {
+      margin: 0;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 6.6rem;
+      line-height: 0.82;
+      text-transform: uppercase;
+      color: var(--ink);
+      -webkit-text-stroke: 2px var(--paper-2);
+      text-shadow: 6px 6px 0 var(--pink);
+    }
+
+    .contact-panel {
+      display: grid;
+      gap: 22px;
+      color: var(--paper-2);
+    }
+
+    .contact-panel p {
+      margin: 0;
+      color: rgba(255, 250, 242, 0.67);
+      line-height: 1.82;
+      word-break: keep-all;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .contact-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 52px;
+      padding: 0 16px;
+      border: 2px solid var(--paper-2);
+      border-radius: 6px;
+      color: var(--paper-2);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .contact-links a:hover {
+      background: var(--paper-2);
+      color: var(--ink);
+      transform: translateX(6px);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 620ms ease, transform 620ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1100px) {
+      .section-inner {
+        width: min(920px, calc(100% - 44px));
+      }
+
+      .hero .section-inner,
+      .profile-grid,
+      .overview-layout,
+      .case-stage,
+      .process-grid,
+      .identity-wrap,
+      .works-head,
+      .contact-section .section-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-wordmark {
+        font-size: 6.2rem;
+      }
+
+      .hero-copy {
+        min-height: auto;
+      }
+
+      .sticker-icon {
+        display: none;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .contact-title,
+      .works-head h2 {
+        font-size: 4.6rem;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .site-nav {
+        top: 12px;
+      }
+
+      .nav-links {
+        gap: 4px;
+        font-size: 0.64rem;
+      }
+
+      .nav-links a {
+        padding: 8px 5px;
+      }
+
+      .brand-chip {
+        width: 38px;
+        height: 38px;
+        font-size: 0.92rem;
+      }
+
+      .section-inner {
+        width: min(100% - 28px, 620px);
+        padding: 76px 0;
+      }
+
+      .hero-wordmark {
+        font-size: 4.2rem;
+      }
+
+      .hero-wordmark span {
+        -webkit-text-stroke-width: 1px;
+        text-shadow: 4px 4px 0 var(--white);
+      }
+
+      .hero-wordmark span:nth-child(2),
+      .hero-wordmark span:nth-child(3),
+      .hero-wordmark span:nth-child(4) {
+        margin-left: 0;
+      }
+
+      .hero-statement h2,
+      .profile-headline,
+      .process-copy h2,
+      .identity-title h2 {
+        font-size: 1.58rem;
+      }
+
+      .poster-meta,
+      .project-index,
+      .case-details,
+      .process-flow,
+      .swatches {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-logo {
+        grid-auto-rows: 78px;
+      }
+
+      .mini-logo span {
+        font-size: 2.8rem;
+      }
+
+      .case-title {
+        min-height: 230px;
+      }
+
+      .case-title h2 {
+        font-size: 3.6rem;
+      }
+
+      .video-composition {
+        min-height: 380px;
+      }
+
+      .floating-icons img {
+        width: 58px;
+        height: 58px;
+        padding: 6px;
+      }
+
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .type-row b {
+        font-size: 2.08rem;
+      }
+
+      .swatch {
+        min-height: 126px;
+      }
+
+      .swatch b {
+        margin-bottom: 38px;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .project-card {
+        min-height: 186px;
+        padding: 13px;
+      }
+
+      .contact-title,
+      .works-head h2 {
+        font-size: 3.2rem;
+      }
+
+      .stamp,
+      .sticker-icon,
+      .sticker-icon:nth-child(4),
+      .sticker-icon:nth-child(5) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .hero-wordmark {
+        font-size: 3.25rem;
+      }
+
+      .contact-title,
+      .works-head h2 {
+        font-size: 2.55rem;
+      }
+
+      .projects-grid {
+        gap: 10px;
+      }
+
+      .project-card h3 {
+        font-size: 0.88rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Nebula Background -->
-    <div class="nebula nebula1"></div>
-    <div class="nebula nebula2"></div>
-    <div class="nebula nebula3"></div>
-    <div class="nebula nebula4"></div>
-    <div class="nebula nebula5"></div>
-    <div class="nebula nebula6"></div>
+  <div class="progress" id="scrollProgress"></div>
 
-    <!-- Stars Background -->
-    <div class="stars"></div>
-    <div class="stars2"></div>
-    <div class="stars3"></div>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="brand-chip" href="#top" aria-label="Choi Won home">CW</a>
+    <div class="nav-links">
+      <a href="#profile">Profile</a>
+      <a href="#showcase">Showcase</a>
+      <a href="#works">Works</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-content">
-                <div class="profile">
-                    <h1 class="name">Won Space</h1>
-                </div>
-                
-                <nav class="nav-menu">
-                    <a href="#projects" class="nav-item">
-                        <span class="nav-icon">●</span>
-                        <span class="nav-text">Projects</span>
-                    </a>
-                    <a href="#about" class="nav-item">
-                        <span class="nav-icon">●</span>
-                        <span class="nav-text">About</span>
-                    </a>
-                    <a href="#contact" class="nav-item">
-                        <span class="nav-icon">●</span>
-                        <span class="nav-text">Contact</span>
-                    </a>
-                </nav>
-
-                <div class="sidebar-stats">
-                    <div class="stat-item">
-                        <span class="stat-value">30+</span>
-                        <span class="stat-label">Apps</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value">4K+</span>
-                        <span class="stat-label">MAU</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value">4.5</span>
-                        <span class="stat-label">Rating</span>
-                    </div>
-                </div>
-
-                <div class="sidebar-footer">
-                    <div class="social-links">
-                        <a href="https://github.com/k984530" target="_blank" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="mailto:alyduho984530@gmail.com" class="social-link">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
+  <main id="top">
+    <section class="section dark-section hero" aria-labelledby="heroTitle">
+      <div class="floating-stickers" aria-hidden="true">
+        <div class="stamp stamp-disc">30<small>Apps</small></div>
+        <div class="stamp stamp-burst">2026<small>Deck</small></div>
+        <img class="sticker-icon" src="icons/AppHub.png" alt="">
+        <img class="sticker-icon" src="icons/FriendAI.png" alt="">
+        <img class="sticker-icon" src="icons/CryptoAI.png" alt="">
+      </div>
+      <div class="section-inner">
+        <div>
+          <div class="split-label micro-label">
+            <span>AI Developer Portfolio</span>
+            <span>Seoul / 2026</span>
+          </div>
+          <h1 class="hero-wordmark" id="heroTitle">
+            <span>Choi</span>
+            <span>Won</span>
+            <span>Port</span>
+            <span>folio</span>
+          </h1>
+        </div>
+        <aside class="hero-copy" aria-label="Portfolio summary">
+          <div class="hero-statement reveal">
+            <h2>떠오른 아이디어를 실제로 사용할 수 있는 제품으로 만듭니다.</h2>
+            <p>AI, 금융, 소셜, 라이프스타일, 도구형 앱까지. 문제를 작게 쪼개고 직접 설계해 코드와 출시까지 완성합니다.</p>
+          </div>
+          <dl class="poster-meta reveal">
+            <div>
+              <dt>Output</dt>
+              <dd>30 Projects</dd>
             </div>
+            <div>
+              <dt>Role</dt>
+              <dd>Design + Build</dd>
+            </div>
+            <div>
+              <dt>Stack</dt>
+              <dd>AI / Mobile / Web</dd>
+            </div>
+            <div>
+              <dt>Focus</dt>
+              <dd>Product Shipping</dd>
+            </div>
+          </dl>
         </aside>
+      </div>
+    </section>
 
-        <!-- Content Area -->
-        <main class="content">
-            <!-- Projects Section -->
-            <section id="projects" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">My Apps</h2>
-                </div>
-
-                <div class="projects-container">
-                    <!-- Mobile Code -->
-                    <article class="project-item">
-                        <div class="project-icon">
-                            <img src="MobileCode/download/Icon.png" alt="Mobile Code">
-                        </div>
-                        <div class="project-details">
-                            <h3>Mobile Code</h3>
-                            <p>Mobile coding environment with SSH support</p>
-                            <div class="project-tags">
-                                <span>SSH</span>
-                            </div>
-                        </div>
-                        <a href="MobileCode/" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-
-                    <!-- AppHub -->
-                    <article class="project-item">
-                        <div class="project-icon">
-                            <img src="AppHub/download/Icon.png" alt="AppHub">
-                        </div>
-                        <div class="project-details">
-                            <h3>AppHub</h3>
-                            <p>Your personal app manager and organizer</p>
-                            <div class="project-tags">
-                                <span>Productivity</span>
-                            </div>
-                        </div>
-                        <a href="AppHub/" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-
-                    <!-- Sweet Sleep -->
-                    <article class="project-item">
-                        <div class="project-icon">
-                            <img src="SweetSleep/download/Icon.png" alt="Sweet Sleep">
-                        </div>
-                        <div class="project-details">
-                            <h3>Sweet Sleep</h3>
-                            <p>Personalized sleep solutions for better rest</p>
-                            <div class="project-tags">
-                                <span>Health</span>
-                            </div>
-                        </div>
-                        <a href="SweetSleep/" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-
-                    <!-- AnyThoughts -->
-                    <article class="project-item">
-                        <div class="project-icon">
-                            <img src="AnyThoughts/download/Icon.png" alt="AnyThoughts">
-                        </div>
-                        <div class="project-details">
-                            <h3>AnyThoughts</h3>
-                            <p>Emotion analysis and mood tracking app</p>
-                            <div class="project-tags">
-                                <span>AI</span>
-                            </div>
-                        </div>
-                        <a href="AnyThoughts/" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-
-                    <!-- Growvi -->
-                    <article class="project-item">
-                        <div class="project-icon">
-                            <img src="Growvi/download/Icon.png" alt="Growvi">
-                        </div>
-                        <div class="project-details">
-                            <h3>Growvi</h3>
-                            <p>Parenting tips and child growth management</p>
-                            <div class="project-tags">
-                                <span>Parenting</span>
-                            </div>
-                        </div>
-                        <a href="Growvi/" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-
-                    <!-- Wealtha -->
-                    <article class="project-item">
-                        <div class="project-icon">
-                            <img src="Wealtha/download/Icon.png" alt="Wealtha">
-                        </div>
-                        <div class="project-details">
-                            <h3>Wealtha</h3>
-                            <p>Smart investment and financial intelligence</p>
-                            <div class="project-tags">
-                                <span>Finance</span>
-                            </div>
-                        </div>
-                        <a href="Wealtha/" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-
-                    <!-- Friend AI -->
-                    <article class="project-item">
-                        <div class="project-icon">
-                            <img src="FriendAI/download/Icon.png" alt="Friend AI">
-                        </div>
-                        <div class="project-details">
-                            <h3>Friend AI</h3>
-                            <p>Turn contacts into AI companions</p>
-                            <div class="project-tags">
-                                <span>AI</span>
-                            </div>
-                        </div>
-                        <a href="FriendAI/" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-
-                    <!-- Crypto AI -->
-                    <article class="project-item">
-                        <div class="project-icon">
-                            <img src="CryptoAI/download/Icon.png" alt="Crypto AI">
-                        </div>
-                        <div class="project-details">
-                            <h3>Crypto AI</h3>
-                            <p>AI-powered cryptocurrency trading assistant</p>
-                            <div class="project-tags">
-                                <span>Trading</span>
-                            </div>
-                        </div>
-                        <a href="CryptoAI/" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-
-                    <!-- VibePlanning -->
-                    <article class="project-item">
-                        <div class="project-icon">
-                            <img src="VibePlanning/download/Icon.png" alt="VibePlanning">
-                        </div>
-                        <div class="project-details">
-                            <h3>VibePlanning</h3>
-                            <p>Smart planning made simple with AI</p>
-                            <div class="project-tags">
-                                <span>AI</span>
-                            </div>
-                        </div>
-                        <a href="VibePlanning/" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-
-                    <!-- SeductionRules -->
-                    <article class="project-item">
-                        <div class="project-icon">
-                            <img src="SeductionRules/download/Icon.png" alt="SeductionRules">
-                        </div>
-                        <div class="project-details">
-                            <h3>SeductionRules</h3>
-                            <p>Master the art of seduction</p>
-                            <div class="project-tags">
-                                <span>Lifestyle</span>
-                            </div>
-                        </div>
-                        <a href="SeductionRules/" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-
-                    <!-- Anypick -->
-                    <article class="project-item">
-                        <div class="project-icon">
-                            <img src="Anypick/download/Icon.png" alt="Anypick">
-                        </div>
-                        <div class="project-details">
-                            <h3>Anypick</h3>
-                            <p>Decision making helper</p>
-                            <div class="project-tags">
-                                <span>Tools</span>
-                            </div>
-                        </div>
-                        <a href="Anypick/" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-
-                    <!-- Ghost Lens -->
-                    <article class="project-item">
-                        <div class="project-icon">
-                            <img src="GhostLens/download/Icon.png" alt="Ghost Lens">
-                        </div>
-                        <div class="project-details">
-                            <h3>Ghost Lens</h3>
-                            <p>Talk with ghosts in photos</p>
-                            <div class="project-tags">
-                                <span>Horror</span>
-                            </div>
-                        </div>
-                        <a href="GhostLens/" class="project-link">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </article>
-
-                    <!-- All Projects -->
-                        <!-- BlahChat -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="BlahChat/download/Icon.png" alt="BlahChat">
-                            </div>
-                            <div class="project-details">
-                                <h3>BlahChat</h3>
-                                <p>Chat application</p>
-                                <div class="project-tags">
-                                    <span>Chat</span>
-                                </div>
-                            </div>
-                            <a href="BlahChat/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- CatsThoughts -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="CatsThoughts/download/Icon.png" alt="CatsThoughts">
-                            </div>
-                            <div class="project-details">
-                                <h3>CatsThoughts</h3>
-                                <p>Cat emotion analyzer</p>
-                                <div class="project-tags">
-                                    <span>Pets</span>
-                                </div>
-                            </div>
-                            <a href="CatsThoughts/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- ChartingSkills -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="ChartingSkills/download/Icon.png" alt="ChartingSkills">
-                            </div>
-                            <div class="project-details">
-                                <h3>ChartingSkills</h3>
-                                <p>Data visualization tools</p>
-                                <div class="project-tags">
-                                    <span>Analytics</span>
-                                </div>
-                            </div>
-                            <a href="ChartingSkills/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- ChatVibe -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="ChatVibe/download/Icon.png" alt="ChatVibe">
-                            </div>
-                            <div class="project-details">
-                                <h3>ChatVibe</h3>
-                                <p>Social messaging platform</p>
-                                <div class="project-tags">
-                                    <span>Social</span>
-                                </div>
-                            </div>
-                            <a href="ChatVibe/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- CryptoSkills -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="CryptoSkills/download/Icon.png" alt="CryptoSkills">
-                            </div>
-                            <div class="project-details">
-                                <h3>CryptoSkills</h3>
-                                <p>Learn cryptocurrency trading</p>
-                                <div class="project-tags">
-                                    <span>Education</span>
-                                </div>
-                            </div>
-                            <a href="CryptoSkills/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- DogsThoughts -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="DogsThoughts/download/Icon.png" alt="DogsThoughts">
-                            </div>
-                            <div class="project-details">
-                                <h3>DogsThoughts</h3>
-                                <p>Dog emotion analyzer</p>
-                                <div class="project-tags">
-                                    <span>Pets</span>
-                                </div>
-                            </div>
-                            <a href="DogsThoughts/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- FaceMatch -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="faceMatch/download/Icon.png" alt="FaceMatch">
-                            </div>
-                            <div class="project-details">
-                                <h3>FaceMatch</h3>
-                                <p>Face matching game</p>
-                                <div class="project-tags">
-                                    <span>Game</span>
-                                </div>
-                            </div>
-                            <a href="faceMatch/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- GeniePlanner -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="GeniePlanner/download/Icon.png" alt="GeniePlanner">
-                            </div>
-                            <div class="project-details">
-                                <h3>GeniePlanner</h3>
-                                <p>Intelligent planning assistant</p>
-                                <div class="project-tags">
-                                    <span>Productivity</span>
-                                </div>
-                            </div>
-                            <a href="GeniePlanner/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- Lookey -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="Lookey/download/Icon.png" alt="Lookey">
-                            </div>
-                            <div class="project-details">
-                                <h3>Lookey</h3>
-                                <p>Visual search tool</p>
-                                <div class="project-tags">
-                                    <span>Tools</span>
-                                </div>
-                            </div>
-                            <a href="Lookey/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- MODEE -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="MODEE/download/Icon.png" alt="MODEE">
-                            </div>
-                            <div class="project-details">
-                                <h3>MODEE</h3>
-                                <p>Fashion and style guide</p>
-                                <div class="project-tags">
-                                    <span>Fashion</span>
-                                </div>
-                            </div>
-                            <a href="MODEE/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- Rizzet -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="Rizzet/download/Icon.png" alt="Rizzet">
-                            </div>
-                            <div class="project-details">
-                                <h3>Rizzet</h3>
-                                <p>Social confidence builder</p>
-                                <div class="project-tags">
-                                    <span>Lifestyle</span>
-                                </div>
-                            </div>
-                            <a href="Rizzet/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- Selah -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="Selah/download/Icon.png" alt="Selah">
-                            </div>
-                            <div class="project-details">
-                                <h3>Selah</h3>
-                                <p>Meditation and mindfulness</p>
-                                <div class="project-tags">
-                                    <span>Wellness</span>
-                                </div>
-                            </div>
-                            <a href="Selah/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- CatsDiary -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="CatsDiary/download/Icon.png" alt="CatsDiary">
-                            </div>
-                            <div class="project-details">
-                                <h3>CatsDiary</h3>
-                                <p>Daily diary for cat lovers</p>
-                                <div class="project-tags">
-                                    <span>Diary</span>
-                                </div>
-                            </div>
-                            <a href="CatsDiary/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- HeartAI -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="HeartAI/download/Icon.png" alt="HeartAI">
-                            </div>
-                            <div class="project-details">
-                                <h3>HeartAI</h3>
-                                <p>AI-powered heart rate analyzer</p>
-                                <div class="project-tags">
-                                    <span>Health</span>
-                                </div>
-                            </div>
-                            <a href="HeartAI/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- MindMapAI -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="MindMapAI/download/Icon.png" alt="MindMapAI">
-                            </div>
-                            <div class="project-details">
-                                <h3>MindMapAI</h3>
-                                <p>AI mind mapping tool</p>
-                                <div class="project-tags">
-                                    <span>Productivity</span>
-                                </div>
-                            </div>
-                            <a href="MindMapAI/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- OneAI -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="OneAI/download/Icon.png" alt="OneAI">
-                            </div>
-                            <div class="project-details">
-                                <h3>OneAI</h3>
-                                <p>All-in-one AI assistant</p>
-                                <div class="project-tags">
-                                    <span>AI</span>
-                                </div>
-                            </div>
-                            <a href="OneAI/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- SecretMind -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="SecretMind/download/Icon.png" alt="SecretMind">
-                            </div>
-                            <div class="project-details">
-                                <h3>SecretMind</h3>
-                                <p>Private thought journal</p>
-                                <div class="project-tags">
-                                    <span>Privacy</span>
-                                </div>
-                            </div>
-                            <a href="SecretMind/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                        <!-- StatUP -->
-                        <article class="project-item">
-                            <div class="project-icon">
-                                <img src="StatUP/download/Icon.png" alt="StatUP">
-                            </div>
-                            <div class="project-details">
-                                <h3>StatUP</h3>
-                                <p>Statistics and analytics tracker</p>
-                                <div class="project-tags">
-                                    <span>Analytics</span>
-                                </div>
-                            </div>
-                            <a href="StatUP/" class="project-link">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </article>
-
-                </div>
-            </section>
-
-            <!-- About Section -->
-            <section id="about" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">About Me</h2>
-                </div>
-                
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>
-                            I'm an Agent Engineer specializing in building AI-powered mobile applications
-                            that combine intelligent automation with exceptional user experiences.
-                            I've launched over 30 apps integrating LLM capabilities, serving thousands of active users.
-                        </p>
-                        <p>
-                            My focus is on creating autonomous agent systems that enhance productivity and solve
-                            complex problems through natural interaction. I bridge the gap between cutting-edge AI
-                            technology and practical, user-friendly mobile solutions.
-                        </p>
-                    </div>
-                    
-                    <div class="tech-stack">
-                        <h3>Tech Stack</h3>
-                        <div class="tech-grid">
-                            <div class="tech-category">
-                                <h4>AI & Agents</h4>
-                                <div class="tech-items">
-                                    <span>Claude API</span>
-                                    <span>GPT-4</span>
-                                </div>
-                            </div>
-                            <div class="tech-category">
-                                <h4>Mobile</h4>
-                                <div class="tech-items">
-                                    <span>Flutter</span>
-                                    <span>Swift</span>
-                                    <span>Kotlin</span>
-                                    <span>React Native</span>
-                                </div>
-                            </div>
-                            <div class="tech-category">
-                                <h4>Backend</h4>
-                                <div class="tech-items">
-                                    <span>Firebase</span>
-                                    <span>Node.js</span>
-                                    <span>Vector DB</span>
-                                    <span>REST API</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">Get In Touch</h2>
-                    <p class="section-subtitle">Let's create something amazing together</p>
-                </div>
-                
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <a href="mailto:alyduho984530@gmail.com" class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>alyduho984530@gmail.com</span>
-                        </a>
-                        
-                        <a href="https://github.com/k984530" target="_blank" class="contact-item">
-                            <i class="fab fa-github"></i>
-                            <span>github.com/k984530</span>
-                        </a>
-                        
-                        <a href="https://won-space.com" target="_blank" class="contact-item">
-                            <i class="fas fa-globe"></i>
-                            <span>won-space.com</span>
-                        </a>
-                    </div>
-                    
-                    <div class="contact-cta">
-                        <p>Interested in working together?</p>
-                        <a href="mailto:alyduho984530@gmail.com" class="cta-button">
-                            Send me an email
-                        </a>
-                    </div>
-                </div>
-            </section>
-        </main>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span><i></i> AI Apps</span><span><i></i> Finance Tools</span><span><i></i> Social Products</span><span><i></i> Lifestyle Systems</span><span><i></i> Mobile Utilities</span><span><i></i> Built End to End</span>
+        <span><i></i> AI Apps</span><span><i></i> Finance Tools</span><span><i></i> Social Products</span><span><i></i> Lifestyle Systems</span><span><i></i> Mobile Utilities</span><span><i></i> Built End to End</span>
+      </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <button class="mobile-menu-btn">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    <section class="section dark-section" id="profile" aria-labelledby="profileTitle">
+      <div class="section-inner">
+        <div class="split-label micro-label">
+          <span>Profile</span>
+          <span>2026 Portfolio</span>
+        </div>
+        <div class="profile-grid">
+          <div class="reveal">
+            <h2 class="profile-headline" id="profileTitle">아이디어를 <strong>제품화</strong>하는 개발자, 최원입니다.</h2>
+            <p class="profile-copy">추상적인 니즈를 실제 화면, 데이터 구조, 스토어 배포 가능한 앱으로 바꿉니다. 프로토타입에서 멈추지 않고 사람들이 눌러볼 수 있는 형태까지 가져가는 실행력을 중요하게 봅니다.</p>
+            <div class="contact-rows">
+              <div><span>Mail</span><span>hello@choiwon.dev</span></div>
+              <div><span>Base</span><span>Seoul, Korea</span></div>
+              <div><span>Scope</span><span>Product, AI, Mobile, Web</span></div>
+            </div>
+          </div>
+          <div class="resume-list reveal">
+            <div class="resume-group">
+              <h3>Experience</h3>
+              <div class="resume-item"><span>30개 이상의 앱 아이디어 기획, 개발, 출시 흐름 구축</span><time>2025</time></div>
+              <div class="resume-item"><span>AI 기반 개인화 도구와 소비자 앱 다수 제작</span><time>2025</time></div>
+              <div class="resume-item"><span>금융, 관계, 생산성, 라이프스타일 도메인 실험</span><time>2025</time></div>
+            </div>
+            <div class="resume-group">
+              <h3>Skills</h3>
+              <div class="resume-item"><span>Product Thinking, Frontend, Mobile, AI Workflow</span><time>Core</time></div>
+              <div class="resume-item"><span>Rapid Prototyping, Store Launch, Iteration System</span><time>Ops</time></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
+    <section class="section paper-section" aria-labelledby="overviewTitle">
+      <div class="section-inner overview-layout">
+        <div class="reveal">
+          <div class="split-label micro-label">
+            <span>Overview</span>
+            <span>Index</span>
+          </div>
+          <div class="mini-logo" aria-hidden="true">
+            <span>C</span><span>H</span><span>O</span><span>I</span><span>W</span><span>N</span>
+          </div>
+        </div>
+        <div class="project-index reveal" id="overviewTitle">
+          <article class="index-item">
+            <span class="num">Project Cluster 01</span>
+            <h3>AI Companions</h3>
+            <p>개인화 대화, 정리, 아이디어 확장을 돕는 AI 앱 라인업.</p>
+          </article>
+          <article class="index-item">
+            <span class="num">Project Cluster 02</span>
+            <h3>Finance Intelligence</h3>
+            <p>차트, 암호화폐, 투자 판단을 보조하는 분석형 제품.</p>
+          </article>
+          <article class="index-item">
+            <span class="num">Project Cluster 03</span>
+            <h3>Social Experiments</h3>
+            <p>관계와 커뮤니케이션을 더 가볍게 풀어내는 소비자 앱.</p>
+          </article>
+          <article class="index-item">
+            <span class="num">Project Cluster 04</span>
+            <h3>Everyday Tools</h3>
+            <p>수면, 기록, 계획, 코드, 선택을 위한 일상형 유틸리티.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pink-section" id="showcase" aria-labelledby="showcaseTitle">
+      <div class="section-inner">
+        <div class="case-kicker">
+          <span>Product System Showcase</span>
+          <span>Project 01</span>
+        </div>
+        <div class="case-stage">
+          <div class="reveal">
+            <div class="case-title">
+              <h2 id="showcaseTitle">Ship<br>Fast</h2>
+            </div>
+            <div class="case-details">
+              <div>
+                <b>Summary</b>
+                <span>아이디어를 빠르게 화면화하고 실제 앱 경험으로 검증합니다.</span>
+              </div>
+              <div>
+                <b>Date</b>
+                <span>2025 - 2026</span>
+              </div>
+              <div>
+                <b>Scope</b>
+                <span>Planning, Design, Code, Launch</span>
+              </div>
+            </div>
+          </div>
+          <div class="video-composition reveal">
+            <div class="device-frame">
+              <video src="assets/laptop_desktop.mp4" muted playsinline autoplay loop preload="metadata"></video>
+            </div>
+            <div class="floating-icons" aria-hidden="true">
+              <img src="icons/MindMapAI.png" alt="">
+              <img src="icons/Wealtha.png" alt="">
+              <img src="icons/StatUP.png" alt="">
+              <img src="icons/GhostLens.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section paper-section" aria-labelledby="processTitle">
+      <div class="section-inner process-grid">
+        <div class="process-copy reveal">
+          <div class="split-label micro-label">
+            <span>Problem & Solution</span>
+            <span>Method</span>
+          </div>
+          <h2 id="processTitle">작게 만들고, 실제 사용 흐름에서 다시 고칩니다.</h2>
+          <p>각 프로젝트는 거대한 기획서보다 빠른 실행으로 시작합니다. 기능의 핵심을 먼저 꺼내고, 앱 아이콘, 스토어 링크, 사용 시나리오까지 이어지는 완결된 흐름을 만듭니다.</p>
+        </div>
+        <div class="process-flow reveal">
+          <article class="flow-shape">
+            <div>
+              <span>01</span>
+              <h3>Problem</h3>
+              <p>한 문장으로 설명 가능한 사용자 문제를 정의합니다.</p>
+            </div>
+          </article>
+          <article class="flow-shape">
+            <div>
+              <span>02</span>
+              <h3>Prototype</h3>
+              <p>AI와 코드 워크플로로 빠르게 첫 제품을 만듭니다.</p>
+            </div>
+          </article>
+          <article class="flow-shape">
+            <div>
+              <span>03</span>
+              <h3>Launch</h3>
+              <p>실제 배포와 피드백을 통해 다음 버전을 결정합니다.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section paper-section" aria-labelledby="identityTitle">
+      <div class="section-inner">
+        <div class="identity-wrap">
+          <div class="identity-title reveal">
+            <div class="split-label micro-label">
+              <span>Visual Identity</span>
+              <span>System</span>
+            </div>
+            <h2 id="identityTitle">강한 타이포와 원색 포인트로 작업의 속도를 드러냅니다.</h2>
+            <p>레퍼런스의 포트폴리오 덱 감각을 웹에 맞게 재해석했습니다. 검은 배경의 노이즈, 대형 워드마크, 핑크 중심의 그래픽 스티커, 앱 아이콘을 사용해 제품 포트폴리오의 밀도를 만듭니다.</p>
+          </div>
+          <div class="type-sample reveal">
+            <div class="type-row">
+              <span>Display</span>
+              <div>
+                <b>Archivo Black</b>
+                <small>CHOI WON PORTFOLIO. Heavy / Poster / Uppercase</small>
+              </div>
+            </div>
+            <div class="type-row">
+              <span>Korean</span>
+              <div>
+                <b>아이디어를 제품으로</b>
+                <small>IBM Plex Sans KR. Clear / Dense / Editorial</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swatches reveal" aria-label="Portfolio color system">
+          <div class="swatch pink-soft"><b>Soft Pink</b><span>#FFB3D1<br>Poster base</span></div>
+          <div class="swatch pink"><b>Deep Pink</b><span>#FF72AC<br>Graphic accent</span></div>
+          <div class="swatch blue"><b>Signal Blue</b><span>#078FDB<br>AI cluster</span></div>
+          <div class="swatch yellow"><b>Launch Yellow</b><span>#F4BD18<br>Utility cluster</span></div>
+          <div class="swatch black"><b>Black</b><span>#262626<br>Deck surface</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark-section works-section" id="works" aria-labelledby="worksTitle">
+      <div class="section-inner">
+        <div class="works-head reveal">
+          <h2 id="worksTitle">Selected<br>Works</h2>
+          <p>카테고리별 앱 아이콘을 포트폴리오 보드처럼 재배열했습니다. 각 프로젝트는 사용자의 OS에 맞춰 스토어 링크로 이동합니다.</p>
+        </div>
+
+        <div class="filter-tabs" id="filterTabs" aria-label="Project categories">
+          <button class="tab active" type="button" data-filter="all">All</button>
+          <button class="tab" type="button" data-filter="ai">AI</button>
+          <button class="tab" type="button" data-filter="finance">Finance</button>
+          <button class="tab" type="button" data-filter="social">Social</button>
+          <button class="tab" type="button" data-filter="lifestyle">Life</button>
+          <button class="tab" type="button" data-filter="tools">Tools</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section dark-section contact-section" id="contact" aria-labelledby="contactTitle">
+      <div class="section-inner">
+        <h2 class="contact-title reveal" id="contactTitle">Build<br>Next</h2>
+        <div class="contact-panel reveal">
+          <div class="split-label micro-label">
+            <span>Contact</span>
+            <span>Portfolio End</span>
+          </div>
+          <p>새로운 아이디어를 실제 제품으로 만드는 일이 필요하다면, 작업의 문제와 목표부터 빠르게 정리해 시작할 수 있습니다.</p>
+          <div class="contact-links">
+            <a href="mailto:hello@choiwon.dev"><span>Email</span><span>hello@choiwon.dev</span></a>
+            <a href="#"><span>GitHub</span><span>Open Profile</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const projects = [
+      { name: "AppHub", cat: "ai", icon: "icons/AppHub.png", ios: "https://apps.apple.com/app/app-hub-manage-plan-apps/id6745819583", android: "https://play.google.com/store/apps/details?id=com.aly.AppHub" },
+      { name: "FriendAI", cat: "ai", icon: "icons/FriendAI.png", ios: "https://apps.apple.com/app/friend-ai-personal-friend/id6749029092", android: "https://play.google.com/store/apps/details?id=com.aly.FriendAI" },
+      { name: "MindMapAI", cat: "ai", icon: "icons/MindMapAI.png", ios: "https://apps.apple.com/us/app/idea-note-mindmap-ai/id6751484503", android: "https://play.google.com/store/apps/details?id=com.aly.MindMapAI" },
+      { name: "BlahChats", cat: "ai", icon: "icons/BlahChats.png", ios: "https://apps.apple.com/app/blahchat/id6744993951", android: "https://play.google.com/store/apps/details?id=com.aly.BlahChat" },
+      { name: "CryptoAI", cat: "finance", icon: "icons/CryptoAI.png", ios: "https://apps.apple.com/app/crypto-ai-bitcoin-assistant/id6749213360", android: "https://play.google.com/store/apps/details?id=com.aly.CryptoAI" },
+      { name: "CryptoInsight", cat: "finance", icon: "icons/CryptoInsight.png", ios: "https://apps.apple.com/app/crypto-skills-ai-signal/id6747077362", android: "https://play.google.com/store/apps/details?id=com.aly.CryptoSkills" },
+      { name: "CryptoSkills", cat: "finance", icon: "icons/CryptoSkills.png", ios: "https://apps.apple.com/app/crypto-skills-ai-signal/id6747077362", android: "https://play.google.com/store/apps/details?id=com.aly.CryptoSkills" },
+      { name: "ChartingSkill", cat: "finance", icon: "icons/ChartingSkill.png", ios: "https://apps.apple.com/app/crypto-stock-charting-skill/id6746440165", android: "https://play.google.com/store/apps/details?id=com.aly.ChartingSkills" },
+      { name: "Wealtha", cat: "finance", icon: "icons/Wealtha.png", ios: "https://apps.apple.com/app/stocks-crypto-fin-wealtha/id6746156248", android: "https://play.google.com/store/apps/details?id=com.aly.Wealtha" },
+      { name: "HeartAI", cat: "social", icon: "icons/HeartAI.png", ios: "https://apps.apple.com/us/app/heart-ai-personal-friend/id6749819872", android: "https://play.google.com/store/apps/details?id=com.aly.HeartAI" },
+      { name: "LoveExpert", cat: "social", icon: "icons/LoveExpert.png", ios: "https://apps.apple.com/app/chat-vibe-check-chat-analyzer/id6742811212", android: "https://play.google.com/store/apps/details?id=com.aly.com.aly.loveExpert" },
+      { name: "FaceMatch", cat: "social", icon: "icons/FaceMatch.png", ios: "https://apps.apple.com/app/face-match-ai/id6743154306", android: "https://play.google.com/store/apps/details?id=com.aly.faceMatch" },
+      { name: "RizzChat", cat: "social", icon: "icons/RizzChat.png", ios: "https://apps.apple.com/app/rizzet/id6742974140", android: "https://play.google.com/store/apps/details?id=com.aly.rizzChat" },
+      { name: "SecretMinds", cat: "social", icon: "icons/SecretMinds.png", android: "https://play.google.com/store/apps/details?id=com.aly.SecretMind" },
+      { name: "TheArtOfSeduction", cat: "social", icon: "icons/TheArtOfSeduction.png", ios: "https://apps.apple.com/app/seduction-rules/id6748376070", android: "https://play.google.com/store/apps/details?id=com.aly.SeductionRules" },
+      { name: "CatsDiary", cat: "lifestyle", icon: "icons/CatsDiary.png", ios: "https://apps.apple.com/us/app/cats-diary-photo-reminder/id6751799793", android: "https://play.google.com/store/apps/details?id=com.aly.CatsDiary" },
+      { name: "CatsThoughts", cat: "lifestyle", icon: "icons/CatsThoughts.png", ios: "https://apps.apple.com/app/cats-thoughts/id6743672789", android: "https://play.google.com/store/apps/details?id=com.aly.CatsThoughts" },
+      { name: "DogsThoughts", cat: "lifestyle", icon: "icons/DogsThoughts.png", ios: "https://apps.apple.com/app/dogs-thoughts/id6743701891", android: "https://play.google.com/store/apps/details?id=com.aly.DogsThoughts" },
+      { name: "StarDiary", cat: "lifestyle", icon: "icons/StarDiary.png" },
+      { name: "SweetSleep", cat: "lifestyle", icon: "icons/SweetSleep.png", ios: "https://apps.apple.com/app/sweet-sleep-solving-insomnia/id6751185069", android: "https://play.google.com/store/apps/details?id=com.aly.SweetSleep" },
+      { name: "Selah", cat: "lifestyle", icon: "icons/Selah.png", ios: "https://apps.apple.com/us/app/a-bible-verse-selah/id6745543908", android: "https://play.google.com/store/apps/details?id=com.aly.Selah" },
+      { name: "Growvi", cat: "lifestyle", icon: "icons/Growvi.png", ios: "https://apps.apple.com/app/parenting-tips-growvi/id6746027004", android: "https://play.google.com/store/apps/details?id=com.aly.Growvi" },
+      { name: "Anythoughts", cat: "lifestyle", icon: "icons/Anythoughts.png", ios: "https://apps.apple.com/app/any-thoughts/id6743646601", android: "https://play.google.com/store/apps/details?id=com.aly.EmotiCam" },
+      { name: "GeniePlanner", cat: "tools", icon: "icons/GeniePlanner.png", ios: "https://apps.apple.com/app/genie-planner/id6743991901", android: "https://play.google.com/store/apps/details?id=com.aly.GeniePlanner" },
+      { name: "VibePlanning", cat: "tools", icon: "icons/VibePlanning.png", ios: "https://apps.apple.com/app/app-vibe-planning/id6748576063", android: "https://play.google.com/store/apps/details?id=com.aly.VibePlanning" },
+      { name: "StatUP", cat: "tools", icon: "icons/StatUP.png", ios: "https://apps.apple.com/us/app/statup-goals-to-do-journal/id6752215390", android: "https://play.google.com/store/apps/details?id=com.aly.StatUP" },
+      { name: "MobileCode", cat: "tools", icon: "icons/MobileCode.png", ios: "https://apps.apple.com/us/app/mobile-code-remote-desktop/id6747654271", android: "https://play.google.com/store/apps/details?id=com.aly.MobileCode" },
+      { name: "AnyPick", cat: "tools", icon: "icons/AnyPick.png", ios: "https://apps.apple.com/kr/app/anypick/id6740760810", android: "https://play.google.com/store/apps/details?id=com.aly.anypick" },
+      { name: "Lookey", cat: "tools", icon: "icons/Lookey.png", ios: "https://apps.apple.com/app/lookey-ai/id6744290690", android: "https://play.google.com/store/apps/details?id=com.aly.Lookey" },
+      { name: "GhostLens", cat: "tools", icon: "icons/GhostLens.png", ios: "https://apps.apple.com/us/app/ghost-lens/id6752831954", android: "https://play.google.com/store/apps/details?id=com.aly.GhostLens" }
+    ];
+
+    const categoryLabels = {
+      ai: "AI",
+      finance: "Finance",
+      social: "Social",
+      lifestyle: "Life",
+      tools: "Tools"
+    };
+
+    const userOS = (() => {
+      const ua = navigator.userAgent;
+      if (/iPhone|iPad|iPod/.test(ua)) return "ios";
+      if (/Android/.test(ua)) return "android";
+      return "desktop";
+    })();
+
+    const grid = document.getElementById("projectsGrid");
+    const filterTabs = document.getElementById("filterTabs");
+
+    function getStoreUrl(project) {
+      if (userOS === "ios") return project.ios || project.android;
+      if (userOS === "android") return project.android || project.ios;
+      return project.ios || project.android;
+    }
+
+    function openProject(project) {
+      const url = getStoreUrl(project);
+      if (url) window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    function buildProjects(filter = "all") {
+      const list = filter === "all" ? projects : projects.filter((project) => project.cat === filter);
+      grid.innerHTML = "";
+
+      list.forEach((project, index) => {
+        const card = document.createElement("article");
+        card.className = "project-card";
+        card.dataset.cat = project.cat;
+        card.tabIndex = getStoreUrl(project) ? 0 : -1;
+        card.setAttribute("aria-label", `${project.name} ${categoryLabels[project.cat]}`);
+        card.innerHTML = `
+          <img src="${project.icon}" alt="${project.name}" loading="lazy">
+          <h3>${project.name}</h3>
+          <footer>
+            <span class="cat">${categoryLabels[project.cat]}</span>
+            <span class="idx">${String(index + 1).padStart(2, "0")}</span>
+          </footer>
+        `;
+
+        if (getStoreUrl(project)) {
+          card.addEventListener("click", () => openProject(project));
+          card.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              openProject(project);
+            }
+          });
+        } else {
+          card.style.cursor = "default";
+        }
+
+        grid.appendChild(card);
+      });
+
+      observeProjectCards();
+    }
+
+    filterTabs.addEventListener("click", (event) => {
+      const button = event.target.closest(".tab");
+      if (!button) return;
+      filterTabs.querySelectorAll(".tab").forEach((tab) => tab.classList.remove("active"));
+      button.classList.add("active");
+      buildProjects(button.dataset.filter);
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16, rootMargin: "0px 0px -40px 0px" });
+
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+
+    let cardObserver;
+    function observeProjectCards() {
+      if (cardObserver) cardObserver.disconnect();
+      cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: "0px 0px -24px 0px" });
+
+      grid.querySelectorAll(".project-card").forEach((card, index) => {
+        card.style.transitionDelay = `${Math.min(index * 28, 420)}ms`;
+        cardObserver.observe(card);
+      });
+    }
+
+    function updateProgress() {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? (window.scrollY / max) * 100 : 0;
+      document.getElementById("scrollProgress").style.width = `${progress}%`;
+    }
+
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+
+    buildProjects();
+    updateProgress();
+  </script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Choi Won Portfolio</title>
+  <rect width="64" height="64" rx="10" fill="#07100f"/>
+  <rect x="7" y="7" width="50" height="50" rx="8" fill="#07100f" stroke="#fffaf2" stroke-width="4"/>
+  <rect x="11" y="7" width="11" height="5" fill="#ff72ac"/>
+  <rect x="22" y="7" width="11" height="5" fill="#078fdb"/>
+  <rect x="33" y="7" width="11" height="5" fill="#f4bd18"/>
+  <rect x="44" y="7" width="9" height="5" fill="#15be66"/>
+  <g fill="#ff72ac" transform="translate(2 2)">
+    <rect x="14" y="23" width="7" height="21" rx="1"/>
+    <rect x="14" y="23" width="18" height="7" rx="1"/>
+    <rect x="14" y="37" width="18" height="7" rx="1"/>
+    <path d="M34 23h7l3 14 4-14h5l4 14 3-14h7l-6 21h-7l-4-13-4 13h-7z"/>
+  </g>
+  <g fill="#fffaf2">
+    <rect x="14" y="23" width="7" height="21" rx="1"/>
+    <rect x="14" y="23" width="18" height="7" rx="1"/>
+    <rect x="14" y="37" width="18" height="7" rx="1"/>
+    <path d="M34 23h7l3 14 4-14h5l4 14 3-14h7l-6 21h-7l-4-13-4 13h-7z"/>
+  </g>
+  <rect x="26" y="31" width="7" height="7" fill="#07100f"/>
+</svg>
