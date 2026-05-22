@@ -153,6 +153,91 @@ function verifyTeamSourcePacketRuntime(html) {
   assert.match(decodeURIComponent(elements.get("teamBriefInvoiceLink").href), /decision owner ready/);
 }
 
+function verifyProHeadshotReadinessRuntime(html) {
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const proPackageLabels[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "Profile headshot page must include the professional readiness script");
+
+  const listeners = new Map();
+  const elements = new Map();
+  const addElement = (id, properties = {}) => {
+    const element = {
+      checked: false,
+      href: "",
+      textContent: "",
+      value: "",
+      options: [],
+      selectedIndex: 0,
+      ...properties,
+      addEventListener: (eventName, callback) => {
+        const key = `${id}:${eventName}`;
+        listeners.set(key, [...(listeners.get(key) || []), callback]);
+      },
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const fire = (id, eventName) => {
+    for (const callback of listeners.get(`${id}:${eventName}`) || []) {
+      callback();
+    }
+  };
+
+  addElement("proHeadshotForm");
+  addElement("proHeadshotPackage", {
+    value: "professional-refresh",
+    options: [
+      { dataset: { price: "290000" }, textContent: "Professional refresh - 290,000 KRW" },
+    ],
+  });
+  addElement("proHeadshotSource", { value: "CryptoAI" });
+  addElement("proHeadshotUse", { value: "Finance creator profile" });
+  addElement("proHeadshotAov", { value: "100000" });
+  addElement("proHeadshotProfileLink", { value: "https://example.com/profile" });
+  addElement("proHeadshotDeadline", { value: "This week" });
+  addElement("proHeadshotNotes", { value: "" });
+  addElement("proHeadshotEmailPreview");
+  addElement("proHeadshotInvoiceLink");
+  addElement("proReadinessFaceVisible", { checked: true });
+  addElement("proReadinessLighting", { checked: true });
+  addElement("proReadinessNoObstruction");
+  addElement("proReadinessReferenceReady");
+  addElement("proReadinessScore");
+  addElement("proReadinessRecommendation");
+  addElement("proReadinessInvoiceNote");
+
+  vm.runInNewContext(
+    scriptMatch[1],
+    {
+      document: {
+        getElementById: (id) => elements.get(id) ?? null,
+      },
+      encodeURIComponent,
+      URLSearchParams,
+      window: {
+        location: {
+          search: "?source=cryptoai&package=professional-refresh",
+        },
+      },
+    },
+    { timeout: 1000 },
+  );
+
+  assert.equal(elements.get("proReadinessScore").textContent, "2/4 ready");
+  assert.match(elements.get("proReadinessRecommendation").textContent, /Add blur-free source photos and a reference profile/);
+  assert.match(elements.get("proHeadshotEmailPreview").textContent, /Source photo readiness: 2\/4 ready/);
+  assert.match(decodeURIComponent(elements.get("proHeadshotInvoiceLink").href), /Source photo readiness: 2\/4 ready/);
+
+  elements.get("proReadinessNoObstruction").checked = true;
+  fire("proReadinessNoObstruction", "change");
+  elements.get("proReadinessReferenceReady").checked = true;
+  fire("proReadinessReferenceReady", "change");
+
+  assert.equal(elements.get("proReadinessScore").textContent, "4/4 ready");
+  assert.equal(elements.get("proReadinessRecommendation").textContent, "This source-photo set is ready for professional invoice review.");
+  assert.match(elements.get("proHeadshotEmailPreview").textContent, /Source photo readiness: 4\/4 ready/);
+  assert.match(decodeURIComponent(elements.get("proHeadshotInvoiceLink").href), /reference profile ready/);
+}
+
 const requiredFiles = [
   "Kova/index.html",
   "Kova/download/index.html",
@@ -980,6 +1065,16 @@ assert.match(profileHeadshot, /id="proHeadshotProfileLink"/);
 assert.match(profileHeadshot, /id="proHeadshotDeadline"/);
 assert.match(profileHeadshot, /id="proHeadshotEmailPreview"/);
 assert.match(profileHeadshot, /id="proHeadshotInvoiceLink"/);
+assert.match(profileHeadshot, /Source photo readiness checker/);
+assert.match(profileHeadshot, /id="proSourceReadinessChecker"/);
+assert.match(profileHeadshot, /id="proReadinessFaceVisible"/);
+assert.match(profileHeadshot, /id="proReadinessLighting"/);
+assert.match(profileHeadshot, /id="proReadinessNoObstruction"/);
+assert.match(profileHeadshot, /id="proReadinessReferenceReady"/);
+assert.match(profileHeadshot, /id="proReadinessScore"/);
+assert.match(profileHeadshot, /id="proReadinessRecommendation"/);
+assert.match(profileHeadshot, /id="proReadinessInvoiceNote"/);
+assert.match(profileHeadshot, /Source photo readiness:/);
 assert.match(profileHeadshot, /function updateProHeadshotBrief/);
 assert.match(profileHeadshot, /Estimated paid orders to recover fee:/);
 assert.match(profileHeadshot, /No live checkout, payment link, or buyer message is created/);
@@ -1127,5 +1222,7 @@ assert.match(support, /account deletion/i);
 assert.match(support, /privacy\.html/);
 assert.match(support, /terms\.html/);
 assert.match(support, new RegExp(contactEmail));
+
+verifyProHeadshotReadinessRuntime(profileHeadshot);
 
 console.log("Kova public pages verification passed");

@@ -134,6 +134,15 @@
         .preview-box h3 { margin: 0; font-size: 1.24rem; }
         .preview { min-height: 240px; margin: 0; padding: 16px; border: 2px solid var(--ink); border-radius: 8px; background: #101114; color: var(--white); white-space: pre-wrap; line-height: 1.58; overflow-wrap: anywhere; }
         .safety-note { margin: 0; color: var(--muted); line-height: 1.55; }
+        .readiness-panel { display: grid; grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1.18fr); gap: 18px; margin: 0 0 18px; border: 2px solid var(--ink); border-radius: 8px; background: #eef9f3; padding: 22px; box-shadow: 8px 8px 0 var(--mint); }
+        .readiness-copy h3 { margin: 0 0 10px; font-size: 1.26rem; }
+        .readiness-copy p { margin: 0; color: var(--muted); line-height: 1.62; }
+        .readiness-checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+        .readiness-option { display: flex; gap: 10px; align-items: flex-start; min-height: 62px; padding: 12px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); font-weight: 800; line-height: 1.35; }
+        .readiness-option input { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; accent-color: var(--mint); }
+        .readiness-summary { grid-column: 1 / -1; display: grid; gap: 8px; padding: 14px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); }
+        .readiness-summary strong { color: var(--accent); font-size: 1.12rem; }
+        .readiness-summary p { margin: 0; color: var(--muted); line-height: 1.55; }
         .section { padding: 56px 0; border-top: 2px solid var(--line); }
         .section-head { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 42px; align-items: end; margin-bottom: 22px; }
         .section h2 { margin: 0; font-size: clamp(2rem, 4.4vw, 3.8rem); line-height: 0.96; text-transform: uppercase; }
@@ -162,7 +171,9 @@
             .cards,
             .sprint-grid,
             .brief-panel,
-            .brief-form { grid-template-columns: 1fr; }
+            .brief-form,
+            .readiness-panel,
+            .readiness-checks { grid-template-columns: 1fr; }
             .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .field.full { grid-column: auto; }
         }
@@ -271,6 +282,35 @@
                     <h3>Market-facing visual system</h3>
                     <p>A broader visual package for professional posts, report thumbnails, profile variants, and launch or investor-facing visuals.</p>
                 </article>
+            </div>
+            <div class="readiness-panel" id="proSourceReadinessChecker">
+                <div class="readiness-copy">
+                    <h3>Source photo readiness checker</h3>
+                    <p>Before requesting an invoice, check whether the source photos are ready enough for a professional sprint. The result is added to the invoice email preview so scope starts with fewer back-and-forth questions.</p>
+                </div>
+                <div class="readiness-checks" aria-label="Professional source photo readiness">
+                    <label class="readiness-option">
+                        <input id="proReadinessFaceVisible" type="checkbox" checked>
+                        Face is clearly visible and front-facing
+                    </label>
+                    <label class="readiness-option">
+                        <input id="proReadinessLighting" type="checkbox" checked>
+                        Lighting is usable without harsh blur or shadows
+                    </label>
+                    <label class="readiness-option">
+                        <input id="proReadinessNoObstruction" type="checkbox">
+                        No heavy obstruction, filters, sunglasses, or motion blur
+                    </label>
+                    <label class="readiness-option">
+                        <input id="proReadinessReferenceReady" type="checkbox">
+                        Reference profile, brand page, or target usage is ready
+                    </label>
+                    <div class="readiness-summary">
+                        <strong id="proReadinessScore">2/4 ready</strong>
+                        <p id="proReadinessRecommendation">Add blur-free source photos and a reference profile before invoice review.</p>
+                        <p id="proReadinessInvoiceNote">Source photo readiness: 2/4 ready</p>
+                    </div>
+                </div>
             </div>
             <div class="brief-panel">
                 <form class="brief-form" id="proHeadshotForm">
@@ -388,6 +428,28 @@
             chartingskills: "ChartingSkills",
             wealtha: "Wealtha"
         };
+        const proReadinessItems = [
+            {
+                id: "proReadinessFaceVisible",
+                ready: "face visible",
+                missing: "clear face photo needed"
+            },
+            {
+                id: "proReadinessLighting",
+                ready: "usable lighting",
+                missing: "usable lighting needed"
+            },
+            {
+                id: "proReadinessNoObstruction",
+                ready: "blur-free source photos",
+                missing: "blur-free source photos needed"
+            },
+            {
+                id: "proReadinessReferenceReady",
+                ready: "reference profile ready",
+                missing: "reference profile needed"
+            }
+        ];
 
         function proFieldValue(id, fallback = "") {
             const field = document.getElementById(id);
@@ -399,17 +461,43 @@
             return Number(field.options[field.selectedIndex].dataset.price || 290000);
         }
 
+        function proHeadshotReadinessNote() {
+            const readyItems = [];
+            const missingItems = [];
+            for (const item of proReadinessItems) {
+                const field = document.getElementById(item.id);
+                if (field && field.checked) {
+                    readyItems.push(item.ready);
+                } else {
+                    missingItems.push(item.missing);
+                }
+            }
+            const readyCount = readyItems.length;
+            const note = "Source photo readiness: " + readyCount + "/" + proReadinessItems.length + " ready; " + readyItems.join(", ");
+            const fullNote = missingItems.length ? note + "; missing: " + missingItems.join(", ") : note + "; all source checks ready";
+
+            document.getElementById("proReadinessScore").textContent = readyCount + "/" + proReadinessItems.length + " ready";
+            document.getElementById("proReadinessInvoiceNote").textContent = fullNote;
+            document.getElementById("proReadinessRecommendation").textContent = missingItems.length
+                ? "Add blur-free source photos and a reference profile before invoice review."
+                : "This source-photo set is ready for professional invoice review.";
+
+            return fullNote;
+        }
+
         function updateProHeadshotBrief() {
             const packageField = document.getElementById("proHeadshotPackage");
             const packageLabel = proPackageLabels[packageField.value] || packageField.options[packageField.selectedIndex].textContent;
             const averageOrderValue = Math.max(1, Number(proFieldValue("proHeadshotAov", "100000").replace(/[^0-9]/g, "")) || 100000);
             const recoveryOrders = Math.ceil(selectedProHeadshotPrice() / averageOrderValue);
+            const readinessNote = proHeadshotReadinessNote();
             const body = [
                 "Selected package: " + packageLabel,
                 "Referral source: " + proFieldValue("proHeadshotSource", "Direct profile headshot page"),
                 "Primary use: " + proFieldValue("proHeadshotUse", "LinkedIn or resume profile"),
                 "Profile or reference link: " + proFieldValue("proHeadshotProfileLink", "Not added yet"),
                 "Target deadline: " + proFieldValue("proHeadshotDeadline", "Open"),
+                readinessNote,
                 "Average paid order value: " + averageOrderValue.toLocaleString("en-US") + " KRW",
                 "Estimated paid orders to recover fee: about " + recoveryOrders,
                 "Notes: " + proFieldValue("proHeadshotNotes", "Source photos and preferred professional usage will be shared before invoice."),
@@ -432,6 +520,9 @@
         }
         document.getElementById("proHeadshotForm").addEventListener("input", updateProHeadshotBrief);
         document.getElementById("proHeadshotForm").addEventListener("change", updateProHeadshotBrief);
+        for (const item of proReadinessItems) {
+            document.getElementById(item.id).addEventListener("change", updateProHeadshotBrief);
+        }
         updateProHeadshotBrief();
     </script>
 </body>
