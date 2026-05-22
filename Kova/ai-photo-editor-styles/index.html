@@ -64,7 +64,8 @@
         .closing-box { border: 2px solid var(--ink); border-radius: 8px; background: #eef9f3; padding: 26px; box-shadow: 8px 8px 0 var(--mint); }
         .closing-box h2 { margin: 0 0 10px; font-size: 1.45rem; }
         .closing-box p { max-width: 680px; margin: 0 0 20px; color: var(--muted); line-height: 1.65; }
-        footer { padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
+        footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 850px) {
             .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .why { grid-template-columns: 1fr; }
@@ -131,12 +132,21 @@
             <div class="closing-box">
                 <h2>Open Kova on your phone</h2>
                 <p>The mobile download page automatically sends iPhone and Android visitors to the right store.</p>
-                <a class="button" href="../download/index.html">Open download page</a>
-                <a class="button secondary" href="../pricing/">Compare credits</a>
+                <div class="cta-row">
+                    <a class="button" href="../download/index.html">Open download page</a>
+                    <a class="button secondary" href="../pricing/">Pricing & credits</a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="shell">Contact: <a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></footer>
+    <footer class="shell">
+        <span>Contact: <a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></span>
+        <nav class="footer-links" aria-label="Kova policies">
+            <a href="../privacy.html">Privacy</a>
+            <a href="../terms.html">Terms</a>
+            <a href="../support.html">Support</a>
+        </nav>
+    </footer>
 </body>
 </html>

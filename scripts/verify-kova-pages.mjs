@@ -8,6 +8,9 @@ const contactEmail = "alyduho984530@gmail.com";
 const requiredFiles = [
   "Kova/index.html",
   "Kova/download/index.html",
+  "Kova/download-qr.svg",
+  "Kova/pricing/index.html",
+  "Kova/ai-photo-editor-styles/index.html",
   "Kova/privacy.html",
   "Kova/terms.html",
   "Kova/support.html",
@@ -22,11 +25,13 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, pricing, styles, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
   readFile("Kova/download/index.html", "utf8"),
+  readFile("Kova/pricing/index.html", "utf8"),
+  readFile("Kova/ai-photo-editor-styles/index.html", "utf8"),
   readFile("Kova/privacy.html", "utf8"),
   readFile("Kova/terms.html", "utf8"),
   readFile("Kova/support.html", "utf8"),
@@ -45,7 +50,7 @@ assert.match(index, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\
 assert.match(index, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(index, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 assert.match(index, /Kova\/download\/index\.html/);
-assert.match(index, /api\.qrserver\.com/);
+assert.match(index, /download-qr\.svg/);
 assert.match(index, /download\/Icon\.png/);
 assert.match(index, /assets\/figurine\.webp/);
 assert.match(index, /assets\/anime\.webp/);
@@ -57,6 +62,8 @@ assert.match(index, /private galleries/i);
 assert.match(index, /privacy\.html/);
 assert.match(index, /terms\.html/);
 assert.match(index, /support\.html/);
+assert.match(index, /pricing\//);
+assert.match(index, /ai-photo-editor-styles\//);
 assert.match(index, new RegExp(contactEmail));
 
 assert.match(download, /const iosUrl = "https:\/\/apps\.apple\.com\/us\/app\/kova-ai-photo-editor\/id6766026914"/);
@@ -68,6 +75,25 @@ assert.match(download, /Google Play/);
 assert.match(download, /privacy\.html/);
 assert.match(download, /terms\.html/);
 assert.match(download, /support\.html/);
+
+assert.match(pricing, /Kova Pricing, Credits, and Memberships/);
+assert.match(pricing, /Credit Packs/);
+assert.match(pricing, /Monthly Plans/);
+assert.match(pricing, /\.\.\/download\/index\.html/);
+assert.match(pricing, /\.\.\/ai-photo-editor-styles\//);
+assert.match(pricing, /\.\.\/privacy\.html/);
+assert.match(pricing, /\.\.\/terms\.html/);
+assert.match(pricing, /\.\.\/support\.html/);
+
+assert.match(styles, /AI Photo Editor Styles/);
+assert.match(styles, /Collectible Figurine/);
+assert.match(styles, /Anime Portrait/);
+assert.match(styles, /RevenueCat/);
+assert.match(styles, /\.\.\/download\/index\.html/);
+assert.match(styles, /\.\.\/pricing\//);
+assert.match(styles, /\.\.\/privacy\.html/);
+assert.match(styles, /\.\.\/terms\.html/);
+assert.match(styles, /\.\.\/support\.html/);
 
 assert.match(privacy, /Privacy Policy/);
 assert.match(privacy, /Kova/);

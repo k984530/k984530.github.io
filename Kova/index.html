@@ -151,6 +151,18 @@
             box-shadow: 8px 8px 0 var(--mint);
         }
 
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 22px;
+            font-weight: 800;
+        }
+
+        .resource-links a {
+            color: var(--blue);
+        }
+
         .phone-handoff h2 {
             margin: 0 0 8px;
             font-size: 1rem;
@@ -406,6 +418,10 @@
                     <a class="store-button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova" target="_blank" rel="noopener">Google Play</a>
                     <a class="store-button secondary" href="pricing/">Pricing & credits</a>
                 </div>
+                <nav class="resource-links" aria-label="Kova resources">
+                    <a href="ai-photo-editor-styles/">Explore AI styles</a>
+                    <a href="pricing/">Credits and pricing</a>
+                </nav>
                 <aside class="phone-handoff" aria-labelledby="phoneHandoffTitle">
                     <h2 id="phoneHandoffTitle">Open Kova on your phone</h2>
                     <p>Scan the QR code or open this short download page on your phone. It sends iPhone and Android visitors to the right store.</p>
@@ -467,6 +483,7 @@
     <footer class="shell">
         <span>Contact: <a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></span>
         <nav class="footer-links" aria-label="Kova policies">
+            <a href="ai-photo-editor-styles/">Styles</a>
             <a href="pricing/">Pricing</a>
             <a href="privacy.html">Privacy</a>
             <a href="terms.html">Terms</a>
