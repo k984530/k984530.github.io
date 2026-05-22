@@ -141,13 +141,19 @@
         .cost-grid { display: grid; grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr); gap: 18px; align-items: stretch; margin-top: 20px; }
         .cost-panel { display: grid; gap: 12px; align-content: start; border: 2px solid var(--line); border-radius: 8px; background: #fffdf7; padding: 18px; }
         .cost-panel label { display: grid; gap: 8px; color: var(--muted); font-weight: 800; }
-        .cost-panel input { width: 100%; min-height: 54px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); color: var(--ink); font: inherit; font-size: 1.12rem; font-weight: 900; padding: 10px 12px; }
+        .cost-panel input,
+        .cost-panel select { width: 100%; min-height: 54px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); color: var(--ink); font: inherit; font-size: 1.12rem; font-weight: 900; padding: 10px 12px; }
         .cost-results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
         .cost-metric { display: grid; gap: 8px; min-height: 132px; border: 2px solid var(--ink); border-radius: 8px; background: #e9f1ff; padding: 16px; }
         .cost-metric:nth-child(2) { background: #eef9f3; }
         .cost-metric:nth-child(3) { background: #fff6d2; }
         .cost-label { color: var(--muted); font-size: 0.9rem; font-weight: 900; text-transform: uppercase; }
         .cost-value { display: block; overflow-wrap: anywhere; font-size: clamp(1.05rem, 2.4vw, 1.45rem); font-weight: 950; line-height: 1.18; }
+        .packet-planner { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 24px; box-shadow: 8px 8px 0 var(--mint); }
+        .packet-grid { display: grid; grid-template-columns: minmax(240px, 0.76fr) minmax(0, 1.24fr); gap: 18px; align-items: stretch; margin-top: 20px; }
+        .packet-checks { display: grid; gap: 10px; }
+        .packet-check { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start; min-height: 50px; padding: 12px; border: 2px solid var(--line); border-radius: 8px; background: var(--white); color: var(--ink); font-weight: 800; }
+        .packet-check input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--blue); }
         .brief-builder { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 24px; box-shadow: 8px 8px 0 var(--blue); }
         .brief-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
         .brief-field { display: grid; gap: 8px; color: var(--muted); font-weight: 800; }
@@ -175,7 +181,7 @@
         footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 900px) {
-            .hero, .section-head, .request-grid, .brief-grid, .cost-grid, .cost-results { grid-template-columns: 1fr; }
+            .hero, .section-head, .request-grid, .brief-grid, .cost-grid, .cost-results, .packet-grid { grid-template-columns: 1fr; }
             .cards { grid-template-columns: 1fr; }
         }
         @media (max-width: 560px) {
@@ -194,6 +200,7 @@
                 <div class="cta-row" aria-label="Kova Team Headshot Sprint actions">
                     <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request&body=Selected%20package%3A%20Founder%20profile%20refresh%20-%20990%2C000%20KRW%0ABuyer%20or%20company%3A%20%0ATeam%20size%3A%20%0ALinkedIn%20or%20company%20page%3A%20%0ACommercial%20usage%20scope%3A%20LinkedIn%20profiles%20%2F%20team%20page%20%2F%20hiring%20page%0ATarget%20deadline%3A%20%0ANotes%3A%20">Request invoice</a>
                     <a class="button secondary" href="#teamCostCalculator">Estimate team cost</a>
+                    <a class="button secondary" href="#teamSourcePacketPlanner">Plan source packet</a>
                     <a class="button secondary" href="../ai-linkedin-photo-generator/">LinkedIn photo app</a>
                     <a class="button secondary" href="../ai-hiring-page-headshots/">Hiring page headshots</a>
                     <a class="button secondary" href="../ai-corporate-headshot-generator/">Corporate headshots</a>
@@ -271,6 +278,63 @@
             </div>
         </section>
 
+        <section class="section shell" aria-labelledby="teamSourcePacketTitle">
+            <div class="packet-planner" id="teamSourcePacketPlanner">
+                <div class="section-head">
+                    <h2 id="teamSourcePacketTitle">Team source packet planner</h2>
+                    <p>Turn source-photo readiness into a concrete invoice note. The planner only updates this page and the email preview; it does not upload files, create payment links, or send a message.</p>
+                </div>
+                <div class="packet-grid">
+                    <div class="cost-panel">
+                        <label for="teamSourcePacketSize">
+                            <span>People to include</span>
+                            <input id="teamSourcePacketSize" type="number" min="1" step="1" value="6" inputmode="numeric">
+                        </label>
+                        <label for="sourcePacketUseCase">
+                            <span>Primary use</span>
+                            <select id="sourcePacketUseCase">
+                                <option value="LinkedIn refresh">LinkedIn refresh</option>
+                                <option value="Company team page">Company team page</option>
+                                <option value="Hiring page">Hiring page</option>
+                                <option value="Sales and founder profiles">Sales and founder profiles</option>
+                            </select>
+                        </label>
+                        <div class="packet-checks" aria-label="Source packet readiness">
+                            <label class="packet-check" for="sourcePacketPhotosReady">
+                                <input id="sourcePacketPhotosReady" type="checkbox">
+                                <span>One clear source photo is ready for each teammate</span>
+                            </label>
+                            <label class="packet-check" for="sourcePacketReferenceReady">
+                                <input id="sourcePacketReferenceReady" type="checkbox">
+                                <span>Company page, LinkedIn page, or hiring page reference is ready</span>
+                            </label>
+                            <label class="packet-check" for="sourcePacketDecisionOwner">
+                                <input id="sourcePacketDecisionOwner" type="checkbox">
+                                <span>One decision owner can approve final selections</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="cost-results" aria-live="polite">
+                            <div class="cost-metric">
+                                <span class="cost-label">Source photos needed</span>
+                                <span class="cost-value" id="sourcePacketPhotoCount">6 source photos needed</span>
+                            </div>
+                            <div class="cost-metric">
+                                <span class="cost-label">Packet readiness</span>
+                                <span class="cost-value" id="sourcePacketStatus">0/3 packet ready</span>
+                            </div>
+                            <div class="cost-metric">
+                                <span class="cost-label">Invoice note</span>
+                                <span class="cost-value" id="sourcePacketInvoiceNote">LinkedIn refresh</span>
+                            </div>
+                        </div>
+                        <p class="fit-note" id="sourcePacketRecommendation">Add source photos, a reference page, and a decision owner before invoice review.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="section shell" aria-labelledby="requestTitle">
             <div class="request-box">
                 <h2 id="requestTitle">Invoice request fields</h2>
@@ -281,6 +345,7 @@
                     <span>Team size:</span>
                     <span>LinkedIn or company page:</span>
                     <span>Commercial usage scope:</span>
+                    <span>Source packet:</span>
                     <span>Target deadline:</span>
                 </div>
             </div>
@@ -458,6 +523,11 @@
             const invoiceLink = document.getElementById("teamBriefInvoiceLink");
             const packageFit = document.getElementById("teamBriefPackageFit");
             const usageScope = document.getElementById("teamBriefUsageScope");
+            const sourcePacketItems = [
+                { id: "sourcePacketPhotosReady", label: "source photos ready for each teammate" },
+                { id: "sourcePacketReferenceReady", label: "reference page ready" },
+                { id: "sourcePacketDecisionOwner", label: "decision owner ready" },
+            ];
 
             function field(id) {
                 return document.getElementById(id);
@@ -479,6 +549,81 @@
                 return costPackages.find((option) => teamSize <= option.maxTeamSize) || costPackages[2];
             }
 
+            function normalizedTeamSize(id, fallback = 1) {
+                const input = field(id);
+                const teamSize = Math.max(1, Number.parseInt(input?.value, 10) || fallback);
+                if (input && String(teamSize) !== input.value) {
+                    input.value = String(teamSize);
+                }
+                return teamSize;
+            }
+
+            function sourcePacketDetails() {
+                const teamSize = normalizedTeamSize("teamSourcePacketSize", 1);
+                const checkedItems = sourcePacketItems
+                    .filter((item) => field(item.id)?.checked)
+                    .map((item) => item.label);
+                const readiness = `${checkedItems.length}/3 packet ready`;
+                const sourcePhotos = `${teamSize} source photo${teamSize === 1 ? "" : "s"} needed`;
+                const useCase = fieldValue("sourcePacketUseCase") || "LinkedIn refresh";
+                const checkedLabel = checkedItems.length ? checkedItems.join(", ") : "missing source packet items";
+
+                return {
+                    teamSize,
+                    readiness,
+                    sourcePhotos,
+                    useCase,
+                    invoiceLine: `${readiness}; ${sourcePhotos}; ${useCase}; ${checkedLabel}`,
+                };
+            }
+
+            function syncSourcePacketTeamSize(teamSize, force = false) {
+                const teamSizeField = field("teamBriefTeamSize");
+                const costSizeField = field("teamSizeCalculatorInput");
+                const packageField = field("teamBriefPackage");
+                if (teamSizeField && (force || teamSizeField.dataset.sourcePacketSynced === "true" || teamSizeField.value === "1")) {
+                    teamSizeField.value = String(teamSize);
+                    teamSizeField.dataset.sourcePacketSynced = "true";
+                }
+                if (costSizeField && (force || costSizeField.dataset.sourcePacketSynced === "true" || costSizeField.value === "6")) {
+                    costSizeField.value = String(teamSize);
+                    costSizeField.dataset.sourcePacketSynced = "true";
+                }
+                if (packageField && (force || packageField.dataset.sourcePacketSynced === "true" || packageField.value === "founder-profile-refresh")) {
+                    packageField.value = selectedCostPackage(teamSize).packageId;
+                    packageField.dataset.sourcePacketSynced = "true";
+                    syncUsageScope(true);
+                }
+            }
+
+            function updateTeamSourcePacketPlanner() {
+                const details = sourcePacketDetails();
+                syncSourcePacketTeamSize(details.teamSize);
+
+                const photoCount = field("sourcePacketPhotoCount");
+                const status = field("sourcePacketStatus");
+                const invoiceNote = field("sourcePacketInvoiceNote");
+                const recommendation = field("sourcePacketRecommendation");
+
+                if (photoCount) {
+                    photoCount.textContent = details.sourcePhotos;
+                }
+                if (status) {
+                    status.textContent = details.readiness;
+                }
+                if (invoiceNote) {
+                    invoiceNote.textContent = details.useCase;
+                }
+                if (recommendation) {
+                    const readyCount = sourcePacketItems.filter((item) => field(item.id)?.checked).length;
+                    recommendation.textContent = readyCount === sourcePacketItems.length
+                        ? "This source packet is ready for invoice review."
+                        : readyCount >= 2
+                            ? "The packet is close. Send it with the missing item noted."
+                            : "Add source photos, a reference page, and a decision owner before invoice review.";
+                }
+            }
+
             function updateTeamCostCalculator() {
                 const input = field("teamSizeCalculatorInput");
                 const packageName = field("teamCostPackageName");
@@ -487,10 +632,7 @@
                 const fitNote = field("teamCostFitNote");
                 if (!input || !packageName || !total || !perPerson || !fitNote) return;
 
-                const teamSize = Math.max(1, Number.parseInt(input.value, 10) || 1);
-                if (String(teamSize) !== input.value) {
-                    input.value = String(teamSize);
-                }
+                const teamSize = normalizedTeamSize("teamSizeCalculatorInput", 1);
                 const selected = selectedCostPackage(teamSize);
                 const packagePrice = selected.packagePrice;
 
@@ -519,6 +661,7 @@
                     ["Team size", fieldValue("teamBriefTeamSize") || "1"],
                     ["LinkedIn or company page", fieldValue("teamBriefCompanyPage")],
                     ["Commercial usage scope", fieldValue("teamBriefUsageScope") || selected.scope],
+                    ["Source packet", sourcePacketDetails().invoiceLine],
                     ["Target deadline", fieldValue("teamBriefDeadline")],
                     ["Notes", fieldValue("teamBriefNotes")],
                 ].map(([label, value]) => `${label}: ${value}`).join("\n");
@@ -538,6 +681,20 @@
             form?.addEventListener("change", updateTeamBriefInvoiceLink);
             field("teamSizeCalculatorInput")?.addEventListener("input", updateTeamCostCalculator);
             field("teamSizeCalculatorInput")?.addEventListener("change", updateTeamCostCalculator);
+            for (const id of ["teamSourcePacketSize", "sourcePacketUseCase", ...sourcePacketItems.map((item) => item.id)]) {
+                field(id)?.addEventListener("input", () => {
+                    updateTeamSourcePacketPlanner();
+                    updateTeamCostCalculator();
+                    updateTeamBriefInvoiceLink();
+                });
+                field(id)?.addEventListener("change", () => {
+                    updateTeamSourcePacketPlanner();
+                    updateTeamCostCalculator();
+                    updateTeamBriefInvoiceLink();
+                });
+            }
+            syncSourcePacketTeamSize(normalizedTeamSize("teamSourcePacketSize", 1), true);
+            updateTeamSourcePacketPlanner();
             updateTeamCostCalculator();
             syncUsageScope(true);
             updateTeamBriefInvoiceLink();
