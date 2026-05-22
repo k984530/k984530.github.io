@@ -62,6 +62,7 @@ const kovaPromoDirs = new Set([
   "FriendAI",
   "GeniePlanner",
   "GhostLens",
+  "Growvi",
   "HeartAI",
   "Lookey",
   "MindMapAI",
@@ -69,7 +70,10 @@ const kovaPromoDirs = new Set([
   "Rizzet",
   "SeductionRules",
   "SecretMind",
+  "Selah",
+  "StarDiary",
   "StatUP",
+  "SweetSleep",
   "VibePlanning",
   "Wealtha",
   "faceMatch",
@@ -99,6 +103,13 @@ const professionalKovaIntentDirs = new Set([
   "CryptoAI",
   "CryptoSkills",
   "Wealtha",
+]);
+
+const journalKovaIntentDirs = new Set([
+  "Growvi",
+  "Selah",
+  "StarDiary",
+  "SweetSleep",
 ]);
 
 const toolKovaIntentDirs = new Map([
@@ -195,6 +206,12 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     }
     if (professionalKovaIntentDirs.has(dir) && !html.includes("profile headshots")) {
       failures.push(`${dir}: missing Kova profile-headshot intent copy`);
+    }
+    if (journalKovaIntentDirs.has(dir) && !html.includes("../Kova/ai-journal-cover-generator/")) {
+      failures.push(`${dir}: missing Kova journal-cover intent link`);
+    }
+    if (journalKovaIntentDirs.has(dir) && !html.includes("journal cover visuals")) {
+      failures.push(`${dir}: missing Kova journal-cover intent copy`);
     }
     if (toolKovaIntentDirs.has(dir) && !html.includes("../Kova/app-launch-visuals/")) {
       failures.push(`${dir}: missing Kova app-launch visuals intent link`);

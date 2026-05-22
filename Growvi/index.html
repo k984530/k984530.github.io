@@ -172,6 +172,57 @@
         .contact a:hover {
             border-bottom-color: white;
         }
+
+        .kova-promo {
+            display: grid;
+            grid-template-columns: 84px minmax(0, 1fr);
+            gap: 22px;
+            align-items: center;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .kova-promo img {
+            width: 84px;
+            height: 84px;
+            border-radius: 20px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+        }
+
+        .kova-promo h2 {
+            margin: 0 0 10px;
+            color: #1f2937;
+            font-size: 1.7em;
+        }
+
+        .kova-promo p {
+            margin: 0;
+            color: #666;
+            line-height: 1.75;
+        }
+
+        .kova-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .kova-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 18px;
+            border-radius: 8px;
+            background: #1f2937;
+            color: white;
+            font-weight: 800;
+            text-decoration: none;
+        }
         
         @media (max-width: 768px) {
             h1 {
@@ -189,6 +240,15 @@
             .download-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .kova-promo {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .kova-promo img {
+                margin: 0 auto;
             }
         }
     </style>
@@ -252,6 +312,17 @@
                 </div>
             </div>
         </div>
+
+        <section class="kova-promo" aria-labelledby="kovaJournalTitle">
+            <img src="../Kova/download/Icon.png" alt="Kova AI Photo Editor icon">
+            <div>
+                <h2 id="kovaJournalTitle">Create journal cover visuals for family milestones</h2>
+                <p>Try Kova with 20 starter credits, enough for about 2 standard image generations, and turn parent-owned photos or non-sensitive family moments into journal cover visuals, memory covers, and reflection cards.</p>
+                <div class="kova-actions">
+                    <a class="kova-link" href="../Kova/ai-journal-cover-generator/">Open Kova</a>
+                </div>
+            </div>
+        </section>
     </main>
     
     <footer class="contact">

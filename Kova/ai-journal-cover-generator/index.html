@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Journal Cover Generator | Kova</title>
+    <meta name="description" content="Create AI journal cover visuals, memory covers, and reflection cards from one photo with Kova. Free to install with starter credits.">
+    <meta name="keywords" content="AI journal cover generator, AI memory cover, reflection card maker, diary cover visuals, Kova AI photo editor">
+    <link rel="canonical" href="https://won-space.com/Kova/ai-journal-cover-generator/">
+
+    <meta property="og:title" content="AI Journal Cover Generator | Kova">
+    <meta property="og:description" content="Turn one photo into journal cover visuals, memory covers, and reflection cards with Kova starter credits.">
+    <meta property="og:image" content="https://won-space.com/Kova/assets/polaroid.webp">
+    <meta property="og:url" content="https://won-space.com/Kova/ai-journal-cover-generator/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Journal Cover Generator | Kova">
+    <meta name="twitter:description" content="Make journal cover visuals and reflection cards from one photo.">
+    <meta name="twitter:image" content="https://won-space.com/Kova/assets/polaroid.webp">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "SoftwareApplication",
+                "name": "Kova: AI Photo Editor",
+                "applicationCategory": "PhotographyApplication",
+                "operatingSystem": "iOS, Android",
+                "description": "Kova turns one photo into journal cover visuals, memory covers, reflection cards, profile images, and other share-ready AI styles. New accounts include 20 starter credits for trying about 2 standard image generations.",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                },
+                "url": "https://won-space.com/Kova/ai-journal-cover-generator/",
+                "downloadUrl": [
+                    "https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914",
+                    "https://play.google.com/store/apps/details?id=com.aly.kova"
+                ],
+                "image": [
+                    "https://won-space.com/Kova/assets/polaroid.webp",
+                    "https://won-space.com/Kova/assets/profile_headshot.webp",
+                    "https://won-space.com/Kova/assets/anime.webp"
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What are AI journal cover visuals?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "They are stylized images made from one source photo for journal covers, memory covers, reflection cards, private diary themes, and calming social posts."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Can I try this before paying?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes. Kova is free to install, and new accounts include 20 starter credits, enough for about 2 standard image generations."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How many credits does a standard generation use?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "A standard image generation uses 10 credits per standard image generation. Credit packs and monthly plans are available for more attempts."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        * { box-sizing: border-box; }
+        :root {
+            --ink: #111214;
+            --paper: #fffaf0;
+            --muted: #665f57;
+            --line: rgba(17, 18, 20, 0.16);
+            --accent: #ff6f61;
+            --blue: #2f73ff;
+            --sage: #49a078;
+            --yellow: #f3c94d;
+            --white: #ffffff;
+        }
+        body {
+            margin: 0;
+            min-width: 320px;
+            background:
+                linear-gradient(90deg, rgba(17, 18, 20, 0.045) 1px, transparent 1px) 0 0 / 56px 56px,
+                linear-gradient(0deg, rgba(17, 18, 20, 0.032) 1px, transparent 1px) 0 0 / 56px 56px,
+                var(--paper);
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        a { color: inherit; }
+        .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 0.98fr) minmax(320px, 1.02fr);
+            gap: 44px;
+            align-items: center;
+            padding: 66px 0 56px;
+        }
+        .crumb { display: inline-block; margin-bottom: 22px; color: var(--muted); font-weight: 800; text-decoration: none; }
+        .eyebrow { margin: 0 0 16px; color: var(--accent); font-weight: 900; text-transform: uppercase; }
+        h1 { max-width: 780px; margin: 0; font-size: clamp(2.9rem, 7.4vw, 7rem); line-height: 0.9; letter-spacing: 0; text-transform: uppercase; }
+        .lead { max-width: 670px; margin: 24px 0 0; color: var(--muted); font-size: clamp(1.06rem, 2vw, 1.34rem); line-height: 1.56; }
+        .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+        .button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; padding: 0 20px; border: 2px solid var(--ink); border-radius: 8px; background: var(--ink); color: var(--white); font-weight: 800; text-decoration: none; box-shadow: 7px 7px 0 var(--yellow); }
+        .button.secondary { background: var(--white); color: var(--ink); box-shadow-color: var(--blue); }
+        .value-card { margin-top: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 18px; box-shadow: 8px 8px 0 var(--sage); }
+        .value-card strong { display: block; margin-bottom: 6px; }
+        .value-card p { margin: 0; color: var(--muted); line-height: 1.55; }
+        .preview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .preview-card { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); overflow: hidden; box-shadow: 8px 8px 0 rgba(17, 18, 20, 0.1); }
+        .preview-card img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: #ece7dd; }
+        .preview-card strong { display: block; padding: 12px 14px; }
+        .section { padding: 56px 0; border-top: 2px solid var(--line); }
+        .section-head { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 42px; align-items: end; margin-bottom: 22px; }
+        .section h2 { margin: 0; font-size: clamp(2rem, 4.5vw, 3.9rem); line-height: 0.96; text-transform: uppercase; }
+        .section-head p { margin: 0; color: var(--muted); line-height: 1.66; }
+        .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+        .card { min-height: 184px; padding: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(17, 18, 20, 0.08); }
+        .card:nth-child(2) { background: #edf7f0; }
+        .card:nth-child(3) { background: #eaf1ff; }
+        .card b { display: block; margin-bottom: 8px; color: var(--accent); font-size: 0.82rem; text-transform: uppercase; }
+        .card h3 { margin: 0 0 10px; font-size: 1.24rem; }
+        .card p { margin: 0; color: var(--muted); line-height: 1.62; }
+        .faq { display: grid; gap: 14px; }
+        .faq article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 20px; }
+        .faq h3 { margin: 0 0 8px; }
+        .faq p { margin: 0; color: var(--muted); line-height: 1.65; }
+        .closing { padding: 56px 0 76px; }
+        .closing-box { border: 2px solid var(--ink); border-radius: 8px; background: #fff2e9; padding: 26px; box-shadow: 8px 8px 0 var(--accent); }
+        .closing-box h2 { margin: 0 0 10px; font-size: 1.48rem; }
+        .closing-box p { max-width: 720px; margin: 0 0 20px; color: var(--muted); line-height: 1.65; }
+        footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
+        @media (max-width: 900px) {
+            .hero, .section-head { grid-template-columns: 1fr; }
+            .cards { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 560px) {
+            .preview-grid { grid-template-columns: 1fr; }
+            .button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="hero shell">
+            <div>
+                <a class="crumb" href="../">Kova</a>
+                <p class="eyebrow">Journal and memory visuals</p>
+                <h1>AI Journal Cover Generator</h1>
+                <p class="lead">Turn one photo into journal cover visuals, memory covers, reflection cards, and calm profile images for diary, wellness, parenting, and daily reflection workflows.</p>
+                <div class="cta-row" aria-label="Download Kova">
+                    <a class="button" href="../download/index.html">Open download page</a>
+                    <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914">App Store</a>
+                    <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova">Google Play</a>
+                </div>
+                <aside class="value-card" aria-label="Kova starter credits">
+                    <strong>20 starter credits included</strong>
+                    <p>New accounts can try about 2 standard image generations. Standard edits use 10 credits per standard image generation.</p>
+                </aside>
+            </div>
+            <div class="preview-grid" aria-label="Kova journal cover visual examples">
+                <article class="preview-card">
+                    <img src="../assets/polaroid.webp" alt="Kova Polaroid journal cover visual">
+                    <strong>Memory cover</strong>
+                </article>
+                <article class="preview-card">
+                    <img src="../assets/profile_headshot.webp" alt="Kova calm profile visual">
+                    <strong>Reflection profile</strong>
+                </article>
+                <article class="preview-card">
+                    <img src="../assets/anime.webp" alt="Kova stylized reflection card visual">
+                    <strong>Reflection card</strong>
+                </article>
+                <article class="preview-card">
+                    <img src="../assets/figurine.webp" alt="Kova keepsake style visual">
+                    <strong>Keepsake style</strong>
+                </article>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="useTitle">
+            <div class="section-head">
+                <h2 id="useTitle">From Quiet Apps To Visual Keepsakes</h2>
+                <p>Visitors coming from diary, reflection, sleep, and parenting apps already care about private routines and remembered moments. This page gives them a Kova route that stays focused on personal visuals instead of generic AI photo editing.</p>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <b>Diary</b>
+                    <h3>Journal cover visuals</h3>
+                    <p>Create a cover image for a nightly entry, month-in-review note, or private memory page from one photo.</p>
+                </article>
+                <article class="card">
+                    <b>Reflection</b>
+                    <h3>Reflection cards</h3>
+                    <p>Make calming visuals for prayer, meditation, gratitude notes, verse backgrounds, or a simple end-of-day ritual.</p>
+                </article>
+                <article class="card">
+                    <b>Family</b>
+                    <h3>Memory covers</h3>
+                    <p>Use parent-owned photos or non-sensitive family moments to create a gentle cover for milestones and memory books.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="fitTitle">
+            <div class="section-head">
+                <h2 id="fitTitle">A Clear First Session</h2>
+                <p>Install Kova, choose one photo, and test a calm style direction before buying more credits. The first session is meant to be concrete and low-friction.</p>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <b>1</b>
+                    <h3>Pick one photo</h3>
+                    <p>Start from a landscape, personal object, portrait, pet, or other photo that fits the memory or reflection you want to keep.</p>
+                </article>
+                <article class="card">
+                    <b>2</b>
+                    <h3>Choose a gentle style</h3>
+                    <p>Try Polaroid, profile, anime, figurine, or another ready-made Kova style without writing prompts.</p>
+                </article>
+                <article class="card">
+                    <b>3</b>
+                    <h3>Save or share</h3>
+                    <p>Use the result as a diary cover, memory card, private reference image, or a share-ready visual when appropriate.</p>
+                </article>
+            </div>
+            <div class="cta-row">
+                <a class="button" href="../quick-start/">Quick start</a>
+                <a class="button secondary" href="../pricing/">Compare pricing</a>
+                <a class="button secondary" href="../examples/">See examples</a>
+                <a class="button secondary" href="../ai-photo-editor-styles/">See all styles</a>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="faqTitle">
+            <div class="section-head">
+                <h2 id="faqTitle">Questions</h2>
+                <p>Short answers for journal, wellness, and memory-keeping visitors.</p>
+            </div>
+            <div class="faq">
+                <article>
+                    <h3>What are AI journal cover visuals?</h3>
+                    <p>They are stylized images made from one source photo for journal covers, memory covers, reflection cards, and quiet visual themes.</p>
+                </article>
+                <article>
+                    <h3>Can I try this before paying?</h3>
+                    <p>Yes. Kova is free to install, and new accounts include 20 starter credits for about 2 standard image generations.</p>
+                </article>
+                <article>
+                    <h3>How many credits does a standard generation use?</h3>
+                    <p>Standard image generation uses 10 credits per standard image generation. Credit packs and memberships are available when you want more attempts.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="closing shell">
+            <div class="closing-box">
+                <h2>Create a visual cover for the next memory</h2>
+                <p>Open Kova, use the starter credits, and turn one photo into a calmer visual direction before deciding whether you need more credits.</p>
+                <div class="cta-row">
+                    <a class="button" href="../download/index.html">Download Kova</a>
+                    <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914">App Store</a>
+                    <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova">Google Play</a>
+                    <a class="button secondary" href="../quick-start/">Quick start</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shell">
+        <span>Contact: <a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></span>
+        <nav class="footer-links" aria-label="Kova pages">
+            <a href="../">Kova</a>
+            <a href="../quick-start/">Quick start</a>
+            <a href="../pricing/">Pricing</a>
+            <a href="../examples/">Examples</a>
+            <a href="../ai-photo-editor-styles/">Styles</a>
+            <a href="../privacy.html">Privacy</a>
+            <a href="../terms.html">Terms</a>
+            <a href="../support.html">Support</a>
+        </nav>
+    </footer>
+</body>
+</html>

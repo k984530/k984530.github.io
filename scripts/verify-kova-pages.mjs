@@ -22,6 +22,7 @@ const requiredFiles = [
   "Kova/ai-anime-portrait-generator/index.html",
   "Kova/ai-dating-profile-picture-generator/index.html",
   "Kova/ai-pet-portrait-generator/index.html",
+  "Kova/ai-journal-cover-generator/index.html",
   "Kova/privacy.html",
   "Kova/terms.html",
   "Kova/support.html",
@@ -43,7 +44,7 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, ideaVisualizer, studioSprint, pricing, examples, styles, avatar, anime, dating, pet, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, ideaVisualizer, studioSprint, pricing, examples, styles, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
@@ -61,6 +62,7 @@ const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor
   readFile("Kova/ai-anime-portrait-generator/index.html", "utf8"),
   readFile("Kova/ai-dating-profile-picture-generator/index.html", "utf8"),
   readFile("Kova/ai-pet-portrait-generator/index.html", "utf8"),
+  readFile("Kova/ai-journal-cover-generator/index.html", "utf8"),
   readFile("Kova/privacy.html", "utf8"),
   readFile("Kova/terms.html", "utf8"),
   readFile("Kova/support.html", "utf8"),
@@ -84,6 +86,7 @@ assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-avatar-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-anime-portrait-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-dating-profile-picture-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-pet-portrait-generator\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-journal-cover-generator\//);
 
 assert.match(index, /<title>Kova: AI Photo Editor<\/title>/);
 assert.match(index, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/">/);
@@ -119,6 +122,7 @@ assert.match(index, /ai-avatar-generator\//);
 assert.match(index, /ai-anime-portrait-generator\//);
 assert.match(index, /ai-dating-profile-picture-generator\//);
 assert.match(index, /ai-pet-portrait-generator\//);
+assert.match(index, /ai-journal-cover-generator\//);
 assert.match(index, new RegExp(contactEmail));
 
 assert.match(download, /const iosUrl = "https:\/\/apps\.apple\.com\/us\/app\/kova-ai-photo-editor\/id6766026914"/);
@@ -579,6 +583,27 @@ assert.match(pet, /\.\.\/examples\//);
 assert.match(pet, /\.\.\/ai-photo-editor-styles\//);
 assert.match(pet, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(pet, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+
+assert.match(journal, /<title>AI Journal Cover Generator \| Kova<\/title>/);
+assert.match(journal, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-journal-cover-generator\/">/);
+assert.match(journal, /AI Journal Cover Generator/);
+assert.match(journal, /journal cover visuals/i);
+assert.match(journal, /memory covers/i);
+assert.match(journal, /reflection cards/i);
+assert.match(journal, /20 starter credits/i);
+assert.match(journal, /about 2 standard image generations/i);
+assert.match(journal, /10 credits per standard image generation/i);
+assert.match(journal, /SoftwareApplication/);
+assert.match(journal, /FAQPage/);
+assert.match(journal, /assets\/polaroid\.webp/);
+assert.match(journal, /assets\/profile_headshot\.webp/);
+assert.match(journal, /assets\/anime\.webp/);
+assert.match(journal, /\.\.\/download\/index\.html/);
+assert.match(journal, /\.\.\/pricing\//);
+assert.match(journal, /\.\.\/examples\//);
+assert.match(journal, /\.\.\/ai-photo-editor-styles\//);
+assert.match(journal, new RegExp(iosUrl.replaceAll(".", "\\.")));
+assert.match(journal, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 
 assert.match(privacy, /Privacy Policy/);
 assert.match(privacy, /Kova/);
