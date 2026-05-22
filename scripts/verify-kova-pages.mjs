@@ -1,9 +1,65 @@
 import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
+import vm from "node:vm";
 
 const iosUrl = "https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914";
 const androidUrl = "https://play.google.com/store/apps/details?id=com.aly.kova";
 const contactEmail = "alyduho984530@gmail.com";
+
+function verifyReadinessCheckerRuntime(html) {
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const readinessItems[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "Corporate headshot page must include the readiness checker script");
+
+  const listeners = new Map();
+  const elements = new Map();
+  const checkboxIds = [
+    ["readinessFaceVisible", true],
+    ["readinessLighting", true],
+    ["readinessNoObstruction", false],
+    ["readinessReferenceUrl", false],
+  ];
+
+  for (const [id, checked] of checkboxIds) {
+    elements.set(id, {
+      checked,
+      addEventListener: (eventName, callback) => {
+        if (eventName === "change") {
+          listeners.set(id, callback);
+        }
+      },
+    });
+  }
+
+  elements.set("corporateInvoicePreview", { value: "" });
+  elements.set("readinessInvoiceLink", { href: "" });
+  elements.set("readinessScore", { textContent: "" });
+  elements.set("readinessRecommendation", { textContent: "" });
+
+  vm.runInNewContext(
+    scriptMatch[1],
+    {
+      document: {
+        getElementById: (id) => elements.get(id) ?? null,
+      },
+      encodeURIComponent,
+    },
+    { timeout: 1000 },
+  );
+
+  assert.equal(elements.get("readinessScore").textContent, "2/4 ready");
+  assert.match(elements.get("corporateInvoicePreview").value, /Photo readiness: 2\/4 ready/);
+  assert.match(decodeURIComponent(elements.get("readinessInvoiceLink").href), /Photo readiness: 2\/4 ready/);
+
+  elements.get("readinessNoObstruction").checked = true;
+  listeners.get("readinessNoObstruction")();
+  elements.get("readinessReferenceUrl").checked = true;
+  listeners.get("readinessReferenceUrl")();
+
+  assert.equal(elements.get("readinessScore").textContent, "4/4 ready");
+  assert.equal(elements.get("readinessRecommendation").textContent, "These photos are ready for invoice review.");
+  assert.match(elements.get("corporateInvoicePreview").value, /Photo readiness: 4\/4 ready/);
+  assert.match(decodeURIComponent(elements.get("readinessInvoiceLink").href), /Photo readiness: 4\/4 ready/);
+}
 
 const requiredFiles = [
   "Kova/index.html",
@@ -591,6 +647,7 @@ assert.match(corporateHeadshots, /function updatePhotoReadinessChecker/);
 assert.match(corporateHeadshots, /checkedItems\.length/);
 assert.match(corporateHeadshots, /\.\.\/team-headshot-sprint\/#teamCostCalculator/);
 assert.match(corporateHeadshots, /mailto:alyduho984530@gmail\.com\?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request/);
+verifyReadinessCheckerRuntime(corporateHeadshots);
 assert.match(corporateHeadshots, /application\/ld\+json/);
 assert.match(corporateHeadshots, /Service/);
 assert.match(corporateHeadshots, /OfferCatalog/);
