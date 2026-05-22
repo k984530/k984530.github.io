@@ -905,7 +905,10 @@
             const requestedSource = `${params.get("source") || ""} ${params.get("utm_source") || ""} ${document.referrer || ""}`;
             const sourceLabels = {
                 apphub: "AppHub landing page",
+                genieplanner: "GeniePlanner landing page",
                 mindmapai: "MindMapAI landing page",
+                mobilecode: "MobileCode landing page",
+                vibeplanning: "VibePlanning landing page",
                 direct: "Direct Studio Sprint page",
             };
             const packageOptions = {
@@ -927,9 +930,15 @@
             };
             const referralSource = /apphub/i.test(requestedSource)
                 ? sourceLabels.apphub
-                : /mindmapai/i.test(requestedSource)
-                    ? sourceLabels.mindmapai
-                    : sourceLabels.direct;
+                : /genieplanner/i.test(requestedSource)
+                    ? sourceLabels.genieplanner
+                    : /mindmapai/i.test(requestedSource)
+                        ? sourceLabels.mindmapai
+                        : /mobilecode/i.test(requestedSource)
+                            ? sourceLabels.mobilecode
+                            : /vibeplanning/i.test(requestedSource)
+                                ? sourceLabels.vibeplanning
+                                : sourceLabels.direct;
             const packageParam = params.get("package") || "";
             const selectedPackage = document.getElementById(packageParam);
 

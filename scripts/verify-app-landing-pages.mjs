@@ -57,13 +57,16 @@ const kovaPromoDirs = new Set([
   "CryptoSkills",
   "DogsThoughts",
   "FriendAI",
+  "GeniePlanner",
   "GhostLens",
   "HeartAI",
   "Lookey",
   "MindMapAI",
+  "MobileCode",
   "Rizzet",
   "SeductionRules",
   "SecretMind",
+  "VibePlanning",
   "faceMatch",
 ]);
 
@@ -87,6 +90,12 @@ const petKovaIntentDirs = new Set([
 const professionalKovaIntentDirs = new Set([
   "CryptoAI",
   "CryptoSkills",
+]);
+
+const toolKovaIntentDirs = new Map([
+  ["GeniePlanner", "genieplanner"],
+  ["MobileCode", "mobilecode"],
+  ["VibePlanning", "vibeplanning"],
 ]);
 
 const rootIndex = await readFile("index.html", "utf8");
@@ -176,6 +185,22 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     }
     if (professionalKovaIntentDirs.has(dir) && !html.includes("profile headshots")) {
       failures.push(`${dir}: missing Kova profile-headshot intent copy`);
+    }
+    if (toolKovaIntentDirs.has(dir) && !html.includes("../Kova/app-launch-visuals/")) {
+      failures.push(`${dir}: missing Kova app-launch visuals intent link`);
+    }
+    if (toolKovaIntentDirs.has(dir) && !html.includes("app launch visuals")) {
+      failures.push(`${dir}: missing Kova app-launch visuals intent copy`);
+    }
+    if (toolKovaIntentDirs.has(dir)) {
+      const source = toolKovaIntentDirs.get(dir);
+      const expectedLink = `../Kova/studio-sprint/?source=${source}&package=launch-visual-sprint#launch-visual-sprint`;
+      if (!html.includes(expectedLink)) {
+        failures.push(`${dir}: missing source-aware Kova Studio Sprint service link`);
+      }
+      if (!html.includes("Book Studio Sprint")) {
+        failures.push(`${dir}: missing Kova Studio Sprint service CTA`);
+      }
     }
     if (!html.includes("../Kova/download/Icon.png")) {
       failures.push(`${dir}: missing Kova promo icon`);

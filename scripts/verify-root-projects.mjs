@@ -29,13 +29,16 @@ const requiredDetailRoutes = new Map([
   ["DogsThoughts", "DogsThoughts/"],
   ["FaceMatch", "faceMatch/"],
   ["FriendAI", "FriendAI/"],
+  ["GeniePlanner", "GeniePlanner/"],
   ["GhostLens", "GhostLens/"],
   ["HeartAI", "HeartAI/"],
   ["Lookey", "Lookey/"],
   ["MindMapAI", "MindMapAI/"],
+  ["MobileCode", "MobileCode/"],
   ["RizzChat", "Rizzet/"],
   ["SecretMinds", "SecretMind/"],
   ["TheArtOfSeduction", "SeductionRules/"],
+  ["VibePlanning", "VibePlanning/"],
 ]);
 
 for (const [projectName, expectedDetail] of requiredDetailRoutes) {
