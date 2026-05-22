@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kova Pricing, Credits, and Memberships</title>
-    <meta name="description" content="Understand Kova credits and memberships before downloading the AI photo editor. Compare credit packs and monthly membership options.">
+    <meta name="description" content="Understand Kova credits, starter credits, credit packs, and monthly memberships before downloading the AI photo editor. Compare generation value and store checkout options.">
     <meta name="keywords" content="Kova pricing, Kova credits, AI photo editor credits, AI photo app membership, Kova premium">
     <link rel="canonical" href="https://won-space.com/Kova/pricing/">
 
     <meta property="og:title" content="Kova Pricing, Credits, and Memberships">
-    <meta property="og:description" content="Compare Kova credit packs and monthly memberships for AI photo generation.">
+    <meta property="og:description" content="Compare Kova starter credits, credit packs, monthly memberships, and approximate image-generation value.">
     <meta property="og:image" content="https://won-space.com/Kova/download/Icon.png">
     <meta property="og:url" content="https://won-space.com/Kova/pricing/">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kova Pricing, Credits, and Memberships">
-    <meta name="twitter:description" content="A clear guide to Kova credits, packs, and monthly memberships.">
+    <meta name="twitter:description" content="A clear guide to Kova credits, packs, monthly memberships, and approximate image-generation value.">
     <meta name="twitter:image" content="https://won-space.com/Kova/download/Icon.png">
 
     <style>
@@ -45,12 +45,20 @@
         a { color: inherit; }
         .shell { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
         .hero { padding: 68px 0 42px; }
+        .hero-layout { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 34px; align-items: end; }
         .crumb { display: inline-flex; margin-bottom: 24px; color: var(--muted); font-weight: 800; text-decoration: none; }
         h1 { margin: 0; max-width: 850px; font-size: clamp(2.7rem, 6.5vw, 6.4rem); line-height: 0.92; letter-spacing: 0; text-transform: uppercase; }
         .lead { max-width: 690px; margin: 24px 0 0; color: var(--muted); font-size: clamp(1.06rem, 2vw, 1.32rem); line-height: 1.58; }
         .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
         .button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; padding: 0 20px; border: 2px solid var(--ink); border-radius: 8px; background: var(--ink); color: var(--white); font-weight: 800; text-decoration: none; box-shadow: 7px 7px 0 var(--yellow); }
         .button.secondary { background: var(--white); color: var(--ink); box-shadow-color: var(--blue); }
+        .starter-card { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 22px; box-shadow: 9px 9px 0 var(--mint); }
+        .starter-card strong { display: block; margin-bottom: 8px; font-size: 1.16rem; }
+        .starter-card p { margin: 0; color: var(--muted); line-height: 1.58; }
+        .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+        .fact { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 14px; }
+        .fact strong { display: block; font-size: 1.1rem; }
+        .fact span { display: block; margin-top: 5px; color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
         .section { padding: 54px 0; border-top: 2px solid var(--line); }
         .section-head { display: flex; justify-content: space-between; gap: 28px; align-items: end; margin-bottom: 22px; }
         .section h2 { margin: 0; font-size: clamp(1.8rem, 4vw, 3.2rem); line-height: 0.98; text-transform: uppercase; }
@@ -61,6 +69,12 @@
         .card b { display: block; margin-bottom: 8px; font-size: 0.82rem; text-transform: uppercase; color: var(--accent); }
         .card h3 { margin: 0 0 10px; font-size: 1.35rem; }
         .card p { margin: 0; color: var(--muted); line-height: 1.6; }
+        .price { margin: 12px 0 10px; font-size: 1.04rem; font-weight: 900; color: var(--ink); }
+        .metric { display: inline-flex; margin-bottom: 10px; padding: 6px 9px; border: 2px solid var(--ink); border-radius: 999px; background: #fff6bf; font-size: 0.84rem; font-weight: 900; }
+        .decision-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .decision { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 22px; box-shadow: 8px 8px 0 rgba(36, 119, 255, 0.18); }
+        .decision h3 { margin: 0 0 10px; font-size: 1.28rem; }
+        .decision p { margin: 0; color: var(--muted); line-height: 1.65; }
         .note { margin-top: 18px; color: var(--muted); line-height: 1.62; }
         .faq { display: grid; gap: 14px; }
         .faq article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 20px; }
@@ -73,9 +87,12 @@
         footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 820px) {
+            .hero-layout { grid-template-columns: 1fr; }
             .section-head { display: block; }
             .section-head p { margin-top: 14px; }
             .grid { grid-template-columns: 1fr; }
+            .facts { grid-template-columns: 1fr; }
+            .decision-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 520px) {
             .button { width: 100%; }
@@ -85,12 +102,35 @@
 <body>
     <main>
         <section class="hero shell">
-            <a class="crumb" href="../">Kova</a>
-            <h1>Pricing, Credits, and Memberships</h1>
-            <p class="lead">Kova uses credits and monthly memberships for AI photo generation. Prices can vary by country and store, so the App Store or Google Play checkout always shows the final local price before purchase.</p>
-            <div class="cta-row" aria-label="Download Kova">
-                <a class="button" href="../download/index.html">Open download page</a>
-                <a class="button secondary" href="../ai-photo-editor-styles/">See AI styles</a>
+            <div class="hero-layout">
+                <div>
+                    <a class="crumb" href="../">Kova</a>
+                    <h1>Pricing, Credits, and Memberships</h1>
+                    <p class="lead">Kova uses credits and monthly memberships for AI photo generation. Prices can vary by country and store, so the App Store or Google Play checkout always shows the final local price before purchase.</p>
+                    <div class="cta-row" aria-label="Download Kova">
+                        <a class="button" href="../download/index.html">Open download page</a>
+                        <a class="button secondary" href="../ai-photo-editor-styles/">See AI styles</a>
+                        <a class="button secondary" href="../examples/">See examples</a>
+                    </div>
+                </div>
+                <aside class="starter-card" aria-label="Kova starter credits">
+                    <strong>20 starter credits included</strong>
+                    <p>New accounts can try about 2 standard image generations before choosing a membership or credit pack. Standard image edits use 10 credits per standard image generation.</p>
+                </aside>
+            </div>
+            <div class="facts" aria-label="Kova credit basics">
+                <div class="fact">
+                    <strong>10 credits</strong>
+                    <span>per standard image generation</span>
+                </div>
+                <div class="fact">
+                    <strong>One-time packs</strong>
+                    <span>best for flexible testing</span>
+                </div>
+                <div class="fact">
+                    <strong>Monthly credits</strong>
+                    <span>best for regular creation</span>
+                </div>
             </div>
         </section>
 
@@ -103,19 +143,26 @@
                 <article class="card">
                     <b>Starter</b>
                     <h3>100 Credits</h3>
+                    <div class="price">$2.00</div>
+                    <span class="metric">about 10 standard image generations</span>
                     <p>Good for trying Kova, testing a few style directions, and seeing which look fits your photo.</p>
                 </article>
                 <article class="card highlight">
                     <b>Popular</b>
                     <h3>500 Credits</h3>
+                    <div class="price">$10.00</div>
+                    <span class="metric">about 50 standard image generations</span>
                     <p>Better for experimenting across multiple styles, saving favorites, and sharing the best edits.</p>
                 </article>
                 <article class="card">
                     <b>Creator</b>
                     <h3>1000 Credits</h3>
+                    <div class="price">$20.00</div>
+                    <span class="metric">about 100 standard image generations</span>
                     <p>Useful for heavier creation sessions, profile refreshes, content batches, and style comparison.</p>
                 </article>
             </div>
+            <p class="note">These are base USD references from the Kova product catalog. Your store may show local currency, tax, promotions, or regional price adjustments before confirmation.</p>
         </section>
 
         <section class="section shell" aria-labelledby="plansTitle">
@@ -127,20 +174,43 @@
                 <article class="card">
                     <b>Entry</b>
                     <h3>Basic</h3>
-                    <p>A lighter monthly option for occasional AI photo edits and simple personal use.</p>
+                    <div class="price">$9.99/month</div>
+                    <span class="metric">500 monthly credits</span>
+                    <p>A lighter monthly option for occasional AI photo edits and simple personal use, with about 50 standard image generations each month.</p>
                 </article>
                 <article class="card highlight">
                     <b>Balanced</b>
                     <h3>Pro</h3>
-                    <p>A practical plan for regular users who want more room to test styles and keep creating.</p>
+                    <div class="price">$29.99/month</div>
+                    <span class="metric">2000 monthly credits</span>
+                    <p>A practical plan for regular users who want more room to test styles and keep creating, with about 200 standard image generations each month.</p>
                 </article>
                 <article class="card">
                     <b>Full</b>
                     <h3>Premium</h3>
-                    <p>The top monthly option for the most active Kova users and frequent style generation.</p>
+                    <div class="price">$99.99/month</div>
+                    <span class="metric">10000 monthly credits</span>
+                    <p>The top monthly option for the most active Kova users and frequent style generation, with about 1000 standard image generations each month.</p>
                 </article>
             </div>
             <p class="note">All purchases are processed by the official App Store or Google Play checkout and can be managed through your store account.</p>
+        </section>
+
+        <section class="section shell" aria-labelledby="choiceTitle">
+            <div class="section-head">
+                <h2 id="choiceTitle">Which Should I Pick?</h2>
+                <p>Use this quick guide before you open the store checkout.</p>
+            </div>
+            <div class="decision-grid">
+                <article class="decision">
+                    <h3>Choose a credit pack</h3>
+                    <p>Pick a one-time pack when you want to test Kova, make a few profile options, or create occasional social posts without a monthly commitment.</p>
+                </article>
+                <article class="decision">
+                    <h3>Choose a monthly plan</h3>
+                    <p>Pick a membership when Kova is part of a recurring creator workflow, profile refresh workflow, or content batch process where you expect to generate every month.</p>
+                </article>
+            </div>
         </section>
 
         <section class="section shell" aria-labelledby="faqTitle">
