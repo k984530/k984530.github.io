@@ -21,7 +21,16 @@ if (!rootIndex.includes('href="https://github.com/k984530"')) {
 
 const requiredDetailRoutes = new Map([
   ["AppHub", "AppHub/"],
+  ["CatsDiary", "CatsDiary/"],
+  ["CatsThoughts", "CatsThoughts/"],
+  ["DogsThoughts", "DogsThoughts/"],
+  ["FaceMatch", "faceMatch/"],
+  ["FriendAI", "FriendAI/"],
+  ["GhostLens", "GhostLens/"],
+  ["Lookey", "Lookey/"],
   ["MindMapAI", "MindMapAI/"],
+  ["RizzChat", "Rizzet/"],
+  ["TheArtOfSeduction", "SeductionRules/"],
 ]);
 
 for (const [projectName, expectedDetail] of requiredDetailRoutes) {
