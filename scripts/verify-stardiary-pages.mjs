@@ -8,9 +8,9 @@ const [rootIndex, appAds] = await Promise.all([
 
 assert.match(rootIndex, /name: "StarDiary"/);
 assert.match(rootIndex, /detail: "StarDiary\/"/);
-assert.match(rootIndex, /if \(userOS === "ios"\) return project\.ios \|\| project\.android \|\| project\.detail;/);
-assert.match(rootIndex, /if \(userOS === "android"\) return project\.android \|\| project\.ios \|\| project\.detail;/);
-assert.match(rootIndex, /return project\.ios \|\| project\.android \|\| project\.detail;/);
+assert.match(rootIndex, /if \(userOS === "ios"\) return project\.ios \|\| project\.detail \|\| project\.android;/);
+assert.match(rootIndex, /if \(userOS === "android"\) return project\.android \|\| project\.detail \|\| project\.ios;/);
+assert.match(rootIndex, /return project\.detail \|\| project\.ios \|\| project\.android;/);
 assert.match(rootIndex, /if \(project\.detail && url === project\.detail\) \{\s*window\.location\.href = url;/);
 assert.match(appAds, /google\.com,\s*pub-/);
 
@@ -32,21 +32,23 @@ const [index, privacy, support] = await Promise.all([
 ]);
 
 assert.match(index, /Star Diary/);
-assert.match(index, /RevenueCat|Pro/i);
-assert.match(index, /AdMob|ads/i);
+assert.match(index, /Star Diary - Stella Notes/);
+assert.match(index, /apps\.apple\.com\/us\/app\/star-diary-stella-notes\/id6756995556/);
+assert.match(index, /Paid download/);
 assert.match(index, /privacy\.html/);
 assert.match(index, /support\.html/);
-assert.match(index, /com\.aly\.StarDiary/);
 
 assert.match(privacy, /Privacy Policy/);
 assert.match(privacy, /Star Diary/);
-assert.match(privacy, /RevenueCat/);
-assert.match(privacy, /AdMob/);
-assert.match(privacy, /subscription/i);
+assert.match(privacy, /does not collect personal data/i);
+assert.match(privacy, /Apple App Store/);
 assert.match(privacy, /children/i);
+assert.doesNotMatch(privacy, /RevenueCat|AdMob/i);
 
 assert.match(support, /Support/);
 assert.match(support, /Star Diary/);
+assert.match(support, /App Store/);
+assert.match(support, /id6756995556/);
 assert.match(support, /mailto:/);
 
 console.log("StarDiary public pages verification passed");
