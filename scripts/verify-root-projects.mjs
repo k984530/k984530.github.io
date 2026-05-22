@@ -12,6 +12,13 @@ const projects = [...rootIndex.matchAll(/\{\s*name: "([^"]+)"([\s\S]*?)\s*\}/g)]
 
 const failures = [];
 
+if (/href="#"/.test(rootIndex)) {
+  failures.push('root index contains placeholder href="#"');
+}
+if (!rootIndex.includes('href="https://github.com/k984530"')) {
+  failures.push("root index missing GitHub profile link");
+}
+
 for (const project of projects) {
   if (!project.icon) {
     failures.push(`${project.name}: missing icon`);
