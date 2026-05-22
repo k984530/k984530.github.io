@@ -128,6 +128,12 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     if (dir === "AppHub" && !html.includes("app launch visuals")) {
       failures.push(`${dir}: missing Kova app-launch visuals intent copy`);
     }
+    if (dir === "MindMapAI" && !html.includes("../Kova/ai-idea-visualizer/")) {
+      failures.push(`${dir}: missing Kova idea-visualizer intent link`);
+    }
+    if (dir === "MindMapAI" && !html.includes("idea visuals")) {
+      failures.push(`${dir}: missing Kova idea-visualizer intent copy`);
+    }
     if (socialKovaIntentDirs.has(dir) && !html.includes("../Kova/ai-dating-profile-picture-generator/")) {
       failures.push(`${dir}: missing Kova dating-profile intent link`);
     }
