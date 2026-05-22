@@ -22,7 +22,13 @@ assert.match(page, /mailto:alyduho984530@gmail\.com\?subject=AI%20Creator%20Prom
 assert.match(page, /Creator action figure/);
 assert.match(page, /App hero mockup/);
 assert.match(page, /Korean launch visual/);
+assert.match(page, /Kova Creator Bundle/);
+assert.match(page, /Use Kova first/);
+assert.match(page, /20 starter credits/);
+assert.match(page, /about 2 standard image generations/);
 assert.match(page, /\.\.\/Kova\//);
+assert.match(page, /\.\.\/Kova\/download\//);
+assert.match(page, /\.\.\/Kova\/pricing\//);
 assert.match(page, /\.\.\/Kova\/ai-figurine-generator\//);
 assert.match(page, /\.\.\/Kova\/ai-profile-headshot-generator\//);
 

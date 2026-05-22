@@ -72,6 +72,13 @@
         .card p, .card li { color: var(--muted); line-height: 1.62; }
         .card p { margin: 0; }
         .card ul { margin: 0; padding-left: 18px; }
+        .bundle-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .bundle-panel { display: flex; min-height: 250px; flex-direction: column; align-items: flex-start; padding: 24px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 var(--yellow); }
+        .bundle-panel:nth-child(2) { background: #eef9f3; box-shadow-color: var(--mint); }
+        .bundle-panel b { color: var(--accent); font-size: 0.82rem; text-transform: uppercase; }
+        .bundle-panel h3 { margin: 10px 0; font-size: 1.34rem; }
+        .bundle-panel p { margin: 0; color: var(--muted); line-height: 1.64; }
+        .bundle-panel .cta-row { margin-top: auto; padding-top: 22px; }
         .sample { display: grid; gap: 14px; }
         .prompt { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 18px; line-height: 1.62; box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.08); }
         .prompt b { color: var(--accent); }
@@ -83,7 +90,7 @@
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 880px) {
             .hero, .section-head { grid-template-columns: 1fr; }
-            .grid { grid-template-columns: 1fr; }
+            .grid, .bundle-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 520px) {
             .button { width: 100%; }
@@ -108,6 +115,33 @@
                 <div class="price">29,000 KRW</div>
                 <p>Delivered as a ZIP of Markdown files after manual purchase coordination by email.</p>
             </aside>
+        </section>
+
+        <section class="section shell" aria-labelledby="bundleTitle">
+            <div class="section-head">
+                <h2 id="bundleTitle">Kova Creator Bundle</h2>
+                <p>Use the app for fast visual output, then use the pack to turn those results into repeatable creator posts, captions, and launch assets.</p>
+            </div>
+            <div class="bundle-grid">
+                <article class="bundle-panel">
+                    <b>Step 1</b>
+                    <h3>Use Kova first</h3>
+                    <p>New Kova accounts include 20 starter credits, enough for about 2 standard image generations. Try a ready-made style before deciding which prompt workflow or caption angle you need.</p>
+                    <div class="cta-row">
+                        <a class="button" href="../Kova/">Open Kova</a>
+                        <a class="button secondary" href="../Kova/download/">Phone download</a>
+                    </div>
+                </article>
+                <article class="bundle-panel">
+                    <b>Step 2</b>
+                    <h3>Buy the prompt pack</h3>
+                    <p>After you see which Kova style direction works, the 29,000 KRW pack gives you formulas, workflows, and captions for turning that direction into a content batch.</p>
+                    <div class="cta-row">
+                        <a class="button" href="mailto:alyduho984530@gmail.com?subject=AI%20Creator%20Prompt%20Pack&body=Hi%2C%20I%20want%20to%20buy%20the%20AI%20Creator%20Prompt%20Pack%20for%2029%2C000%20KRW.">Email to buy</a>
+                        <a class="button secondary" href="../Kova/pricing/">Kova pricing</a>
+                    </div>
+                </article>
+            </div>
         </section>
 
         <section class="section shell" aria-labelledby="insideTitle">
