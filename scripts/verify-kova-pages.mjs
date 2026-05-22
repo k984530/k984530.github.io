@@ -13,6 +13,7 @@ const requiredFiles = [
   "Kova/examples/index.html",
   "Kova/ai-photo-editor-styles/index.html",
   "Kova/ai-anime-portrait-generator/index.html",
+  "Kova/ai-dating-profile-picture-generator/index.html",
   "Kova/privacy.html",
   "Kova/terms.html",
   "Kova/support.html",
@@ -33,7 +34,7 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, pricing, examples, styles, anime, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, pricing, examples, styles, anime, dating, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
@@ -42,6 +43,7 @@ const [rootIndex, sitemap, index, download, pricing, examples, styles, anime, pr
   readFile("Kova/examples/index.html", "utf8"),
   readFile("Kova/ai-photo-editor-styles/index.html", "utf8"),
   readFile("Kova/ai-anime-portrait-generator/index.html", "utf8"),
+  readFile("Kova/ai-dating-profile-picture-generator/index.html", "utf8"),
   readFile("Kova/privacy.html", "utf8"),
   readFile("Kova/terms.html", "utf8"),
   readFile("Kova/support.html", "utf8"),
@@ -56,6 +58,7 @@ assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/terms\.html/);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/support\.html/);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/examples\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-anime-portrait-generator\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-dating-profile-picture-generator\//);
 
 assert.match(index, /<title>Kova: AI Photo Editor<\/title>/);
 assert.match(index, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/">/);
@@ -82,6 +85,7 @@ assert.match(index, /pricing\//);
 assert.match(index, /examples\//);
 assert.match(index, /ai-photo-editor-styles\//);
 assert.match(index, /ai-anime-portrait-generator\//);
+assert.match(index, /ai-dating-profile-picture-generator\//);
 assert.match(index, new RegExp(contactEmail));
 
 assert.match(download, /const iosUrl = "https:\/\/apps\.apple\.com\/us\/app\/kova-ai-photo-editor\/id6766026914"/);
@@ -175,6 +179,28 @@ assert.match(anime, /\.\.\/pricing\//);
 assert.match(anime, /\.\.\/ai-photo-editor-styles\//);
 assert.match(anime, /\.\.\/ai-figurine-generator\//);
 assert.match(anime, /\.\.\/ai-profile-headshot-generator\//);
+
+assert.match(dating, /<title>AI Dating Profile Picture Generator \| Kova<\/title>/);
+assert.match(dating, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-dating-profile-picture-generator\/">/);
+assert.match(dating, /AI Dating Profile Picture Generator/);
+assert.match(dating, /dating profile/i);
+assert.match(dating, /profile picture/i);
+assert.match(dating, /20 starter credits/i);
+assert.match(dating, /about 2 standard image generations/i);
+assert.match(dating, /10 credits per standard image generation/i);
+assert.match(dating, /assets\/profile_headshot_male_before\.webp/);
+assert.match(dating, /assets\/profile_headshot_male_after\.webp/);
+assert.match(dating, /assets\/profile_headshot_female_before\.webp/);
+assert.match(dating, /assets\/profile_headshot_female_after\.webp/);
+assert.match(dating, /application\/ld\+json/);
+assert.match(dating, /SoftwareApplication/);
+assert.match(dating, /\.\.\/download\/index\.html/);
+assert.match(dating, /\.\.\/pricing\//);
+assert.match(dating, /\.\.\/examples\//);
+assert.match(dating, /\.\.\/ai-profile-headshot-generator\//);
+assert.match(dating, /\.\.\/ai-photo-editor-styles\//);
+assert.match(dating, new RegExp(iosUrl.replaceAll(".", "\\.")));
+assert.match(dating, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 
 assert.match(privacy, /Privacy Policy/);
 assert.match(privacy, /Kova/);

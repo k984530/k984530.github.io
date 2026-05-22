@@ -61,6 +61,14 @@ const kovaPromoDirs = new Set([
   "faceMatch",
 ]);
 
+const socialKovaIntentDirs = new Set([
+  "ChatVibe",
+  "FriendAI",
+  "Rizzet",
+  "SeductionRules",
+  "faceMatch",
+]);
+
 const rootIndex = await readFile("index.html", "utf8");
 const projectMatches = [...rootIndex.matchAll(/\{\s*name: "([^"]+)"([\s\S]*?)\s*\}/g)];
 const projects = new Map();
@@ -106,6 +114,12 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     }
     if (!html.includes("../Kova/")) {
       failures.push(`${dir}: missing Kova promo link`);
+    }
+    if (socialKovaIntentDirs.has(dir) && !html.includes("../Kova/ai-dating-profile-picture-generator/")) {
+      failures.push(`${dir}: missing Kova dating-profile intent link`);
+    }
+    if (socialKovaIntentDirs.has(dir) && !html.includes("dating profile pictures")) {
+      failures.push(`${dir}: missing Kova dating-profile intent copy`);
     }
     if (!html.includes("../Kova/download/Icon.png")) {
       failures.push(`${dir}: missing Kova promo icon`);
