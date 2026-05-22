@@ -153,6 +153,14 @@
         .bundle-panel h3 { margin: 10px 0; font-size: 1.34rem; }
         .bundle-panel p { margin: 0; color: var(--muted); line-height: 1.64; }
         .bundle-panel .cta-row { margin-top: auto; padding-top: 22px; }
+        .upsell-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+        .upsell-card { display: flex; min-height: 260px; flex-direction: column; align-items: flex-start; padding: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.08); }
+        .upsell-card:nth-child(2) { background: #eef9f3; box-shadow-color: var(--mint); }
+        .upsell-card:nth-child(3) { background: #e9f1ff; box-shadow-color: var(--blue); }
+        .upsell-card b { color: var(--accent); font-size: 0.82rem; text-transform: uppercase; }
+        .upsell-price { margin: 10px 0 12px; font-size: 1.74rem; line-height: 1.05; font-weight: 900; }
+        .upsell-card p { margin: 0; color: var(--muted); line-height: 1.62; }
+        .upsell-card .button { margin-top: auto; }
         .sample { display: grid; gap: 14px; }
         .prompt { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 18px; line-height: 1.62; box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.08); }
         .prompt b { color: var(--accent); }
@@ -164,7 +172,7 @@
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 880px) {
             .hero, .section-head { grid-template-columns: 1fr; }
-            .grid, .bundle-grid { grid-template-columns: 1fr; }
+            .grid, .bundle-grid, .upsell-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 520px) {
             .button { width: 100%; }
@@ -316,6 +324,36 @@
                 <div class="prompt"><b>Creator action figure:</b> Create an action-figure style package for [creator persona]. Include safe abstract accessories related to [niche], such as [accessories]. Preserve identity and outfit cues. Use premium toy packaging and realistic product lighting.</div>
                 <div class="prompt"><b>App hero mockup:</b> Create a clean hero image for [app name], an app that helps [target user] do [benefit]. Show a phone with an abstract app interface, realistic hand placement, and a lifestyle context. Avoid readable fake UI text.</div>
                 <div class="prompt"><b>Korean launch visual:</b> [app name] 출시 홍보용 정사각형 이미지를 만들어줘. 앱이 주는 핵심 이점인 [benefit]이 한눈에 보이게 하고, 나중에 문구를 얹을 수 있도록 여백을 남겨줘.</div>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="customTitle">
+            <div class="section-head">
+                <h2 id="customTitle">Need a custom prompt bundle?</h2>
+                <p>For teams that want prompts tuned to a specific app, creator persona, product niche, or launch campaign, custom bundles are available as a higher-touch service.</p>
+            </div>
+            <div class="upsell-grid">
+                <article class="upsell-card">
+                    <b>Starter custom</b>
+                    <h3>10 custom prompts</h3>
+                    <div class="upsell-price">59,000 KRW</div>
+                    <p>A focused add-on for one product, creator persona, app launch angle, or profile refresh.</p>
+                    <a class="button secondary" href="mailto:alyduho984530@gmail.com?subject=AI%20Creator%20custom%20prompt%20bundle%20inquiry&body=Hi%2C%20I%20want%20to%20ask%20about%20a%20custom%20AI%20Creator%20prompt%20bundle.%0A%0ANiche%2Fbrand%3A%0APrompt%20quantity%3A%2010%20%2F%2030%20%2F%20full%20brand%20system%0ADeadline%3A%0AReference%20account%20or%20product%20link%3A%0AGoal%20for%20the%20prompts%3A">Ask for custom prompts</a>
+                </article>
+                <article class="upsell-card">
+                    <b>Campaign custom</b>
+                    <h3>30 custom prompts</h3>
+                    <div class="upsell-price">149,000 KRW</div>
+                    <p>A campaign-ready set for a content batch, store launch, paid test, or repeated creator format.</p>
+                    <a class="button secondary" href="mailto:alyduho984530@gmail.com?subject=AI%20Creator%20custom%20prompt%20bundle%20inquiry&body=Hi%2C%20I%20want%20to%20ask%20about%20a%20custom%20AI%20Creator%20prompt%20bundle.%0A%0ANiche%2Fbrand%3A%0APrompt%20quantity%3A%2010%20%2F%2030%20%2F%20full%20brand%20system%0ADeadline%3A%0AReference%20account%20or%20product%20link%3A%0AGoal%20for%20the%20prompts%3A">Ask for custom prompts</a>
+                </article>
+                <article class="upsell-card">
+                    <b>Brand system</b>
+                    <h3>Full brand prompt system</h3>
+                    <div class="upsell-price">390,000 KRW+</div>
+                    <p>A complete reusable prompt direction for a brand, app, creator account, or productized client offer.</p>
+                    <a class="button secondary" href="mailto:alyduho984530@gmail.com?subject=AI%20Creator%20custom%20prompt%20bundle%20inquiry&body=Hi%2C%20I%20want%20to%20ask%20about%20a%20custom%20AI%20Creator%20prompt%20bundle.%0A%0ANiche%2Fbrand%3A%0APrompt%20quantity%3A%2010%20%2F%2030%20%2F%20full%20brand%20system%0ADeadline%3A%0AReference%20account%20or%20product%20link%3A%0AGoal%20for%20the%20prompts%3A">Ask for custom prompts</a>
+                </article>
             </div>
         </section>
 
