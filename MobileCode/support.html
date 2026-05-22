@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Code Support</title>
+    <meta name="description" content="Support for Mobile Code mobile app, desktop server downloads, setup, remote desktop, and terminal access.">
+    <link rel="canonical" href="https://won-space.com/MobileCode/support.html">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-width: 320px;
+            background: #f7f7f2;
+            color: #171717;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        main {
+            width: min(920px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 44px 0 72px;
+        }
+        a { color: #4f46e5; font-weight: 800; }
+        .back { display: inline-flex; margin-bottom: 28px; color: #171717; }
+        h1 { margin: 0 0 10px; font-size: clamp(2.5rem, 7vw, 5rem); line-height: 0.95; }
+        .lead { max-width: 720px; color: #4b5563; font-size: 1.1rem; line-height: 1.62; }
+        .contact {
+            display: inline-flex;
+            min-height: 52px;
+            align-items: center;
+            margin: 12px 0 32px;
+            padding: 0 18px;
+            border-radius: 10px;
+            background: #171717;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+        section {
+            padding: 22px;
+            border: 1px solid #d4d4d4;
+            border-radius: 10px;
+            background: #ffffff;
+        }
+        h2 { margin: 0 0 10px; font-size: 1.18rem; }
+        p, li { color: #4b5563; line-height: 1.65; }
+        ol, ul { padding-left: 22px; }
+        .policies { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+        @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <main>
+        <a class="back" href="./">Mobile Code</a>
+        <h1>Mobile Code Support</h1>
+        <p class="lead">Get help with the Mobile App, Desktop Server, remote desktop connection, terminal access, installation, or store downloads. Include your device model, operating system, app version, and a short description of the issue.</p>
+        <a class="contact" href="mailto:hello@choiwon.dev?subject=Mobile%20Code%20Support">Email Mobile Code support</a>
+
+        <div class="grid">
+            <section>
+                <h2>Mobile App</h2>
+                <p>Install Mobile Code from the App Store or Google Play, then connect it to a desktop server you control.</p>
+                <ul>
+                    <li><a href="https://apps.apple.com/us/app/mobile-code-remote-desktop/id6747654271">App Store</a></li>
+                    <li><a href="https://play.google.com/store/apps/details?id=com.aly.MobileCode">Google Play</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Desktop Server</h2>
+                <p>Install the Desktop Server before connecting from your phone. Keep it updated and run it only on computers you are authorized to control.</p>
+                <ul>
+                    <li><a href="download/MobileCode.zip">Download Windows ZIP</a></li>
+                    <li><a href="https://apps.apple.com/us/app/mobile-code-remote-desktop/id6747654271">Open macOS App Store page</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Connection Checklist</h2>
+                <ol>
+                    <li>Open the desktop server on your computer.</li>
+                    <li>Confirm that your phone and computer can reach each other over the selected network.</li>
+                    <li>Enter the connection code exactly as shown.</li>
+                    <li>If connection fails, restart the server and check firewall or VPN settings.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Safety</h2>
+                <p>Remote access controls your computer. Use trusted networks, protect connection codes, and disconnect sessions when finished.</p>
+            </section>
+        </div>
+
+        <nav class="policies" aria-label="Mobile Code policies">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="download.html">Download Page</a>
+        </nav>
+    </main>
+</body>
+</html>
