@@ -128,8 +128,8 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     if (dir === "AppHub" && !html.includes("app launch visuals")) {
       failures.push(`${dir}: missing Kova app-launch visuals intent copy`);
     }
-    if (dir === "AppHub" && !html.includes("../Kova/studio-sprint/")) {
-      failures.push(`${dir}: missing Kova Studio Sprint service link`);
+    if (dir === "AppHub" && !html.includes("../Kova/studio-sprint/?source=apphub&package=launch-visual-sprint#launch-visual-sprint")) {
+      failures.push(`${dir}: missing source-aware Kova Studio Sprint service link`);
     }
     if (dir === "AppHub" && !html.includes("Book Studio Sprint")) {
       failures.push(`${dir}: missing Kova Studio Sprint service CTA`);
@@ -140,8 +140,8 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     if (dir === "MindMapAI" && !html.includes("idea visuals")) {
       failures.push(`${dir}: missing Kova idea-visualizer intent copy`);
     }
-    if (dir === "MindMapAI" && !html.includes("../Kova/studio-sprint/")) {
-      failures.push(`${dir}: missing Kova Studio Sprint service link`);
+    if (dir === "MindMapAI" && !html.includes("../Kova/studio-sprint/?source=mindmapai&package=creator-campaign-system#creator-campaign-system")) {
+      failures.push(`${dir}: missing source-aware Kova Studio Sprint service link`);
     }
     if (dir === "MindMapAI" && !html.includes("Book Studio Sprint")) {
       failures.push(`${dir}: missing Kova Studio Sprint service CTA`);
