@@ -67,6 +67,8 @@ const kovaPromoDirs = new Set([
   "Lookey",
   "MindMapAI",
   "MobileCode",
+  "MODEE",
+  "OneAI",
   "Rizzet",
   "SeductionRules",
   "SecretMind",
@@ -125,6 +127,14 @@ const appMakerScreenshotDirs = new Map([
   ["MobileCode", "mobilecode"],
   ["StatUP", "statup"],
   ["VibePlanning", "vibeplanning"],
+]);
+
+const aiPlatformKovaIntentDirs = new Map([
+  ["OneAI", "oneai"],
+]);
+
+const styleKovaIntentDirs = new Map([
+  ["MODEE", "modee"],
 ]);
 
 const rootIndex = await readFile("index.html", "utf8");
@@ -268,6 +278,38 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
       }
       if (!html.includes("Book Studio Sprint")) {
         failures.push(`${dir}: missing Kova Studio Sprint service CTA`);
+      }
+    }
+    if (aiPlatformKovaIntentDirs.has(dir)) {
+      const source = aiPlatformKovaIntentDirs.get(dir);
+      const expectedLink = `../Kova/studio-sprint/?source=${source}&package=creator-campaign-system#creator-campaign-system`;
+      if (!html.includes("../Kova/ai-selfie-generator/")) {
+        failures.push(`${dir}: missing Kova AI selfie generator intent link`);
+      }
+      if (!html.includes(expectedLink)) {
+        failures.push(`${dir}: missing source-aware Kova creator campaign Studio Sprint link`);
+      }
+      if (!html.includes("AI selfie generator")) {
+        failures.push(`${dir}: missing Kova AI selfie generator intent copy`);
+      }
+      if (!html.includes("Creator campaign sprint")) {
+        failures.push(`${dir}: missing Kova creator campaign sprint CTA`);
+      }
+    }
+    if (styleKovaIntentDirs.has(dir)) {
+      const source = styleKovaIntentDirs.get(dir);
+      const expectedLink = `../Kova/ai-dating-profile-picture-generator/?source=${source}&package=profile-refresh#datingSprintBuilder`;
+      if (!html.includes("../Kova/ai-dating-profile-picture-generator/")) {
+        failures.push(`${dir}: missing Kova style profile intent link`);
+      }
+      if (!html.includes(expectedLink)) {
+        failures.push(`${dir}: missing source-aware Kova style profile sprint link`);
+      }
+      if (!html.includes("style profile pictures")) {
+        failures.push(`${dir}: missing Kova style profile intent copy`);
+      }
+      if (!html.includes("Style profile sprint")) {
+        failures.push(`${dir}: missing Kova style profile sprint CTA`);
       }
     }
     if (!html.includes("../Kova/download/Icon.png")) {
