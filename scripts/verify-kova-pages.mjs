@@ -265,6 +265,7 @@ assert.match(ideaVisualizer, new RegExp(androidUrl.replaceAll(".", "\\.").replac
 
 assert.match(studioSprint, /<title>Kova Studio Sprint \| AI Launch Visual Service<\/title>/);
 assert.match(studioSprint, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/studio-sprint\/">/);
+assert.match(studioSprint, /\.hero > div\s*\{[\s\S]*?min-width: 0;/);
 assert.match(studioSprint, /Kova Studio Sprint/);
 assert.match(studioSprint, /for app makers, creators, and small teams/i);
 assert.match(studioSprint, /990,000 KRW/);
@@ -276,6 +277,12 @@ assert.match(studioSprint, /Portfolio revenue system/);
 assert.match(studioSprint, /Founder profile/);
 assert.match(studioSprint, /App launch posts/);
 assert.match(studioSprint, /Prompt system handoff/);
+assert.match(studioSprint, /Typical delivery timeline/);
+assert.match(studioSprint, /Scope confirmation before invoice/);
+assert.match(studioSprint, /Payment due before production begins/);
+assert.match(studioSprint, /First visual board in 3 business days/);
+assert.match(studioSprint, /Final launch kit in 5 business days/);
+assert.match(studioSprint, /One revision pass included/);
 assert.match(studioSprint, /Invoice-ready sprint request/);
 assert.match(studioSprint, /How paid sprint starts/);
 assert.match(studioSprint, /within 24 hours KST/i);
