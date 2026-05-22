@@ -23,6 +23,10 @@ assert.match(page, /mailto:alyduho984530@gmail\.com\?subject=AI%20Creator%20Prom
 assert.match(page, /download\/ai-creator-prompt-pack-v1-sample\.zip/);
 assert.match(page, /Free sample/);
 assert.match(page, /Download sample ZIP/);
+assert.match(page, /<meta property="og:image" content="https:\/\/won-space\.com\/icons\/Kova\.png">/);
+assert.match(page, /<meta name="twitter:card" content="summary_large_image">/);
+assert.match(page, /<meta name="twitter:image" content="https:\/\/won-space\.com\/icons\/Kova\.png">/);
+assert.match(page, /src="\.\.\/icons\/Kova\.png" alt="Kova app icon"/);
 assert.match(page, /How purchase works/);
 assert.match(page, /Send a structured order email/);
 assert.match(page, /Preferred payment method/);
@@ -43,6 +47,25 @@ assert.match(page, /\.\.\/Kova\/download\//);
 assert.match(page, /\.\.\/Kova\/pricing\//);
 assert.match(page, /\.\.\/Kova\/ai-figurine-generator\//);
 assert.match(page, /\.\.\/Kova\/ai-profile-headshot-generator\//);
+
+const jsonLdBlocks = [...page.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+  .map((match) => JSON.parse(match[1]));
+const graphNodes = jsonLdBlocks.flatMap((block) => block["@graph"] ?? [block]);
+const productNode = graphNodes.find((node) => node["@type"] === "Product");
+assert.ok(productNode, "Product structured data should exist");
+assert.equal(productNode.name, "AI Creator Prompt Pack");
+assert.equal(productNode.sku, "ai-creator-prompt-pack-v1");
+assert.equal(productNode.offers.price, "29000");
+assert.equal(productNode.offers.priceCurrency, "KRW");
+assert.equal(productNode.offers.availability, "https://schema.org/InStock");
+assert.equal(productNode.offers.seller.name, "alyduho.develop");
+assert.equal(productNode.isRelatedTo.name, "Kova: AI Photo Editor");
+
+const faqNode = graphNodes.find((node) => node["@type"] === "FAQPage");
+assert.ok(faqNode, "FAQPage structured data should exist");
+assert.ok(faqNode.mainEntity.some((item) => /commercial use/.test(item.name)));
+assert.ok(faqNode.mainEntity.some((item) => /resell/.test(item.name)));
+assert.ok(faqNode.mainEntity.some((item) => /delivered/.test(item.name)));
 
 const orderMailLink = page.match(/mailto:alyduho984530@gmail\.com\?subject=AI%20Creator%20Prompt%20Pack%20order&body=([^"]+)/);
 assert.ok(orderMailLink);
