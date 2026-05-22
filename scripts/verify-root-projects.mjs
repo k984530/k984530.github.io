@@ -18,6 +18,27 @@ if (/href="#"/.test(rootIndex)) {
 if (!rootIndex.includes('href="https://github.com/k984530"')) {
   failures.push("root index missing GitHub profile link");
 }
+if (!rootIndex.includes('id="kovaRevenueLane"')) {
+  failures.push("root index missing Kova revenue lane");
+}
+if (!rootIndex.includes("Kova paid service lane")) {
+  failures.push("root index missing Kova paid service lane label");
+}
+if (!rootIndex.includes("990,000 / 2,900,000 / 9,900,000+ KRW")) {
+  failures.push("root index missing Kova paid service package anchors");
+}
+if (!rootIndex.includes('href="Kova/#paidServiceRouter"')) {
+  failures.push("root index missing Kova home paid-service router link");
+}
+if (!rootIndex.includes('href="Kova/ai-app-store-screenshot-service/#screenshotBriefBuilder"')) {
+  failures.push("root index missing Kova screenshot brief builder link");
+}
+if (!rootIndex.includes('href="Kova/studio-sprint/#sprintBriefBuilder"')) {
+  failures.push("root index missing Kova Studio Sprint brief builder link");
+}
+if (!rootIndex.includes("No live checkout or buyer message starts here")) {
+  failures.push("root index missing Kova revenue lane safety copy");
+}
 
 const requiredDetailRoutes = new Map([
   ["AppHub", "AppHub/"],

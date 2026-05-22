@@ -297,6 +297,57 @@
       font-weight: 700;
     }
 
+    .revenue-callout {
+      max-width: 460px;
+      padding: 18px;
+      border: 2px solid var(--paper-2);
+      border-radius: 8px;
+      background: rgba(255, 250, 242, 0.08);
+      box-shadow: 8px 8px 0 rgba(255, 114, 172, 0.62);
+    }
+
+    .revenue-callout strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--paper-2);
+      font-size: 1rem;
+    }
+
+    .revenue-callout p {
+      margin: 0;
+      color: rgba(255, 250, 242, 0.66);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    .revenue-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .revenue-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 11px;
+      border: 2px solid var(--paper-2);
+      border-radius: 6px;
+      color: var(--paper-2);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .revenue-links a:hover {
+      background: var(--paper-2);
+      color: var(--ink);
+    }
+
     .floating-stickers {
       position: absolute;
       inset: 0;
@@ -1312,6 +1363,16 @@
               <dd>Product Shipping</dd>
             </div>
           </dl>
+          <div class="revenue-callout reveal" id="kovaRevenueLane">
+            <strong>Kova paid service lane</strong>
+            <p>Root portfolio traffic can move straight into Kova invoice paths for App Store screenshots, launch visuals, and team headshots. Packages anchor at 990,000 / 2,900,000 / 9,900,000+ KRW.</p>
+            <div class="revenue-links" aria-label="Kova paid service links">
+              <a href="Kova/#paidServiceRouter">Kova service router</a>
+              <a href="Kova/ai-app-store-screenshot-service/#screenshotBriefBuilder">Screenshot brief</a>
+              <a href="Kova/studio-sprint/#sprintBriefBuilder">Sprint brief</a>
+            </div>
+            <p>No live checkout or buyer message starts here.</p>
+          </div>
         </aside>
       </div>
     </section>
