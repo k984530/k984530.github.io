@@ -61,6 +61,98 @@ function verifyReadinessCheckerRuntime(html) {
   assert.match(decodeURIComponent(elements.get("readinessInvoiceLink").href), /Photo readiness: 4\/4 ready/);
 }
 
+function verifyTeamSourcePacketRuntime(html) {
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const packageOptions[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "Team Headshot Sprint page must include the team source packet script");
+
+  const listeners = new Map();
+  const elements = new Map();
+  const addElement = (id, properties = {}) => {
+    const element = {
+      checked: false,
+      dataset: {},
+      href: "",
+      textContent: "",
+      value: "",
+      ...properties,
+      addEventListener: (eventName, callback) => {
+        const key = `${id}:${eventName}`;
+        listeners.set(key, [...(listeners.get(key) || []), callback]);
+      },
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const fire = (id, eventName) => {
+    for (const callback of listeners.get(`${id}:${eventName}`) || []) {
+      callback();
+    }
+  };
+
+  addElement("teamBriefBuilder");
+  addElement("teamBriefEmailPreview");
+  addElement("teamBriefInvoiceLink");
+  addElement("teamBriefPackageFit");
+  addElement("teamBriefUsageScope");
+  addElement("teamBriefPackage", { value: "founder-profile-refresh" });
+  addElement("teamBriefBuyer");
+  addElement("teamBriefTeamSize", { value: "1" });
+  addElement("teamBriefCompanyPage");
+  addElement("teamBriefDeadline");
+  addElement("teamBriefNotes");
+  addElement("teamSizeCalculatorInput", { value: "6" });
+  addElement("teamCostPackageName");
+  addElement("teamCostTotal");
+  addElement("teamCostPerPerson");
+  addElement("teamCostFitNote");
+  addElement("teamSourcePacketSize", { value: "6" });
+  addElement("sourcePacketUseCase", { value: "LinkedIn refresh" });
+  addElement("sourcePacketPhotosReady");
+  addElement("sourcePacketReferenceReady");
+  addElement("sourcePacketDecisionOwner");
+  addElement("sourcePacketPhotoCount");
+  addElement("sourcePacketStatus");
+  addElement("sourcePacketInvoiceNote");
+  addElement("sourcePacketRecommendation");
+
+  vm.runInNewContext(
+    scriptMatch[1],
+    {
+      document: {
+        getElementById: (id) => elements.get(id) ?? null,
+      },
+      encodeURIComponent,
+      Intl,
+    },
+    { timeout: 1000 },
+  );
+
+  assert.equal(elements.get("teamBriefPackage").value, "team-profile-pack");
+  assert.match(elements.get("teamBriefEmailPreview").value, /Selected package: Team profile pack - 2,900,000 KRW/);
+  assert.match(elements.get("teamBriefEmailPreview").value, /Team size: 6/);
+  assert.match(elements.get("teamBriefEmailPreview").value, /Source packet: 0\/3 packet ready; 6 source photos needed/);
+  assert.match(decodeURIComponent(elements.get("teamBriefInvoiceLink").href), /Source packet: 0\/3 packet ready; 6 source photos needed/);
+
+  elements.get("teamSourcePacketSize").value = "10";
+  fire("teamSourcePacketSize", "input");
+
+  assert.equal(elements.get("teamBriefPackage").value, "hiring-page-visual-system");
+  assert.match(elements.get("teamBriefEmailPreview").value, /Selected package: Hiring page visual system - 9,900,000 KRW\+/);
+  assert.match(elements.get("teamBriefEmailPreview").value, /Team size: 10/);
+  assert.match(elements.get("teamBriefEmailPreview").value, /Source packet: 0\/3 packet ready; 10 source photos needed/);
+
+  for (const id of ["sourcePacketPhotosReady", "sourcePacketReferenceReady", "sourcePacketDecisionOwner"]) {
+    elements.get(id).checked = true;
+    fire(id, "change");
+  }
+
+  assert.equal(elements.get("sourcePacketStatus").textContent, "3/3 packet ready");
+  assert.equal(elements.get("sourcePacketRecommendation").textContent, "This source packet is ready for invoice review.");
+  assert.match(elements.get("teamBriefEmailPreview").value, /Source packet: 3\/3 packet ready; 10 source photos needed/);
+  assert.match(decodeURIComponent(elements.get("teamBriefInvoiceLink").href), /Source packet: 3\/3 packet ready; 10 source photos needed/);
+  assert.match(decodeURIComponent(elements.get("teamBriefInvoiceLink").href), /decision owner ready/);
+}
+
 const requiredFiles = [
   "Kova/index.html",
   "Kova/download/index.html",
@@ -563,6 +655,7 @@ assert.match(teamHeadshotSprint, /id="sourcePacketStatus"/);
 assert.match(teamHeadshotSprint, /id="sourcePacketRecommendation"/);
 assert.match(teamHeadshotSprint, /Source packet:/);
 assert.match(teamHeadshotSprint, /function updateTeamSourcePacketPlanner/);
+verifyTeamSourcePacketRuntime(teamHeadshotSprint);
 assert.match(teamHeadshotSprint, /Team brief builder/);
 assert.match(teamHeadshotSprint, /id="teamBriefBuilder"/);
 assert.match(teamHeadshotSprint, /id="teamBriefPackage"/);
