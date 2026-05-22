@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Anime Portrait Generator | Kova</title>
+    <meta name="description" content="Turn one phone photo into an AI anime portrait with Kova. See anime style examples, download links, starter credits, and pricing options.">
+    <meta name="keywords" content="AI anime portrait generator, anime profile picture app, AI anime photo editor, Kova anime portrait, anime avatar maker">
+    <link rel="canonical" href="https://won-space.com/Kova/ai-anime-portrait-generator/">
+
+    <meta property="og:title" content="AI Anime Portrait Generator | Kova">
+    <meta property="og:description" content="Create a soft illustrated anime portrait from one phone photo with Kova.">
+    <meta property="og:image" content="https://won-space.com/Kova/assets/anime.webp">
+    <meta property="og:url" content="https://won-space.com/Kova/ai-anime-portrait-generator/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Anime Portrait Generator | Kova">
+    <meta name="twitter:description" content="Create an anime portrait or profile image from one phone photo.">
+    <meta name="twitter:image" content="https://won-space.com/Kova/assets/anime.webp">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Kova",
+        "applicationCategory": "PhotographyApplication",
+        "operatingSystem": "iOS, Android",
+        "description": "Kova is an AI photo editor that turns one photo into anime portraits, profile headshots, figurines, Polaroids, cyberpunk edits, and other share-ready styles.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "url": "https://won-space.com/Kova/ai-anime-portrait-generator/"
+    }
+    </script>
+
+    <style>
+        * { box-sizing: border-box; }
+        :root {
+            --ink: #101114;
+            --paper: #fffaf0;
+            --muted: #68635b;
+            --line: rgba(16, 17, 20, 0.16);
+            --accent: #ff5c7a;
+            --blue: #2477ff;
+            --mint: #35bf8e;
+            --yellow: #f3c94d;
+            --white: #ffffff;
+        }
+        body {
+            margin: 0;
+            min-width: 320px;
+            background:
+                linear-gradient(90deg, rgba(16, 17, 20, 0.045) 1px, transparent 1px) 0 0 / 56px 56px,
+                linear-gradient(0deg, rgba(16, 17, 20, 0.032) 1px, transparent 1px) 0 0 / 56px 56px,
+                var(--paper);
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        a { color: inherit; }
+        .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+            gap: 46px;
+            align-items: center;
+            padding: 66px 0 54px;
+        }
+        .crumb { display: inline-block; margin-bottom: 22px; color: var(--muted); font-weight: 800; text-decoration: none; }
+        h1 { max-width: 760px; margin: 0; font-size: clamp(3rem, 7.2vw, 7rem); line-height: 0.88; letter-spacing: 0; text-transform: uppercase; }
+        .lead { max-width: 660px; margin: 24px 0 0; color: var(--muted); font-size: clamp(1.06rem, 2vw, 1.34rem); line-height: 1.56; }
+        .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+        .button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; padding: 0 20px; border: 2px solid var(--ink); border-radius: 8px; background: var(--ink); color: var(--white); font-weight: 800; text-decoration: none; box-shadow: 7px 7px 0 var(--yellow); }
+        .button.secondary { background: var(--white); color: var(--ink); box-shadow-color: var(--blue); }
+        .hero-visual { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-items: start; }
+        .sample { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); overflow: hidden; box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.1); }
+        .sample img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: #ece7dd; }
+        .sample figcaption { display: flex; justify-content: space-between; gap: 10px; padding: 12px 14px; font-weight: 800; }
+        .sample figcaption span { color: var(--muted); font-weight: 700; }
+        .section { padding: 56px 0; border-top: 2px solid var(--line); }
+        .section-head { display: grid; grid-template-columns: 0.84fr 1.16fr; gap: 42px; align-items: end; margin-bottom: 22px; }
+        .section h2 { margin: 0; font-size: clamp(2rem, 4.4vw, 3.8rem); line-height: 0.96; text-transform: uppercase; }
+        .section-head p { margin: 0; color: var(--muted); line-height: 1.66; }
+        .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+        .card { min-height: 188px; padding: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.08); }
+        .card:nth-child(2) { background: #e9f1ff; }
+        .card:nth-child(3) { background: #eef9f3; }
+        .card b { display: block; margin-bottom: 8px; color: var(--accent); font-size: 0.82rem; text-transform: uppercase; }
+        .card h3 { margin: 0 0 10px; font-size: 1.24rem; }
+        .card p { margin: 0; color: var(--muted); line-height: 1.62; }
+        .comparison { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+        .comparison img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 2px solid var(--ink); border-radius: 8px; background: #ece7dd; }
+        .faq { display: grid; gap: 14px; }
+        .faq article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 20px; }
+        .faq h3 { margin: 0 0 8px; }
+        .faq p { margin: 0; color: var(--muted); line-height: 1.65; }
+        .closing { padding: 56px 0 76px; }
+        .closing-box { border: 2px solid var(--ink); border-radius: 8px; background: #fff2f6; padding: 26px; box-shadow: 8px 8px 0 var(--accent); }
+        .closing-box h2 { margin: 0 0 10px; font-size: 1.48rem; }
+        .closing-box p { max-width: 700px; margin: 0 0 20px; color: var(--muted); line-height: 1.65; }
+        footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
+        @media (max-width: 900px) {
+            .hero, .section-head { grid-template-columns: 1fr; }
+            .cards { grid-template-columns: 1fr; }
+            .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 560px) {
+            .comparison { grid-template-columns: 1fr; }
+            .button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="hero shell">
+            <div>
+                <a class="crumb" href="../">Kova</a>
+                <h1>AI Anime Portrait Generator</h1>
+                <p class="lead">Turn one phone photo into a soft illustrated anime portrait for profile images, character-inspired posts, and creative galleries. Kova keeps the prompt work behind the style button, so you can start with a photo instead of writing a prompt.</p>
+                <div class="cta-row" aria-label="Download Kova">
+                    <a class="button" href="../download/index.html">Open download page</a>
+                    <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914">App Store</a>
+                    <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova">Google Play</a>
+                </div>
+            </div>
+            <div class="hero-visual" aria-label="Kova anime portrait example">
+                <figure class="sample">
+                    <img src="../assets/anime.webp" alt="Anime Portrait style made with Kova">
+                    <figcaption>Anime Portrait <span>from one photo</span></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="whyTitle">
+            <div class="section-head">
+                <h2 id="whyTitle">Anime Style Without Prompt Writing</h2>
+                <p>Anime portraits are a high-intent style for people who want a recognizable but more illustrated version of themselves. Kova turns that into a preset flow inside the app.</p>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <b>Photo first</b>
+                    <h3>Start from a real portrait</h3>
+                    <p>Use a clear phone photo so the result has a personal starting point instead of feeling like a generic character image.</p>
+                </article>
+                <article class="card">
+                    <b>Style preset</b>
+                    <h3>Choose Anime Portrait</h3>
+                    <p>Kova handles the prompt structure for the illustrated look, softer color, and portrait-friendly framing.</p>
+                </article>
+                <article class="card">
+                    <b>Share loop</b>
+                    <h3>Save a profile-ready result</h3>
+                    <p>Keep the best variation in your gallery and use it for social profiles, posts, creative bios, or idea boards.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="examplesTitle">
+            <div class="section-head">
+                <h2 id="examplesTitle">Explore Nearby Styles</h2>
+                <p>Anime portraits are one entry point. Kova also gives visitors a path into collectible figurines, profile headshots, and cinematic edits.</p>
+            </div>
+            <div class="comparison" aria-label="Related Kova AI photo styles">
+                <img src="../assets/anime.webp" alt="Kova anime portrait AI photo style">
+                <img src="../assets/profile_headshot.webp" alt="Kova profile headshot AI photo style">
+                <img src="../assets/figurine.webp" alt="Kova collectible figurine AI photo style">
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="pricingTitle">
+            <div class="section-head">
+                <h2 id="pricingTitle">Starter Credits, Then Packs</h2>
+                <p>New accounts include 20 starter credits, enough for about 2 standard image generations. Credit packs and memberships are available when you want more anime portrait attempts or other styles.</p>
+            </div>
+            <div class="cta-row">
+                <a class="button" href="../pricing/">Compare pricing</a>
+                <a class="button secondary" href="../ai-photo-editor-styles/">See all styles</a>
+                <a class="button secondary" href="../ai-figurine-generator/">AI figurines</a>
+                <a class="button secondary" href="../ai-profile-headshot-generator/">Profile headshots</a>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="faqTitle">
+            <div class="section-head">
+                <h2 id="faqTitle">Questions</h2>
+                <p>Quick answers for people deciding whether Kova fits an anime avatar or anime profile-picture workflow.</p>
+            </div>
+            <div class="faq">
+                <article>
+                    <h3>Can I use Kova as an anime avatar maker?</h3>
+                    <p>Yes. The Anime Portrait style is designed for profile-friendly illustrated portraits that start from your own photo.</p>
+                </article>
+                <article>
+                    <h3>Do I need to write an anime prompt?</h3>
+                    <p>No. Kova turns prompt writing into a style choice, so the main workflow is choosing a photo and generating variations.</p>
+                </article>
+                <article>
+                    <h3>Where do purchases happen?</h3>
+                    <p>All purchases are handled by the official App Store or Google Play checkout, and the store shows the final local price before purchase.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="closing shell">
+            <div class="closing-box">
+                <h2>Create your anime portrait</h2>
+                <p>Open Kova on your phone, choose the Anime Portrait style, and generate a share-ready illustrated portrait from one existing photo.</p>
+                <div class="cta-row">
+                    <a class="button" href="../download/index.html">Open download page</a>
+                    <a class="button secondary" href="../pricing/">Pricing & credits</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shell">
+        <span>Contact: <a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></span>
+        <nav class="footer-links" aria-label="Kova policies">
+            <a href="../ai-photo-editor-styles/">Styles</a>
+            <a href="../ai-figurine-generator/">Figurines</a>
+            <a href="../ai-profile-headshot-generator/">Headshots</a>
+            <a href="../pricing/">Pricing</a>
+            <a href="../privacy.html">Privacy</a>
+            <a href="../terms.html">Terms</a>
+            <a href="../support.html">Support</a>
+        </nav>
+    </footer>
+</body>
+</html>
