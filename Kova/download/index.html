@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download Kova</title>
-    <meta name="description" content="Download Kova: AI Photo Editor for iPhone or Android.">
-    <meta property="og:title" content="Download Kova">
-    <meta property="og:description" content="Open Kova on the App Store or Google Play.">
+    <meta name="description" content="Download Kova: AI Photo Editor for iPhone or Android. Open the right store automatically from your phone.">
+    <link rel="canonical" href="https://won-space.com/Kova/download/">
+
+    <meta property="og:title" content="Download Kova: AI Photo Editor">
+    <meta property="og:description" content="Open Kova on iPhone or Android and turn one photo into polished AI styles.">
     <meta property="og:image" content="https://won-space.com/Kova/download/Icon.png">
     <meta property="og:url" content="https://won-space.com/Kova/download/">
     <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Download Kova: AI Photo Editor">
+    <meta name="twitter:description" content="Open Kova on iPhone or Android and create your first AI photo edit.">
+    <meta name="twitter:image" content="https://won-space.com/Kova/download/Icon.png">
+
     <script>
         const iosUrl = "https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914";
         const androidUrl = "https://play.google.com/store/apps/details?id=com.aly.kova";
@@ -33,7 +41,10 @@
             display: grid;
             place-items: center;
             padding: 28px;
-            background: #fffaf0;
+            background:
+                linear-gradient(90deg, rgba(16, 17, 20, 0.05) 1px, transparent 1px) 0 0 / 52px 52px,
+                linear-gradient(0deg, rgba(16, 17, 20, 0.035) 1px, transparent 1px) 0 0 / 52px 52px,
+                #fffaf0;
             color: #101114;
             font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
@@ -63,6 +74,11 @@
             line-height: 1.55;
         }
 
+        .hint {
+            margin-top: 18px;
+            font-size: 0.92rem;
+        }
+
         .buttons {
             display: grid;
             gap: 12px;
@@ -79,11 +95,13 @@
             color: #ffffff;
             font-weight: 800;
             text-decoration: none;
+            box-shadow: 7px 7px 0 #f3c94d;
         }
 
         a.secondary {
             background: #ffffff;
             color: #101114;
+            box-shadow: 7px 7px 0 #2477ff;
         }
     </style>
 </head>
@@ -91,11 +109,15 @@
     <main>
         <img class="icon" src="Icon.png" alt="Kova app icon">
         <h1>Kova</h1>
-        <p>Choose your store to download Kova: AI Photo Editor.</p>
+        <p>Opening the right store for your phone. If it does not open automatically, choose your store below.</p>
         <div class="buttons">
             <a href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914">App Store</a>
             <a class="secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova">Google Play</a>
         </div>
+        <p class="hint">Kova turns one photo into collectible, anime, Polaroid, cyberpunk, and other AI styles.</p>
+        <noscript>
+            <p class="hint">JavaScript is off, so automatic store redirect is disabled. Please choose a store above.</p>
+        </noscript>
     </main>
 </body>
 </html>
