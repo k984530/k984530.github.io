@@ -142,7 +142,7 @@
         }
 
         .phone-handoff {
-            max-width: 520px;
+            max-width: 560px;
             margin-top: 28px;
             padding: 18px 20px;
             border: 2px solid var(--ink);
@@ -161,6 +161,28 @@
             margin: 0 0 12px;
             color: var(--muted);
             line-height: 1.55;
+        }
+
+        .qr-handoff {
+            display: grid;
+            grid-template-columns: 118px minmax(0, 1fr);
+            gap: 16px;
+            align-items: center;
+            margin-top: 14px;
+        }
+
+        .qr-handoff img {
+            width: 118px;
+            height: 118px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+        }
+
+        .qr-handoff strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
         }
 
         .handoff-link {
@@ -326,6 +348,10 @@
                 max-width: none;
             }
 
+            .qr-handoff {
+                grid-template-columns: 1fr;
+            }
+
             .phone-board {
                 min-height: 560px;
             }
@@ -366,8 +392,15 @@
                 </div>
                 <aside class="phone-handoff" aria-labelledby="phoneHandoffTitle">
                     <h2 id="phoneHandoffTitle">Open Kova on your phone</h2>
-                    <p>Send or type this short download page into your mobile browser. It opens the right store automatically on iPhone or Android.</p>
-                    <a class="handoff-link" href="https://won-space.com/Kova/download/">https://won-space.com/Kova/download/</a>
+                    <p>Scan the QR code or open this short download page on your phone. It sends iPhone and Android visitors to the right store.</p>
+                    <a class="handoff-link" href="https://won-space.com/Kova/download/index.html">https://won-space.com/Kova/download/index.html</a>
+                    <div class="qr-handoff">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=236x236&margin=10&data=https%3A%2F%2Fwon-space.com%2FKova%2Fdownload%2Findex.html" alt="QR code to open Kova download page">
+                        <div>
+                            <strong>Desktop visitor?</strong>
+                            <p>Point your phone camera here, install Kova, then try a style with one photo.</p>
+                        </div>
+                    </div>
                 </aside>
             </div>
 
@@ -411,7 +444,7 @@
 
         <section class="closing">
             <p>Kova is available on iPhone and Android. Open the store link from your phone to install, try a style, and create your first AI edit.</p>
-            <a class="store-button" href="download/">Open download page</a>
+            <a class="store-button" href="download/index.html">Open download page</a>
         </section>
     </main>
 
