@@ -1599,9 +1599,9 @@
     const filterTabs = document.getElementById("filterTabs");
 
     function getStoreUrl(project) {
-      if (userOS === "ios") return project.ios || project.android || project.detail;
-      if (userOS === "android") return project.android || project.ios || project.detail;
-      return project.ios || project.android || project.detail;
+      if (userOS === "ios") return project.ios || project.detail || project.android;
+      if (userOS === "android") return project.android || project.detail || project.ios;
+      return project.detail || project.ios || project.android;
     }
 
     function openProject(project) {
