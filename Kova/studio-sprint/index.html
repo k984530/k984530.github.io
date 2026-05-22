@@ -496,18 +496,22 @@
     <script>
         (() => {
             const params = new URLSearchParams(window.location.search);
+            const requestedSource = `${params.get("source") || ""} ${params.get("utm_source") || ""} ${document.referrer || ""}`;
             const sourceLabels = {
                 apphub: "AppHub landing page",
                 mindmapai: "MindMapAI landing page",
+                direct: "Direct Studio Sprint page",
             };
-            const referralSource = sourceLabels[params.get("source")];
+            const referralSource = /apphub/i.test(requestedSource)
+                ? sourceLabels.apphub
+                : /mindmapai/i.test(requestedSource)
+                    ? sourceLabels.mindmapai
+                    : sourceLabels.direct;
             const selectedPackage = document.getElementById(params.get("package") || "");
 
             if (selectedPackage) {
                 selectedPackage.dataset.selected = "true";
             }
-
-            if (!referralSource) return;
 
             for (const link of document.querySelectorAll('a[href^="mailto:"]')) {
                 const mail = new URL(link.getAttribute("href"));
