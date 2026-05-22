@@ -241,7 +241,8 @@
         .package-grid,
         .deliverables,
         .process-grid,
-        .proof-grid {
+        .proof-grid,
+        .calculator-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 16px;
@@ -251,7 +252,8 @@
         .package,
         .deliverable,
         .process-step,
-        .proof-card {
+        .proof-card,
+        .calculator-card {
             padding: 20px;
             border: 2px solid var(--ink);
             border-radius: 8px;
@@ -270,7 +272,8 @@
         .package strong,
         .deliverable strong,
         .process-step strong,
-        .proof-card strong {
+        .proof-card strong,
+        .calculator-card strong {
             display: block;
             margin-bottom: 10px;
             font-size: 1.08rem;
@@ -289,10 +292,57 @@
         .package p,
         .deliverable p,
         .process-step p,
-        .proof-card p {
+        .proof-card p,
+        .calculator-card p {
             margin: 0;
             color: var(--muted);
             line-height: 1.55;
+        }
+
+        .calculator-panel {
+            margin-top: 22px;
+            padding: 24px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+            box-shadow: 10px 10px 0 rgba(255, 92, 122, 0.18);
+        }
+
+        .calculator-field {
+            display: grid;
+            max-width: 360px;
+            gap: 8px;
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .calculator-field span {
+            color: var(--ink);
+            font-weight: 900;
+        }
+
+        .calculator-field input {
+            width: 100%;
+            min-height: 48px;
+            padding: 11px 12px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--ink);
+            font: inherit;
+            letter-spacing: 0;
+        }
+
+        .calculator-card {
+            min-height: 150px;
+        }
+
+        .calculator-card output {
+            display: block;
+            margin-top: 12px;
+            color: var(--ink);
+            font-size: 1.35rem;
+            font-weight: 900;
         }
 
         .proof-card {
@@ -457,6 +507,7 @@
             .deliverables,
             .process-grid,
             .proof-grid,
+            .calculator-grid,
             .invoice-panel,
             .brief-grid {
                 grid-template-columns: 1fr;
@@ -477,7 +528,7 @@
                 <h1 id="title">Kova Studio Sprint</h1>
                 <p class="lead">A high-touch AI launch visual service for app makers, creators, and small teams who want a complete visual system around a product, profile, or portfolio revenue push.</p>
                 <div class="cta-row" aria-label="Kova Studio Sprint actions">
-                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20990%2C000%20%2F%202%2C900%2C000%20%2F%209%2C900%2C000%2B%20KRW%0AReferral%20source%3A%20%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20%0ADecision%20timeline%3A%20%0ANotes%3A%20">Request invoice</a>
+                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20990%2C000%20%2F%202%2C900%2C000%20%2F%209%2C900%2C000%2B%20KRW%0AReferral%20source%3A%20%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0AAverage%20paid%20order%20value%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20%0ADecision%20timeline%3A%20%0ANotes%3A%20">Request invoice</a>
                     <a class="button secondary" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20inquiry&body=Budget%3A%20990%2C000%20%2F%202%2C900%2C000%20%2F%209%2C900%2C000%2B%20KRW%0AReferral%20source%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0AWhat%20you%20need%20to%20launch%3A%20">Start an inquiry</a>
                     <a class="button secondary" href="../app-launch-visuals/">App launch visuals</a>
                     <a class="button secondary" href="../../AI-Creator-Prompt-Pack/">Prompt pack</a>
@@ -497,19 +548,19 @@
                     <span class="price">990,000 KRW</span>
                     <strong>Launch visual sprint</strong>
                     <p>Founder profile, App launch posts, store/social creative directions, and a prompt system handoff for one focused launch.</p>
-                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20Launch%20visual%20sprint%20-%20990%2C000%20KRW%0AReferral%20source%3A%20%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20One%20focused%20app%2C%20product%2C%20or%20creator%20launch%0ADecision%20timeline%3A%20%0ANotes%3A%20">Request 990,000 KRW invoice</a>
+                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20Launch%20visual%20sprint%20-%20990%2C000%20KRW%0AReferral%20source%3A%20%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0AAverage%20paid%20order%20value%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20One%20focused%20app%2C%20product%2C%20or%20creator%20launch%0ADecision%20timeline%3A%20%0ANotes%3A%20">Request 990,000 KRW invoice</a>
                 </article>
                 <article class="package" id="creator-campaign-system">
                     <span class="price">2,900,000 KRW</span>
                     <strong>Creator campaign system</strong>
                     <p>A larger creative system for a creator, niche, or product line with repeatable visual prompts and campaign-ready examples.</p>
-                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20Creator%20campaign%20system%20-%202%2C900%2C000%20KRW%0AReferral%20source%3A%20%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20One%20creator%2C%20niche%2C%20or%20product-line%20campaign%20system%0ADecision%20timeline%3A%20%0ANotes%3A%20">Request 2,900,000 KRW invoice</a>
+                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20Creator%20campaign%20system%20-%202%2C900%2C000%20KRW%0AReferral%20source%3A%20%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0AAverage%20paid%20order%20value%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20One%20creator%2C%20niche%2C%20or%20product-line%20campaign%20system%0ADecision%20timeline%3A%20%0ANotes%3A%20">Request 2,900,000 KRW invoice</a>
                 </article>
                 <article class="package" id="portfolio-revenue-system">
                     <span class="price">9,900,000 KRW+</span>
                     <strong>Portfolio revenue system</strong>
                     <p>A multi-app or multi-offer visual funnel that connects Kova, landing pages, prompt assets, and launch copy into one revenue path.</p>
-                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20Portfolio%20revenue%20system%20-%209%2C900%2C000%20KRW%2B%0AReferral%20source%3A%20%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20One%20multi-app%20or%20multi-offer%20revenue%20system%0ADecision%20timeline%3A%20%0ANotes%3A%20">Request 9,900,000 KRW+ invoice</a>
+                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20Portfolio%20revenue%20system%20-%209%2C900%2C000%20KRW%2B%0AReferral%20source%3A%20%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0AAverage%20paid%20order%20value%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20One%20multi-app%20or%20multi-offer%20revenue%20system%0ADecision%20timeline%3A%20%0ANotes%3A%20">Request 9,900,000 KRW+ invoice</a>
                 </article>
             </div>
         </section>
@@ -596,6 +647,34 @@
             </div>
         </section>
 
+        <section class="section" aria-labelledby="paidOrderCalculatorTitle">
+            <h2 id="paidOrderCalculatorTitle">Paid-order calculator</h2>
+            <p class="section-note">Adjust the average paid order value to estimate how many paid orders recover each sprint fee before other costs.</p>
+            <form class="calculator-panel" id="paidOrderCalculator">
+                <label class="calculator-field" for="averageOrderValue">
+                    <span>Average paid order value</span>
+                    <input id="averageOrderValue" type="number" inputmode="numeric" min="10000" step="10000" value="100000">
+                </label>
+                <div class="calculator-grid" aria-label="Estimated orders to recover sprint fee">
+                    <article class="calculator-card" data-package-price="990000">
+                        <strong>Launch visual sprint</strong>
+                        <p>Estimated orders to recover sprint fee</p>
+                        <output data-order-estimate>10 paid orders</output>
+                    </article>
+                    <article class="calculator-card" data-package-price="2900000">
+                        <strong>Creator campaign system</strong>
+                        <p>Estimated orders to recover sprint fee</p>
+                        <output data-order-estimate>29 paid orders</output>
+                    </article>
+                    <article class="calculator-card" data-package-price="9900000">
+                        <strong>Portfolio revenue system</strong>
+                        <p>Estimated orders to recover sprint fee</p>
+                        <output data-order-estimate>99 paid orders</output>
+                    </article>
+                </div>
+            </form>
+        </section>
+
         <section class="section" aria-labelledby="proofTitle">
             <h2 id="proofTitle">Proof before invoice</h2>
             <div class="proof-grid">
@@ -675,7 +754,7 @@
             <div class="process-grid">
                 <article class="process-step">
                     <strong>Invoice-ready sprint request</strong>
-                    <p>Send the selected package, referral source, buyer or company name, primary outcome, revenue target, payment preference, receipt or tax invoice needs, commercial usage scope, and decision timeline.</p>
+                    <p>Send the selected package, referral source, buyer or company name, primary outcome, revenue target, average paid order value, payment preference, receipt or tax invoice needs, commercial usage scope, and decision timeline.</p>
                 </article>
                 <article class="process-step">
                     <strong>Reply within 24 hours KST</strong>
@@ -693,13 +772,13 @@
             <div class="invoice-panel">
                 <p>Ready buyers can request scope and payment instructions without a long back-and-forth. The email template includes the operational fields needed to prepare a clean invoice path.</p>
                 <ul>
-                    <li>Selected package, Referral source, buyer or company name, Primary outcome, and Revenue target</li>
+                    <li>Selected package, Referral source, buyer or company name, Primary outcome, Revenue target, and Average paid order value</li>
                     <li>Payment preference and receipt or tax invoice needs</li>
                     <li>Target launch date and product or creator link</li>
                     <li>Source materials link, Commercial usage scope, and Decision timeline</li>
                 </ul>
                 <div class="cta-row">
-                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20990%2C000%20%2F%202%2C900%2C000%20%2F%209%2C900%2C000%2B%20KRW%0AReferral%20source%3A%20%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20%0ADecision%20timeline%3A%20%0ANotes%3A%20">Request invoice</a>
+                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20990%2C000%20%2F%202%2C900%2C000%20%2F%209%2C900%2C000%2B%20KRW%0AReferral%20source%3A%20%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0AAverage%20paid%20order%20value%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20%0ADecision%20timeline%3A%20%0ANotes%3A%20">Request invoice</a>
                 </div>
             </div>
         </section>
@@ -745,6 +824,10 @@
                             <option value="20,000,000 KRW+ monthly revenue">20,000,000 KRW+ monthly revenue</option>
                             <option value="Not sure yet">Not sure yet</option>
                         </select>
+                    </label>
+                    <label class="brief-field" for="briefAverageOrderValue">
+                        <span>Average paid order value</span>
+                        <input id="briefAverageOrderValue" name="brief_average_order_value" type="number" min="10000" step="10000" value="100000" inputmode="numeric">
                     </label>
                     <label class="brief-field" for="briefPaymentPreference">
                         <span>Payment preference</span>
@@ -799,7 +882,7 @@
                     </label>
                 </div>
                 <div class="brief-actions">
-                    <a class="button" id="briefInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20Launch%20visual%20sprint%20-%20990%2C000%20KRW%0AReferral%20source%3A%20Direct%20Studio%20Sprint%20page%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20One%20focused%20app%2C%20product%2C%20or%20creator%20launch%0ADecision%20timeline%3A%20%0ANotes%3A%20">Create invoice email</a>
+                    <a class="button" id="briefInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20Launch%20visual%20sprint%20-%20990%2C000%20KRW%0AReferral%20source%3A%20Direct%20Studio%20Sprint%20page%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0AAverage%20paid%20order%20value%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20One%20focused%20app%2C%20product%2C%20or%20creator%20launch%0ADecision%20timeline%3A%20%0ANotes%3A%20">Create invoice email</a>
                 </div>
             </form>
         </section>
@@ -808,7 +891,7 @@
             <p>Use Kova yourself for fast edits, or commission a sprint when the launch needs a full visual system and a tighter path to revenue.</p>
             <div class="cta-row">
                 <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20inquiry&body=Budget%3A%20990%2C000%20%2F%202%2C900%2C000%20%2F%209%2C900%2C000%2B%20KRW%0AReferral%20source%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0AWhat%20you%20need%20to%20launch%3A%20">Send sprint details</a>
-                <a class="button secondary" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20990%2C000%20%2F%202%2C900%2C000%20%2F%209%2C900%2C000%2B%20KRW%0AReferral%20source%3A%20%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20%0ADecision%20timeline%3A%20%0ANotes%3A%20">Request invoice</a>
+                <a class="button secondary" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20990%2C000%20%2F%202%2C900%2C000%20%2F%209%2C900%2C000%2B%20KRW%0AReferral%20source%3A%20%0ABuyer%20or%20company%3A%20%0APrimary%20outcome%3A%20%0ARevenue%20target%3A%20%0AAverage%20paid%20order%20value%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20%0ADecision%20timeline%3A%20%0ANotes%3A%20">Request invoice</a>
                 <a class="button secondary" href="../download/index.html">Download Kova</a>
                 <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914" target="_blank" rel="noopener">App Store</a>
                 <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova" target="_blank" rel="noopener">Google Play</a>
@@ -829,14 +912,17 @@
                 "launch-visual-sprint": {
                     label: "Launch visual sprint - 990,000 KRW",
                     scope: "One focused app, product, or creator launch",
+                    price: 990000,
                 },
                 "creator-campaign-system": {
                     label: "Creator campaign system - 2,900,000 KRW",
                     scope: "One creator, niche, or product-line campaign system",
+                    price: 2900000,
                 },
                 "portfolio-revenue-system": {
                     label: "Portfolio revenue system - 9,900,000 KRW+",
                     scope: "One multi-app or multi-offer revenue system",
+                    price: 9900000,
                 },
             };
             const referralSource = /apphub/i.test(requestedSource)
@@ -850,6 +936,23 @@
             if (selectedPackage) {
                 selectedPackage.dataset.selected = "true";
             }
+
+            const averageOrderValueInput = document.getElementById("averageOrderValue");
+
+            function updatePaidOrderCalculator() {
+                const averageOrderValue = Math.max(10000, Number(averageOrderValueInput?.value || 100000));
+                for (const card of document.querySelectorAll("[data-package-price]")) {
+                    const packagePrice = Number(card.dataset.packagePrice);
+                    const orderCount = Math.ceil(packagePrice / averageOrderValue);
+                    const output = card.querySelector("[data-order-estimate]");
+                    if (output) {
+                        output.textContent = `${orderCount.toLocaleString("en-US")} paid orders`;
+                    }
+                }
+            }
+
+            averageOrderValueInput?.addEventListener("input", updatePaidOrderCalculator);
+            updatePaidOrderCalculator();
 
             for (const link of document.querySelectorAll('a[href^="mailto:"]')) {
                 const mail = new URL(link.getAttribute("href"));
@@ -904,6 +1007,7 @@
                     ["Buyer or company", fieldValue("brief_buyer")],
                     ["Primary outcome", fieldValue("brief_primary_outcome")],
                     ["Revenue target", fieldValue("brief_revenue_target")],
+                    ["Average paid order value", fieldValue("brief_average_order_value")],
                     ["Payment preference", fieldValue("brief_payment_preference")],
                     ["Receipt or tax invoice needed", fieldValue("brief_receipt_needed")],
                     ["Target launch date", fieldValue("brief_launch_date")],
