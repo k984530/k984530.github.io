@@ -281,6 +281,51 @@
             color: var(--muted);
             font-weight: 800;
         }
+        .readiness-options {
+            display: grid;
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .readiness-option {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            gap: 12px;
+            align-items: start;
+            min-height: 52px;
+            padding: 12px 14px;
+            border: 2px solid var(--line);
+            border-radius: 8px;
+            background: #fffdf7;
+            color: var(--muted);
+            font-weight: 850;
+            line-height: 1.45;
+        }
+        .readiness-option input {
+            width: 22px;
+            height: 22px;
+            margin: 1px 0 0;
+            accent-color: var(--blue);
+        }
+        .readiness-result {
+            display: grid;
+            gap: 8px;
+            margin-top: 18px;
+            padding: 16px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: #eaf1ff;
+        }
+        .readiness-label {
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .readiness-score {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-weight: 950;
+            line-height: 1.06;
+        }
         .brief-preview {
             width: 100%;
             min-height: 314px;
@@ -347,6 +392,7 @@
                 <p class="lead">A B2B entry point for employee headshots, company headshots, executive bios, sales profiles, LinkedIn portraits, and hiring pages that need one consistent visual direction.</p>
                 <div class="cta-row" aria-label="Corporate headshot actions">
                     <a class="button" href="../team-headshot-sprint/#teamCostCalculator">Estimate team cost</a>
+                    <a class="button secondary" href="#sourcePhotoReadiness">Check photo readiness</a>
                     <a class="button secondary" href="mailto:alyduho984530@gmail.com?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request&body=Selected%20package%3A%20Team%20profile%20pack%20-%202%2C900%2C000%20KRW%0ABuyer%20or%20company%3A%20%0ATeam%20size%3A%20%0ALinkedIn%20or%20company%20page%3A%20%0ACommercial%20usage%20scope%3A%20Employee%20headshots%2C%20company%20directory%2C%20LinkedIn%20profiles%2C%20and%20hiring%20page%0ATarget%20deadline%3A%20%0ANotes%3A%20">Request corporate invoice</a>
                     <a class="button secondary" href="../download/index.html">Install Kova</a>
                 </div>
@@ -425,17 +471,35 @@
                 <p>Better inputs shorten review time. This checklist helps a buyer decide whether the current team photos are ready before asking for an invoice.</p>
             </div>
             <div class="checklist-grid">
-                <div class="checklist-panel">
-                    <h3>Send photos that are close enough</h3>
-                    <p class="note">The goal is a consistent company look while keeping each person recognizable.</p>
-                    <ul>
-                        <li>Face clearly visible and not heavily cropped</li>
-                        <li>Natural expression with enough light on the face</li>
-                        <li>No sunglasses, masks, or extreme filters</li>
-                        <li>Company page, LinkedIn page, or hiring page reference URL</li>
-                    </ul>
+                <div class="checklist-panel" id="sourcePhotoReadiness">
+                    <h3>Source photo readiness checker</h3>
+                    <p class="note">Check what the team already has. The result only updates this page and the invoice email preview.</p>
+                    <div class="readiness-options">
+                        <label class="readiness-option" for="readinessFaceVisible">
+                            <input id="readinessFaceVisible" type="checkbox" checked>
+                            <span>Face clearly visible and not heavily cropped</span>
+                        </label>
+                        <label class="readiness-option" for="readinessLighting">
+                            <input id="readinessLighting" type="checkbox" checked>
+                            <span>Natural expression with enough light on the face</span>
+                        </label>
+                        <label class="readiness-option" for="readinessNoObstruction">
+                            <input id="readinessNoObstruction" type="checkbox">
+                            <span>No sunglasses, masks, extreme filters, or heavy blur</span>
+                        </label>
+                        <label class="readiness-option" for="readinessReferenceUrl">
+                            <input id="readinessReferenceUrl" type="checkbox">
+                            <span>Company page, LinkedIn page, or hiring page reference URL is ready</span>
+                        </label>
+                    </div>
+                    <div class="readiness-result" aria-live="polite">
+                        <span class="readiness-label">Readiness score</span>
+                        <strong class="readiness-score" id="readinessScore">2/4 ready</strong>
+                        <p class="note" id="readinessRecommendation">Add obstruction-free photos and a reference URL before invoice review.</p>
+                    </div>
                     <div class="cta-row">
-                        <a class="button" href="../ai-hiring-page-headshots/">Hiring page headshots</a>
+                        <a class="button" id="readinessInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request&body=Selected%20package%3A%20Team%20profile%20pack%20-%202%2C900%2C000%20KRW%0ABuyer%20or%20company%3A%20%0ATeam%20size%3A%20%0ALinkedIn%20or%20company%20page%3A%20%0ACommercial%20usage%20scope%3A%20Employee%20headshots%2C%20company%20directory%2C%20LinkedIn%20profiles%2C%20and%20hiring%20page%0APhoto%20readiness%3A%202%2F4%20ready%0ATarget%20deadline%3A%20%0ANotes%3A%20">Request with readiness note</a>
+                        <a class="button secondary" href="../ai-hiring-page-headshots/">Hiring page headshots</a>
                     </div>
                 </div>
                 <label class="checklist-panel" for="corporateInvoicePreview">
@@ -445,6 +509,7 @@ Buyer or company:
 Team size:
 LinkedIn or company page:
 Commercial usage scope: Employee headshots, company directory, LinkedIn profiles, and hiring page
+Photo readiness: 2/4 ready
 Target deadline:
 Notes:</textarea>
                     <div class="cta-row">
@@ -504,5 +569,63 @@ Notes:</textarea>
             <a href="../support.html">Support</a>
         </nav>
     </footer>
+    <script>
+        (() => {
+            const readinessItems = [
+                { id: "readinessFaceVisible", label: "face clearly visible" },
+                { id: "readinessLighting", label: "enough light and natural expression" },
+                { id: "readinessNoObstruction", label: "no obstruction, heavy blur, or extreme filters" },
+                { id: "readinessReferenceUrl", label: "company or LinkedIn reference URL ready" },
+            ];
+            const preview = document.getElementById("corporateInvoicePreview");
+            const invoiceLink = document.getElementById("readinessInvoiceLink");
+            const score = document.getElementById("readinessScore");
+            const recommendation = document.getElementById("readinessRecommendation");
+
+            function invoiceBody(checkedItems) {
+                const readinessLine = `${checkedItems.length}/4 ready${checkedItems.length ? ` (${checkedItems.join(", ")})` : ""}`;
+                return [
+                    "Selected package: Team profile pack - 2,900,000 KRW",
+                    "Buyer or company:",
+                    "Team size:",
+                    "LinkedIn or company page:",
+                    "Commercial usage scope: Employee headshots, company directory, LinkedIn profiles, and hiring page",
+                    `Photo readiness: ${readinessLine}`,
+                    "Target deadline:",
+                    "Notes:",
+                ].join("\n");
+            }
+
+            function updatePhotoReadinessChecker() {
+                const checkedItems = readinessItems
+                    .filter((item) => document.getElementById(item.id)?.checked)
+                    .map((item) => item.label);
+                const count = checkedItems.length;
+
+                if (score) {
+                    score.textContent = `${count}/4 ready`;
+                }
+                if (recommendation) {
+                    recommendation.textContent = count === readinessItems.length
+                        ? "These photos are ready for invoice review."
+                        : count >= 3
+                            ? "The photos are close. Send them with the missing item noted in the invoice request."
+                            : "Add clearer source photos or a reference URL before invoice review.";
+                }
+                const body = invoiceBody(checkedItems);
+                if (preview) {
+                    preview.value = body;
+                }
+                if (invoiceLink) {
+                    invoiceLink.href = `mailto:alyduho984530@gmail.com?subject=${encodeURIComponent("Kova Team Headshot Sprint invoice request")}&body=${encodeURIComponent(body)}`;
+                }
+            }
+
+            for (const item of readinessItems) {
+                document.getElementById(item.id)?.addEventListener("change", updatePhotoReadinessChecker);
+            }
+            updatePhotoReadinessChecker();
+        })();
+    </script>
 </body>
 </html>
