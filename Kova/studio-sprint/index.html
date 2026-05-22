@@ -287,6 +287,66 @@
             line-height: 1.45;
         }
 
+        .brief-builder {
+            display: grid;
+            gap: 18px;
+            margin-top: 22px;
+            padding: 24px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+            box-shadow: 10px 10px 0 rgba(36, 119, 255, 0.18);
+        }
+
+        .brief-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .brief-field {
+            display: grid;
+            min-width: 0;
+            gap: 8px;
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .brief-field span {
+            color: var(--ink);
+            font-weight: 900;
+        }
+
+        .brief-field.wide {
+            grid-column: 1 / -1;
+        }
+
+        .brief-field input,
+        .brief-field select,
+        .brief-field textarea {
+            width: 100%;
+            min-height: 48px;
+            padding: 11px 12px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--ink);
+            font: inherit;
+            letter-spacing: 0;
+        }
+
+        .brief-field textarea {
+            min-height: 104px;
+            resize: vertical;
+        }
+
+        .brief-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
         .inquiry {
             display: flex;
             flex-wrap: wrap;
@@ -326,7 +386,8 @@
             .package-grid,
             .deliverables,
             .process-grid,
-            .invoice-panel {
+            .invoice-panel,
+            .brief-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -481,6 +542,80 @@
             </div>
         </section>
 
+        <section class="section" aria-labelledby="briefBuilderTitle">
+            <h2 id="briefBuilderTitle">Sprint brief builder</h2>
+            <form class="brief-builder" id="sprintBriefBuilder">
+                <div class="brief-grid">
+                    <label class="brief-field" for="briefPackage">
+                        <span>Selected package</span>
+                        <select id="briefPackage" name="brief_package">
+                            <option value="launch-visual-sprint">Launch visual sprint - 990,000 KRW</option>
+                            <option value="creator-campaign-system">Creator campaign system - 2,900,000 KRW</option>
+                            <option value="portfolio-revenue-system">Portfolio revenue system - 9,900,000 KRW+</option>
+                        </select>
+                    </label>
+                    <label class="brief-field" for="briefReferralSource">
+                        <span>Referral source</span>
+                        <input id="briefReferralSource" name="brief_referral_source" type="text" value="Direct Studio Sprint page">
+                    </label>
+                    <label class="brief-field" for="briefBuyer">
+                        <span>Buyer or company</span>
+                        <input id="briefBuyer" name="brief_buyer" type="text" autocomplete="organization">
+                    </label>
+                    <label class="brief-field" for="briefPaymentPreference">
+                        <span>Payment preference</span>
+                        <select id="briefPaymentPreference" name="brief_payment_preference">
+                            <option value="card / bank transfer / invoice">card / bank transfer / invoice</option>
+                            <option value="card">card</option>
+                            <option value="bank transfer">bank transfer</option>
+                            <option value="invoice">invoice</option>
+                        </select>
+                    </label>
+                    <label class="brief-field" for="briefReceiptNeeded">
+                        <span>Receipt or tax invoice needed</span>
+                        <select id="briefReceiptNeeded" name="brief_receipt_needed">
+                            <option value=""></option>
+                            <option value="Receipt needed">Receipt needed</option>
+                            <option value="Tax invoice needed">Tax invoice needed</option>
+                            <option value="No receipt needed">No receipt needed</option>
+                        </select>
+                    </label>
+                    <label class="brief-field" for="briefLaunchDate">
+                        <span>Target launch date</span>
+                        <input id="briefLaunchDate" name="brief_launch_date" type="date">
+                    </label>
+                    <label class="brief-field" for="briefProductLink">
+                        <span>Product or creator link</span>
+                        <input id="briefProductLink" name="brief_product_link" type="url" inputmode="url">
+                    </label>
+                    <label class="brief-field" for="briefMaterialsLink">
+                        <span>Source materials link</span>
+                        <input id="briefMaterialsLink" name="brief_materials_link" type="url" inputmode="url">
+                    </label>
+                    <label class="brief-field wide" for="briefCommercialScope">
+                        <span>Commercial usage scope</span>
+                        <textarea id="briefCommercialScope" name="brief_commercial_scope"></textarea>
+                    </label>
+                    <label class="brief-field" for="briefDecisionTimeline">
+                        <span>Decision timeline</span>
+                        <select id="briefDecisionTimeline" name="brief_decision_timeline">
+                            <option value=""></option>
+                            <option value="Ready this week">Ready this week</option>
+                            <option value="This month">This month</option>
+                            <option value="Exploring timing">Exploring timing</option>
+                        </select>
+                    </label>
+                    <label class="brief-field wide" for="briefNotes">
+                        <span>Notes</span>
+                        <textarea id="briefNotes" name="brief_notes"></textarea>
+                    </label>
+                </div>
+                <div class="brief-actions">
+                    <a class="button" id="briefInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20Launch%20visual%20sprint%20-%20990%2C000%20KRW%0AReferral%20source%3A%20Direct%20Studio%20Sprint%20page%0ABuyer%20or%20company%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20One%20focused%20app%2C%20product%2C%20or%20creator%20launch%0ADecision%20timeline%3A%20%0ANotes%3A%20">Create invoice email</a>
+                </div>
+            </form>
+        </section>
+
         <section class="inquiry">
             <p>Use Kova yourself for fast edits, or commission a sprint when the launch needs a full visual system and a tighter path to revenue.</p>
             <div class="cta-row">
@@ -502,12 +637,27 @@
                 mindmapai: "MindMapAI landing page",
                 direct: "Direct Studio Sprint page",
             };
+            const packageOptions = {
+                "launch-visual-sprint": {
+                    label: "Launch visual sprint - 990,000 KRW",
+                    scope: "One focused app, product, or creator launch",
+                },
+                "creator-campaign-system": {
+                    label: "Creator campaign system - 2,900,000 KRW",
+                    scope: "One creator, niche, or product-line campaign system",
+                },
+                "portfolio-revenue-system": {
+                    label: "Portfolio revenue system - 9,900,000 KRW+",
+                    scope: "One multi-app or multi-offer revenue system",
+                },
+            };
             const referralSource = /apphub/i.test(requestedSource)
                 ? sourceLabels.apphub
                 : /mindmapai/i.test(requestedSource)
                     ? sourceLabels.mindmapai
                     : sourceLabels.direct;
-            const selectedPackage = document.getElementById(params.get("package") || "");
+            const packageParam = params.get("package") || "";
+            const selectedPackage = document.getElementById(packageParam);
 
             if (selectedPackage) {
                 selectedPackage.dataset.selected = "true";
@@ -527,6 +677,78 @@
                     "href",
                     `mailto:${mail.pathname}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(updatedBody)}`,
                 );
+            }
+
+            const briefForm = document.getElementById("sprintBriefBuilder");
+            const briefInvoiceLink = document.getElementById("briefInvoiceLink");
+
+            function formField(name) {
+                return briefForm?.elements.namedItem(name) || null;
+            }
+
+            function fieldValue(name) {
+                return (formField(name)?.value || "").trim();
+            }
+
+            function selectedBriefPackage() {
+                return packageOptions[fieldValue("brief_package")] || packageOptions["launch-visual-sprint"];
+            }
+
+            function syncBriefCommercialScope(force = false) {
+                const scopeField = formField("brief_commercial_scope");
+                const selected = selectedBriefPackage();
+                if (!scopeField) return;
+
+                if (force || !scopeField.value || scopeField.value === scopeField.dataset.defaultScope) {
+                    scopeField.value = selected.scope;
+                }
+                scopeField.dataset.defaultScope = selected.scope;
+            }
+
+            function updateBriefInvoiceLink() {
+                if (!briefForm || !briefInvoiceLink) return;
+
+                const selected = selectedBriefPackage();
+                const body = [
+                    ["Selected package", selected.label],
+                    ["Referral source", fieldValue("brief_referral_source") || referralSource],
+                    ["Buyer or company", fieldValue("brief_buyer")],
+                    ["Payment preference", fieldValue("brief_payment_preference")],
+                    ["Receipt or tax invoice needed", fieldValue("brief_receipt_needed")],
+                    ["Target launch date", fieldValue("brief_launch_date")],
+                    ["Product or creator link", fieldValue("brief_product_link")],
+                    ["Source materials link", fieldValue("brief_materials_link")],
+                    ["Commercial usage scope", fieldValue("brief_commercial_scope") || selected.scope],
+                    ["Decision timeline", fieldValue("brief_decision_timeline")],
+                    ["Notes", fieldValue("brief_notes")],
+                ].map(([label, value]) => `${label}: ${value}`).join("\n");
+
+                briefInvoiceLink.href = `mailto:alyduho984530@gmail.com?subject=${encodeURIComponent("Kova Studio Sprint invoice request")}&body=${encodeURIComponent(body)}`;
+            }
+
+            if (briefForm) {
+                const packageField = formField("brief_package");
+                const referralField = formField("brief_referral_source");
+
+                if (referralField) {
+                    referralField.value = referralSource;
+                }
+                if (packageField && packageOptions[packageParam]) {
+                    packageField.value = packageParam;
+                }
+
+                syncBriefCommercialScope(true);
+                updateBriefInvoiceLink();
+
+                packageField?.addEventListener("change", () => {
+                    syncBriefCommercialScope();
+                    updateBriefInvoiceLink();
+                });
+                briefForm.addEventListener("input", updateBriefInvoiceLink);
+                briefForm.addEventListener("change", updateBriefInvoiceLink);
+                briefForm.addEventListener("submit", (event) => {
+                    event.preventDefault();
+                });
             }
         })();
     </script>
