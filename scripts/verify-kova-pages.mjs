@@ -285,6 +285,7 @@ assert.match(studioSprint, /Founder profile/);
 assert.match(studioSprint, /App launch posts/);
 assert.match(studioSprint, /Prompt system handoff/);
 assert.match(studioSprint, /Proof before invoice/);
+assert.equal((studioSprint.match(/id="proofTitle"/g) || []).length, 1);
 assert.match(studioSprint, /Visible Kova examples/);
 assert.match(studioSprint, /Before\/after figurine and profile examples/i);
 assert.match(studioSprint, /\.\.\/examples\//);
