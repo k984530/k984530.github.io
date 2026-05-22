@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kova Support</title>
+    <meta name="description" content="Get support for Kova credits, restore purchases, account deletion, subscriptions, and AI photo generation issues.">
+    <link rel="canonical" href="https://won-space.com/Kova/support.html">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ink: #101114;
+            --paper: #fffaf0;
+            --muted: #68635b;
+            --line: rgba(16, 17, 20, 0.14);
+            --accent: #ff5c7a;
+            --blue: #2477ff;
+            --mint: #35bf8e;
+            --yellow: #f3c94d;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            min-width: 320px;
+            color: var(--ink);
+            background:
+                linear-gradient(90deg, rgba(16, 17, 20, 0.05) 1px, transparent 1px) 0 0 / 56px 56px,
+                linear-gradient(0deg, rgba(16, 17, 20, 0.035) 1px, transparent 1px) 0 0 / 56px 56px,
+                var(--paper);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        main {
+            width: min(920px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 42px 0 72px;
+        }
+
+        .back {
+            display: inline-flex;
+            margin-bottom: 26px;
+            color: var(--ink);
+            font-weight: 800;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(2.7rem, 7vw, 5.5rem);
+            line-height: 0.92;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .lead {
+            max-width: 680px;
+            margin: 0 0 30px;
+            color: var(--muted);
+            font-size: 1.12rem;
+            line-height: 1.6;
+        }
+
+        .contact {
+            display: inline-flex;
+            align-items: center;
+            min-height: 52px;
+            padding: 0 20px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--ink);
+            color: var(--white);
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 7px 7px 0 var(--yellow);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 38px;
+        }
+
+        section {
+            padding: 22px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+        }
+
+        section:nth-child(2) {
+            background: #e9f1ff;
+        }
+
+        section:nth-child(3) {
+            background: #eef9f3;
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            font-size: 1.16rem;
+        }
+
+        p,
+        li {
+            color: var(--muted);
+            line-height: 1.62;
+        }
+
+        ol,
+        ul {
+            padding-left: 22px;
+        }
+
+        a {
+            color: var(--blue);
+            font-weight: 800;
+        }
+
+        .policies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 760px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <a class="back" href="./">Kova</a>
+        <h1>Kova Support</h1>
+        <p class="lead">Need help with AI generation, credits, restore purchases, subscriptions, account deletion, or a store billing issue? Send a support email and include your device, store, and Kova account email or guest ID when available.</p>
+        <a class="contact" href="mailto:alyduho984530@gmail.com?subject=Kova%20Support%20Request">Email Kova support</a>
+
+        <div class="grid">
+            <section>
+                <h2>Credits and Membership</h2>
+                <p>Credits are used for AI image generation and higher-quality results. If credits or membership access do not appear after purchase, open Kova and use restore purchases from the account or credits area, then restart the app if needed.</p>
+            </section>
+
+            <section>
+                <h2>Store Billing</h2>
+                <p>Apple App Store and Google Play handle payment confirmation, subscription cancellation, tax, receipts, and refunds. Kova can help check entitlement sync after the store confirms a purchase.</p>
+            </section>
+
+            <section id="account-deletion">
+                <h2>Account Deletion</h2>
+                <ol>
+                    <li>Email us from the email address associated with your Kova account. If you use a guest account, include the Kova account ID shown in the app account screen.</li>
+                    <li>Use the subject line "Kova Account Deletion Request".</li>
+                    <li>Tell us whether you want the account only deleted or whether you also want associated gallery, custom style, and public community data removed where possible.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>AI Generation Issues</h2>
+                <p>Image generation can take longer during provider delays. Pending jobs appear in your Library, and completion or failure is shown in app notifications when available. If a job is stuck, include the approximate time and style name in your email.</p>
+            </section>
+        </div>
+
+        <nav class="policies" aria-label="Kova policies">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="download/index.html">Download Kova</a>
+        </nav>
+    </main>
+</body>
+</html>

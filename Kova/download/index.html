@@ -103,6 +103,24 @@
             color: #101114;
             box-shadow: 7px 7px 0 #2477ff;
         }
+
+        .legal-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .legal-links a {
+            min-height: auto;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #68635b;
+            box-shadow: none;
+            font-size: 0.86rem;
+        }
     </style>
 </head>
 <body>
@@ -115,6 +133,11 @@
             <a class="secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova">Google Play</a>
         </div>
         <p class="hint">Kova turns one photo into collectible, anime, Polaroid, cyberpunk, and other AI styles.</p>
+        <nav class="legal-links" aria-label="Kova policies">
+            <a href="../privacy.html">Privacy</a>
+            <a href="../terms.html">Terms</a>
+            <a href="../support.html">Support</a>
+        </nav>
         <noscript>
             <p class="hint">JavaScript is off, so automatic store redirect is disabled. Please choose a store above.</p>
         </noscript>
