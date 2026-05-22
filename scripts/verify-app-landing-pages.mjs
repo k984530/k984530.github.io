@@ -49,6 +49,7 @@ const extraProjects = new Map([
 
 const kovaPromoDirs = new Set([
   "AppHub",
+  "BlahChat",
   "CatsDiary",
   "CatsThoughts",
   "ChatVibe",
@@ -63,6 +64,7 @@ const kovaPromoDirs = new Set([
 ]);
 
 const socialKovaIntentDirs = new Set([
+  "BlahChat",
   "ChatVibe",
   "FriendAI",
   "Rizzet",
