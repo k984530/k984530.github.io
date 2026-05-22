@@ -24,6 +24,14 @@ const downloadPageDirs = {
   MODEE: "MODEE",
 };
 
+const standaloneDownloadPages = {
+  MobileCode: {
+    file: "MobileCode/download.html",
+    canonical: "https://won-space.com/MobileCode/download.html",
+    windows: "download/MobileCode.zip",
+  },
+};
+
 const extraProjects = new Map([
   ["OneAI", {
     android: "https://play.google.com/store/apps/details?id=com.aly.OneAI",
@@ -95,6 +103,36 @@ for (const [name, dir] of Object.entries(downloadPageDirs)) {
   }
 }
 
+for (const [name, page] of Object.entries(standaloneDownloadPages)) {
+  const project = projects.get(name) ?? extraProjects.get(name);
+  assert.ok(project, `Missing project metadata for ${name}`);
+
+  await access(page.file);
+  const html = await readFile(page.file, "utf8");
+
+  if (!html.includes(`<link rel="canonical" href="${page.canonical}">`)) {
+    failures.push(`${page.file}: missing canonical ${page.canonical}`);
+  }
+  if (!html.includes(`property="og:url" content="${page.canonical}"`)) {
+    failures.push(`${page.file}: missing og:url ${page.canonical}`);
+  }
+  if (project.ios && !html.includes(project.ios)) {
+    failures.push(`${page.file}: missing iOS store URL ${project.ios}`);
+  }
+  if (project.android && !html.includes(project.android)) {
+    failures.push(`${page.file}: missing Android store URL ${project.android}`);
+  }
+  if (page.windows && !html.includes(`href="${page.windows}"`)) {
+    failures.push(`${page.file}: missing Windows ZIP download ${page.windows}`);
+  }
+  if (/href="#"/.test(html)) {
+    failures.push(`${page.file}: contains placeholder href="#"`);
+  }
+  if (/id123456789|com\.won\.mobilecode/.test(html)) {
+    failures.push(`${page.file}: contains stale placeholder store URL`);
+  }
+}
+
 assert.deepEqual(failures, []);
 
-console.log(`Download page verification passed for ${Object.keys(downloadPageDirs).length} pages`);
+console.log(`Download page verification passed for ${Object.keys(downloadPageDirs).length + Object.keys(standaloneDownloadPages).length} pages`);
