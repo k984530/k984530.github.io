@@ -19,6 +19,32 @@
     <meta name="twitter:description" content="Create collectible, anime, Polaroid, cyberpunk, and report-style AI photo edits.">
     <meta name="twitter:image" content="https://won-space.com/Kova/download/Icon.png">
 
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Kova: AI Photo Editor",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "iOS, Android",
+        "description": "Turn one photo into share-ready AI styles. New accounts include 20 starter credits, enough for about 2 standard image generations.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "downloadUrl": [
+            "https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914",
+            "https://play.google.com/store/apps/details?id=com.aly.kova"
+        ],
+        "screenshot": [
+            "https://won-space.com/Kova/assets/figurine.webp",
+            "https://won-space.com/Kova/assets/anime.webp",
+            "https://won-space.com/Kova/assets/polaroid.webp",
+            "https://won-space.com/Kova/assets/cyberpunk.webp"
+        ]
+    }
+    </script>
+
     <style>
         * {
             box-sizing: border-box;
@@ -139,6 +165,30 @@
 
         .store-button.secondary:hover {
             box-shadow: 12px 12px 0 var(--blue);
+        }
+
+        .starter-strip {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            gap: 10px 16px;
+            align-items: center;
+            max-width: 620px;
+            margin-top: 24px;
+            padding: 16px 18px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+            box-shadow: 8px 8px 0 var(--accent);
+        }
+
+        .starter-strip strong {
+            font-size: 1rem;
+            line-height: 1.25;
+        }
+
+        .starter-strip span {
+            color: var(--muted);
+            line-height: 1.45;
         }
 
         .phone-handoff {
@@ -375,6 +425,10 @@
                 max-width: none;
             }
 
+            .starter-strip {
+                grid-template-columns: 1fr;
+            }
+
             .qr-handoff {
                 grid-template-columns: 1fr;
             }
@@ -422,6 +476,10 @@
                     <a href="ai-photo-editor-styles/">Explore AI styles</a>
                     <a href="pricing/">Credits and pricing</a>
                 </nav>
+                <div class="starter-strip">
+                    <strong>20 starter credits included</strong>
+                    <span>New accounts can try about 2 standard image generations before choosing a membership or credit pack.</span>
+                </div>
                 <aside class="phone-handoff" aria-labelledby="phoneHandoffTitle">
                     <h2 id="phoneHandoffTitle">Open Kova on your phone</h2>
                     <p>Scan the QR code or open this short download page on your phone. It sends iPhone and Android visitors to the right store.</p>

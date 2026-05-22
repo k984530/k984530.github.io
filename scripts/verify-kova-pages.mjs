@@ -52,6 +52,10 @@ assert.match(index, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\
 assert.match(index, /Kova\/download\/index\.html/);
 assert.match(index, /download-qr\.svg/);
 assert.match(index, /download\/Icon\.png/);
+assert.match(index, /20 starter credits/i);
+assert.match(index, /about 2 standard image generations/i);
+assert.match(index, /application\/ld\+json/);
+assert.match(index, /SoftwareApplication/);
 assert.match(index, /assets\/figurine\.webp/);
 assert.match(index, /assets\/anime\.webp/);
 assert.match(index, /assets\/polaroid\.webp/);
