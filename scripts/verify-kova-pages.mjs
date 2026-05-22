@@ -12,6 +12,7 @@ const requiredFiles = [
   "Kova/pricing/index.html",
   "Kova/examples/index.html",
   "Kova/ai-photo-editor-styles/index.html",
+  "Kova/ai-avatar-generator/index.html",
   "Kova/ai-anime-portrait-generator/index.html",
   "Kova/ai-dating-profile-picture-generator/index.html",
   "Kova/ai-pet-portrait-generator/index.html",
@@ -35,7 +36,7 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, pricing, examples, styles, anime, dating, pet, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, pricing, examples, styles, avatar, anime, dating, pet, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
@@ -43,6 +44,7 @@ const [rootIndex, sitemap, index, download, pricing, examples, styles, anime, da
   readFile("Kova/pricing/index.html", "utf8"),
   readFile("Kova/examples/index.html", "utf8"),
   readFile("Kova/ai-photo-editor-styles/index.html", "utf8"),
+  readFile("Kova/ai-avatar-generator/index.html", "utf8"),
   readFile("Kova/ai-anime-portrait-generator/index.html", "utf8"),
   readFile("Kova/ai-dating-profile-picture-generator/index.html", "utf8"),
   readFile("Kova/ai-pet-portrait-generator/index.html", "utf8"),
@@ -59,6 +61,7 @@ assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/privacy\.html/);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/terms\.html/);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/support\.html/);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/examples\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-avatar-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-anime-portrait-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-dating-profile-picture-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-pet-portrait-generator\//);
@@ -87,6 +90,7 @@ assert.match(index, /support\.html/);
 assert.match(index, /pricing\//);
 assert.match(index, /examples\//);
 assert.match(index, /ai-photo-editor-styles\//);
+assert.match(index, /ai-avatar-generator\//);
 assert.match(index, /ai-anime-portrait-generator\//);
 assert.match(index, /ai-dating-profile-picture-generator\//);
 assert.match(index, /ai-pet-portrait-generator\//);
@@ -164,10 +168,33 @@ assert.match(styles, /Anime Portrait/);
 assert.match(styles, /RevenueCat/);
 assert.match(styles, /\.\.\/download\/index\.html/);
 assert.match(styles, /\.\.\/pricing\//);
+assert.match(styles, /\.\.\/ai-avatar-generator\//);
 assert.match(styles, /\.\.\/ai-anime-portrait-generator\//);
 assert.match(styles, /\.\.\/privacy\.html/);
 assert.match(styles, /\.\.\/terms\.html/);
 assert.match(styles, /\.\.\/support\.html/);
+
+assert.match(avatar, /<title>AI Avatar Generator \| Kova<\/title>/);
+assert.match(avatar, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-avatar-generator\/">/);
+assert.match(avatar, /AI Avatar Generator/);
+assert.match(avatar, /avatar/i);
+assert.match(avatar, /profile picture/i);
+assert.match(avatar, /20 starter credits/i);
+assert.match(avatar, /about 2 standard image generations/i);
+assert.match(avatar, /10 credits per standard image generation/i);
+assert.match(avatar, /assets\/anime\.webp/);
+assert.match(avatar, /assets\/profile_headshot_male_after\.webp/);
+assert.match(avatar, /assets\/figurine\.webp/);
+assert.match(avatar, /application\/ld\+json/);
+assert.match(avatar, /SoftwareApplication/);
+assert.match(avatar, /\.\.\/download\/index\.html/);
+assert.match(avatar, /\.\.\/pricing\//);
+assert.match(avatar, /\.\.\/examples\//);
+assert.match(avatar, /\.\.\/ai-photo-editor-styles\//);
+assert.match(avatar, /\.\.\/ai-anime-portrait-generator\//);
+assert.match(avatar, /\.\.\/ai-profile-headshot-generator\//);
+assert.match(avatar, new RegExp(iosUrl.replaceAll(".", "\\.")));
+assert.match(avatar, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 
 assert.match(anime, /<title>AI Anime Portrait Generator \| Kova<\/title>/);
 assert.match(anime, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-anime-portrait-generator\/">/);
