@@ -79,17 +79,17 @@ const kovaPromoDirs = new Set([
   "faceMatch",
 ]);
 
-const socialKovaIntentDirs = new Set([
-  "AnyThoughts",
-  "Anypick",
-  "BlahChat",
-  "ChatVibe",
-  "FriendAI",
-  "HeartAI",
-  "Rizzet",
-  "SeductionRules",
-  "SecretMind",
-  "faceMatch",
+const socialKovaIntentDirs = new Map([
+  ["AnyThoughts", "anythoughts"],
+  ["Anypick", "anypick"],
+  ["BlahChat", "blahchat"],
+  ["ChatVibe", "chatvibe"],
+  ["FriendAI", "friendai"],
+  ["HeartAI", "heartai"],
+  ["Rizzet", "rizzet"],
+  ["SeductionRules", "seductionrules"],
+  ["SecretMind", "secretmind"],
+  ["faceMatch", "facematch"],
 ]);
 
 const petKovaIntentDirs = new Set([
@@ -210,11 +210,21 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     if (dir === "MindMapAI" && !html.includes("Book Studio Sprint")) {
       failures.push(`${dir}: missing Kova Studio Sprint service CTA`);
     }
-    if (socialKovaIntentDirs.has(dir) && !html.includes("../Kova/ai-dating-profile-picture-generator/")) {
-      failures.push(`${dir}: missing Kova dating-profile intent link`);
-    }
-    if (socialKovaIntentDirs.has(dir) && !html.includes("dating profile pictures")) {
-      failures.push(`${dir}: missing Kova dating-profile intent copy`);
+    if (socialKovaIntentDirs.has(dir)) {
+      const source = socialKovaIntentDirs.get(dir);
+      const expectedLink = `../Kova/ai-dating-profile-picture-generator/?source=${source}&package=profile-refresh#datingSprintBuilder`;
+      if (!html.includes("../Kova/ai-dating-profile-picture-generator/")) {
+        failures.push(`${dir}: missing Kova dating-profile intent link`);
+      }
+      if (!html.includes(expectedLink)) {
+        failures.push(`${dir}: missing source-aware Kova dating profile sprint link`);
+      }
+      if (!html.includes("dating profile pictures")) {
+        failures.push(`${dir}: missing Kova dating-profile intent copy`);
+      }
+      if (!html.includes("Profile photo sprint")) {
+        failures.push(`${dir}: missing Kova dating profile sprint CTA`);
+      }
     }
     if (petKovaIntentDirs.has(dir) && !html.includes("../Kova/ai-pet-portrait-generator/")) {
       failures.push(`${dir}: missing Kova pet-portrait intent link`);

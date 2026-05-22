@@ -39,6 +39,43 @@
         ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Kova Dating Profile Photo Sprint",
+        "description": "A paid Kova service that turns social or dating profile goals, source photos, and profile links into an invoice-ready profile photo sprint brief.",
+        "provider": {
+            "@type": "Organization",
+            "name": "Kova"
+        },
+        "url": "https://won-space.com/Kova/ai-dating-profile-picture-generator/#datingSprintBuilder",
+        "offers": {
+            "@type": "OfferCatalog",
+            "name": "Dating profile photo sprint packages",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "name": "Profile refresh",
+                    "price": "149000",
+                    "priceCurrency": "KRW"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Social set",
+                    "price": "390000",
+                    "priceCurrency": "KRW"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Creator profile system",
+                    "price": "990000",
+                    "priceCurrency": "KRW"
+                }
+            ]
+        }
+    }
+    </script>
 
     <style>
         * { box-sizing: border-box; }
@@ -86,6 +123,23 @@
         .starter { margin-top: 18px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 18px; box-shadow: 8px 8px 0 var(--mint); }
         .starter strong { display: block; margin-bottom: 6px; }
         .starter p { margin: 0; color: var(--muted); line-height: 1.55; }
+        .sprint-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 18px; }
+        .sprint-card { min-height: 210px; padding: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.08); }
+        .sprint-card:nth-child(2) { background: #e9f1ff; }
+        .sprint-card:nth-child(3) { background: #fff4d6; }
+        .sprint-card strong { display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.16rem; }
+        .sprint-card p { margin: 0; color: var(--muted); line-height: 1.58; }
+        .brief-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr); gap: 18px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 22px; box-shadow: 8px 8px 0 var(--blue); }
+        .brief-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .field { display: grid; gap: 7px; font-weight: 800; }
+        .field span { color: var(--muted); font-size: 0.86rem; text-transform: uppercase; }
+        .field input,
+        .field select { width: 100%; min-height: 46px; border: 2px solid var(--ink); border-radius: 8px; padding: 0 12px; background: #fffdf7; color: var(--ink); font: inherit; }
+        .field.full { grid-column: 1 / -1; }
+        .preview-box { display: grid; gap: 12px; align-content: start; }
+        .preview-box h3 { margin: 0; font-size: 1.24rem; }
+        .preview { min-height: 240px; margin: 0; padding: 16px; border: 2px solid var(--ink); border-radius: 8px; background: #101114; color: var(--white); white-space: pre-wrap; line-height: 1.58; overflow-wrap: anywhere; }
+        .safety-note { margin: 0; color: var(--muted); line-height: 1.55; }
         .section { padding: 56px 0; border-top: 2px solid var(--line); }
         .section-head { display: grid; grid-template-columns: 0.86fr 1.14fr; gap: 42px; align-items: end; margin-bottom: 22px; }
         .section h2 { margin: 0; font-size: clamp(2rem, 4.4vw, 3.8rem); line-height: 0.96; text-transform: uppercase; }
@@ -111,8 +165,12 @@
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 900px) {
             .hero, .section-head { grid-template-columns: 1fr; }
-            .cards { grid-template-columns: 1fr; }
+            .cards,
+            .sprint-grid,
+            .brief-panel,
+            .brief-form { grid-template-columns: 1fr; }
             .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .field.full { grid-column: auto; }
         }
         @media (max-width: 560px) {
             .hero-visual, .comparison { grid-template-columns: 1fr; }
@@ -129,6 +187,7 @@
                 <p class="lead">Turn one phone photo into a cleaner dating profile picture for profile refreshes, first-message confidence, and social app thumbnails. Kova keeps the workflow simple: choose a photo, pick a profile-ready style, then save a share-ready result.</p>
                 <div class="cta-row" aria-label="Download Kova">
                     <a class="button" href="../download/index.html">Open download page</a>
+                    <a class="button secondary" href="#datingSprintBuilder">Profile photo sprint</a>
                     <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914">App Store</a>
                     <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova">Google Play</a>
                 </div>
@@ -198,6 +257,89 @@
             </div>
         </section>
 
+        <section class="section shell" id="datingSprintBuilder" aria-labelledby="datingSprintTitle">
+            <div class="section-head">
+                <h2 id="datingSprintTitle">Dating Profile Photo Sprint</h2>
+                <p>High-intent social visitors can request a scoped profile photo package instead of stopping at self-serve credits. The builder keeps source, package, goal, profile link, deadline, and recovery math visible before an invoice email opens.</p>
+            </div>
+            <div class="sprint-grid" aria-label="Dating profile photo sprint packages">
+                <article class="sprint-card">
+                    <strong>149,000 KRW</strong>
+                    <h3>Profile refresh</h3>
+                    <p>One focused dating or social profile direction with source-photo notes and profile slot guidance before invoice.</p>
+                </article>
+                <article class="sprint-card">
+                    <strong>390,000 KRW</strong>
+                    <h3>Social set</h3>
+                    <p>Multiple profile-ready variants for dating apps, social bios, and creator thumbnails with a tighter usage note.</p>
+                </article>
+                <article class="sprint-card">
+                    <strong>990,000 KRW+</strong>
+                    <h3>Creator profile system</h3>
+                    <p>A higher-touch profile visual system for creators, coaches, or paid communities that need consistent social proof.</p>
+                </article>
+            </div>
+            <div class="brief-panel">
+                <form class="brief-form" id="datingSprintForm">
+                    <label class="field">
+                        <span>Package</span>
+                        <select id="datingSprintPackage" name="package">
+                            <option value="profile-refresh" data-price="149000">Profile refresh - 149,000 KRW</option>
+                            <option value="social-set" data-price="390000">Social set - 390,000 KRW</option>
+                            <option value="creator-profile-system" data-price="990000">Creator profile system - 990,000 KRW+</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Referral source</span>
+                        <select id="datingSprintSource" name="source">
+                            <option value="Direct dating profile page">Direct dating profile page</option>
+                            <option value="FriendAI">FriendAI</option>
+                            <option value="ChatVibe">ChatVibe</option>
+                            <option value="Rizzet">Rizzet</option>
+                            <option value="FaceMatch">FaceMatch</option>
+                            <option value="SeductionRules">SeductionRules</option>
+                            <option value="HeartAI">HeartAI</option>
+                            <option value="SecretMind">SecretMind</option>
+                            <option value="BlahChat">BlahChat</option>
+                            <option value="AnyThoughts">AnyThoughts</option>
+                            <option value="Anypick">Anypick</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Primary goal</span>
+                        <select id="datingSprintGoal" name="goal">
+                            <option>Dating app profile refresh</option>
+                            <option>Social bio portrait set</option>
+                            <option>Creator or community profile system</option>
+                            <option>First-message confidence photo</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Average paid order value</span>
+                        <input id="datingSprintAov" name="aov" inputmode="numeric" value="50000">
+                    </label>
+                    <label class="field full">
+                        <span>Profile or reference link</span>
+                        <input id="datingSprintProfileLink" name="profileLink" placeholder="Dating app, social bio, creator page, or reference URL">
+                    </label>
+                    <label class="field">
+                        <span>Target deadline</span>
+                        <input id="datingSprintDeadline" name="deadline" placeholder="This week / launch date / open">
+                    </label>
+                    <label class="field">
+                        <span>Notes</span>
+                        <input id="datingSprintNotes" name="notes" placeholder="Style, source photo readiness, audience, constraints">
+                    </label>
+                </form>
+                <div class="preview-box">
+                    <h3>Dating sprint invoice email preview</h3>
+                    <pre class="preview" id="datingSprintEmailPreview"></pre>
+                    <p class="safety-note">No live checkout, payment link, or buyer message is created. This page only opens a draft invoice-request email for manual review.</p>
+                    <a class="button" id="datingSprintInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Dating%20Profile%20Photo%20Sprint%20invoice%20request">Create dating sprint invoice email</a>
+                </div>
+            </div>
+        </section>
+
         <section class="section shell" aria-labelledby="faqTitle">
             <div class="section-head">
                 <h2 id="faqTitle">Questions</h2>
@@ -237,11 +379,76 @@
             <a href="../ai-photo-editor-styles/">Styles</a>
             <a href="../examples/">Examples</a>
             <a href="../ai-profile-headshot-generator/">Headshots</a>
+            <a href="#datingSprintBuilder">Photo sprint</a>
             <a href="../pricing/">Pricing</a>
             <a href="../privacy.html">Privacy</a>
             <a href="../terms.html">Terms</a>
             <a href="../support.html">Support</a>
         </nav>
     </footer>
+    <script>
+        const packageLabels = {
+            "profile-refresh": "Profile refresh - 149,000 KRW",
+            "social-set": "Social set - 390,000 KRW",
+            "creator-profile-system": "Creator profile system - 990,000 KRW+"
+        };
+        const sourceLabels = {
+            anythoughts: "AnyThoughts",
+            anypick: "Anypick",
+            blahchat: "BlahChat",
+            chatvibe: "ChatVibe",
+            friendai: "FriendAI",
+            heartai: "HeartAI",
+            rizzet: "Rizzet",
+            seductionrules: "SeductionRules",
+            secretmind: "SecretMind",
+            facematch: "FaceMatch"
+        };
+
+        function fieldValue(id, fallback = "") {
+            const field = document.getElementById(id);
+            return field && field.value.trim() ? field.value.trim() : fallback;
+        }
+
+        function selectedPackagePrice() {
+            const field = document.getElementById("datingSprintPackage");
+            return Number(field.options[field.selectedIndex].dataset.price || 149000);
+        }
+
+        function updateDatingSprintBrief() {
+            const packageField = document.getElementById("datingSprintPackage");
+            const packageLabel = packageLabels[packageField.value] || packageField.options[packageField.selectedIndex].textContent;
+            const averageOrderValue = Math.max(1, Number(fieldValue("datingSprintAov", "50000").replace(/[^0-9]/g, "")) || 50000);
+            const recoveryOrders = Math.ceil(selectedPackagePrice() / averageOrderValue);
+            const body = [
+                "Selected package: " + packageLabel,
+                "Referral source: " + fieldValue("datingSprintSource", "Direct dating profile page"),
+                "Primary goal: " + fieldValue("datingSprintGoal", "Dating app profile refresh"),
+                "Profile or reference link: " + fieldValue("datingSprintProfileLink", "Not added yet"),
+                "Target deadline: " + fieldValue("datingSprintDeadline", "Open"),
+                "Average paid order value: " + averageOrderValue.toLocaleString("en-US") + " KRW",
+                "Estimated paid orders to recover fee: about " + recoveryOrders,
+                "Notes: " + fieldValue("datingSprintNotes", "Source photos and preferred style will be shared before invoice."),
+                "",
+                "Please reply with scope, invoice details, and source-photo checklist before any payment link or production work."
+            ].join("\n");
+
+            document.getElementById("datingSprintEmailPreview").textContent = body;
+            document.getElementById("datingSprintInvoiceLink").href = "mailto:alyduho984530@gmail.com?subject=" + encodeURIComponent("Kova Dating Profile Photo Sprint invoice request") + "&body=" + encodeURIComponent(body);
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const packageParam = params.get("package");
+        const sourceParam = params.get("source");
+        if (packageParam && packageLabels[packageParam]) {
+            document.getElementById("datingSprintPackage").value = packageParam;
+        }
+        if (sourceParam && sourceLabels[sourceParam.toLowerCase()]) {
+            document.getElementById("datingSprintSource").value = sourceLabels[sourceParam.toLowerCase()];
+        }
+        document.getElementById("datingSprintForm").addEventListener("input", updateDatingSprintBrief);
+        document.getElementById("datingSprintForm").addEventListener("change", updateDatingSprintBrief);
+        updateDatingSprintBrief();
+    </script>
 </body>
 </html>
