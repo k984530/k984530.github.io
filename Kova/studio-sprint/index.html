@@ -233,7 +233,8 @@
 
         .package-grid,
         .deliverables,
-        .process-grid {
+        .process-grid,
+        .proof-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 16px;
@@ -242,7 +243,8 @@
 
         .package,
         .deliverable,
-        .process-step {
+        .process-step,
+        .proof-card {
             padding: 20px;
             border: 2px solid var(--ink);
             border-radius: 8px;
@@ -260,7 +262,8 @@
 
         .package strong,
         .deliverable strong,
-        .process-step strong {
+        .process-step strong,
+        .proof-card strong {
             display: block;
             margin-bottom: 10px;
             font-size: 1.08rem;
@@ -278,10 +281,31 @@
 
         .package p,
         .deliverable p,
-        .process-step p {
+        .process-step p,
+        .proof-card p {
             margin: 0;
             color: var(--muted);
             line-height: 1.55;
+        }
+
+        .proof-card {
+            display: grid;
+            min-width: 0;
+            gap: 14px;
+        }
+
+        .proof-card img {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--paper);
+        }
+
+        .proof-card a {
+            width: fit-content;
+            font-weight: 900;
         }
 
         .package .button {
@@ -425,6 +449,7 @@
             .package-grid,
             .deliverables,
             .process-grid,
+            .proof-grid,
             .invoice-panel,
             .brief-grid {
                 grid-template-columns: 1fr;
@@ -517,6 +542,55 @@
                     <span class="price">9,900,000 KRW+</span>
                     <strong>Portfolio revenue system</strong>
                     <p>24 funnel visuals, 12 prompt recipes, usage notes, and a multi-offer prompt handoff for one portfolio revenue system.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="proofTitle">
+            <h2 id="proofTitle">Proof before invoice</h2>
+            <div class="proof-grid">
+                <article class="proof-card">
+                    <img src="../assets/figurine_male_after.webp" alt="Kova figurine example used as Studio Sprint proof">
+                    <div>
+                        <strong>Visible Kova examples</strong>
+                        <p>Review before/after figurine and profile examples so buyers can judge the output direction before choosing a paid sprint.</p>
+                    </div>
+                    <a href="../examples/">Open examples</a>
+                </article>
+                <article class="proof-card">
+                    <img src="../assets/polaroid.webp" alt="Kova launch visual example for source-aware funnels">
+                    <div>
+                        <strong>Source-aware launch funnels</strong>
+                        <p>AppHub and MindMapAI visitors already enter source-aware Studio Sprint paths, showing how planning traffic can become an invoice-ready offer.</p>
+                    </div>
+                    <a href="../app-launch-visuals/">See launch funnel</a>
+                </article>
+                <article class="proof-card">
+                    <img src="../assets/profile_headshot.webp" alt="Kova profile visual used in invoice handoff proof">
+                    <div>
+                        <strong>Invoice-ready handoff proof</strong>
+                        <p>The brief builder keeps selected package, referral source, and commercial usage scope visible before the buyer opens the invoice email.</p>
+                    </div>
+                    <a href="#briefBuilderTitle">Review handoff</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="proofTitle">
+            <h2 id="proofTitle">Proof before invoice</h2>
+            <div class="process-grid">
+                <article class="process-step">
+                    <strong>Visible Kova examples</strong>
+                    <p>Before/after figurine and profile examples are already live on the Kova examples page, so buyers can inspect the visual quality before requesting an invoice.</p>
+                    <p><a href="../examples/">See examples</a></p>
+                </article>
+                <article class="process-step">
+                    <strong>Source-aware launch funnels</strong>
+                    <p>AppHub and MindMapAI visitors are routed into Studio Sprint with source and package context, proving the funnel can preserve intent from qualified product traffic.</p>
+                </article>
+                <article class="process-step">
+                    <strong>Invoice-ready handoff proof</strong>
+                    <p>The public request path captures selected package, referral source, and commercial usage scope before payment instructions are prepared.</p>
                 </article>
             </div>
         </section>
