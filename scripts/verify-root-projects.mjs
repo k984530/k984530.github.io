@@ -28,9 +28,11 @@ const requiredDetailRoutes = new Map([
   ["FaceMatch", "faceMatch/"],
   ["FriendAI", "FriendAI/"],
   ["GhostLens", "GhostLens/"],
+  ["HeartAI", "HeartAI/"],
   ["Lookey", "Lookey/"],
   ["MindMapAI", "MindMapAI/"],
   ["RizzChat", "Rizzet/"],
+  ["SecretMinds", "SecretMind/"],
   ["TheArtOfSeduction", "SeductionRules/"],
 ]);
 

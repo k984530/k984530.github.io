@@ -56,10 +56,12 @@ const kovaPromoDirs = new Set([
   "DogsThoughts",
   "FriendAI",
   "GhostLens",
+  "HeartAI",
   "Lookey",
   "MindMapAI",
   "Rizzet",
   "SeductionRules",
+  "SecretMind",
   "faceMatch",
 ]);
 
@@ -67,8 +69,10 @@ const socialKovaIntentDirs = new Set([
   "BlahChat",
   "ChatVibe",
   "FriendAI",
+  "HeartAI",
   "Rizzet",
   "SeductionRules",
+  "SecretMind",
   "faceMatch",
 ]);
 
