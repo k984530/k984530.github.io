@@ -50,6 +50,7 @@ const extraProjects = new Map([
 const kovaPromoDirs = new Set([
   "AppHub",
   "CatsDiary",
+  "CatsThoughts",
   "ChatVibe",
   "DogsThoughts",
   "FriendAI",
@@ -67,6 +68,12 @@ const socialKovaIntentDirs = new Set([
   "Rizzet",
   "SeductionRules",
   "faceMatch",
+]);
+
+const petKovaIntentDirs = new Set([
+  "CatsDiary",
+  "CatsThoughts",
+  "DogsThoughts",
 ]);
 
 const rootIndex = await readFile("index.html", "utf8");
@@ -120,6 +127,12 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     }
     if (socialKovaIntentDirs.has(dir) && !html.includes("dating profile pictures")) {
       failures.push(`${dir}: missing Kova dating-profile intent copy`);
+    }
+    if (petKovaIntentDirs.has(dir) && !html.includes("../Kova/ai-pet-portrait-generator/")) {
+      failures.push(`${dir}: missing Kova pet-portrait intent link`);
+    }
+    if (petKovaIntentDirs.has(dir) && !html.includes("pet portrait")) {
+      failures.push(`${dir}: missing Kova pet-portrait intent copy`);
     }
     if (!html.includes("../Kova/download/Icon.png")) {
       failures.push(`${dir}: missing Kova promo icon`);

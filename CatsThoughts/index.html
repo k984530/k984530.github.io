@@ -114,6 +114,49 @@
             margin-bottom: 40px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
+
+        .kova-promo {
+            display: grid;
+            grid-template-columns: 86px minmax(0, 1fr) auto;
+            gap: 22px;
+            align-items: center;
+            background: white;
+            border-radius: 20px;
+            padding: 26px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .kova-promo img {
+            width: 86px;
+            height: 86px;
+            border-radius: 20px;
+        }
+
+        .kova-promo h2 {
+            margin-bottom: 8px;
+            color: #fa709a;
+            font-size: 1.55em;
+        }
+
+        .kova-promo p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .kova-link {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: 0 18px;
+            background: #111827;
+            color: white;
+            font-weight: 800;
+            text-decoration: none;
+            white-space: nowrap;
+        }
         
         .features h2 {
             text-align: center;
@@ -190,6 +233,15 @@
                 flex-direction: column;
                 align-items: center;
             }
+
+            .kova-promo {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .kova-promo img {
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
@@ -215,6 +267,15 @@
             <p style="text-align: center; color: #666; font-size: 1.1em;">
                 Available on iOS and Android devices
             </p>
+        </div>
+
+        <div class="kova-promo">
+            <img src="../Kova/download/Icon.png" alt="Kova AI Photo Editor icon">
+            <div>
+                <h2>Turn a cat photo into an AI pet portrait</h2>
+                <p>After reading your cat's mood in CatsThoughts, try Kova with 20 starter credits, enough for about 2 standard image generations, and turn one cat photo into a pet portrait, keepsake style, or share-ready AI image.</p>
+            </div>
+            <a class="kova-link" href="../Kova/ai-pet-portrait-generator/">Open Kova</a>
         </div>
         
         <div class="features">
