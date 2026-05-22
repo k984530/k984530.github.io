@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Diary Support</title>
+    <meta name="description" content="Support page for Star Diary, including subscription restore help, ads, privacy, and contact information.">
+    <link rel="stylesheet" href="../app-detail.css">
+    <style>
+        .support-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 22px;
+        }
+
+        .support-card {
+            padding: 26px;
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .support-card h2 {
+            margin-bottom: 12px;
+            text-align: left;
+            font-size: 1.25rem;
+        }
+
+        .support-card p {
+            color: var(--text-secondary);
+        }
+
+        .support-card a {
+            color: var(--primary-color);
+        }
+
+        .support-meta {
+            margin-top: 24px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="download/Icon.png" alt="Star Diary app icon" class="app-icon">
+            <h1>Support</h1>
+            <p class="tagline">Help for Star Diary</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="features">
+            <div class="support-list">
+                <article class="support-card">
+                    <h2>Restore Pro</h2>
+                    <p>
+                        If Star Diary Pro is active on the App Store or Google Play account you used to subscribe, use the restore option inside the app to refresh your RevenueCat entitlement.
+                    </p>
+                </article>
+                <article class="support-card">
+                    <h2>Ads</h2>
+                    <p>
+                        Free users may see AdMob ads. Subscribing to Star Diary Pro removes ads after your purchase status has synced.
+                    </p>
+                </article>
+                <article class="support-card">
+                    <h2>Privacy</h2>
+                    <p>
+                        Read the <a href="privacy.html">Privacy Policy</a> for details about local diary storage, subscriptions, advertising, and children.
+                    </p>
+                </article>
+                <article class="support-card">
+                    <h2>Contact</h2>
+                    <p>
+                        Email <a href="mailto:hello@choiwon.dev?subject=Star%20Diary%20Support">hello@choiwon.dev</a> with your device type, app version, and a short description of the issue.
+                    </p>
+                </article>
+            </div>
+            <p class="support-meta">Bundle ID: com.aly.StarDiary</p>
+        </section>
+    </main>
+
+    <footer class="contact">
+        <p><a href="./">Back to Star Diary</a> · <a href="../">Portfolio</a></p>
+    </footer>
+</body>
+</html>
