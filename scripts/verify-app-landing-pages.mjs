@@ -47,6 +47,10 @@ const extraProjects = new Map([
   }],
 ]);
 
+const kovaPromoDirs = new Set([
+  "CatsDiary",
+]);
+
 const rootIndex = await readFile("index.html", "utf8");
 const projectMatches = [...rootIndex.matchAll(/\{\s*name: "([^"]+)"([\s\S]*?)\s*\}/g)];
 const projects = new Map();
@@ -85,6 +89,20 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
   }
   if (/href="http:\/\/apps\.apple\.com/.test(html)) {
     failures.push(`${dir}: App Store link uses http instead of https`);
+  }
+  if (kovaPromoDirs.has(dir)) {
+    if (!html.includes('class="kova-promo"')) {
+      failures.push(`${dir}: missing Kova promo card`);
+    }
+    if (!html.includes("../Kova/")) {
+      failures.push(`${dir}: missing Kova promo link`);
+    }
+    if (!html.includes("../Kova/download/Icon.png")) {
+      failures.push(`${dir}: missing Kova promo icon`);
+    }
+    if (!html.includes("Open Kova")) {
+      failures.push(`${dir}: missing Kova promo CTA`);
+    }
   }
 }
 
