@@ -380,6 +380,12 @@
             align-items: center;
         }
 
+        .brief-preview {
+            min-height: 180px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            line-height: 1.45;
+        }
+
         .inquiry {
             display: flex;
             flex-wrap: wrap;
@@ -660,6 +666,10 @@
                         <span>Notes</span>
                         <textarea id="briefNotes" name="brief_notes"></textarea>
                     </label>
+                    <label class="brief-field wide" for="briefEmailPreview">
+                        <span>Invoice email preview</span>
+                        <textarea class="brief-preview" id="briefEmailPreview" name="brief_email_preview" readonly></textarea>
+                    </label>
                 </div>
                 <div class="brief-actions">
                     <a class="button" id="briefInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20invoice%20request&body=Selected%20package%3A%20Launch%20visual%20sprint%20-%20990%2C000%20KRW%0AReferral%20source%3A%20Direct%20Studio%20Sprint%20page%0ABuyer%20or%20company%3A%20%0APayment%20preference%3A%20card%20%2F%20bank%20transfer%20%2F%20invoice%0AReceipt%20or%20tax%20invoice%20needed%3A%20%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ACommercial%20usage%20scope%3A%20One%20focused%20app%2C%20product%2C%20or%20creator%20launch%0ADecision%20timeline%3A%20%0ANotes%3A%20">Create invoice email</a>
@@ -732,6 +742,7 @@
 
             const briefForm = document.getElementById("sprintBriefBuilder");
             const briefInvoiceLink = document.getElementById("briefInvoiceLink");
+            const briefEmailPreview = document.getElementById("briefEmailPreview");
 
             function formField(name) {
                 return briefForm?.elements.namedItem(name) || null;
@@ -774,6 +785,7 @@
                     ["Notes", fieldValue("brief_notes")],
                 ].map(([label, value]) => `${label}: ${value}`).join("\n");
 
+                briefEmailPreview.value = body;
                 briefInvoiceLink.href = `mailto:alyduho984530@gmail.com?subject=${encodeURIComponent("Kova Studio Sprint invoice request")}&body=${encodeURIComponent(body)}`;
             }
 
