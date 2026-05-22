@@ -8,6 +8,7 @@ const [rootIndex, appAds] = await Promise.all([
 
 assert.match(rootIndex, /name: "StarDiary"/);
 assert.match(rootIndex, /detail: "StarDiary\/"/);
+assert.match(rootIndex, /name: "StarDiary"[^}]+ios: "https:\/\/apps\.apple\.com\/us\/app\/star-diary-stella-notes\/id6756995556"/);
 assert.match(rootIndex, /if \(userOS === "ios"\) return project\.ios \|\| project\.detail \|\| project\.android;/);
 assert.match(rootIndex, /if \(userOS === "android"\) return project\.android \|\| project\.detail \|\| project\.ios;/);
 assert.match(rootIndex, /return project\.detail \|\| project\.ios \|\| project\.android;/);
