@@ -119,6 +119,14 @@ const toolKovaIntentDirs = new Map([
   ["VibePlanning", "vibeplanning"],
 ]);
 
+const appMakerScreenshotDirs = new Map([
+  ["AppHub", "apphub"],
+  ["GeniePlanner", "genieplanner"],
+  ["MobileCode", "mobilecode"],
+  ["StatUP", "statup"],
+  ["VibePlanning", "vibeplanning"],
+]);
+
 const rootIndex = await readFile("index.html", "utf8");
 const projectMatches = [...rootIndex.matchAll(/\{\s*name: "([^"]+)"([\s\S]*?)\s*\}/g)];
 const projects = new Map();
@@ -176,6 +184,19 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     }
     if (dir === "AppHub" && !html.includes("Book Studio Sprint")) {
       failures.push(`${dir}: missing Kova Studio Sprint service CTA`);
+    }
+    if (appMakerScreenshotDirs.has(dir)) {
+      const source = appMakerScreenshotDirs.get(dir);
+      const expectedLink = `../Kova/ai-app-store-screenshot-service/?source=${source}&package=launch-visual-sprint#screenshotBriefBuilder`;
+      if (!html.includes(expectedLink)) {
+        failures.push(`${dir}: missing source-aware Kova screenshot service link`);
+      }
+      if (!html.includes("App Store screenshots")) {
+        failures.push(`${dir}: missing Kova screenshot service intent copy`);
+      }
+      if (!html.includes("Screenshot service")) {
+        failures.push(`${dir}: missing Kova screenshot service CTA`);
+      }
     }
     if (dir === "MindMapAI" && !html.includes("../Kova/ai-idea-visualizer/")) {
       failures.push(`${dir}: missing Kova idea-visualizer intent link`);
