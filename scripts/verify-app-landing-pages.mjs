@@ -98,11 +98,11 @@ const petKovaIntentDirs = new Set([
   "DogsThoughts",
 ]);
 
-const professionalKovaIntentDirs = new Set([
-  "ChartingSkills",
-  "CryptoAI",
-  "CryptoSkills",
-  "Wealtha",
+const professionalKovaIntentDirs = new Map([
+  ["ChartingSkills", "chartingskills"],
+  ["CryptoAI", "cryptoai"],
+  ["CryptoSkills", "cryptoskills"],
+  ["Wealtha", "wealtha"],
 ]);
 
 const journalKovaIntentDirs = new Set([
@@ -232,11 +232,21 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     if (petKovaIntentDirs.has(dir) && !html.includes("pet portrait")) {
       failures.push(`${dir}: missing Kova pet-portrait intent copy`);
     }
-    if (professionalKovaIntentDirs.has(dir) && !html.includes("../Kova/ai-profile-headshot-generator/")) {
-      failures.push(`${dir}: missing Kova profile-headshot intent link`);
-    }
-    if (professionalKovaIntentDirs.has(dir) && !html.includes("profile headshots")) {
-      failures.push(`${dir}: missing Kova profile-headshot intent copy`);
+    if (professionalKovaIntentDirs.has(dir)) {
+      const source = professionalKovaIntentDirs.get(dir);
+      const expectedLink = `../Kova/ai-profile-headshot-generator/?source=${source}&package=professional-refresh#proHeadshotBuilder`;
+      if (!html.includes("../Kova/ai-profile-headshot-generator/")) {
+        failures.push(`${dir}: missing Kova profile-headshot intent link`);
+      }
+      if (!html.includes(expectedLink)) {
+        failures.push(`${dir}: missing source-aware Kova professional headshot sprint link`);
+      }
+      if (!html.includes("profile headshots")) {
+        failures.push(`${dir}: missing Kova profile-headshot intent copy`);
+      }
+      if (!html.includes("Professional headshot sprint")) {
+        failures.push(`${dir}: missing Kova professional headshot sprint CTA`);
+      }
     }
     if (journalKovaIntentDirs.has(dir) && !html.includes("../Kova/ai-journal-cover-generator/")) {
       failures.push(`${dir}: missing Kova journal-cover intent link`);

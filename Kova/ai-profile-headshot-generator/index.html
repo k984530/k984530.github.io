@@ -35,6 +35,43 @@
         "url": "https://won-space.com/Kova/ai-profile-headshot-generator/"
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Kova Professional Headshot Sprint",
+        "description": "A paid Kova service that turns finance, professional, creator, and market-facing profile needs into an invoice-ready headshot sprint brief.",
+        "provider": {
+            "@type": "Organization",
+            "name": "Kova"
+        },
+        "url": "https://won-space.com/Kova/ai-profile-headshot-generator/#proHeadshotBuilder",
+        "offers": {
+            "@type": "OfferCatalog",
+            "name": "Professional headshot sprint packages",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "name": "Professional refresh",
+                    "price": "290000",
+                    "priceCurrency": "KRW"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Founder profile kit",
+                    "price": "990000",
+                    "priceCurrency": "KRW"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Market-facing visual system",
+                    "price": "2900000",
+                    "priceCurrency": "KRW"
+                }
+            ]
+        }
+    }
+    </script>
 
     <style>
         * { box-sizing: border-box; }
@@ -79,6 +116,24 @@
         .sample img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: #ece7dd; }
         .sample figcaption { display: flex; justify-content: space-between; gap: 10px; padding: 12px 14px; font-weight: 800; }
         .sample figcaption span { color: var(--muted); font-weight: 700; }
+        .sprint-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 18px; }
+        .sprint-card { min-height: 210px; padding: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.08); }
+        .sprint-card:nth-child(2) { background: #e9f1ff; }
+        .sprint-card:nth-child(3) { background: #fff4d6; }
+        .sprint-card strong { display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.16rem; }
+        .sprint-card h3 { margin: 0 0 10px; font-size: 1.22rem; }
+        .sprint-card p { margin: 0; color: var(--muted); line-height: 1.58; }
+        .brief-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr); gap: 18px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 22px; box-shadow: 8px 8px 0 var(--blue); }
+        .brief-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .field { display: grid; gap: 7px; font-weight: 800; }
+        .field span { color: var(--muted); font-size: 0.86rem; text-transform: uppercase; }
+        .field input,
+        .field select { width: 100%; min-height: 46px; border: 2px solid var(--ink); border-radius: 8px; padding: 0 12px; background: #fffdf7; color: var(--ink); font: inherit; }
+        .field.full { grid-column: 1 / -1; }
+        .preview-box { display: grid; gap: 12px; align-content: start; }
+        .preview-box h3 { margin: 0; font-size: 1.24rem; }
+        .preview { min-height: 240px; margin: 0; padding: 16px; border: 2px solid var(--ink); border-radius: 8px; background: #101114; color: var(--white); white-space: pre-wrap; line-height: 1.58; overflow-wrap: anywhere; }
+        .safety-note { margin: 0; color: var(--muted); line-height: 1.55; }
         .section { padding: 56px 0; border-top: 2px solid var(--line); }
         .section-head { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 42px; align-items: end; margin-bottom: 22px; }
         .section h2 { margin: 0; font-size: clamp(2rem, 4.4vw, 3.8rem); line-height: 0.96; text-transform: uppercase; }
@@ -104,8 +159,12 @@
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 900px) {
             .hero, .section-head { grid-template-columns: 1fr; }
-            .cards { grid-template-columns: 1fr; }
+            .cards,
+            .sprint-grid,
+            .brief-panel,
+            .brief-form { grid-template-columns: 1fr; }
             .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .field.full { grid-column: auto; }
         }
         @media (max-width: 560px) {
             .hero-visual, .comparison { grid-template-columns: 1fr; }
@@ -122,6 +181,7 @@
                 <p class="lead">Turn one phone photo into a clean profile image with neutral lighting, realistic skin texture, and a polished chest-up crop. Kova gives you a ready-made headshot style without asking you to write prompts.</p>
                 <div class="cta-row" aria-label="Download Kova">
                     <a class="button" href="../download/index.html">Open download page</a>
+                    <a class="button secondary" href="#proHeadshotBuilder">Professional headshot sprint</a>
                     <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914">App Store</a>
                     <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova">Google Play</a>
                 </div>
@@ -190,6 +250,83 @@
             </div>
         </section>
 
+        <section class="section shell" id="proHeadshotBuilder" aria-labelledby="proHeadshotTitle">
+            <div class="section-head">
+                <h2 id="proHeadshotTitle">Professional Headshot Sprint</h2>
+                <p>Finance, trading, and professional-profile visitors can move from a self-serve headshot idea into a scoped paid sprint. The builder preserves referral source, package, usage, profile link, timeline, and paid-order recovery math before an invoice email opens.</p>
+            </div>
+            <div class="sprint-grid" aria-label="Professional headshot sprint packages">
+                <article class="sprint-card">
+                    <strong>290,000 KRW</strong>
+                    <h3>Professional refresh</h3>
+                    <p>One polished profile direction for LinkedIn, finance app bios, community profiles, and public market-facing accounts.</p>
+                </article>
+                <article class="sprint-card">
+                    <strong>990,000 KRW</strong>
+                    <h3>Founder profile kit</h3>
+                    <p>A stronger profile set for solo founders, analysts, creators, coaches, or consultants who need sharper public trust cues.</p>
+                </article>
+                <article class="sprint-card">
+                    <strong>2,900,000 KRW+</strong>
+                    <h3>Market-facing visual system</h3>
+                    <p>A broader visual package for professional posts, report thumbnails, profile variants, and launch or investor-facing visuals.</p>
+                </article>
+            </div>
+            <div class="brief-panel">
+                <form class="brief-form" id="proHeadshotForm">
+                    <label class="field">
+                        <span>Package</span>
+                        <select id="proHeadshotPackage" name="package">
+                            <option value="professional-refresh" data-price="290000">Professional refresh - 290,000 KRW</option>
+                            <option value="founder-profile-kit" data-price="990000">Founder profile kit - 990,000 KRW</option>
+                            <option value="market-facing-visual-system" data-price="2900000">Market-facing visual system - 2,900,000 KRW+</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Referral source</span>
+                        <select id="proHeadshotSource" name="source">
+                            <option value="Direct profile headshot page">Direct profile headshot page</option>
+                            <option value="CryptoAI">CryptoAI</option>
+                            <option value="CryptoSkills">CryptoSkills</option>
+                            <option value="ChartingSkills">ChartingSkills</option>
+                            <option value="Wealtha">Wealtha</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Primary use</span>
+                        <select id="proHeadshotUse" name="use">
+                            <option>LinkedIn or resume profile</option>
+                            <option>Finance creator profile</option>
+                            <option>Founder or analyst bio</option>
+                            <option>Report, post, or investor-facing visual system</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Average paid order value</span>
+                        <input id="proHeadshotAov" name="aov" inputmode="numeric" value="100000">
+                    </label>
+                    <label class="field full">
+                        <span>Profile or reference link</span>
+                        <input id="proHeadshotProfileLink" name="profileLink" placeholder="LinkedIn, website, community profile, report page, or reference URL">
+                    </label>
+                    <label class="field">
+                        <span>Target deadline</span>
+                        <input id="proHeadshotDeadline" name="deadline" placeholder="This week / launch date / open">
+                    </label>
+                    <label class="field">
+                        <span>Notes</span>
+                        <input id="proHeadshotNotes" name="notes" placeholder="Audience, style, source-photo readiness, usage scope">
+                    </label>
+                </form>
+                <div class="preview-box">
+                    <h3>Professional invoice email preview</h3>
+                    <pre class="preview" id="proHeadshotEmailPreview"></pre>
+                    <p class="safety-note">No live checkout, payment link, or buyer message is created. This page only opens a draft invoice-request email for manual review.</p>
+                    <a class="button" id="proHeadshotInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Professional%20Headshot%20Sprint%20invoice%20request">Create professional invoice email</a>
+                </div>
+            </div>
+        </section>
+
         <section class="section shell" aria-labelledby="faqTitle">
             <div class="section-head">
                 <h2 id="faqTitle">Questions</h2>
@@ -228,6 +365,7 @@
         <nav class="footer-links" aria-label="Kova policies">
             <a href="../ai-photo-editor-styles/">Styles</a>
             <a href="../ai-linkedin-photo-generator/">LinkedIn photos</a>
+            <a href="#proHeadshotBuilder">Professional sprint</a>
             <a href="../team-headshot-sprint/">Team headshots</a>
             <a href="../ai-hiring-page-headshots/">Hiring page headshots</a>
             <a href="../ai-corporate-headshot-generator/">Corporate headshots</a>
@@ -238,5 +376,63 @@
             <a href="../support.html">Support</a>
         </nav>
     </footer>
+    <script>
+        const proPackageLabels = {
+            "professional-refresh": "Professional refresh - 290,000 KRW",
+            "founder-profile-kit": "Founder profile kit - 990,000 KRW",
+            "market-facing-visual-system": "Market-facing visual system - 2,900,000 KRW+"
+        };
+        const proSourceLabels = {
+            cryptoai: "CryptoAI",
+            cryptoskills: "CryptoSkills",
+            chartingskills: "ChartingSkills",
+            wealtha: "Wealtha"
+        };
+
+        function proFieldValue(id, fallback = "") {
+            const field = document.getElementById(id);
+            return field && field.value.trim() ? field.value.trim() : fallback;
+        }
+
+        function selectedProHeadshotPrice() {
+            const field = document.getElementById("proHeadshotPackage");
+            return Number(field.options[field.selectedIndex].dataset.price || 290000);
+        }
+
+        function updateProHeadshotBrief() {
+            const packageField = document.getElementById("proHeadshotPackage");
+            const packageLabel = proPackageLabels[packageField.value] || packageField.options[packageField.selectedIndex].textContent;
+            const averageOrderValue = Math.max(1, Number(proFieldValue("proHeadshotAov", "100000").replace(/[^0-9]/g, "")) || 100000);
+            const recoveryOrders = Math.ceil(selectedProHeadshotPrice() / averageOrderValue);
+            const body = [
+                "Selected package: " + packageLabel,
+                "Referral source: " + proFieldValue("proHeadshotSource", "Direct profile headshot page"),
+                "Primary use: " + proFieldValue("proHeadshotUse", "LinkedIn or resume profile"),
+                "Profile or reference link: " + proFieldValue("proHeadshotProfileLink", "Not added yet"),
+                "Target deadline: " + proFieldValue("proHeadshotDeadline", "Open"),
+                "Average paid order value: " + averageOrderValue.toLocaleString("en-US") + " KRW",
+                "Estimated paid orders to recover fee: about " + recoveryOrders,
+                "Notes: " + proFieldValue("proHeadshotNotes", "Source photos and preferred professional usage will be shared before invoice."),
+                "",
+                "Please reply with scope, invoice details, and source-photo checklist before any payment link or production work."
+            ].join("\n");
+
+            document.getElementById("proHeadshotEmailPreview").textContent = body;
+            document.getElementById("proHeadshotInvoiceLink").href = "mailto:alyduho984530@gmail.com?subject=" + encodeURIComponent("Kova Professional Headshot Sprint invoice request") + "&body=" + encodeURIComponent(body);
+        }
+
+        const proParams = new URLSearchParams(window.location.search);
+        const proPackageParam = proParams.get("package");
+        const proSourceParam = proParams.get("source");
+        if (proPackageParam && proPackageLabels[proPackageParam]) {
+            document.getElementById("proHeadshotPackage").value = proPackageParam;
+        }
+        if (proSourceParam && proSourceLabels[proSourceParam.toLowerCase()]) {
+            document.getElementById("proHeadshotSource").value = proSourceLabels[proSourceParam.toLowerCase()];
+        }
+        document.getElementById("proHeadshotForm").addEventListener("input", updateProHeadshotBrief);
+        document.getElementById("proHeadshotForm").addEventListener("change", updateProHeadshotBrief);
+        updateProHeadshotBrief();
+    </script>
 </body>
 </html>
