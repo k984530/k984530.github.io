@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 
 await access("AI-Creator-Prompt-Pack/index.html");
+await access("AI-Creator-Prompt-Pack/download/ai-creator-prompt-pack-v1-sample.zip");
 
 const [rootIndex, page, sitemap, kovaIndex, styles, figurine, headshot] = await Promise.all([
   readFile("index.html", "utf8"),
@@ -19,6 +20,9 @@ assert.match(page, /60 prompts/);
 assert.match(page, /7 workflows/);
 assert.match(page, /90 caption starters/);
 assert.match(page, /mailto:alyduho984530@gmail\.com\?subject=AI%20Creator%20Prompt%20Pack/);
+assert.match(page, /download\/ai-creator-prompt-pack-v1-sample\.zip/);
+assert.match(page, /Free sample/);
+assert.match(page, /Download sample ZIP/);
 assert.match(page, /Creator action figure/);
 assert.match(page, /App hero mockup/);
 assert.match(page, /Korean launch visual/);
