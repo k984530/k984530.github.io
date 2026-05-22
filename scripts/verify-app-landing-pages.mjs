@@ -53,6 +53,8 @@ const kovaPromoDirs = new Set([
   "CatsDiary",
   "CatsThoughts",
   "ChatVibe",
+  "CryptoAI",
+  "CryptoSkills",
   "DogsThoughts",
   "FriendAI",
   "GhostLens",
@@ -80,6 +82,11 @@ const petKovaIntentDirs = new Set([
   "CatsDiary",
   "CatsThoughts",
   "DogsThoughts",
+]);
+
+const professionalKovaIntentDirs = new Set([
+  "CryptoAI",
+  "CryptoSkills",
 ]);
 
 const rootIndex = await readFile("index.html", "utf8");
@@ -163,6 +170,12 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     }
     if (petKovaIntentDirs.has(dir) && !html.includes("pet portrait")) {
       failures.push(`${dir}: missing Kova pet-portrait intent copy`);
+    }
+    if (professionalKovaIntentDirs.has(dir) && !html.includes("../Kova/ai-profile-headshot-generator/")) {
+      failures.push(`${dir}: missing Kova profile-headshot intent link`);
+    }
+    if (professionalKovaIntentDirs.has(dir) && !html.includes("profile headshots")) {
+      failures.push(`${dir}: missing Kova profile-headshot intent copy`);
     }
     if (!html.includes("../Kova/download/Icon.png")) {
       failures.push(`${dir}: missing Kova promo icon`);

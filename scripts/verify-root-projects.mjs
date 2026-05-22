@@ -22,6 +22,8 @@ if (!rootIndex.includes('href="https://github.com/k984530"')) {
 const requiredDetailRoutes = new Map([
   ["AppHub", "AppHub/"],
   ["BlahChats", "BlahChat/"],
+  ["CryptoAI", "CryptoAI/"],
+  ["CryptoSkills", "CryptoSkills/"],
   ["CatsDiary", "CatsDiary/"],
   ["CatsThoughts", "CatsThoughts/"],
   ["DogsThoughts", "DogsThoughts/"],
