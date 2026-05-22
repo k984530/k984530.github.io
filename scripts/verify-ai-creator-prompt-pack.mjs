@@ -3,7 +3,8 @@ import { access, readFile } from "node:fs/promises";
 
 await access("AI-Creator-Prompt-Pack/index.html");
 
-const [page, sitemap, kovaIndex, styles, figurine, headshot] = await Promise.all([
+const [rootIndex, page, sitemap, kovaIndex, styles, figurine, headshot] = await Promise.all([
+  readFile("index.html", "utf8"),
   readFile("AI-Creator-Prompt-Pack/index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
@@ -26,6 +27,9 @@ assert.match(page, /\.\.\/Kova\/ai-figurine-generator\//);
 assert.match(page, /\.\.\/Kova\/ai-profile-headshot-generator\//);
 
 assert.match(sitemap, /https:\/\/won-space\.com\/AI-Creator-Prompt-Pack\//);
+assert.match(rootIndex, /name: "AI Creator Prompt Pack"/);
+assert.match(rootIndex, /detail: "AI-Creator-Prompt-Pack\/"/);
+assert.match(rootIndex, /31 Projects/);
 assert.match(kovaIndex, /\.\.\/AI-Creator-Prompt-Pack\//);
 assert.match(styles, /\.\.\/\.\.\/AI-Creator-Prompt-Pack\//);
 assert.match(figurine, /\.\.\/\.\.\/AI-Creator-Prompt-Pack\//);
