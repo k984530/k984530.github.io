@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI App Store Screenshot Service | Kova Studio Sprint</title>
+    <meta name="description" content="Kova Studio Sprint creates App Store screenshots, Google Play graphics, launch visuals, and invoice-ready screenshot briefs for app makers.">
+    <meta name="keywords" content="AI app store screenshot service, App Store screenshots, Google Play graphics, app launch visuals, Kova Studio Sprint">
+    <link rel="canonical" href="https://won-space.com/Kova/ai-app-store-screenshot-service/">
+
+    <meta property="og:title" content="AI App Store Screenshot Service | Kova Studio Sprint">
+    <meta property="og:description" content="Turn one app launch brief into App Store screenshots, Google Play graphics, and paid-order recovery math before invoice.">
+    <meta property="og:image" content="https://won-space.com/Kova/assets/profile_headshot.webp">
+    <meta property="og:url" content="https://won-space.com/Kova/ai-app-store-screenshot-service/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI App Store Screenshot Service | Kova Studio Sprint">
+    <meta name="twitter:description" content="A Kova Studio Sprint route for app makers who need store screenshot and launch visual scope before invoice.">
+    <meta name="twitter:image" content="https://won-space.com/Kova/assets/profile_headshot.webp">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Service",
+                "name": "Kova AI App Store Screenshot Service",
+                "provider": {
+                    "@type": "Organization",
+                    "name": "Kova"
+                },
+                "serviceType": "AI app store screenshot and launch visual service",
+                "description": "Kova Studio Sprint creates App Store screenshots, Google Play graphics, launch visuals, paid-order recovery math, and invoice-ready screenshot briefs for app makers.",
+                "url": "https://won-space.com/Kova/ai-app-store-screenshot-service/",
+                "areaServed": "Worldwide",
+                "offers": {
+                    "@type": "OfferCatalog",
+                    "name": "Kova Studio Sprint screenshot packages",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "name": "Launch visual sprint",
+                            "price": "990000",
+                            "priceCurrency": "KRW",
+                            "url": "https://won-space.com/Kova/ai-app-store-screenshot-service/#screenshotBriefBuilder"
+                        },
+                        {
+                            "@type": "Offer",
+                            "name": "Creator campaign system",
+                            "price": "2900000",
+                            "priceCurrency": "KRW",
+                            "url": "https://won-space.com/Kova/ai-app-store-screenshot-service/#screenshotBriefBuilder"
+                        },
+                        {
+                            "@type": "Offer",
+                            "name": "Portfolio revenue system",
+                            "price": "9900000",
+                            "priceCurrency": "KRW",
+                            "url": "https://won-space.com/Kova/ai-app-store-screenshot-service/#screenshotBriefBuilder"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Is this a self-serve screenshot generator?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "No. Kova is the self-serve AI photo app. This page routes app makers into the paid Kova Studio Sprint service when they need store screenshot direction, launch visuals, and invoice-ready scope."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Can this cover both App Store and Google Play?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes. The brief builder captures the store surface, screenshot slot count, launch date, app URL, value proposition, and average paid order value before invoice."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Does this submit store metadata?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "No. The page prepares a commercial service inquiry only. No live payment link, store edit, or review submission is created."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        * { box-sizing: border-box; }
+        :root {
+            --ink: #101114;
+            --paper: #fffaf0;
+            --muted: #68635b;
+            --line: rgba(16, 17, 20, 0.16);
+            --accent: #ff5c7a;
+            --blue: #2477ff;
+            --mint: #35bf8e;
+            --yellow: #f3c94d;
+            --white: #ffffff;
+        }
+        body {
+            margin: 0;
+            min-width: 320px;
+            background:
+                linear-gradient(90deg, rgba(16, 17, 20, 0.045) 1px, transparent 1px) 0 0 / 56px 56px,
+                linear-gradient(0deg, rgba(16, 17, 20, 0.032) 1px, transparent 1px) 0 0 / 56px 56px,
+                var(--paper);
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        a { color: inherit; }
+        .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1.08fr);
+            gap: 46px;
+            align-items: center;
+            padding: 66px 0 54px;
+        }
+        .crumb { display: inline-block; margin-bottom: 22px; color: var(--muted); font-weight: 800; text-decoration: none; }
+        .eyebrow { margin: 0 0 16px; color: var(--accent); font-weight: 900; text-transform: uppercase; }
+        h1 { max-width: 860px; margin: 0; font-size: clamp(2.75rem, 7vw, 6.8rem); line-height: 0.9; letter-spacing: 0; text-transform: uppercase; }
+        .lead { max-width: 690px; margin: 24px 0 0; color: var(--muted); font-size: clamp(1.06rem, 2vw, 1.32rem); line-height: 1.56; }
+        .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+        .button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; padding: 0 20px; border: 2px solid var(--ink); border-radius: 8px; background: var(--ink); color: var(--white); font-weight: 800; text-decoration: none; box-shadow: 7px 7px 0 var(--yellow); }
+        .button.secondary { background: var(--white); color: var(--ink); box-shadow-color: var(--blue); }
+        .visual-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+        .visual-card { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); overflow: hidden; box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.1); }
+        .visual-card img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: #ece7dd; }
+        .visual-card strong { display: block; padding: 12px 14px; }
+        .section { padding: 56px 0; border-top: 2px solid var(--line); }
+        .section-head { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 42px; align-items: end; margin-bottom: 22px; }
+        .section h2 { margin: 0; font-size: clamp(2rem, 4.4vw, 3.8rem); line-height: 0.96; text-transform: uppercase; }
+        .section-head p { margin: 0; color: var(--muted); line-height: 1.66; }
+        .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+        .card { min-height: 210px; padding: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.08); }
+        .card:nth-child(2) { background: #e9f1ff; }
+        .card:nth-child(3) { background: #fff2f6; }
+        .card b { display: block; margin-bottom: 8px; color: var(--accent); font-size: 0.82rem; text-transform: uppercase; }
+        .card h3 { margin: 0 0 10px; font-size: 1.24rem; }
+        .card p { margin: 0; color: var(--muted); line-height: 1.62; }
+        .brief-panel { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 24px; box-shadow: 8px 8px 0 var(--mint); }
+        .brief-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        label { display: grid; gap: 7px; font-weight: 800; }
+        input, select, textarea { width: 100%; border: 2px solid var(--ink); border-radius: 8px; padding: 12px; color: var(--ink); background: #fffdf8; font: inherit; }
+        textarea { min-height: 190px; resize: vertical; }
+        .full { grid-column: 1 / -1; }
+        .status-line { margin: 16px 0 0; color: var(--muted); font-weight: 800; line-height: 1.55; }
+        .safety-note { margin: 16px 0 0; padding: 14px 16px; border: 2px solid var(--ink); border-radius: 8px; background: #fff7d6; color: var(--ink); line-height: 1.55; }
+        .link-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; font-weight: 800; }
+        .link-grid a { text-decoration-thickness: 2px; }
+        .closing { padding: 56px 0 76px; }
+        footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
+        @media (max-width: 900px) {
+            .hero, .section-head, .cards, .brief-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 680px) {
+            .visual-grid { grid-template-columns: 1fr; }
+            .button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="hero shell">
+            <div>
+                <a class="crumb" href="../">Kova</a>
+                <p class="eyebrow">For app makers</p>
+                <h1>AI App Store Screenshot Service</h1>
+                <p class="lead">A Kova Studio Sprint route for App Store screenshots, Google Play graphics, launch visuals, and paid-order recovery math before an invoice request.</p>
+                <div class="cta-row" aria-label="Kova screenshot service actions">
+                    <a class="button" href="#screenshotBriefBuilder">Build screenshot brief</a>
+                    <a class="button secondary" href="../studio-sprint/">Kova Studio Sprint</a>
+                    <a class="button secondary" href="../app-launch-visuals/">App launch visuals</a>
+                </div>
+            </div>
+            <div class="visual-grid" aria-label="Kova screenshot service proof visuals">
+                <article class="visual-card">
+                    <img src="../assets/profile_headshot.webp" alt="Kova founder proof visual">
+                    <strong>Founder proof</strong>
+                </article>
+                <article class="visual-card">
+                    <img src="../assets/figurine.webp" alt="Kova product style visual">
+                    <strong>Product style</strong>
+                </article>
+                <article class="visual-card">
+                    <img src="../assets/polaroid.webp" alt="Kova launch post visual">
+                    <strong>Launch story</strong>
+                </article>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="offerTitle">
+            <div class="section-head">
+                <h2 id="offerTitle">Store Screenshots With Revenue Math</h2>
+                <p>Most app pages need more than pretty frames. This page turns the store surface, value proposition, screenshot slots, release deadline, and average paid order value into an invoice-ready Studio Sprint brief.</p>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <b>990,000 KRW</b>
+                    <h3>Launch visual sprint</h3>
+                    <p>Best for one app that needs a tight first screenshot set, feature cards, and launch-post visuals before release.</p>
+                </article>
+                <article class="card">
+                    <b>2,900,000 KRW</b>
+                    <h3>Creator campaign system</h3>
+                    <p>Best when the app needs screenshots, creator posts, offer cards, and a repeatable launch story around paid conversion.</p>
+                </article>
+                <article class="card">
+                    <b>9,900,000 KRW+</b>
+                    <h3>Portfolio revenue system</h3>
+                    <p>Best for teams with multiple apps or a portfolio page that needs connected App Store, Google Play, and web funnel assets.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="briefTitle">
+            <div class="section-head">
+                <h2 id="briefTitle">Screenshot brief builder</h2>
+                <p>Preview the exact email before your mail app opens. The estimate uses your average paid order value to show how many paid orders need to recover the sprint fee.</p>
+            </div>
+            <form id="screenshotBriefBuilder" class="brief-panel">
+                <div class="brief-grid">
+                    <label>
+                        Package
+                        <select id="screenshotPackage" name="screenshot_package">
+                            <option value="launch-visual-sprint" data-price="990000">Launch visual sprint - 990,000 KRW</option>
+                            <option value="creator-campaign-system" data-price="2900000">Creator campaign system - 2,900,000 KRW</option>
+                            <option value="portfolio-revenue-system" data-price="9900000">Portfolio revenue system - 9,900,000 KRW+</option>
+                        </select>
+                    </label>
+                    <label>
+                        Store surface
+                        <select id="screenshotPlatform" name="screenshot_platform">
+                            <option>App Store screenshots</option>
+                            <option>Google Play graphics</option>
+                            <option>App Store and Google Play</option>
+                            <option>Store screenshots plus web launch page</option>
+                        </select>
+                    </label>
+                    <label>
+                        App or store URL
+                        <input id="screenshotAppUrl" name="screenshot_app_url" type="url" placeholder="https://apps.apple.com/...">
+                    </label>
+                    <label>
+                        Screenshot slots
+                        <input id="screenshotSlotCount" name="screenshot_slot_count" type="number" min="3" max="12" value="6">
+                    </label>
+                    <label class="full">
+                        Top value proposition
+                        <input id="screenshotValueProp" name="screenshot_value_prop" type="text" value="Show the result first, then explain the paid upgrade path.">
+                    </label>
+                    <label>
+                        Launch or update date
+                        <input id="screenshotLaunchDate" name="screenshot_launch_date" type="date">
+                    </label>
+                    <label>
+                        Average paid order value
+                        <input id="screenshotAov" name="screenshot_aov" type="number" min="1000" value="100000">
+                    </label>
+                    <label class="full">
+                        Invoice email preview
+                        <textarea id="screenshotEmailPreview" name="screenshot_email_preview" readonly></textarea>
+                    </label>
+                </div>
+                <p id="screenshotRecoveryEstimate" class="status-line">Estimated paid orders to recover fee: 10</p>
+                <p class="safety-note">No live payment link, store edit, or review submission is created. This page only opens a draft invoice-request email for manual review.</p>
+                <div class="cta-row">
+                    <a id="screenshotInvoiceLink" class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20App%20Store%20Screenshot%20Service%20invoice%20request">Create screenshot invoice email</a>
+                    <a class="button secondary" href="../download/index.html">Try Kova app</a>
+                </div>
+            </form>
+        </section>
+
+        <section class="section shell" aria-labelledby="routesTitle">
+            <div class="section-head">
+                <h2 id="routesTitle">Connected Launch Routes</h2>
+                <p>The screenshot service sits between self-serve Kova installs and the higher-touch Studio Sprint package. It gives AppHub, MobileCode, and launch-planning traffic a clearer paid service path.</p>
+            </div>
+            <div class="link-grid" aria-label="Related Kova and portfolio routes">
+                <a href="../studio-sprint/">Studio Sprint packages</a>
+                <a href="../app-launch-visuals/">AI app launch visuals</a>
+                <a href="../../AppHub/">AppHub</a>
+                <a href="../../MobileCode/">MobileCode</a>
+                <a href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914">Kova App Store</a>
+                <a href="https://play.google.com/store/apps/details?id=com.aly.kova">Kova Google Play</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shell">
+        <span>Kova Studio Sprint screenshot service</span>
+        <nav class="footer-links" aria-label="Kova screenshot service pages">
+            <a href="../">Kova home</a>
+            <a href="../studio-sprint/">Studio Sprint</a>
+            <a href="../app-launch-visuals/">App launch visuals</a>
+            <a href="../download/index.html">Download</a>
+        </nav>
+    </footer>
+
+    <script>
+        const packageLabels = {
+            "launch-visual-sprint": "Launch visual sprint - 990,000 KRW",
+            "creator-campaign-system": "Creator campaign system - 2,900,000 KRW",
+            "portfolio-revenue-system": "Portfolio revenue system - 9,900,000 KRW+",
+        };
+
+        function updateScreenshotBrief() {
+            const packageSelect = document.getElementById("screenshotPackage");
+            const selectedOption = packageSelect.options[packageSelect.selectedIndex];
+            const packagePrice = Number(selectedOption.dataset.price || "990000");
+            const averageOrderValue = Math.max(1000, Number(document.getElementById("screenshotAov").value || "100000"));
+            const paidOrders = Math.ceil(packagePrice / averageOrderValue);
+            const platform = document.getElementById("screenshotPlatform").value;
+            const appUrl = document.getElementById("screenshotAppUrl").value || "Not provided yet";
+            const valueProp = document.getElementById("screenshotValueProp").value;
+            const slots = document.getElementById("screenshotSlotCount").value || "6";
+            const launchDate = document.getElementById("screenshotLaunchDate").value || "Not provided yet";
+            const body = [
+                "Kova App Store Screenshot Service invoice request",
+                "",
+                `Selected package: ${packageLabels[packageSelect.value]}`,
+                `Store surface: ${platform}`,
+                `App or store URL: ${appUrl}`,
+                `Top value proposition: ${valueProp}`,
+                `Screenshot slots: ${slots}`,
+                `Launch or update date: ${launchDate}`,
+                `Average paid order value: ${averageOrderValue.toLocaleString("en-US")} KRW`,
+                `Estimated paid orders to recover fee: ${paidOrders}`,
+                "",
+                "Please reply with scope, invoice details, and the first source-material checklist before any payment link or production work.",
+            ].join("\n");
+
+            document.getElementById("screenshotRecoveryEstimate").textContent = `Estimated paid orders to recover fee: ${paidOrders}`;
+            document.getElementById("screenshotEmailPreview").value = body;
+            document.getElementById("screenshotInvoiceLink").href = `mailto:alyduho984530@gmail.com?subject=${encodeURIComponent("Kova App Store Screenshot Service invoice request")}&body=${encodeURIComponent(body)}`;
+        }
+
+        for (const id of ["screenshotPackage", "screenshotPlatform", "screenshotAppUrl", "screenshotValueProp", "screenshotSlotCount", "screenshotLaunchDate", "screenshotAov"]) {
+            document.getElementById(id).addEventListener("input", updateScreenshotBrief);
+            document.getElementById(id).addEventListener("change", updateScreenshotBrief);
+        }
+        updateScreenshotBrief();
+    </script>
+</body>
+</html>

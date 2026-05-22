@@ -161,6 +161,7 @@ const requiredFiles = [
   "Kova/quick-start/index.html",
   "Kova/free-ai-photo-editor/index.html",
   "Kova/app-launch-visuals/index.html",
+  "Kova/ai-app-store-screenshot-service/index.html",
   "Kova/ai-idea-visualizer/index.html",
   "Kova/studio-sprint/index.html",
   "Kova/team-headshot-sprint/index.html",
@@ -198,7 +199,7 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, ideaVisualizer, studioSprint, teamHeadshotSprint, hiringPageHeadshots, corporateHeadshots, pricing, examples, styles, selfie, linkedin, profileHeadshot, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, appStoreScreenshots, ideaVisualizer, studioSprint, teamHeadshotSprint, hiringPageHeadshots, corporateHeadshots, pricing, examples, styles, selfie, linkedin, profileHeadshot, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
@@ -207,6 +208,7 @@ const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor
   readFile("Kova/quick-start/index.html", "utf8"),
   readFile("Kova/free-ai-photo-editor/index.html", "utf8"),
   readFile("Kova/app-launch-visuals/index.html", "utf8"),
+  readFile("Kova/ai-app-store-screenshot-service/index.html", "utf8"),
   readFile("Kova/ai-idea-visualizer/index.html", "utf8"),
   readFile("Kova/studio-sprint/index.html", "utf8"),
   readFile("Kova/team-headshot-sprint/index.html", "utf8"),
@@ -240,6 +242,7 @@ assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/shared-result\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/quick-start\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/free-ai-photo-editor\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/app-launch-visuals\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-app-store-screenshot-service\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-idea-visualizer\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/studio-sprint\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/team-headshot-sprint\//);
@@ -280,6 +283,7 @@ assert.match(index, /shared-result\//);
 assert.match(index, /quick-start\//);
 assert.match(index, /free-ai-photo-editor\//);
 assert.match(index, /app-launch-visuals\//);
+assert.match(index, /ai-app-store-screenshot-service\//);
 assert.match(index, /ai-idea-visualizer\//);
 assert.match(index, /studio-sprint\//);
 assert.match(index, /team-headshot-sprint\//);
@@ -405,10 +409,54 @@ assert.match(appLaunch, /\.\.\/examples\//);
 assert.match(appLaunch, /\.\.\/ai-photo-editor-styles\//);
 assert.match(appLaunch, /\.\.\/ai-idea-visualizer\//);
 assert.match(appLaunch, /\.\.\/studio-sprint\//);
+assert.match(appLaunch, /\.\.\/ai-app-store-screenshot-service\//);
 assert.match(appLaunch, /Kova Studio Sprint/);
 assert.match(appLaunch, /\.\.\/\.\.\/AppHub\//);
 assert.match(appLaunch, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(appLaunch, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+
+assert.match(appStoreScreenshots, /<title>AI App Store Screenshot Service \| Kova Studio Sprint<\/title>/);
+assert.match(appStoreScreenshots, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-app-store-screenshot-service\/">/);
+assert.match(appStoreScreenshots, /AI App Store Screenshot Service/);
+assert.match(appStoreScreenshots, /App Store screenshots/i);
+assert.match(appStoreScreenshots, /Google Play graphics/i);
+assert.match(appStoreScreenshots, /Kova Studio Sprint/);
+assert.match(appStoreScreenshots, /990,000 KRW/);
+assert.match(appStoreScreenshots, /2,900,000 KRW/);
+assert.match(appStoreScreenshots, /9,900,000 KRW\+/);
+assert.match(appStoreScreenshots, /Screenshot brief builder/);
+assert.match(appStoreScreenshots, /id="screenshotBriefBuilder"/);
+assert.match(appStoreScreenshots, /id="screenshotPackage"/);
+assert.match(appStoreScreenshots, /id="screenshotPlatform"/);
+assert.match(appStoreScreenshots, /id="screenshotAppUrl"/);
+assert.match(appStoreScreenshots, /id="screenshotValueProp"/);
+assert.match(appStoreScreenshots, /id="screenshotSlotCount"/);
+assert.match(appStoreScreenshots, /id="screenshotLaunchDate"/);
+assert.match(appStoreScreenshots, /id="screenshotAov"/);
+assert.match(appStoreScreenshots, /id="screenshotEmailPreview"/);
+assert.match(appStoreScreenshots, /id="screenshotInvoiceLink"/);
+assert.match(appStoreScreenshots, /function updateScreenshotBrief/);
+assert.match(appStoreScreenshots, /Math\.ceil\(packagePrice \/ averageOrderValue\)/);
+assert.match(appStoreScreenshots, /Selected package:/);
+assert.match(appStoreScreenshots, /Store surface:/);
+assert.match(appStoreScreenshots, /Screenshot slots:/);
+assert.match(appStoreScreenshots, /Estimated paid orders to recover fee:/);
+assert.match(appStoreScreenshots, /No live payment link, store edit, or review submission is created/);
+assert.match(appStoreScreenshots, /application\/ld\+json/);
+assert.match(appStoreScreenshots, /Service/);
+assert.match(appStoreScreenshots, /OfferCatalog/);
+assert.match(appStoreScreenshots, /FAQPage/);
+assert.match(appStoreScreenshots, /assets\/profile_headshot\.webp/);
+assert.match(appStoreScreenshots, /assets\/figurine\.webp/);
+assert.match(appStoreScreenshots, /assets\/polaroid\.webp/);
+assert.match(appStoreScreenshots, /\.\.\/studio-sprint\//);
+assert.match(appStoreScreenshots, /\.\.\/app-launch-visuals\//);
+assert.match(appStoreScreenshots, /\.\.\/download\/index\.html/);
+assert.match(appStoreScreenshots, /\.\.\/\.\.\/AppHub\//);
+assert.match(appStoreScreenshots, /\.\.\/\.\.\/MobileCode\//);
+assert.match(appStoreScreenshots, /mailto:alyduho984530@gmail\.com\?subject=Kova%20App%20Store%20Screenshot%20Service%20invoice%20request/);
+assert.match(appStoreScreenshots, new RegExp(iosUrl.replaceAll(".", "\\.")));
+assert.match(appStoreScreenshots, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 
 assert.match(ideaVisualizer, /<title>AI Idea Visualizer \| Kova<\/title>/);
 assert.match(ideaVisualizer, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-idea-visualizer\/">/);
@@ -600,6 +648,7 @@ assert.match(studioSprint, /assets\/profile_headshot\.webp/);
 assert.match(studioSprint, /assets\/figurine\.webp/);
 assert.match(studioSprint, /assets\/polaroid\.webp/);
 assert.match(studioSprint, /\.\.\/app-launch-visuals\//);
+assert.match(studioSprint, /\.\.\/ai-app-store-screenshot-service\//);
 assert.match(studioSprint, /\.\.\/ai-idea-visualizer\//);
 assert.match(studioSprint, /\.\.\/team-headshot-sprint\//);
 assert.match(studioSprint, /\.\.\/download\/index\.html/);
