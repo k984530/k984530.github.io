@@ -137,6 +137,17 @@
         .request-box { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 24px; box-shadow: 8px 8px 0 var(--mint); }
         .request-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
         .request-grid span { display: block; min-height: 48px; padding: 13px 14px; border: 2px solid var(--line); border-radius: 8px; background: #fffdf7; color: var(--muted); font-weight: 700; }
+        .cost-calculator { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 24px; box-shadow: 8px 8px 0 var(--yellow); }
+        .cost-grid { display: grid; grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr); gap: 18px; align-items: stretch; margin-top: 20px; }
+        .cost-panel { display: grid; gap: 12px; align-content: start; border: 2px solid var(--line); border-radius: 8px; background: #fffdf7; padding: 18px; }
+        .cost-panel label { display: grid; gap: 8px; color: var(--muted); font-weight: 800; }
+        .cost-panel input { width: 100%; min-height: 54px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); color: var(--ink); font: inherit; font-size: 1.12rem; font-weight: 900; padding: 10px 12px; }
+        .cost-results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+        .cost-metric { display: grid; gap: 8px; min-height: 132px; border: 2px solid var(--ink); border-radius: 8px; background: #e9f1ff; padding: 16px; }
+        .cost-metric:nth-child(2) { background: #eef9f3; }
+        .cost-metric:nth-child(3) { background: #fff6d2; }
+        .cost-label { color: var(--muted); font-size: 0.9rem; font-weight: 900; text-transform: uppercase; }
+        .cost-value { display: block; overflow-wrap: anywhere; font-size: clamp(1.05rem, 2.4vw, 1.45rem); font-weight: 950; line-height: 1.18; }
         .brief-builder { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 24px; box-shadow: 8px 8px 0 var(--blue); }
         .brief-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
         .brief-field { display: grid; gap: 8px; color: var(--muted); font-weight: 800; }
@@ -164,7 +175,7 @@
         footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 900px) {
-            .hero, .section-head, .request-grid, .brief-grid { grid-template-columns: 1fr; }
+            .hero, .section-head, .request-grid, .brief-grid, .cost-grid, .cost-results { grid-template-columns: 1fr; }
             .cards { grid-template-columns: 1fr; }
         }
         @media (max-width: 560px) {
@@ -182,6 +193,7 @@
                 <p class="lead">A paid service path for founders and startup teams that need consistent LinkedIn team headshots, hiring page portraits, and professional profile visuals from existing photos.</p>
                 <div class="cta-row" aria-label="Kova Team Headshot Sprint actions">
                     <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request&body=Selected%20package%3A%20Founder%20profile%20refresh%20-%20990%2C000%20KRW%0ABuyer%20or%20company%3A%20%0ATeam%20size%3A%20%0ALinkedIn%20or%20company%20page%3A%20%0ACommercial%20usage%20scope%3A%20LinkedIn%20profiles%20%2F%20team%20page%20%2F%20hiring%20page%0ATarget%20deadline%3A%20%0ANotes%3A%20">Request invoice</a>
+                    <a class="button secondary" href="#teamCostCalculator">Estimate team cost</a>
                     <a class="button secondary" href="../ai-linkedin-photo-generator/">LinkedIn photo app</a>
                     <a class="button secondary" href="../ai-hiring-page-headshots/">Hiring page headshots</a>
                     <a class="button secondary" href="../ai-corporate-headshot-generator/">Corporate headshots</a>
@@ -220,6 +232,41 @@
                     <p>Team portraits, founder profiles, hiring page visuals, and prompt handoff for a company-wide recruiting or launch push.</p>
                     <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request&body=Selected%20package%3A%20Hiring%20page%20visual%20system%20-%209%2C900%2C000%20KRW%2B%0ABuyer%20or%20company%3A%20%0ATeam%20size%3A%20%0ALinkedIn%20or%20company%20page%3A%20%0ACommercial%20usage%20scope%3A%20LinkedIn%2C%20team%20page%2C%20hiring%20page%2C%20and%20launch%20deck%0ATarget%20deadline%3A%20%0ANotes%3A%20">Request 9,900,000 KRW+ invoice</a>
                 </article>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="teamCostCalculatorTitle">
+            <div class="cost-calculator" id="teamCostCalculator">
+                <div class="section-head">
+                    <h2 id="teamCostCalculatorTitle">Team cost calculator</h2>
+                    <p>Estimate the package and per-person math before opening an invoice request. This calculator only updates the page; it does not create payment links or send a message.</p>
+                </div>
+                <div class="cost-grid">
+                    <div class="cost-panel">
+                        <label for="teamSizeCalculatorInput">
+                            <span>Team size</span>
+                            <input id="teamSizeCalculatorInput" type="number" min="1" step="1" value="6" inputmode="numeric">
+                        </label>
+                        <p class="note">Package routing: 1 person, 2 to 8 people, or 9+ people.</p>
+                    </div>
+                    <div>
+                        <div class="cost-results" aria-live="polite">
+                            <div class="cost-metric" data-team-price="990000">
+                                <span class="cost-label">Recommended package</span>
+                                <span class="cost-value" id="teamCostPackageName">Team profile pack</span>
+                            </div>
+                            <div class="cost-metric" data-team-price="2900000">
+                                <span class="cost-label">Estimated sprint fee</span>
+                                <span class="cost-value" id="teamCostTotal">2,900,000 KRW</span>
+                            </div>
+                            <div class="cost-metric" data-team-price="9900000">
+                                <span class="cost-label">Estimated per-person cost</span>
+                                <span class="cost-value" id="teamCostPerPerson">483,334 KRW</span>
+                            </div>
+                        </div>
+                        <p class="fit-note" id="teamCostFitNote">Team profile pack is best for 2 to 8 people.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -371,14 +418,40 @@
                 "team-profile-pack": {
                     label: "Team profile pack - 2,900,000 KRW",
                     scope: "LinkedIn profiles and team page",
-                    fit: "Team profile pack is best for a small startup team that needs consistent profile photos.",
+                    fit: "Team profile pack is best for 2 to 8 people.",
                 },
                 "hiring-page-visual-system": {
                     label: "Hiring page visual system - 9,900,000 KRW+",
                     scope: "LinkedIn, team page, hiring page, and launch deck",
-                    fit: "Hiring page visual system is best when portraits support recruiting, launch, and company-wide usage.",
+                    fit: "Hiring page visual system is best for 9 or more people.",
                 },
             };
+            const costPackages = [
+                {
+                    maxTeamSize: 1,
+                    packageId: "founder-profile-refresh",
+                    packageName: "Founder profile refresh",
+                    packagePrice: 990000,
+                    packageFee: "990,000 KRW",
+                    fit: "Founder profile refresh is best for one public-facing leader.",
+                },
+                {
+                    maxTeamSize: 8,
+                    packageId: "team-profile-pack",
+                    packageName: "Team profile pack",
+                    packagePrice: 2900000,
+                    packageFee: "2,900,000 KRW",
+                    fit: "Team profile pack is best for 2 to 8 people.",
+                },
+                {
+                    maxTeamSize: Infinity,
+                    packageId: "hiring-page-visual-system",
+                    packageName: "Hiring page visual system",
+                    packagePrice: 9900000,
+                    packageFee: "9,900,000 KRW+",
+                    fit: "Hiring page visual system is best for 9 or more people.",
+                },
+            ];
             const form = document.getElementById("teamBriefBuilder");
             const preview = document.getElementById("teamBriefEmailPreview");
             const invoiceLink = document.getElementById("teamBriefInvoiceLink");
@@ -395,6 +468,35 @@
 
             function selectedPackage() {
                 return packageOptions[fieldValue("teamBriefPackage")] || packageOptions["founder-profile-refresh"];
+            }
+
+            function formatKrw(value) {
+                return `${new Intl.NumberFormat("en-US").format(value)} KRW`;
+            }
+
+            function selectedCostPackage(teamSize) {
+                return costPackages.find((option) => teamSize <= option.maxTeamSize) || costPackages[2];
+            }
+
+            function updateTeamCostCalculator() {
+                const input = field("teamSizeCalculatorInput");
+                const packageName = field("teamCostPackageName");
+                const total = field("teamCostTotal");
+                const perPerson = field("teamCostPerPerson");
+                const fitNote = field("teamCostFitNote");
+                if (!input || !packageName || !total || !perPerson || !fitNote) return;
+
+                const teamSize = Math.max(1, Number.parseInt(input.value, 10) || 1);
+                if (String(teamSize) !== input.value) {
+                    input.value = String(teamSize);
+                }
+                const selected = selectedCostPackage(teamSize);
+                const packagePrice = selected.packagePrice;
+
+                packageName.textContent = selected.packageName;
+                total.textContent = selected.packageFee;
+                perPerson.textContent = formatKrw(Math.ceil(packagePrice / teamSize));
+                fitNote.textContent = selected.fit;
             }
 
             function syncUsageScope(force = false) {
@@ -433,6 +535,9 @@
             });
             form?.addEventListener("input", updateTeamBriefInvoiceLink);
             form?.addEventListener("change", updateTeamBriefInvoiceLink);
+            field("teamSizeCalculatorInput")?.addEventListener("input", updateTeamCostCalculator);
+            field("teamSizeCalculatorInput")?.addEventListener("change", updateTeamCostCalculator);
+            updateTeamCostCalculator();
             syncUsageScope(true);
             updateTeamBriefInvoiceLink();
         })();
