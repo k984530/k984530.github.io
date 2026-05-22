@@ -19,6 +19,20 @@ if (!rootIndex.includes('href="https://github.com/k984530"')) {
   failures.push("root index missing GitHub profile link");
 }
 
+const requiredDetailRoutes = new Map([
+  ["AppHub", "AppHub/"],
+  ["MindMapAI", "MindMapAI/"],
+]);
+
+for (const [projectName, expectedDetail] of requiredDetailRoutes) {
+  const project = projects.find((item) => item.name === projectName);
+  if (!project) {
+    failures.push(`${projectName}: missing root project entry`);
+  } else if (project.detail !== expectedDetail) {
+    failures.push(`${projectName}: expected detail route ${expectedDetail}`);
+  }
+}
+
 for (const project of projects) {
   if (!project.icon) {
     failures.push(`${project.name}: missing icon`);
