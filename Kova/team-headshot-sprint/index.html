@@ -137,6 +137,26 @@
         .request-box { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 24px; box-shadow: 8px 8px 0 var(--mint); }
         .request-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
         .request-grid span { display: block; min-height: 48px; padding: 13px 14px; border: 2px solid var(--line); border-radius: 8px; background: #fffdf7; color: var(--muted); font-weight: 700; }
+        .brief-builder { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 24px; box-shadow: 8px 8px 0 var(--blue); }
+        .brief-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+        .brief-field { display: grid; gap: 8px; color: var(--muted); font-weight: 800; }
+        .brief-field.wide { grid-column: 1 / -1; }
+        .brief-field input,
+        .brief-field select,
+        .brief-field textarea {
+            width: 100%;
+            min-height: 48px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: #fffdf7;
+            color: var(--ink);
+            font: inherit;
+            padding: 10px 12px;
+        }
+        .brief-field textarea { min-height: 92px; resize: vertical; }
+        .brief-preview { min-height: 180px; }
+        .fit-note { margin: 16px 0 0; color: var(--muted); font-weight: 800; }
+        .brief-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px; }
         .faq { display: grid; gap: 14px; }
         .faq article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 20px; }
         .faq h3 { margin: 0 0 8px; }
@@ -144,7 +164,7 @@
         footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 900px) {
-            .hero, .section-head, .request-grid { grid-template-columns: 1fr; }
+            .hero, .section-head, .request-grid, .brief-grid { grid-template-columns: 1fr; }
             .cards { grid-template-columns: 1fr; }
         }
         @media (max-width: 560px) {
@@ -214,6 +234,55 @@
                     <span>Target deadline:</span>
                 </div>
             </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="teamBriefTitle">
+            <h2 id="teamBriefTitle">Team brief builder</h2>
+            <form class="brief-builder" id="teamBriefBuilder">
+                <p class="note">High-intent buyers can assemble the invoice request before opening their mail app. The preview keeps the package, team size, company page, usage scope, deadline, and notes visible before anything is sent.</p>
+                <div class="brief-grid">
+                    <label class="brief-field" for="teamBriefPackage">
+                        <span>Selected package</span>
+                        <select id="teamBriefPackage" name="team_brief_package">
+                            <option value="founder-profile-refresh">Founder profile refresh - 990,000 KRW</option>
+                            <option value="team-profile-pack">Team profile pack - 2,900,000 KRW</option>
+                            <option value="hiring-page-visual-system">Hiring page visual system - 9,900,000 KRW+</option>
+                        </select>
+                    </label>
+                    <label class="brief-field" for="teamBriefBuyer">
+                        <span>Buyer or company</span>
+                        <input id="teamBriefBuyer" name="team_brief_buyer" type="text" autocomplete="organization">
+                    </label>
+                    <label class="brief-field" for="teamBriefTeamSize">
+                        <span>Team size</span>
+                        <input id="teamBriefTeamSize" name="team_brief_team_size" type="number" min="1" step="1" value="1" inputmode="numeric">
+                    </label>
+                    <label class="brief-field" for="teamBriefCompanyPage">
+                        <span>LinkedIn or company page</span>
+                        <input id="teamBriefCompanyPage" name="team_brief_company_page" type="url" inputmode="url">
+                    </label>
+                    <label class="brief-field" for="teamBriefUsageScope">
+                        <span>Commercial usage scope</span>
+                        <textarea id="teamBriefUsageScope" name="team_brief_usage_scope"></textarea>
+                    </label>
+                    <label class="brief-field" for="teamBriefDeadline">
+                        <span>Target deadline</span>
+                        <input id="teamBriefDeadline" name="team_brief_deadline" type="date">
+                    </label>
+                    <label class="brief-field wide" for="teamBriefNotes">
+                        <span>Notes</span>
+                        <textarea id="teamBriefNotes" name="team_brief_notes"></textarea>
+                    </label>
+                    <label class="brief-field wide" for="teamBriefEmailPreview">
+                        <span>Team invoice email preview</span>
+                        <textarea class="brief-preview" id="teamBriefEmailPreview" name="team_brief_email_preview" readonly></textarea>
+                    </label>
+                </div>
+                <p class="fit-note" id="teamBriefPackageFit">Estimated package fit: Founder profile refresh is best for one public-facing leader.</p>
+                <div class="brief-actions">
+                    <a class="button" id="teamBriefInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request&body=Selected%20package%3A%20Founder%20profile%20refresh%20-%20990%2C000%20KRW%0ABuyer%20or%20company%3A%20%0ATeam%20size%3A%201%0ALinkedIn%20or%20company%20page%3A%20%0ACommercial%20usage%20scope%3A%20Founder%20LinkedIn%20and%20bio%20pages%0ATarget%20deadline%3A%20%0ANotes%3A%20">Create team invoice email</a>
+                </div>
+            </form>
         </section>
 
         <section class="section shell" aria-labelledby="flowTitle">
@@ -286,5 +355,83 @@
             <a href="../support.html">Support</a>
         </nav>
     </footer>
+
+    <script>
+        (() => {
+            const packageOptions = {
+                "founder-profile-refresh": {
+                    label: "Founder profile refresh - 990,000 KRW",
+                    scope: "Founder LinkedIn and bio pages",
+                    fit: "Founder profile refresh is best for one public-facing leader.",
+                },
+                "team-profile-pack": {
+                    label: "Team profile pack - 2,900,000 KRW",
+                    scope: "LinkedIn profiles and team page",
+                    fit: "Team profile pack is best for a small startup team that needs consistent profile photos.",
+                },
+                "hiring-page-visual-system": {
+                    label: "Hiring page visual system - 9,900,000 KRW+",
+                    scope: "LinkedIn, team page, hiring page, and launch deck",
+                    fit: "Hiring page visual system is best when portraits support recruiting, launch, and company-wide usage.",
+                },
+            };
+            const form = document.getElementById("teamBriefBuilder");
+            const preview = document.getElementById("teamBriefEmailPreview");
+            const invoiceLink = document.getElementById("teamBriefInvoiceLink");
+            const packageFit = document.getElementById("teamBriefPackageFit");
+            const usageScope = document.getElementById("teamBriefUsageScope");
+
+            function field(id) {
+                return document.getElementById(id);
+            }
+
+            function fieldValue(id) {
+                return (field(id)?.value || "").trim();
+            }
+
+            function selectedPackage() {
+                return packageOptions[fieldValue("teamBriefPackage")] || packageOptions["founder-profile-refresh"];
+            }
+
+            function syncUsageScope(force = false) {
+                const selected = selectedPackage();
+                if (!usageScope) return;
+                if (force || !usageScope.value || usageScope.value === usageScope.dataset.defaultScope) {
+                    usageScope.value = selected.scope;
+                }
+                usageScope.dataset.defaultScope = selected.scope;
+            }
+
+            function updateTeamBriefInvoiceLink() {
+                if (!form || !preview || !invoiceLink) return;
+
+                const selected = selectedPackage();
+                const body = [
+                    ["Selected package", selected.label],
+                    ["Buyer or company", fieldValue("teamBriefBuyer")],
+                    ["Team size", fieldValue("teamBriefTeamSize") || "1"],
+                    ["LinkedIn or company page", fieldValue("teamBriefCompanyPage")],
+                    ["Commercial usage scope", fieldValue("teamBriefUsageScope") || selected.scope],
+                    ["Target deadline", fieldValue("teamBriefDeadline")],
+                    ["Notes", fieldValue("teamBriefNotes")],
+                ].map(([label, value]) => `${label}: ${value}`).join("\n");
+
+                preview.value = body;
+                if (packageFit) {
+                    packageFit.textContent = `Estimated package fit: ${selected.fit}`;
+                }
+                invoiceLink.href = `mailto:alyduho984530@gmail.com?subject=${encodeURIComponent("Kova Team Headshot Sprint invoice request")}&body=${encodeURIComponent(body)}`;
+            }
+
+            field("teamBriefPackage")?.addEventListener("change", () => {
+                syncUsageScope();
+                updateTeamBriefInvoiceLink();
+            });
+            form?.addEventListener("input", updateTeamBriefInvoiceLink);
+            form?.addEventListener("change", updateTeamBriefInvoiceLink);
+            syncUsageScope(true);
+            updateTeamBriefInvoiceLink();
+        })();
+    </script>
 </body>
 </html>
