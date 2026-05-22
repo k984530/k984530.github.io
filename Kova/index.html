@@ -375,6 +375,82 @@
             line-height: 1.62;
         }
 
+        .service-intro {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+            gap: 24px;
+            align-items: end;
+            margin-bottom: 24px;
+        }
+
+        .service-intro p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.58;
+        }
+
+        .service-note {
+            padding: 16px 18px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: #fff4b8;
+            font-weight: 800;
+            line-height: 1.42;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .service-card {
+            display: flex;
+            min-height: 286px;
+            padding: 22px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .service-card:nth-child(2) {
+            background: #e9f1ff;
+        }
+
+        .service-card:nth-child(3) {
+            background: #eef9f3;
+        }
+
+        .service-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.18rem;
+        }
+
+        .service-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.58;
+        }
+
+        .service-price {
+            display: inline-flex;
+            width: fit-content;
+            padding: 7px 10px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--paper);
+            font-weight: 900;
+        }
+
+        .service-card .store-button {
+            min-height: 48px;
+            width: fit-content;
+            box-shadow: 6px 6px 0 var(--yellow);
+        }
+
         .closing {
             display: flex;
             align-items: center;
@@ -450,6 +526,14 @@
             }
 
             .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-intro {
+                grid-template-columns: 1fr;
+            }
+
+            .service-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -530,6 +614,43 @@
                     </div>
                 </article>
                 <div class="floating-note">Mobile-first AI edits for photos people actually want to share.</div>
+            </div>
+        </section>
+
+        <section class="section" id="paidServiceRouter" aria-labelledby="paidServiceRouterTitle">
+            <div class="service-intro">
+                <div>
+                    <p class="eyebrow">Paid Kova service paths</p>
+                    <h2 id="paidServiceRouterTitle">Need Kova output for a launch or team?</h2>
+                    <p>Use the app for self-serve edits, or route commercial work into a scoped invoice request when the visual system needs App Store screenshots, launch assets, or consistent team headshots.</p>
+                </div>
+                <div class="service-note">No live checkout, store submission, or buyer message starts from this page.</div>
+            </div>
+            <div class="service-grid" aria-label="Kova paid service routes">
+                <article class="service-card">
+                    <div>
+                        <span class="service-price">990,000 KRW</span>
+                        <h3>App Store screenshot brief</h3>
+                        <p>Turn app URL, store surface, value proposition, screenshot slots, launch date, and average paid order value into a Studio Sprint invoice brief.</p>
+                    </div>
+                    <a class="store-button" href="ai-app-store-screenshot-service/#screenshotBriefBuilder">Request screenshot invoice</a>
+                </article>
+                <article class="service-card">
+                    <div>
+                        <span class="service-price">2,900,000 KRW</span>
+                        <h3>Launch visual sprint</h3>
+                        <p>Package launch visuals, campaign assets, prompt recipes, revenue target, and paid-order recovery math before requesting payment instructions.</p>
+                    </div>
+                    <a class="store-button" href="studio-sprint/#sprintBriefBuilder">Request launch invoice</a>
+                </article>
+                <article class="service-card">
+                    <div>
+                        <span class="service-price">9,900,000 KRW+</span>
+                        <h3>Team headshot sprint</h3>
+                        <p>Route teams into package fit, source-photo readiness, team size, company page, usage scope, and deadline fields before invoice review.</p>
+                    </div>
+                    <a class="store-button" href="team-headshot-sprint/#teamBriefBuilder">Request team invoice</a>
+                </article>
             </div>
         </section>
 
