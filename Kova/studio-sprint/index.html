@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kova Studio Sprint | AI Launch Visual Service</title>
+    <meta name="description" content="Kova Studio Sprint is a high-touch AI launch visual service for app makers, creators, and small teams.">
+    <link rel="canonical" href="https://won-space.com/Kova/studio-sprint/">
+
+    <meta property="og:title" content="Kova Studio Sprint">
+    <meta property="og:description" content="AI launch visuals, creator campaign systems, and portfolio revenue systems from 990,000 KRW.">
+    <meta property="og:image" content="https://won-space.com/Kova/assets/profile_headshot.webp">
+    <meta property="og:url" content="https://won-space.com/Kova/studio-sprint/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kova Studio Sprint">
+    <meta name="twitter:description" content="A service path for teams who want launch-ready AI visual systems, not only the mobile app.">
+    <meta name="twitter:image" content="https://won-space.com/Kova/assets/profile_headshot.webp">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Kova Studio Sprint",
+        "serviceType": "AI launch visual service",
+        "provider": {
+            "@type": "Organization",
+            "name": "alyduho.develop",
+            "email": "alyduho984530@gmail.com"
+        },
+        "description": "Kova Studio Sprint creates AI launch visuals, creator campaign systems, and portfolio revenue systems for app makers, creators, and small teams.",
+        "areaServed": "Worldwide",
+        "offers": {
+            "@type": "OfferCatalog",
+            "name": "Kova Studio Sprint packages",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "name": "Launch visual sprint",
+                    "price": "990000",
+                    "priceCurrency": "KRW"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Creator campaign system",
+                    "price": "2900000",
+                    "priceCurrency": "KRW"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Portfolio revenue system",
+                    "price": "9900000",
+                    "priceCurrency": "KRW"
+                }
+            ]
+        },
+        "url": "https://won-space.com/Kova/studio-sprint/"
+    }
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ink: #101114;
+            --paper: #fffaf0;
+            --muted: #68635b;
+            --line: rgba(16, 17, 20, 0.14);
+            --blue: #2477ff;
+            --mint: #35bf8e;
+            --yellow: #f3c94d;
+            --rose: #ff5c7a;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            min-width: 320px;
+            color: var(--ink);
+            background:
+                linear-gradient(90deg, rgba(16, 17, 20, 0.05) 1px, transparent 1px) 0 0 / 52px 52px,
+                linear-gradient(0deg, rgba(16, 17, 20, 0.035) 1px, transparent 1px) 0 0 / 52px 52px,
+                var(--paper);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .shell {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: 88vh;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+            gap: 48px;
+            align-items: center;
+            padding: 60px 0 38px;
+        }
+
+        .crumb {
+            display: inline-flex;
+            margin-bottom: 22px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(3rem, 8vw, 7.7rem);
+            line-height: 0.88;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .lead {
+            max-width: 680px;
+            margin: 26px 0 0;
+            color: var(--muted);
+            font-size: clamp(1.08rem, 2vw, 1.38rem);
+            line-height: 1.48;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 56px;
+            padding: 0 20px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--ink);
+            color: var(--white);
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 8px 8px 0 var(--yellow);
+        }
+
+        .button.secondary {
+            background: var(--white);
+            color: var(--ink);
+            box-shadow: 8px 8px 0 var(--blue);
+        }
+
+        .visual-board {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .visual-board img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+            box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.14);
+        }
+
+        .visual-board img:first-child {
+            grid-column: 1 / -1;
+            aspect-ratio: 16 / 10;
+        }
+
+        .section {
+            padding: 44px 0;
+            border-top: 2px solid var(--line);
+        }
+
+        .section h2 {
+            margin: 0 0 18px;
+            font-size: clamp(2rem, 5vw, 4.4rem);
+            line-height: 0.95;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .package-grid,
+        .deliverables {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 22px;
+        }
+
+        .package,
+        .deliverable {
+            padding: 20px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+        }
+
+        .package {
+            min-height: 240px;
+        }
+
+        .package strong,
+        .deliverable strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.08rem;
+        }
+
+        .price {
+            display: inline-flex;
+            margin-bottom: 14px;
+            padding: 8px 10px;
+            border: 2px solid var(--ink);
+            border-radius: 999px;
+            background: var(--yellow);
+            font-weight: 900;
+        }
+
+        .package p,
+        .deliverable p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .inquiry {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 38px 0 56px;
+        }
+
+        .inquiry p {
+            max-width: 680px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.55;
+        }
+
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 26px 0 34px;
+            color: var(--muted);
+            border-top: 2px solid var(--line);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        @media (max-width: 880px) {
+            .hero,
+            .package-grid,
+            .deliverables {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 38px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="shell">
+        <section class="hero" aria-labelledby="title">
+            <div>
+                <a class="crumb" href="../">Kova</a>
+                <h1 id="title">Kova Studio Sprint</h1>
+                <p class="lead">A high-touch AI launch visual service for app makers, creators, and small teams who want a complete visual system around a product, profile, or portfolio revenue push.</p>
+                <div class="cta-row" aria-label="Kova Studio Sprint actions">
+                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20inquiry&body=Budget%3A%20990%2C000%20%2F%202%2C900%2C000%20%2F%209%2C900%2C000%2B%20KRW%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0AWhat%20you%20need%20to%20launch%3A%20">Start an inquiry</a>
+                    <a class="button secondary" href="../app-launch-visuals/">App launch visuals</a>
+                    <a class="button secondary" href="../../AI-Creator-Prompt-Pack/">Prompt pack</a>
+                </div>
+            </div>
+            <div class="visual-board" aria-label="Kova Studio Sprint visual examples">
+                <img src="../assets/profile_headshot.webp" alt="Founder profile visual made with Kova">
+                <img src="../assets/figurine.webp" alt="Product-style AI figurine visual">
+                <img src="../assets/polaroid.webp" alt="App launch post visual">
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="packagesTitle">
+            <h2 id="packagesTitle">Service packages</h2>
+            <div class="package-grid">
+                <article class="package">
+                    <span class="price">990,000 KRW</span>
+                    <strong>Launch visual sprint</strong>
+                    <p>Founder profile, App launch posts, store/social creative directions, and a prompt system handoff for one focused launch.</p>
+                </article>
+                <article class="package">
+                    <span class="price">2,900,000 KRW</span>
+                    <strong>Creator campaign system</strong>
+                    <p>A larger creative system for a creator, niche, or product line with repeatable visual prompts and campaign-ready examples.</p>
+                </article>
+                <article class="package">
+                    <span class="price">9,900,000 KRW+</span>
+                    <strong>Portfolio revenue system</strong>
+                    <p>A multi-app or multi-offer visual funnel that connects Kova, landing pages, prompt assets, and launch copy into one revenue path.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="deliverablesTitle">
+            <h2 id="deliverablesTitle">What ships</h2>
+            <div class="deliverables">
+                <article class="deliverable">
+                    <strong>Founder profile</strong>
+                    <p>Profile and headshot directions for product pages, bios, decks, and store-facing trust signals.</p>
+                </article>
+                <article class="deliverable">
+                    <strong>App launch posts</strong>
+                    <p>Launch-ready visual directions for social posts, app maker communities, newsletters, and product updates.</p>
+                </article>
+                <article class="deliverable">
+                    <strong>Prompt system handoff</strong>
+                    <p>A reusable prompt and style system so the client can keep creating consistent campaign visuals after the sprint.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="inquiry">
+            <p>Use Kova yourself for fast edits, or commission a sprint when the launch needs a full visual system and a tighter path to revenue.</p>
+            <div class="cta-row">
+                <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20inquiry&body=Budget%3A%20990%2C000%20%2F%202%2C900%2C000%20%2F%209%2C900%2C000%2B%20KRW%0ATarget%20launch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0AWhat%20you%20need%20to%20launch%3A%20">Send sprint details</a>
+                <a class="button secondary" href="../download/index.html">Download Kova</a>
+                <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914" target="_blank" rel="noopener">App Store</a>
+                <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova" target="_blank" rel="noopener">Google Play</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shell">
+        <span>Contact: <a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></span>
+        <nav class="footer-links" aria-label="Kova Studio Sprint pages">
+            <a href="../">Kova</a>
+            <a href="../app-launch-visuals/">App launch visuals</a>
+            <a href="../ai-idea-visualizer/">Idea visualizer</a>
+            <a href="../pricing/">Pricing</a>
+            <a href="../../AI-Creator-Prompt-Pack/">Prompt pack</a>
+        </nav>
+    </footer>
+</body>
+</html>

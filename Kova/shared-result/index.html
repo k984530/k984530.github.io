@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Made With Kova | Shared AI Photo Result</title>
+    <meta name="description" content="Someone made this AI photo style with Kova. See examples, try 20 starter credits, and open Kova on iPhone or Android.">
+    <link rel="canonical" href="https://won-space.com/Kova/shared-result/">
+
+    <meta property="og:title" content="Made With Kova">
+    <meta property="og:description" content="Someone made this style from one photo. Try Kova with 20 starter credits.">
+    <meta property="og:image" content="https://won-space.com/Kova/assets/figurine.webp">
+    <meta property="og:url" content="https://won-space.com/Kova/shared-result/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Made With Kova">
+    <meta name="twitter:description" content="Open Kova, start with one photo, and try about 2 standard image generations.">
+    <meta name="twitter:image" content="https://won-space.com/Kova/assets/figurine.webp">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "SoftwareApplication",
+                "name": "Kova: AI Photo Editor",
+                "applicationCategory": "MultimediaApplication",
+                "operatingSystem": "iOS, Android",
+                "description": "Kova turns one photo into share-ready AI styles. New accounts include 20 starter credits, enough for about 2 standard image generations.",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                },
+                "downloadUrl": [
+                    "https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914",
+                    "https://play.google.com/store/apps/details?id=com.aly.kova"
+                ],
+                "screenshot": [
+                    "https://won-space.com/Kova/assets/figurine.webp",
+                    "https://won-space.com/Kova/assets/anime.webp",
+                    "https://won-space.com/Kova/assets/polaroid.webp"
+                ],
+                "url": "https://won-space.com/Kova/shared-result/"
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What am I looking at?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "This page is for people who received a Kova image share. Kova turns one source photo into ready-made AI styles such as figurine, anime, Polaroid, profile, and launch visuals."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Can I try Kova before paying?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes. New accounts include 20 starter credits, enough for about 2 standard image generations. Standard image generation uses 10 credits per standard image generation."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ink: #101114;
+            --paper: #fffaf0;
+            --muted: #68635b;
+            --line: rgba(16, 17, 20, 0.14);
+            --blue: #2477ff;
+            --mint: #35bf8e;
+            --yellow: #f3c94d;
+            --rose: #ff5c7a;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            min-width: 320px;
+            color: var(--ink);
+            background:
+                linear-gradient(90deg, rgba(16, 17, 20, 0.05) 1px, transparent 1px) 0 0 / 52px 52px,
+                linear-gradient(0deg, rgba(16, 17, 20, 0.035) 1px, transparent 1px) 0 0 / 52px 52px,
+                var(--paper);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .shell {
+            width: min(1060px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: 86vh;
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
+            gap: 42px;
+            align-items: center;
+            padding: 58px 0 34px;
+        }
+
+        .crumb {
+            display: inline-flex;
+            margin-bottom: 22px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(3rem, 8vw, 7.8rem);
+            line-height: 0.88;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .lead {
+            max-width: 620px;
+            margin: 26px 0 0;
+            color: var(--muted);
+            font-size: clamp(1.08rem, 2vw, 1.38rem);
+            line-height: 1.48;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 56px;
+            padding: 0 20px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--ink);
+            color: var(--white);
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 8px 8px 0 var(--yellow);
+        }
+
+        .button.secondary {
+            background: var(--white);
+            color: var(--ink);
+            box-shadow: 8px 8px 0 var(--blue);
+        }
+
+        .credit-strip {
+            margin-top: 24px;
+            padding: 16px 18px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+            box-shadow: 8px 8px 0 var(--mint);
+        }
+
+        .credit-strip strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .credit-strip span {
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .result-tile {
+            overflow: hidden;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+            box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.14);
+        }
+
+        .result-tile:first-child {
+            grid-column: 1 / -1;
+        }
+
+        .result-tile img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+        }
+
+        .result-tile span {
+            display: block;
+            padding: 12px 14px;
+            font-weight: 800;
+        }
+
+        .section {
+            padding: 42px 0;
+            border-top: 2px solid var(--line);
+        }
+
+        .section h2 {
+            margin: 0 0 16px;
+            font-size: clamp(2rem, 5vw, 4.4rem);
+            line-height: 0.95;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 22px;
+        }
+
+        .step {
+            min-height: 180px;
+            padding: 20px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+        }
+
+        .step strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .step p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .closing {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 0 56px;
+        }
+
+        .closing p {
+            max-width: 640px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.55;
+        }
+
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 26px 0 34px;
+            color: var(--muted);
+            border-top: 2px solid var(--line);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        @media (max-width: 820px) {
+            .hero,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 38px;
+            }
+
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="shell">
+        <section class="hero" aria-labelledby="title">
+            <div>
+                <a class="crumb" href="../">Kova</a>
+                <h1 id="title">Made With Kova</h1>
+                <p class="lead">Someone made this style from one photo. Kova lets you open the app, choose a ready-made AI style, and create a share-ready result without writing a long prompt.</p>
+                <div class="cta-row" aria-label="Kova shared result actions">
+                    <a class="button" href="../download/index.html">Open Kova on your phone</a>
+                    <a class="button secondary" href="../pricing/">Compare pricing</a>
+                    <a class="button secondary" href="../examples/">See examples</a>
+                </div>
+                <div class="credit-strip">
+                    <strong>20 starter credits included</strong>
+                    <span>Try about 2 standard image generations. Standard image generation uses 10 credits per standard image generation.</span>
+                </div>
+            </div>
+            <div class="result-grid" aria-label="Kova shared-result examples">
+                <article class="result-tile">
+                    <img src="../assets/figurine.webp" alt="Kova AI figurine style result">
+                    <span>Figurine style</span>
+                </article>
+                <article class="result-tile">
+                    <img src="../assets/anime.webp" alt="Kova anime portrait style result">
+                    <span>Anime portrait</span>
+                </article>
+                <article class="result-tile">
+                    <img src="../assets/polaroid.webp" alt="Kova Polaroid style result">
+                    <span>Polaroid edit</span>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="howTitle">
+            <h2 id="howTitle">Try the same loop</h2>
+            <div class="steps">
+                <article class="step">
+                    <strong>Start from one clear photo</strong>
+                    <p>Use a portrait, pet photo, product-adjacent shot, or profile image as the source.</p>
+                </article>
+                <article class="step">
+                    <strong>Pick a ready-made style</strong>
+                    <p>Choose from figurine, anime, Polaroid, profile headshot, app launch visuals, and more.</p>
+                </article>
+                <article class="step">
+                    <strong>Save and share the result</strong>
+                    <p>Download the image, share it with friends, or compare pricing when you want more generations.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="closing">
+            <p>Open Kova, use the starter credits, and make your first AI photo style from one image.</p>
+            <div class="cta-row">
+                <a class="button" href="../download/index.html">Open download page</a>
+                <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914" target="_blank" rel="noopener">App Store</a>
+                <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova" target="_blank" rel="noopener">Google Play</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shell">
+        <span>Contact: <a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></span>
+        <nav class="footer-links" aria-label="Kova pages">
+            <a href="../">Kova</a>
+            <a href="../examples/">Examples</a>
+            <a href="../pricing/">Pricing</a>
+            <a href="../quick-start/">Quick start</a>
+            <a href="../privacy.html">Privacy</a>
+        </nav>
+    </footer>
+</body>
+</html>

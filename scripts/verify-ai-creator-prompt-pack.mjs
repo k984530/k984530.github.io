@@ -56,6 +56,8 @@ assert.match(page, /about 2 standard image generations/);
 assert.match(page, /\.\.\/Kova\//);
 assert.match(page, /\.\.\/Kova\/download\//);
 assert.match(page, /\.\.\/Kova\/pricing\//);
+assert.match(page, /\.\.\/Kova\/studio-sprint\//);
+assert.match(page, /Kova Studio Sprint/);
 assert.match(page, /\.\.\/Kova\/ai-figurine-generator\//);
 assert.match(page, /\.\.\/Kova\/ai-profile-headshot-generator\//);
 

@@ -8,11 +8,13 @@ const contactEmail = "alyduho984530@gmail.com";
 const requiredFiles = [
   "Kova/index.html",
   "Kova/download/index.html",
+  "Kova/shared-result/index.html",
   "Kova/download-qr.svg",
   "Kova/quick-start/index.html",
   "Kova/free-ai-photo-editor/index.html",
   "Kova/app-launch-visuals/index.html",
   "Kova/ai-idea-visualizer/index.html",
+  "Kova/studio-sprint/index.html",
   "Kova/pricing/index.html",
   "Kova/examples/index.html",
   "Kova/ai-photo-editor-styles/index.html",
@@ -41,15 +43,17 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, quickStart, freeEditor, appLaunch, ideaVisualizer, pricing, examples, styles, avatar, anime, dating, pet, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, ideaVisualizer, studioSprint, pricing, examples, styles, avatar, anime, dating, pet, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
   readFile("Kova/download/index.html", "utf8"),
+  readFile("Kova/shared-result/index.html", "utf8"),
   readFile("Kova/quick-start/index.html", "utf8"),
   readFile("Kova/free-ai-photo-editor/index.html", "utf8"),
   readFile("Kova/app-launch-visuals/index.html", "utf8"),
   readFile("Kova/ai-idea-visualizer/index.html", "utf8"),
+  readFile("Kova/studio-sprint/index.html", "utf8"),
   readFile("Kova/pricing/index.html", "utf8"),
   readFile("Kova/examples/index.html", "utf8"),
   readFile("Kova/ai-photo-editor-styles/index.html", "utf8"),
@@ -70,10 +74,12 @@ assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/privacy\.html/);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/terms\.html/);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/support\.html/);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/examples\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/shared-result\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/quick-start\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/free-ai-photo-editor\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/app-launch-visuals\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-idea-visualizer\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/studio-sprint\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-avatar-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-anime-portrait-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-dating-profile-picture-generator\//);
@@ -102,10 +108,12 @@ assert.match(index, /terms\.html/);
 assert.match(index, /support\.html/);
 assert.match(index, /pricing\//);
 assert.match(index, /examples\//);
+assert.match(index, /shared-result\//);
 assert.match(index, /quick-start\//);
 assert.match(index, /free-ai-photo-editor\//);
 assert.match(index, /app-launch-visuals\//);
 assert.match(index, /ai-idea-visualizer\//);
+assert.match(index, /studio-sprint\//);
 assert.match(index, /ai-photo-editor-styles\//);
 assert.match(index, /ai-avatar-generator\//);
 assert.match(index, /ai-anime-portrait-generator\//);
@@ -127,6 +135,28 @@ assert.match(download, /\.\.\/free-ai-photo-editor\//);
 assert.match(download, /privacy\.html/);
 assert.match(download, /terms\.html/);
 assert.match(download, /support\.html/);
+
+assert.match(sharedResult, /<title>Made With Kova \| Shared AI Photo Result<\/title>/);
+assert.match(sharedResult, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/shared-result\/">/);
+assert.match(sharedResult, /Made With Kova/);
+assert.match(sharedResult, /Someone made this style from one photo/i);
+assert.match(sharedResult, /20 starter credits/i);
+assert.match(sharedResult, /about 2 standard image generations/i);
+assert.match(sharedResult, /10 credits per standard image generation/i);
+assert.match(sharedResult, /Open Kova on your phone/i);
+assert.match(sharedResult, /Compare pricing/i);
+assert.match(sharedResult, /See examples/i);
+assert.match(sharedResult, /application\/ld\+json/);
+assert.match(sharedResult, /SoftwareApplication/);
+assert.match(sharedResult, /FAQPage/);
+assert.match(sharedResult, /assets\/figurine\.webp/);
+assert.match(sharedResult, /assets\/anime\.webp/);
+assert.match(sharedResult, /assets\/polaroid\.webp/);
+assert.match(sharedResult, /download\/index\.html/);
+assert.match(sharedResult, /pricing\//);
+assert.match(sharedResult, /examples\//);
+assert.match(sharedResult, new RegExp(iosUrl.replaceAll(".", "\\.")));
+assert.match(sharedResult, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 
 assert.match(quickStart, /<title>Kova Quick Start \| Create Your First AI Photo Edit<\/title>/);
 assert.match(quickStart, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/quick-start\/">/);
@@ -228,6 +258,36 @@ assert.match(ideaVisualizer, /\.\.\/ai-photo-editor-styles\//);
 assert.match(ideaVisualizer, /\.\.\/\.\.\/MindMapAI\//);
 assert.match(ideaVisualizer, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(ideaVisualizer, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+
+assert.match(studioSprint, /<title>Kova Studio Sprint \| AI Launch Visual Service<\/title>/);
+assert.match(studioSprint, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/studio-sprint\/">/);
+assert.match(studioSprint, /Kova Studio Sprint/);
+assert.match(studioSprint, /for app makers, creators, and small teams/i);
+assert.match(studioSprint, /990,000 KRW/);
+assert.match(studioSprint, /2,900,000 KRW/);
+assert.match(studioSprint, /9,900,000 KRW\+/);
+assert.match(studioSprint, /Launch visual sprint/);
+assert.match(studioSprint, /Creator campaign system/);
+assert.match(studioSprint, /Portfolio revenue system/);
+assert.match(studioSprint, /Founder profile/);
+assert.match(studioSprint, /App launch posts/);
+assert.match(studioSprint, /Prompt system handoff/);
+assert.match(studioSprint, /mailto:alyduho984530@gmail\.com\?subject=Kova%20Studio%20Sprint%20inquiry/);
+assert.match(studioSprint, /Budget%3A%20990%2C000%20%2F%202%2C900%2C000%20%2F%209%2C900%2C000%2B%20KRW/);
+assert.match(studioSprint, /Target%20launch%20date/);
+assert.match(studioSprint, /Product%20or%20creator%20link/);
+assert.match(studioSprint, /application\/ld\+json/);
+assert.match(studioSprint, /OfferCatalog/);
+assert.match(studioSprint, /Service/);
+assert.match(studioSprint, /assets\/profile_headshot\.webp/);
+assert.match(studioSprint, /assets\/figurine\.webp/);
+assert.match(studioSprint, /assets\/polaroid\.webp/);
+assert.match(studioSprint, /\.\.\/app-launch-visuals\//);
+assert.match(studioSprint, /\.\.\/ai-idea-visualizer\//);
+assert.match(studioSprint, /\.\.\/download\/index\.html/);
+assert.match(studioSprint, /\.\.\/\.\.\/AI-Creator-Prompt-Pack\//);
+assert.match(studioSprint, new RegExp(iosUrl.replaceAll(".", "\\.")));
+assert.match(studioSprint, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 
 assert.match(pricing, /Kova Pricing, Credits, and Memberships/);
 assert.match(pricing, /20 starter credits/i);
