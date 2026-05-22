@@ -48,7 +48,17 @@ const extraProjects = new Map([
 ]);
 
 const kovaPromoDirs = new Set([
+  "AppHub",
   "CatsDiary",
+  "ChatVibe",
+  "DogsThoughts",
+  "FriendAI",
+  "GhostLens",
+  "Lookey",
+  "MindMapAI",
+  "Rizzet",
+  "SeductionRules",
+  "faceMatch",
 ]);
 
 const rootIndex = await readFile("index.html", "utf8");
@@ -102,6 +112,12 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     }
     if (!html.includes("Open Kova")) {
       failures.push(`${dir}: missing Kova promo CTA`);
+    }
+    if (!html.includes("20 starter credits")) {
+      failures.push(`${dir}: missing Kova starter-credit value`);
+    }
+    if (!html.includes("2 standard image generations")) {
+      failures.push(`${dir}: missing Kova generation-value explanation`);
     }
   }
 }
