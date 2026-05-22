@@ -23,6 +23,14 @@ assert.match(page, /mailto:alyduho984530@gmail\.com\?subject=AI%20Creator%20Prom
 assert.match(page, /download\/ai-creator-prompt-pack-v1-sample\.zip/);
 assert.match(page, /Free sample/);
 assert.match(page, /Download sample ZIP/);
+assert.match(page, /How purchase works/);
+assert.match(page, /Send a structured order email/);
+assert.match(page, /Preferred payment method/);
+assert.match(page, /Reply within 24 hours KST/);
+assert.match(page, /Get the full ZIP after payment/);
+assert.match(page, /Personal and commercial use/);
+assert.match(page, /Do not resell the pack as-is/);
+assert.match(page, /Delivery and license FAQ/);
 assert.match(page, /Creator action figure/);
 assert.match(page, /App hero mockup/);
 assert.match(page, /Korean launch visual/);
@@ -35,6 +43,14 @@ assert.match(page, /\.\.\/Kova\/download\//);
 assert.match(page, /\.\.\/Kova\/pricing\//);
 assert.match(page, /\.\.\/Kova\/ai-figurine-generator\//);
 assert.match(page, /\.\.\/Kova\/ai-profile-headshot-generator\//);
+
+const orderMailLink = page.match(/mailto:alyduho984530@gmail\.com\?subject=AI%20Creator%20Prompt%20Pack%20order&body=([^"]+)/);
+assert.ok(orderMailLink);
+const decodedOrderEmail = decodeURIComponent(orderMailLink[1]);
+assert.match(decodedOrderEmail, /Preferred payment method:/);
+assert.match(decodedOrderEmail, /Receipt email:/);
+assert.match(decodedOrderEmail, /Country\/timezone:/);
+assert.match(decodedOrderEmail, /Business receipt needed:/);
 
 assert.match(sitemap, /https:\/\/won-space\.com\/AI-Creator-Prompt-Pack\//);
 assert.match(rootIndex, /name: "AI Creator Prompt Pack"/);
