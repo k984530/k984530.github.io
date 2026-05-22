@@ -290,6 +290,13 @@ assert.match(studioSprint, /Payment due before production begins/);
 assert.match(studioSprint, /First visual board in 3 business days/);
 assert.match(studioSprint, /Final launch kit in 5 business days/);
 assert.match(studioSprint, /One revision pass included/);
+assert.match(studioSprint, /Buyer FAQ/);
+assert.match(studioSprint, /Who can use the final assets commercially/);
+assert.match(studioSprint, /agreed commercial usage scope/);
+assert.match(studioSprint, /What source materials do you need/);
+assert.match(studioSprint, /product or creator link, target audience, 3 reference visuals or pages/i);
+assert.match(studioSprint, /Can we request an invoice before payment/);
+assert.match(studioSprint, /invoice can be prepared after scope confirmation/i);
 assert.match(studioSprint, /Invoice-ready sprint request/);
 assert.match(studioSprint, /How paid sprint starts/);
 assert.match(studioSprint, /within 24 hours KST/i);
@@ -350,6 +357,7 @@ for (const selectedPackage of [
 }
 assert.match(studioSprint, /application\/ld\+json/);
 assert.match(studioSprint, /OfferCatalog/);
+assert.match(studioSprint, /FAQPage/);
 assert.match(studioSprint, /Service/);
 assert.match(studioSprint, /assets\/profile_headshot\.webp/);
 assert.match(studioSprint, /assets\/figurine\.webp/);
