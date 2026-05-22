@@ -22,8 +22,9 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, index, download, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
+  readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
   readFile("Kova/download/index.html", "utf8"),
   readFile("Kova/privacy.html", "utf8"),
@@ -35,6 +36,9 @@ assert.match(rootIndex, /name: "Kova"/);
 assert.match(rootIndex, /detail: "Kova\/"/);
 assert.match(rootIndex, /https:\/\/apps\.apple\.com\/us\/app\/kova-ai-photo-editor\/id6766026914/);
 assert.match(rootIndex, /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.aly\.kova/);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/privacy\.html/);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/terms\.html/);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/support\.html/);
 
 assert.match(index, /<title>Kova: AI Photo Editor<\/title>/);
 assert.match(index, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/">/);
