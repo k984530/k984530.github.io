@@ -16,6 +16,7 @@ const requiredFiles = [
   "Kova/ai-idea-visualizer/index.html",
   "Kova/studio-sprint/index.html",
   "Kova/team-headshot-sprint/index.html",
+  "Kova/ai-hiring-page-headshots/index.html",
   "Kova/pricing/index.html",
   "Kova/examples/index.html",
   "Kova/ai-photo-editor-styles/index.html",
@@ -48,7 +49,7 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, ideaVisualizer, studioSprint, teamHeadshotSprint, pricing, examples, styles, selfie, linkedin, profileHeadshot, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, ideaVisualizer, studioSprint, teamHeadshotSprint, hiringPageHeadshots, pricing, examples, styles, selfie, linkedin, profileHeadshot, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
@@ -60,6 +61,7 @@ const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor
   readFile("Kova/ai-idea-visualizer/index.html", "utf8"),
   readFile("Kova/studio-sprint/index.html", "utf8"),
   readFile("Kova/team-headshot-sprint/index.html", "utf8"),
+  readFile("Kova/ai-hiring-page-headshots/index.html", "utf8"),
   readFile("Kova/pricing/index.html", "utf8"),
   readFile("Kova/examples/index.html", "utf8"),
   readFile("Kova/ai-photo-editor-styles/index.html", "utf8"),
@@ -91,6 +93,7 @@ assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/app-launch-visuals\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-idea-visualizer\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/studio-sprint\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/team-headshot-sprint\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-hiring-page-headshots\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-selfie-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-linkedin-photo-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-avatar-generator\//);
@@ -129,6 +132,7 @@ assert.match(index, /app-launch-visuals\//);
 assert.match(index, /ai-idea-visualizer\//);
 assert.match(index, /studio-sprint\//);
 assert.match(index, /team-headshot-sprint\//);
+assert.match(index, /ai-hiring-page-headshots\//);
 assert.match(index, /ai-photo-editor-styles\//);
 assert.match(index, /ai-selfie-generator\//);
 assert.match(index, /ai-linkedin-photo-generator\//);
@@ -498,10 +502,40 @@ assert.match(teamHeadshotSprint, /assets\/profile_headshot_male_before\.webp/);
 assert.match(teamHeadshotSprint, /assets\/profile_headshot_male_after\.webp/);
 assert.match(teamHeadshotSprint, /\.\.\/ai-linkedin-photo-generator\//);
 assert.match(teamHeadshotSprint, /\.\.\/ai-profile-headshot-generator\//);
+assert.match(teamHeadshotSprint, /\.\.\/ai-hiring-page-headshots\//);
 assert.match(teamHeadshotSprint, /\.\.\/studio-sprint\//);
 assert.match(teamHeadshotSprint, /\.\.\/download\/index\.html/);
 assert.match(teamHeadshotSprint, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(teamHeadshotSprint, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+
+assert.match(hiringPageHeadshots, /<title>AI Hiring Page Headshots \| Kova Team Headshot Sprint<\/title>/);
+assert.match(hiringPageHeadshots, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-hiring-page-headshots\/">/);
+assert.match(hiringPageHeadshots, /AI Hiring Page Headshots/);
+assert.match(hiringPageHeadshots, /startup hiring page/i);
+assert.match(hiringPageHeadshots, /Team Headshot Sprint/);
+assert.match(hiringPageHeadshots, /Founder profile refresh/);
+assert.match(hiringPageHeadshots, /Team profile pack/);
+assert.match(hiringPageHeadshots, /Hiring page visual system/);
+assert.match(hiringPageHeadshots, /990,000 KRW/);
+assert.match(hiringPageHeadshots, /2,900,000 KRW/);
+assert.match(hiringPageHeadshots, /9,900,000 KRW\+/);
+assert.match(hiringPageHeadshots, /Team invoice email preview/);
+assert.match(hiringPageHeadshots, /Request team invoice/);
+assert.match(hiringPageHeadshots, /mailto:alyduho984530@gmail\.com\?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request/);
+assert.match(hiringPageHeadshots, /application\/ld\+json/);
+assert.match(hiringPageHeadshots, /Service/);
+assert.match(hiringPageHeadshots, /OfferCatalog/);
+assert.match(hiringPageHeadshots, /FAQPage/);
+assert.match(hiringPageHeadshots, /assets\/profile_headshot_female_before\.webp/);
+assert.match(hiringPageHeadshots, /assets\/profile_headshot_female_after\.webp/);
+assert.match(hiringPageHeadshots, /assets\/profile_headshot_male_before\.webp/);
+assert.match(hiringPageHeadshots, /assets\/profile_headshot_male_after\.webp/);
+assert.match(hiringPageHeadshots, /\.\.\/team-headshot-sprint\//);
+assert.match(hiringPageHeadshots, /\.\.\/ai-linkedin-photo-generator\//);
+assert.match(hiringPageHeadshots, /\.\.\/ai-profile-headshot-generator\//);
+assert.match(hiringPageHeadshots, /\.\.\/download\/index\.html/);
+assert.match(hiringPageHeadshots, new RegExp(iosUrl.replaceAll(".", "\\.")));
+assert.match(hiringPageHeadshots, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 
 assert.match(pricing, /Kova Pricing, Credits, and Memberships/);
 assert.match(pricing, /20 starter credits/i);
@@ -629,6 +663,7 @@ assert.match(linkedin, /\.\.\/ai-profile-headshot-generator\//);
 assert.match(linkedin, /\.\.\/ai-selfie-generator\//);
 assert.match(linkedin, /\.\.\/ai-photo-editor-styles\//);
 assert.match(linkedin, /\.\.\/team-headshot-sprint\//);
+assert.match(linkedin, /\.\.\/ai-hiring-page-headshots\//);
 assert.match(linkedin, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(linkedin, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 
@@ -637,6 +672,7 @@ assert.match(profileHeadshot, /<link rel="canonical" href="https:\/\/won-space\.
 assert.match(profileHeadshot, /profile headshot/i);
 assert.match(profileHeadshot, /\.\.\/ai-linkedin-photo-generator\//);
 assert.match(profileHeadshot, /\.\.\/team-headshot-sprint\//);
+assert.match(profileHeadshot, /\.\.\/ai-hiring-page-headshots\//);
 
 assert.match(avatar, /<title>AI Avatar Generator \| Kova<\/title>/);
 assert.match(avatar, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-avatar-generator\/">/);
