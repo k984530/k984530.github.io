@@ -10,6 +10,7 @@ const requiredFiles = [
   "Kova/download/index.html",
   "Kova/download-qr.svg",
   "Kova/quick-start/index.html",
+  "Kova/free-ai-photo-editor/index.html",
   "Kova/pricing/index.html",
   "Kova/examples/index.html",
   "Kova/ai-photo-editor-styles/index.html",
@@ -37,12 +38,13 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, quickStart, pricing, examples, styles, avatar, anime, dating, pet, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, quickStart, freeEditor, pricing, examples, styles, avatar, anime, dating, pet, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
   readFile("Kova/download/index.html", "utf8"),
   readFile("Kova/quick-start/index.html", "utf8"),
+  readFile("Kova/free-ai-photo-editor/index.html", "utf8"),
   readFile("Kova/pricing/index.html", "utf8"),
   readFile("Kova/examples/index.html", "utf8"),
   readFile("Kova/ai-photo-editor-styles/index.html", "utf8"),
@@ -64,6 +66,7 @@ assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/terms\.html/);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/support\.html/);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/examples\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/quick-start\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/free-ai-photo-editor\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-avatar-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-anime-portrait-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-dating-profile-picture-generator\//);
@@ -93,6 +96,7 @@ assert.match(index, /support\.html/);
 assert.match(index, /pricing\//);
 assert.match(index, /examples\//);
 assert.match(index, /quick-start\//);
+assert.match(index, /free-ai-photo-editor\//);
 assert.match(index, /ai-photo-editor-styles\//);
 assert.match(index, /ai-avatar-generator\//);
 assert.match(index, /ai-anime-portrait-generator\//);
@@ -110,6 +114,7 @@ assert.match(download, /20 starter credits/i);
 assert.match(download, /about 2 standard image generations/i);
 assert.match(download, /before choosing a membership or credit pack/i);
 assert.match(download, /\.\.\/quick-start\//);
+assert.match(download, /\.\.\/free-ai-photo-editor\//);
 assert.match(download, /privacy\.html/);
 assert.match(download, /terms\.html/);
 assert.match(download, /support\.html/);
@@ -132,10 +137,34 @@ assert.match(quickStart, /assets\/profile_headshot_male_after\.webp/);
 assert.match(quickStart, /assets\/polaroid\.webp/);
 assert.match(quickStart, /\.\.\/download\/index\.html/);
 assert.match(quickStart, /\.\.\/examples\//);
+assert.match(quickStart, /\.\.\/free-ai-photo-editor\//);
 assert.match(quickStart, /\.\.\/pricing\//);
 assert.match(quickStart, /\.\.\/ai-photo-editor-styles\//);
 assert.match(quickStart, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(quickStart, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+
+assert.match(freeEditor, /<title>Free AI Photo Editor \| Kova<\/title>/);
+assert.match(freeEditor, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/free-ai-photo-editor\/">/);
+assert.match(freeEditor, /Free AI Photo Editor/);
+assert.match(freeEditor, /free to install/i);
+assert.match(freeEditor, /20 starter credits/i);
+assert.match(freeEditor, /about 2 standard image generations/i);
+assert.match(freeEditor, /10 credits per standard image generation/i);
+assert.match(freeEditor, /No prompt writing required/);
+assert.match(freeEditor, /Try before choosing a plan/);
+assert.match(freeEditor, /application\/ld\+json/);
+assert.match(freeEditor, /SoftwareApplication/);
+assert.match(freeEditor, /FAQPage/);
+assert.match(freeEditor, /assets\/figurine\.webp/);
+assert.match(freeEditor, /assets\/anime\.webp/);
+assert.match(freeEditor, /assets\/profile_headshot_male_after\.webp/);
+assert.match(freeEditor, /\.\.\/download\/index\.html/);
+assert.match(freeEditor, /\.\.\/quick-start\//);
+assert.match(freeEditor, /\.\.\/pricing\//);
+assert.match(freeEditor, /\.\.\/examples\//);
+assert.match(freeEditor, /\.\.\/ai-photo-editor-styles\//);
+assert.match(freeEditor, new RegExp(iosUrl.replaceAll(".", "\\.")));
+assert.match(freeEditor, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 
 assert.match(pricing, /Kova Pricing, Credits, and Memberships/);
 assert.match(pricing, /20 starter credits/i);
@@ -165,6 +194,7 @@ assert.match(pricing, /Choose a credit pack/i);
 assert.match(pricing, /Choose a monthly plan/i);
 assert.match(pricing, /\.\.\/download\/index\.html/);
 assert.match(pricing, /\.\.\/quick-start\//);
+assert.match(pricing, /\.\.\/free-ai-photo-editor\//);
 assert.match(pricing, /\.\.\/ai-photo-editor-styles\//);
 assert.match(pricing, /\.\.\/examples\//);
 assert.match(pricing, /\.\.\/privacy\.html/);
@@ -188,6 +218,7 @@ assert.match(examples, /assets\/profile_headshot_male_before\.webp/);
 assert.match(examples, /assets\/profile_headshot_male_after\.webp/);
 assert.match(examples, /\.\.\/download\/index\.html/);
 assert.match(examples, /\.\.\/quick-start\//);
+assert.match(examples, /\.\.\/free-ai-photo-editor\//);
 assert.match(examples, /\.\.\/pricing\//);
 assert.match(examples, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(examples, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
@@ -198,6 +229,7 @@ assert.match(styles, /Anime Portrait/);
 assert.match(styles, /RevenueCat/);
 assert.match(styles, /\.\.\/download\/index\.html/);
 assert.match(styles, /\.\.\/pricing\//);
+assert.match(styles, /\.\.\/free-ai-photo-editor\//);
 assert.match(styles, /\.\.\/ai-avatar-generator\//);
 assert.match(styles, /\.\.\/ai-anime-portrait-generator\//);
 assert.match(styles, /\.\.\/privacy\.html/);
