@@ -141,6 +141,33 @@
             box-shadow: 12px 12px 0 var(--blue);
         }
 
+        .phone-handoff {
+            max-width: 520px;
+            margin-top: 28px;
+            padding: 18px 20px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: #eef9f3;
+            box-shadow: 8px 8px 0 var(--mint);
+        }
+
+        .phone-handoff h2 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+            line-height: 1.25;
+        }
+
+        .phone-handoff p {
+            margin: 0 0 12px;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .handoff-link {
+            overflow-wrap: anywhere;
+            font-weight: 800;
+        }
+
         .phone-board {
             position: relative;
             min-height: 620px;
@@ -295,6 +322,10 @@
                 padding-top: 38px;
             }
 
+            .phone-handoff {
+                max-width: none;
+            }
+
             .phone-board {
                 min-height: 560px;
             }
@@ -333,6 +364,11 @@
                     <a class="store-button" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914" target="_blank" rel="noopener">App Store</a>
                     <a class="store-button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova" target="_blank" rel="noopener">Google Play</a>
                 </div>
+                <aside class="phone-handoff" aria-labelledby="phoneHandoffTitle">
+                    <h2 id="phoneHandoffTitle">Open Kova on your phone</h2>
+                    <p>Send or type this short download page into your mobile browser. It opens the right store automatically on iPhone or Android.</p>
+                    <a class="handoff-link" href="https://won-space.com/Kova/download/">https://won-space.com/Kova/download/</a>
+                </aside>
             </div>
 
             <div class="phone-board" aria-label="Kova style previews">
