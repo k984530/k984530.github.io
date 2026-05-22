@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI LinkedIn Photo Generator | Kova</title>
+    <meta name="description" content="Create a polished LinkedIn profile photo, resume portrait, or professional headshot from one phone photo with Kova. Starter credits included.">
+    <meta name="keywords" content="AI LinkedIn photo generator, LinkedIn profile photo, AI professional headshot, resume photo, Kova headshot">
+    <link rel="canonical" href="https://won-space.com/Kova/ai-linkedin-photo-generator/">
+
+    <meta property="og:title" content="AI LinkedIn Photo Generator | Kova">
+    <meta property="og:description" content="Turn one phone photo into a cleaner LinkedIn profile photo or professional headshot.">
+    <meta property="og:image" content="https://won-space.com/Kova/assets/profile_headshot_female_after.webp">
+    <meta property="og:url" content="https://won-space.com/Kova/ai-linkedin-photo-generator/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI LinkedIn Photo Generator | Kova">
+    <meta name="twitter:description" content="Create a polished LinkedIn profile photo from one phone photo with Kova.">
+    <meta name="twitter:image" content="https://won-space.com/Kova/assets/profile_headshot_female_after.webp">
+
+    <script type="application/ld+json">
+    [
+        {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "Kova",
+            "applicationCategory": "PhotographyApplication",
+            "operatingSystem": "iOS, Android",
+            "description": "Kova turns one phone photo into polished LinkedIn profile photos, resume portraits, professional headshots, avatars, anime portraits, figurines, and other share-ready edits.",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "downloadUrl": [
+                "https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914",
+                "https://play.google.com/store/apps/details?id=com.aly.kova"
+            ],
+            "url": "https://won-space.com/Kova/ai-linkedin-photo-generator/"
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Can Kova make a LinkedIn profile photo from one phone photo?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. Start with one clear phone photo, choose a professional headshot style, and generate a polished LinkedIn profile photo or resume portrait."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How many starter credits does Kova include?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "New accounts include 20 starter credits, enough for about 2 standard image generations. A standard image generation uses 10 credits."
+                    }
+                }
+            ]
+        }
+    ]
+    </script>
+
+    <style>
+        * { box-sizing: border-box; }
+        :root {
+            --ink: #101114;
+            --paper: #fffaf0;
+            --muted: #68635b;
+            --line: rgba(16, 17, 20, 0.16);
+            --accent: #ff5c7a;
+            --blue: #2477ff;
+            --mint: #35bf8e;
+            --yellow: #f3c94d;
+            --white: #ffffff;
+        }
+        body {
+            margin: 0;
+            min-width: 320px;
+            background:
+                linear-gradient(90deg, rgba(16, 17, 20, 0.045) 1px, transparent 1px) 0 0 / 56px 56px,
+                linear-gradient(0deg, rgba(16, 17, 20, 0.032) 1px, transparent 1px) 0 0 / 56px 56px,
+                var(--paper);
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        a { color: inherit; }
+        .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 0.94fr) minmax(320px, 1.06fr);
+            gap: 46px;
+            align-items: center;
+            padding: 66px 0 54px;
+        }
+        .crumb { display: inline-block; margin-bottom: 22px; color: var(--muted); font-weight: 800; text-decoration: none; }
+        h1 { max-width: 780px; margin: 0; font-size: clamp(2.9rem, 7vw, 6.8rem); line-height: 0.88; letter-spacing: 0; text-transform: uppercase; }
+        .lead { max-width: 660px; margin: 24px 0 0; color: var(--muted); font-size: clamp(1.06rem, 2vw, 1.34rem); line-height: 1.56; }
+        .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+        .button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; padding: 0 20px; border: 2px solid var(--ink); border-radius: 8px; background: var(--ink); color: var(--white); font-weight: 800; text-decoration: none; box-shadow: 7px 7px 0 var(--yellow); }
+        .button.secondary { background: var(--white); color: var(--ink); box-shadow-color: var(--blue); }
+        .value-strip { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px 16px; max-width: 650px; margin-top: 24px; padding: 16px 18px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 var(--accent); }
+        .value-strip strong { font-size: 1rem; line-height: 1.25; }
+        .value-strip span { color: var(--muted); line-height: 1.45; }
+        .hero-visual { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
+        .sample { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); overflow: hidden; box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.1); }
+        .sample img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: #ece7dd; }
+        .sample figcaption { display: flex; justify-content: space-between; gap: 10px; padding: 12px 14px; font-weight: 800; }
+        .sample figcaption span { color: var(--muted); font-weight: 700; }
+        .section { padding: 56px 0; border-top: 2px solid var(--line); }
+        .section-head { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 42px; align-items: end; margin-bottom: 22px; }
+        .section h2 { margin: 0; font-size: clamp(2rem, 4.4vw, 3.8rem); line-height: 0.96; text-transform: uppercase; }
+        .section-head p { margin: 0; color: var(--muted); line-height: 1.66; }
+        .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+        .card { min-height: 190px; padding: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.08); }
+        .card:nth-child(2) { background: #e9f1ff; }
+        .card:nth-child(3) { background: #eef9f3; }
+        .card b { display: block; margin-bottom: 8px; color: var(--accent); font-size: 0.82rem; text-transform: uppercase; }
+        .card h3 { margin: 0 0 10px; font-size: 1.24rem; }
+        .card p { margin: 0; color: var(--muted); line-height: 1.62; }
+        .comparison { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+        .comparison img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 2px solid var(--ink); border-radius: 8px; background: #ece7dd; }
+        .faq { display: grid; gap: 14px; }
+        .faq article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 20px; }
+        .faq h3 { margin: 0 0 8px; }
+        .faq p { margin: 0; color: var(--muted); line-height: 1.65; }
+        .closing { padding: 56px 0 76px; }
+        .closing-box { border: 2px solid var(--ink); border-radius: 8px; background: #eef9f3; padding: 26px; box-shadow: 8px 8px 0 var(--mint); }
+        .closing-box h2 { margin: 0 0 10px; font-size: 1.48rem; }
+        .closing-box p { max-width: 700px; margin: 0 0 20px; color: var(--muted); line-height: 1.65; }
+        footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
+        @media (max-width: 900px) {
+            .hero, .section-head { grid-template-columns: 1fr; }
+            .cards { grid-template-columns: 1fr; }
+            .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 560px) {
+            .hero-visual, .comparison { grid-template-columns: 1fr; }
+            .button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="hero shell">
+            <div>
+                <a class="crumb" href="../">Kova</a>
+                <h1>AI LinkedIn Photo Generator</h1>
+                <p class="lead">Turn one phone photo into a polished LinkedIn profile photo, resume portrait, or professional headshot. Kova keeps the path concrete: choose a clear photo, pick a profile style, and compare the result before buying more credits.</p>
+                <div class="cta-row" aria-label="Download Kova">
+                    <a class="button" href="../download/index.html">Open download page</a>
+                    <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914">App Store</a>
+                    <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova">Google Play</a>
+                </div>
+                <div class="value-strip" aria-label="Starter credit value">
+                    <strong>20 starter credits included</strong>
+                    <span>Enough for about 2 standard image generations. A standard image generation uses 10 credits per standard image generation.</span>
+                </div>
+            </div>
+            <div class="hero-visual" aria-label="Kova LinkedIn photo examples">
+                <figure class="sample">
+                    <img src="../assets/profile_headshot_female_before.webp" alt="Original phone photo before Kova LinkedIn profile photo edit">
+                    <figcaption>Before <span>phone photo</span></figcaption>
+                </figure>
+                <figure class="sample">
+                    <img src="../assets/profile_headshot_female_after.webp" alt="AI LinkedIn profile photo after Kova edit">
+                    <figcaption>After <span>LinkedIn profile photo</span></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="whyTitle">
+            <div class="section-head">
+                <h2 id="whyTitle">Built For The Profile Photo Moment</h2>
+                <p>A LinkedIn profile photo has a job: look clear, current, and credible at small sizes. Kova routes professional headshot intent into a focused mobile flow instead of a generic image editor.</p>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <b>1</b>
+                    <h3>One clear source photo</h3>
+                    <p>Start from a front-facing phone photo with natural expression and enough light. The goal is a better profile image, not a different person.</p>
+                </article>
+                <article class="card">
+                    <b>2</b>
+                    <h3>Professional headshot style</h3>
+                    <p>Use Kova's profile headshot direction for neutral lighting, cleaner background feel, and a chest-up portrait crop suitable for work accounts.</p>
+                </article>
+                <article class="card">
+                    <b>3</b>
+                    <h3>Use it where trust matters</h3>
+                    <p>Try it for LinkedIn, resume profiles, portfolio bios, team pages, founder pages, creator pages, or communities where a sharper portrait helps.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="examplesTitle">
+            <div class="section-head">
+                <h2 id="examplesTitle">Compare Before Buying More</h2>
+                <p>Starter credits make the first decision simple. Generate a professional headshot, try one more direction, then decide whether a credit pack or membership makes sense.</p>
+            </div>
+            <div class="comparison" aria-label="LinkedIn profile photo before and after examples">
+                <img src="../assets/profile_headshot_female_before.webp" alt="Female portrait before AI LinkedIn photo edit">
+                <img src="../assets/profile_headshot_female_after.webp" alt="Female portrait after AI LinkedIn photo edit">
+                <img src="../assets/profile_headshot_male_before.webp" alt="Male portrait before AI LinkedIn photo edit">
+                <img src="../assets/profile_headshot_male_after.webp" alt="Male portrait after AI LinkedIn photo edit">
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="workflowTitle">
+            <div class="section-head">
+                <h2 id="workflowTitle">A Narrower Route Than A Generic Editor</h2>
+                <p>This page is for people who already know the outcome they want: a cleaner professional portrait. Keep moving through the shortest path to install, pricing, examples, or related profile styles.</p>
+            </div>
+            <div class="cta-row">
+                <a class="button" href="../download/index.html">Install Kova</a>
+                <a class="button secondary" href="../pricing/">Compare pricing</a>
+                <a class="button secondary" href="../examples/">See examples</a>
+                <a class="button secondary" href="../ai-profile-headshot-generator/">Profile headshots</a>
+                <a class="button secondary" href="../ai-selfie-generator/">AI selfies</a>
+                <a class="button secondary" href="../ai-photo-editor-styles/">All styles</a>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="faqTitle">
+            <div class="section-head">
+                <h2 id="faqTitle">Questions</h2>
+                <p>Fast answers for people comparing LinkedIn photo, resume photo, and professional headshot tools.</p>
+            </div>
+            <div class="faq">
+                <article>
+                    <h3>Can Kova make a LinkedIn profile photo?</h3>
+                    <p>Yes. Start with one clear phone photo, choose a professional headshot style, and generate a polished LinkedIn profile photo or resume portrait.</p>
+                </article>
+                <article>
+                    <h3>How many attempts are included?</h3>
+                    <p>New accounts include 20 starter credits, enough for about 2 standard image generations. A standard image generation uses 10 credits.</p>
+                </article>
+                <article>
+                    <h3>Does Kova replace studio photography?</h3>
+                    <p>No. A studio session is still best for formal corporate needs. Kova is a faster mobile option when you need a cleaner profile photo from an existing image.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="closing shell">
+            <div class="closing-box">
+                <h2>Create a cleaner LinkedIn photo</h2>
+                <p>Open Kova, start from one phone photo, and use the starter credits to test a polished professional headshot before choosing more credits.</p>
+                <div class="cta-row">
+                    <a class="button" href="../download/index.html">Open download page</a>
+                    <a class="button secondary" href="../pricing/">Pricing & credits</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shell">
+        <span>Contact: <a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></span>
+        <nav class="footer-links" aria-label="Kova pages">
+            <a href="../ai-profile-headshot-generator/">Headshots</a>
+            <a href="../ai-selfie-generator/">Selfies</a>
+            <a href="../ai-photo-editor-styles/">Styles</a>
+            <a href="../pricing/">Pricing</a>
+            <a href="../privacy.html">Privacy</a>
+            <a href="../terms.html">Terms</a>
+            <a href="../support.html">Support</a>
+        </nav>
+    </footer>
+</body>
+</html>

@@ -19,6 +19,7 @@ const requiredFiles = [
   "Kova/examples/index.html",
   "Kova/ai-photo-editor-styles/index.html",
   "Kova/ai-selfie-generator/index.html",
+  "Kova/ai-linkedin-photo-generator/index.html",
   "Kova/ai-avatar-generator/index.html",
   "Kova/ai-anime-portrait-generator/index.html",
   "Kova/ai-dating-profile-picture-generator/index.html",
@@ -45,7 +46,7 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, ideaVisualizer, studioSprint, pricing, examples, styles, selfie, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, ideaVisualizer, studioSprint, pricing, examples, styles, selfie, linkedin, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
@@ -60,6 +61,7 @@ const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor
   readFile("Kova/examples/index.html", "utf8"),
   readFile("Kova/ai-photo-editor-styles/index.html", "utf8"),
   readFile("Kova/ai-selfie-generator/index.html", "utf8"),
+  readFile("Kova/ai-linkedin-photo-generator/index.html", "utf8"),
   readFile("Kova/ai-avatar-generator/index.html", "utf8"),
   readFile("Kova/ai-anime-portrait-generator/index.html", "utf8"),
   readFile("Kova/ai-dating-profile-picture-generator/index.html", "utf8"),
@@ -85,6 +87,7 @@ assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/app-launch-visuals\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-idea-visualizer\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/studio-sprint\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-selfie-generator\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-linkedin-photo-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-avatar-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-anime-portrait-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-dating-profile-picture-generator\//);
@@ -122,6 +125,7 @@ assert.match(index, /ai-idea-visualizer\//);
 assert.match(index, /studio-sprint\//);
 assert.match(index, /ai-photo-editor-styles\//);
 assert.match(index, /ai-selfie-generator\//);
+assert.match(index, /ai-linkedin-photo-generator\//);
 assert.match(index, /ai-avatar-generator\//);
 assert.match(index, /ai-anime-portrait-generator\//);
 assert.match(index, /ai-dating-profile-picture-generator\//);
@@ -211,6 +215,7 @@ assert.match(freeEditor, /\.\.\/pricing\//);
 assert.match(freeEditor, /\.\.\/examples\//);
 assert.match(freeEditor, /\.\.\/ai-photo-editor-styles\//);
 assert.match(freeEditor, /\.\.\/ai-selfie-generator\//);
+assert.match(freeEditor, /\.\.\/ai-linkedin-photo-generator\//);
 assert.match(freeEditor, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(freeEditor, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 
@@ -470,6 +475,7 @@ assert.match(pricing, /\.\.\/quick-start\//);
 assert.match(pricing, /\.\.\/free-ai-photo-editor\//);
 assert.match(pricing, /\.\.\/ai-photo-editor-styles\//);
 assert.match(pricing, /\.\.\/ai-selfie-generator\//);
+assert.match(pricing, /\.\.\/ai-linkedin-photo-generator\//);
 assert.match(pricing, /\.\.\/examples\//);
 assert.match(pricing, /\.\.\/privacy\.html/);
 assert.match(pricing, /\.\.\/terms\.html/);
@@ -494,6 +500,7 @@ assert.match(examples, /\.\.\/download\/index\.html/);
 assert.match(examples, /\.\.\/quick-start\//);
 assert.match(examples, /\.\.\/free-ai-photo-editor\//);
 assert.match(examples, /\.\.\/ai-selfie-generator\//);
+assert.match(examples, /\.\.\/ai-linkedin-photo-generator\//);
 assert.match(examples, /\.\.\/pricing\//);
 assert.match(examples, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(examples, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
@@ -506,6 +513,7 @@ assert.match(styles, /\.\.\/download\/index\.html/);
 assert.match(styles, /\.\.\/pricing\//);
 assert.match(styles, /\.\.\/free-ai-photo-editor\//);
 assert.match(styles, /\.\.\/ai-selfie-generator\//);
+assert.match(styles, /\.\.\/ai-linkedin-photo-generator\//);
 assert.match(styles, /\.\.\/app-launch-visuals\//);
 assert.match(styles, /\.\.\/ai-idea-visualizer\//);
 assert.match(styles, /\.\.\/ai-avatar-generator\//);
@@ -535,8 +543,34 @@ assert.match(selfie, /\.\.\/examples\//);
 assert.match(selfie, /\.\.\/ai-photo-editor-styles\//);
 assert.match(selfie, /\.\.\/ai-avatar-generator\//);
 assert.match(selfie, /\.\.\/ai-profile-headshot-generator\//);
+assert.match(selfie, /\.\.\/ai-linkedin-photo-generator\//);
 assert.match(selfie, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(selfie, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+
+assert.match(linkedin, /<title>AI LinkedIn Photo Generator \| Kova<\/title>/);
+assert.match(linkedin, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-linkedin-photo-generator\/">/);
+assert.match(linkedin, /AI LinkedIn Photo Generator/);
+assert.match(linkedin, /LinkedIn profile photo/i);
+assert.match(linkedin, /professional headshot/i);
+assert.match(linkedin, /resume/i);
+assert.match(linkedin, /one phone photo/i);
+assert.match(linkedin, /20 starter credits/i);
+assert.match(linkedin, /about 2 standard image generations/i);
+assert.match(linkedin, /10 credits per standard image generation/i);
+assert.match(linkedin, /SoftwareApplication/);
+assert.match(linkedin, /FAQPage/);
+assert.match(linkedin, /assets\/profile_headshot_female_before\.webp/);
+assert.match(linkedin, /assets\/profile_headshot_female_after\.webp/);
+assert.match(linkedin, /assets\/profile_headshot_male_before\.webp/);
+assert.match(linkedin, /assets\/profile_headshot_male_after\.webp/);
+assert.match(linkedin, /\.\.\/download\/index\.html/);
+assert.match(linkedin, /\.\.\/pricing\//);
+assert.match(linkedin, /\.\.\/examples\//);
+assert.match(linkedin, /\.\.\/ai-profile-headshot-generator\//);
+assert.match(linkedin, /\.\.\/ai-selfie-generator\//);
+assert.match(linkedin, /\.\.\/ai-photo-editor-styles\//);
+assert.match(linkedin, new RegExp(iosUrl.replaceAll(".", "\\.")));
+assert.match(linkedin, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 
 assert.match(avatar, /<title>AI Avatar Generator \| Kova<\/title>/);
 assert.match(avatar, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-avatar-generator\/">/);
