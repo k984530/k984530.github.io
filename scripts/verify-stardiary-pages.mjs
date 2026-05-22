@@ -36,6 +36,8 @@ assert.match(index, /Star Diary/);
 assert.match(index, /Star Diary - Stella Notes/);
 assert.match(index, /apps\.apple\.com\/us\/app\/star-diary-stella-notes\/id6756995556/);
 assert.match(index, /Paid download/);
+assert.match(index, /\$2\.99/);
+assert.match(index, /Data Not Collected/);
 assert.match(index, /privacy\.html/);
 assert.match(index, /support\.html/);
 
