@@ -198,6 +198,19 @@
             box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
         }
 
+        .kova-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .kova-link.secondary {
+            background: white;
+            color: #111;
+            border: 2px solid #111;
+        }
+
         .contact {
             text-align: center;
             color: white;
@@ -257,6 +270,10 @@
 
             .kova-promo img {
                 margin: 0 auto;
+            }
+
+            .kova-actions {
+                justify-content: center;
             }
         }
     </style>
@@ -340,7 +357,10 @@
                 <h2>Need idea visuals?</h2>
                 <p>Try Kova with 20 starter credits, enough for about 2 standard image generations, and turn one chosen mind-map direction into idea visuals, profile concepts, Polaroids, anime portraits, and share-ready creative assets.</p>
             </div>
-            <a class="kova-link" href="../Kova/ai-idea-visualizer/">Open Kova</a>
+            <div class="kova-actions">
+                <a class="kova-link" href="../Kova/ai-idea-visualizer/">Open Kova</a>
+                <a class="kova-link secondary" href="../Kova/studio-sprint/">Book Studio Sprint</a>
+            </div>
         </div>
 
     </main>
