@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kova: AI Photo Editor</title>
+    <meta name="description" content="Kova is an AI photo editor for turning one photo into collectible figurines, anime portraits, Polaroids, cyberpunk edits, and other share-ready styles.">
+    <meta name="keywords" content="Kova, AI photo editor, AI image generator, AI portrait, photo style app, AI avatar, image edit app">
+    <link rel="canonical" href="https://won-space.com/Kova/">
+
+    <meta property="og:title" content="Kova: AI Photo Editor">
+    <meta property="og:description" content="Turn one photo into polished AI styles, save the result, and share it from mobile.">
+    <meta property="og:image" content="https://won-space.com/Kova/download/Icon.png">
+    <meta property="og:url" content="https://won-space.com/Kova/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kova: AI Photo Editor">
+    <meta name="twitter:description" content="Create collectible, anime, Polaroid, cyberpunk, and report-style AI photo edits.">
+    <meta name="twitter:image" content="https://won-space.com/Kova/download/Icon.png">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ink: #101114;
+            --paper: #fffaf0;
+            --muted: #68635b;
+            --line: rgba(16, 17, 20, 0.14);
+            --accent: #ff5c7a;
+            --blue: #2477ff;
+            --mint: #35bf8e;
+            --yellow: #f3c94d;
+            --white: #ffffff;
+            --shadow: 0 22px 56px rgba(16, 17, 20, 0.18);
+        }
+
+        body {
+            margin: 0;
+            min-width: 320px;
+            color: var(--ink);
+            background:
+                linear-gradient(90deg, rgba(16, 17, 20, 0.05) 1px, transparent 1px) 0 0 / 56px 56px,
+                linear-gradient(0deg, rgba(16, 17, 20, 0.035) 1px, transparent 1px) 0 0 / 56px 56px,
+                var(--paper);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .shell {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: 92vh;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+            gap: 56px;
+            align-items: center;
+            padding: 64px 0 40px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            margin: 0 0 24px;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 16px 0 0 var(--blue), 32px 0 0 var(--mint);
+        }
+
+        h1 {
+            margin: 0;
+            max-width: 780px;
+            font-size: clamp(3.3rem, 8.5vw, 8.4rem);
+            line-height: 0.84;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .lead {
+            max-width: 620px;
+            margin: 28px 0 0;
+            font-size: clamp(1.12rem, 2vw, 1.45rem);
+            line-height: 1.45;
+            color: var(--muted);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .store-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 56px;
+            padding: 0 22px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--ink);
+            color: var(--white);
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 8px 8px 0 var(--yellow);
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .store-button.secondary {
+            background: var(--white);
+            color: var(--ink);
+            box-shadow: 8px 8px 0 var(--blue);
+        }
+
+        .store-button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 12px 12px 0 var(--yellow);
+        }
+
+        .store-button.secondary:hover {
+            box-shadow: 12px 12px 0 var(--blue);
+        }
+
+        .phone-board {
+            position: relative;
+            min-height: 620px;
+        }
+
+        .app-card {
+            position: absolute;
+            inset: 34px 18px auto auto;
+            width: min(380px, 86vw);
+            padding: 22px;
+            border: 2px solid var(--ink);
+            border-radius: 18px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            transform: rotate(2deg);
+        }
+
+        .app-card header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .app-icon {
+            width: 74px;
+            height: 74px;
+            border-radius: 18px;
+            box-shadow: 0 12px 26px rgba(16, 17, 20, 0.22);
+        }
+
+        .app-card strong {
+            display: block;
+            font-size: 1.35rem;
+        }
+
+        .app-card span {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .style-tile {
+            min-height: 168px;
+            overflow: hidden;
+            border: 2px solid var(--ink);
+            border-radius: 14px;
+            background: #ece7dd;
+        }
+
+        .style-tile img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .floating-note {
+            position: absolute;
+            left: 0;
+            bottom: 44px;
+            width: min(310px, 72vw);
+            padding: 18px 20px;
+            border: 2px solid var(--ink);
+            border-radius: 12px;
+            background: var(--accent);
+            color: var(--white);
+            box-shadow: 10px 10px 0 var(--ink);
+            font-weight: 800;
+            transform: rotate(-5deg);
+        }
+
+        .section {
+            padding: 72px 0;
+            border-top: 2px solid var(--line);
+        }
+
+        .section h2 {
+            margin: 0 0 24px;
+            font-size: clamp(2rem, 5vw, 4.4rem);
+            line-height: 0.94;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .feature {
+            min-height: 190px;
+            padding: 22px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+        }
+
+        .feature:nth-child(2) {
+            background: #e9f1ff;
+        }
+
+        .feature:nth-child(3) {
+            background: #eef9f3;
+        }
+
+        .feature h3 {
+            margin: 0 0 12px;
+            font-size: 1.15rem;
+        }
+
+        .feature p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.62;
+        }
+
+        .closing {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            padding: 44px 0 72px;
+        }
+
+        .closing p {
+            max-width: 620px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.08rem;
+            line-height: 1.55;
+        }
+
+        footer {
+            padding: 28px 0;
+            border-top: 2px solid var(--line);
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 820px) {
+            .hero {
+                min-height: auto;
+                grid-template-columns: 1fr;
+                gap: 22px;
+                padding-top: 38px;
+            }
+
+            .phone-board {
+                min-height: 560px;
+            }
+
+            .app-card {
+                position: relative;
+                inset: auto;
+                width: 100%;
+            }
+
+            .floating-note {
+                right: 0;
+                left: auto;
+                bottom: 0;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .closing {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="shell">
+        <section class="hero" aria-labelledby="title">
+            <div>
+                <p class="eyebrow">AI photo editor</p>
+                <h1 id="title">Kova</h1>
+                <p class="lead">Turn one photo into polished AI styles: collectible figurines, anime portraits, cinematic Polaroids, neon edits, stickers, profile reports, and more.</p>
+                <div class="actions" aria-label="Download Kova">
+                    <a class="store-button" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914" target="_blank" rel="noopener">App Store</a>
+                    <a class="store-button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova" target="_blank" rel="noopener">Google Play</a>
+                </div>
+            </div>
+
+            <div class="phone-board" aria-label="Kova style previews">
+                <article class="app-card">
+                    <header>
+                        <img class="app-icon" src="download/Icon.png" alt="Kova app icon">
+                        <div>
+                            <strong>Kova Studio</strong>
+                            <span>Choose a style, generate, save, share.</span>
+                        </div>
+                    </header>
+                    <div class="style-grid">
+                        <div class="style-tile"><img src="assets/figurine.webp" alt="Kova figurine style preview"></div>
+                        <div class="style-tile"><img src="assets/anime.webp" alt="Kova anime style preview"></div>
+                        <div class="style-tile"><img src="assets/polaroid.webp" alt="Kova Polaroid style preview"></div>
+                        <div class="style-tile"><img src="assets/cyberpunk.webp" alt="Kova cyberpunk style preview"></div>
+                    </div>
+                </article>
+                <div class="floating-note">Mobile-first AI edits for photos people actually want to share.</div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="features">
+            <h2 id="features">Why It Works</h2>
+            <div class="feature-grid">
+                <article class="feature">
+                    <h3>One-tap style library</h3>
+                    <p>Kova ships with a broad catalog of ready-made styles, so users do not need prompt-writing skill to get a strong result.</p>
+                </article>
+                <article class="feature">
+                    <h3>Credits and membership ready</h3>
+                    <p>The app is built around RevenueCat credits and monthly plans, with private galleries and restore support already part of the product flow.</p>
+                </article>
+                <article class="feature">
+                    <h3>Designed for social loops</h3>
+                    <p>Generated results can be saved, shared, and published to a community feed, giving the product a natural path beyond one-time utility.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="closing">
+            <p>Kova is available on iPhone and Android. Open the store link from your phone to install, try a style, and create your first AI edit.</p>
+            <a class="store-button" href="download/">Open download page</a>
+        </section>
+    </main>
+
+    <footer class="shell">
+        <span>Contact: <a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></span>
+    </footer>
+</body>
+</html>
