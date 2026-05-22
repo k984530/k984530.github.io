@@ -280,6 +280,9 @@ assert.match(studioSprint, /Invoice-ready sprint request/);
 assert.match(studioSprint, /How paid sprint starts/);
 assert.match(studioSprint, /within 24 hours KST/i);
 assert.match(studioSprint, /Request invoice/);
+assert.match(studioSprint, /Request 990,000 KRW invoice/);
+assert.match(studioSprint, /Request 2,900,000 KRW invoice/);
+assert.match(studioSprint, /Request 9,900,000 KRW\+ invoice/);
 assert.match(studioSprint, /Commercial usage scope/);
 assert.match(studioSprint, /Payment preference/);
 assert.match(studioSprint, /mailto:alyduho984530@gmail\.com\?subject=Kova%20Studio%20Sprint%20inquiry/);
@@ -296,6 +299,18 @@ assert.match(decodedSprintInvoiceEmail, /Payment preference:/);
 assert.match(decodedSprintInvoiceEmail, /Receipt or tax invoice needed:/);
 assert.match(decodedSprintInvoiceEmail, /Commercial usage scope:/);
 assert.match(decodedSprintInvoiceEmail, /Decision timeline:/);
+const packageInvoiceMailLinks = [...studioSprint.matchAll(/mailto:alyduho984530@gmail\.com\?subject=Kova%20Studio%20Sprint%20invoice%20request&body=([^"]+)/g)]
+    .map((match) => decodeURIComponent(match[1]));
+for (const selectedPackage of [
+    "Selected package: Launch visual sprint - 990,000 KRW",
+    "Selected package: Creator campaign system - 2,900,000 KRW",
+    "Selected package: Portfolio revenue system - 9,900,000 KRW+",
+]) {
+    assert.ok(
+        packageInvoiceMailLinks.some((body) => body.includes(selectedPackage)),
+        `Missing package-specific invoice link for ${selectedPackage}`,
+    );
+}
 assert.match(studioSprint, /application\/ld\+json/);
 assert.match(studioSprint, /OfferCatalog/);
 assert.match(studioSprint, /Service/);
