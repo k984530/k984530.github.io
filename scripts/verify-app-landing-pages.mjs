@@ -48,10 +48,13 @@ const extraProjects = new Map([
 ]);
 
 const kovaPromoDirs = new Set([
+  "AnyThoughts",
+  "Anypick",
   "AppHub",
   "BlahChat",
   "CatsDiary",
   "CatsThoughts",
+  "ChartingSkills",
   "ChatVibe",
   "CryptoAI",
   "CryptoSkills",
@@ -66,11 +69,15 @@ const kovaPromoDirs = new Set([
   "Rizzet",
   "SeductionRules",
   "SecretMind",
+  "StatUP",
   "VibePlanning",
+  "Wealtha",
   "faceMatch",
 ]);
 
 const socialKovaIntentDirs = new Set([
+  "AnyThoughts",
+  "Anypick",
   "BlahChat",
   "ChatVibe",
   "FriendAI",
@@ -88,13 +95,16 @@ const petKovaIntentDirs = new Set([
 ]);
 
 const professionalKovaIntentDirs = new Set([
+  "ChartingSkills",
   "CryptoAI",
   "CryptoSkills",
+  "Wealtha",
 ]);
 
 const toolKovaIntentDirs = new Map([
   ["GeniePlanner", "genieplanner"],
   ["MobileCode", "mobilecode"],
+  ["StatUP", "statup"],
   ["VibePlanning", "vibeplanning"],
 ]);
 

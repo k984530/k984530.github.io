@@ -908,6 +908,7 @@
                 genieplanner: "GeniePlanner landing page",
                 mindmapai: "MindMapAI landing page",
                 mobilecode: "MobileCode landing page",
+                statup: "StatUP landing page",
                 vibeplanning: "VibePlanning landing page",
                 direct: "Direct Studio Sprint page",
             };
@@ -936,9 +937,11 @@
                         ? sourceLabels.mindmapai
                         : /mobilecode/i.test(requestedSource)
                             ? sourceLabels.mobilecode
-                            : /vibeplanning/i.test(requestedSource)
-                                ? sourceLabels.vibeplanning
-                                : sourceLabels.direct;
+                            : /statup/i.test(requestedSource)
+                                ? sourceLabels.statup
+                                : /vibeplanning/i.test(requestedSource)
+                                    ? sourceLabels.vibeplanning
+                                    : sourceLabels.direct;
             const packageParam = params.get("package") || "";
             const selectedPackage = document.getElementById(packageParam);
 
