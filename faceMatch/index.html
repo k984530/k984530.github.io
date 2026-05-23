@@ -106,6 +106,80 @@
             height: 60px;
             width: auto;
         }
+
+        .pro-lane {
+            background: #1F1026;
+            color: white;
+            border-radius: 20px;
+            padding: 34px;
+            margin-bottom: 40px;
+            box-shadow: 0 14px 34px rgba(31, 16, 38, 0.28);
+        }
+
+        .pro-lane h2 {
+            font-size: 2em;
+            margin-bottom: 14px;
+        }
+
+        .pro-lane p {
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 1.05em;
+            line-height: 1.8;
+            max-width: 760px;
+        }
+
+        .pro-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .pro-point {
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 14px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .pro-point strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 1.05em;
+        }
+
+        .pro-point span {
+            color: rgba(255, 255, 255, 0.72);
+            line-height: 1.6;
+        }
+
+        .pro-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .pro-action {
+            display: inline-flex;
+            align-items: center;
+            min-height: 46px;
+            padding: 0 18px;
+            border-radius: 12px;
+            background: #FFE66D;
+            color: #1F1026;
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pro-action.secondary {
+            background: white;
+        }
+
+        .pro-action:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+        }
         
         .features {
             background: white;
@@ -273,6 +347,28 @@
                 Available on iOS and Android devices
             </p>
         </div>
+        <section class="pro-lane" id="faceMatchProLane" aria-labelledby="faceMatchProTitle">
+            <h2 id="faceMatchProTitle">FaceMatch Pro for weekly compatibility checks</h2>
+            <p>Use FaceMatch Pro when one quick scan is not enough. Upgrade for repeat compatibility sessions, deeper relationship readings, and saved insights you can compare before dates, team decisions, or friendship check-ins.</p>
+            <div class="pro-points" aria-label="FaceMatch Pro reasons to upgrade">
+                <div class="pro-point">
+                    <strong>Repeat scans</strong>
+                    <span>Run weekly compatibility checks instead of stopping after one curiosity result.</span>
+                </div>
+                <div class="pro-point">
+                    <strong>Relationship readings</strong>
+                    <span>Go beyond the headline score with love, friendship, work, and timing context.</span>
+                </div>
+                <div class="pro-point">
+                    <strong>Cross-store access</strong>
+                    <span>Start on iPhone or Android and open the matching store page from here.</span>
+                </div>
+            </div>
+            <div class="pro-actions" aria-label="FaceMatch Pro store links">
+                <a class="pro-action" href="https://apps.apple.com/app/face-match-ai/id6743154306" target="_blank" rel="noopener">Open FaceMatch Pro on iOS</a>
+                <a class="pro-action secondary" href="https://play.google.com/store/apps/details?id=com.aly.faceMatch" target="_blank" rel="noopener">Open FaceMatch Pro on Android</a>
+            </div>
+        </section>
         
         <div class="features">
             <h2>Key Features</h2>
