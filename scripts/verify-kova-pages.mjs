@@ -622,6 +622,97 @@ function verifyHiringPageBriefRuntime(html) {
   assert.match(elements.get("hiringBriefEmailPreview").textContent, /Estimated per-person sprint cost: 725,000 KRW/);
 }
 
+function verifyAppLaunchBriefRuntime(html) {
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const launchBriefPackages[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "App launch visuals page must include the launch brief builder script");
+
+  const listeners = new Map();
+  const elements = new Map();
+  const addElement = (id, properties = {}) => {
+    const element = {
+      href: "",
+      textContent: "",
+      value: "",
+      options: [],
+      selectedIndex: 0,
+      ...properties,
+      addEventListener: (eventName, callback) => {
+        const key = `${id}:${eventName}`;
+        listeners.set(key, [...(listeners.get(key) || []), callback]);
+      },
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const fire = (id, eventName) => {
+    for (const callback of listeners.get(`${id}:${eventName}`) || []) {
+      callback();
+    }
+  };
+
+  addElement("launchBriefForm");
+  addElement("launchBriefPackage", {
+    value: "launch-visual-sprint",
+    options: [
+      { dataset: { price: "990000" }, textContent: "Launch visual sprint - 990,000 KRW" },
+      { dataset: { price: "2900000" }, textContent: "Creator campaign system - 2,900,000 KRW" },
+      { dataset: { price: "9900000" }, textContent: "Portfolio revenue system - 9,900,000 KRW+" },
+    ],
+  });
+  addElement("launchBriefSource", { value: "App launch visuals page" });
+  addElement("launchBriefOutcome", { value: "Launch posts" });
+  addElement("launchBriefAov", { value: "100000" });
+  addElement("launchBriefAppUrl", { value: "https://example.com/app" });
+  addElement("launchBriefLaunchDate", { value: "This month" });
+  addElement("launchBriefMaterialsLink", { value: "https://example.com/brief" });
+  addElement("launchBriefNotes", { value: "" });
+  addElement("launchBriefRecoveryOrders");
+  addElement("launchBriefPackageFit");
+  addElement("launchBriefEmailPreview");
+  addElement("launchBriefInvoiceLink");
+
+  vm.runInNewContext(
+    scriptMatch[1],
+    {
+      document: {
+        getElementById: (id) => elements.get(id) ?? null,
+      },
+      encodeURIComponent,
+      URLSearchParams,
+      window: {
+        location: {
+          search: "?source=apphub&package=creator-campaign-system&aov=250000",
+        },
+      },
+      Intl,
+    },
+    { timeout: 1000 },
+  );
+
+  assert.equal(elements.get("launchBriefPackage").value, "creator-campaign-system");
+  assert.equal(elements.get("launchBriefSource").value, "AppHub landing page");
+  assert.equal(elements.get("launchBriefAov").value, "250000");
+  assert.equal(elements.get("launchBriefRecoveryOrders").textContent, "Estimated paid orders to recover sprint fee: about 12");
+  assert.match(elements.get("launchBriefEmailPreview").textContent, /Selected package: Creator campaign system - 2,900,000 KRW/);
+  assert.match(elements.get("launchBriefEmailPreview").textContent, /Referral source: AppHub landing page/);
+  assert.match(elements.get("launchBriefEmailPreview").textContent, /Average paid order value: 250,000 KRW/);
+  assert.match(elements.get("launchBriefEmailPreview").textContent, /Estimated paid orders to recover sprint fee: about 12/);
+  assert.match(decodeURIComponent(elements.get("launchBriefInvoiceLink").href), /Kova App Launch Visual Sprint invoice request/);
+  assert.match(decodeURIComponent(elements.get("launchBriefInvoiceLink").href), /Creator campaign system - 2,900,000 KRW/);
+
+  elements.get("launchBriefPackage").value = "portfolio-revenue-system";
+  fire("launchBriefPackage", "change");
+  elements.get("launchBriefAov").value = "500000";
+  fire("launchBriefForm", "input");
+
+  assert.equal(elements.get("launchBriefRecoveryOrders").textContent, "Estimated paid orders to recover sprint fee: about 20");
+  assert.match(elements.get("launchBriefPackageFit").textContent, /Portfolio revenue system is best when one launch page must support multiple apps or offers/);
+  assert.match(elements.get("launchBriefEmailPreview").textContent, /Selected package: Portfolio revenue system - 9,900,000 KRW\+/);
+  assert.match(elements.get("launchBriefEmailPreview").textContent, /Average paid order value: 500,000 KRW/);
+  assert.match(elements.get("launchBriefEmailPreview").textContent, /Estimated paid orders to recover sprint fee: about 20/);
+  assert.match(decodeURIComponent(elements.get("launchBriefInvoiceLink").href), /Estimated paid orders to recover sprint fee: about 20/);
+}
+
 const requiredFiles = [
   "Kova/index.html",
   "Kova/download/index.html",
@@ -899,9 +990,27 @@ assert.match(appLaunch, /\.\.\/ai-idea-visualizer\//);
 assert.match(appLaunch, /\.\.\/studio-sprint\//);
 assert.match(appLaunch, /\.\.\/ai-app-store-screenshot-service\//);
 assert.match(appLaunch, /Kova Studio Sprint/);
+assert.match(appLaunch, /Launch Visual Sprint brief builder/);
+assert.match(appLaunch, /id="launchBriefBuilder"/);
+assert.match(appLaunch, /id="launchBriefForm"/);
+assert.match(appLaunch, /id="launchBriefPackage"/);
+assert.match(appLaunch, /id="launchBriefSource"/);
+assert.match(appLaunch, /id="launchBriefOutcome"/);
+assert.match(appLaunch, /id="launchBriefAov"/);
+assert.match(appLaunch, /id="launchBriefAppUrl"/);
+assert.match(appLaunch, /id="launchBriefMaterialsLink"/);
+assert.match(appLaunch, /id="launchBriefRecoveryOrders"/);
+assert.match(appLaunch, /id="launchBriefPackageFit"/);
+assert.match(appLaunch, /id="launchBriefEmailPreview"/);
+assert.match(appLaunch, /id="launchBriefInvoiceLink"/);
+assert.match(appLaunch, /Kova App Launch Visual Sprint invoice request/);
+assert.match(appLaunch, /Estimated paid orders to recover sprint fee:/);
+assert.match(appLaunch, /const launchBriefPackages/);
+assert.match(appLaunch, /No live checkout, payment link, store edit, or buyer message is created/);
 assert.match(appLaunch, /\.\.\/\.\.\/AppHub\//);
 assert.match(appLaunch, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(appLaunch, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+verifyAppLaunchBriefRuntime(appLaunch);
 
 assert.match(appStoreScreenshots, /<title>AI App Store Screenshot Service \| Kova Studio Sprint<\/title>/);
 assert.match(appStoreScreenshots, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-app-store-screenshot-service\/">/);

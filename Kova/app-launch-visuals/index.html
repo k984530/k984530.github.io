@@ -141,6 +141,16 @@
         .use-list article:nth-child(2) { background: #eef9f3; }
         .use-list h3 { margin: 0 0 8px; font-size: 1.24rem; }
         .use-list p { margin: 0; color: var(--muted); line-height: 1.65; }
+        .brief-panel { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 24px; box-shadow: 8px 8px 0 var(--mint); }
+        .brief-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        label { display: grid; gap: 7px; font-weight: 800; }
+        input, select, textarea { width: 100%; border: 2px solid var(--ink); border-radius: 8px; padding: 12px; color: var(--ink); background: #fffdf8; font: inherit; }
+        textarea { min-height: 196px; resize: vertical; }
+        .full { grid-column: 1 / -1; }
+        .metric-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+        .metric { border: 2px solid var(--ink); border-radius: 8px; background: #eef9f3; padding: 14px 16px; font-weight: 900; line-height: 1.5; }
+        .metric:nth-child(2) { background: #fff7d6; }
+        .safety-note { margin: 16px 0 0; padding: 14px 16px; border: 2px solid var(--ink); border-radius: 8px; background: #fff2f6; color: var(--ink); line-height: 1.55; }
         .faq { display: grid; gap: 14px; }
         .faq article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 20px; }
         .faq h3 { margin: 0 0 8px; }
@@ -152,7 +162,7 @@
         footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 900px) {
-            .hero, .section-head, .use-list { grid-template-columns: 1fr; }
+            .hero, .section-head, .use-list, .brief-grid, .metric-row { grid-template-columns: 1fr; }
             .cards { grid-template-columns: 1fr; }
         }
         @media (max-width: 560px) {
@@ -170,6 +180,7 @@
                 <h1>AI App Launch Visuals</h1>
                 <p class="lead">Use Kova to make founder profile images, launch posts, and product-style visuals from one clear photo. It is a fast creative layer for app makers who already plan products in AppHub and need share-ready visuals.</p>
                 <div class="cta-row" aria-label="Download Kova">
+                    <a class="button" href="#launchBriefBuilder">Build launch brief</a>
                     <a class="button" href="../download/index.html">Open download page</a>
                     <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914">App Store</a>
                     <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova">Google Play</a>
@@ -250,6 +261,73 @@
             </div>
         </section>
 
+        <section id="launchBriefBuilder" class="section shell" aria-labelledby="launchBriefTitle">
+            <div class="section-head">
+                <h2 id="launchBriefTitle">Launch Visual Sprint brief builder</h2>
+                <p>Turn an app-maker visit into a scoped invoice email before the buyer leaves the page. The estimate shows how many paid orders need to recover the sprint fee from the buyer's average paid order value.</p>
+            </div>
+            <form id="launchBriefForm" class="brief-panel">
+                <div class="brief-grid">
+                    <label>
+                        Package
+                        <select id="launchBriefPackage" name="launch_brief_package">
+                            <option value="launch-visual-sprint" data-price="990000">Launch - 990k</option>
+                            <option value="creator-campaign-system" data-price="2900000">Campaign - 2.9M</option>
+                            <option value="portfolio-revenue-system" data-price="9900000">Portfolio - 9.9M+</option>
+                        </select>
+                    </label>
+                    <label>
+                        Referral source
+                        <input id="launchBriefSource" name="launch_brief_source" value="App launch visuals page">
+                    </label>
+                    <label>
+                        Primary outcome
+                        <select id="launchBriefOutcome" name="launch_brief_outcome">
+                            <option>Launch posts</option>
+                            <option>Founder profile visuals</option>
+                            <option>Product-style visuals</option>
+                            <option>Paid conversion campaign</option>
+                            <option>Portfolio funnel</option>
+                        </select>
+                    </label>
+                    <label>
+                        Average paid order value
+                        <input id="launchBriefAov" name="launch_brief_aov" type="number" min="50000" step="10000" value="100000">
+                    </label>
+                    <label>
+                        App or product URL
+                        <input id="launchBriefAppUrl" name="launch_brief_app_url" type="url" placeholder="https://apps.apple.com/...">
+                    </label>
+                    <label>
+                        Target launch date
+                        <input id="launchBriefLaunchDate" name="launch_brief_launch_date" placeholder="This month">
+                    </label>
+                    <label class="full">
+                        Source materials or references
+                        <input id="launchBriefMaterialsLink" name="launch_brief_materials_link" placeholder="App page, screenshots, brand notes, or reference board URL">
+                    </label>
+                    <label class="full">
+                        Notes
+                        <textarea id="launchBriefNotes" name="launch_brief_notes" placeholder="Audience, core value proposition, preferred visual style, markets, or launch blockers"></textarea>
+                    </label>
+                    <label class="full">
+                        Launch invoice email preview
+                        <textarea id="launchBriefEmailPreview" name="launch_brief_email_preview" readonly></textarea>
+                    </label>
+                </div>
+                <div class="metric-row" aria-label="Launch visual sprint estimates">
+                    <div id="launchBriefRecoveryOrders" class="metric">Estimated paid orders to recover sprint fee: about 10</div>
+                    <div id="launchBriefPackageFit" class="metric">Launch visual sprint is best for one focused app, product, or creator launch.</div>
+                </div>
+                <p class="safety-note">No live checkout, payment link, store edit, or buyer message is created. This only prepares a local email draft in your mail app.</p>
+                <div class="cta-row">
+                    <a id="launchBriefInvoiceLink" class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20App%20Launch%20Visual%20Sprint%20invoice%20request">Create launch invoice email</a>
+                    <a class="button secondary" href="../studio-sprint/#sprintBriefBuilder">Full Studio Sprint brief</a>
+                    <a class="button secondary" href="../ai-app-store-screenshot-service/#screenshotBriefBuilder">Screenshot brief</a>
+                </div>
+            </form>
+        </section>
+
         <section class="section shell" aria-labelledby="faqTitle">
             <div class="section-head">
                 <h2 id="faqTitle">Questions</h2>
@@ -302,5 +380,104 @@
             <a href="../support.html">Support</a>
         </nav>
     </footer>
+    <script>
+        const launchBriefPackages = {
+            "launch-visual-sprint": {
+                label: "Launch visual sprint - 990,000 KRW",
+                price: 990000,
+                fit: "Launch visual sprint is best for one focused app, product, or creator launch.",
+            },
+            "creator-campaign-system": {
+                label: "Creator campaign system - 2,900,000 KRW",
+                price: 2900000,
+                fit: "Creator campaign system is best when the launch needs repeatable posts, offer cards, and campaign visuals.",
+            },
+            "portfolio-revenue-system": {
+                label: "Portfolio revenue system - 9,900,000 KRW+",
+                price: 9900000,
+                fit: "Portfolio revenue system is best when one launch page must support multiple apps or offers.",
+            },
+        };
+        const launchBriefSources = {
+            apphub: "AppHub landing page",
+            genieplanner: "GeniePlanner landing page",
+            mindmapai: "MindMapAI landing page",
+            mobilecode: "MobileCode landing page",
+            screenshot: "Screenshot service page",
+            statup: "StatUP landing page",
+            vibeplanning: "VibePlanning landing page",
+        };
+        const launchBriefParams = new URLSearchParams(window.location.search);
+        const launchBriefForm = document.getElementById("launchBriefForm");
+        const launchBriefPackage = document.getElementById("launchBriefPackage");
+        const launchBriefSource = document.getElementById("launchBriefSource");
+        const launchBriefOutcome = document.getElementById("launchBriefOutcome");
+        const launchBriefAov = document.getElementById("launchBriefAov");
+        const launchBriefAppUrl = document.getElementById("launchBriefAppUrl");
+        const launchBriefLaunchDate = document.getElementById("launchBriefLaunchDate");
+        const launchBriefMaterialsLink = document.getElementById("launchBriefMaterialsLink");
+        const launchBriefNotes = document.getElementById("launchBriefNotes");
+        const launchBriefRecoveryOrders = document.getElementById("launchBriefRecoveryOrders");
+        const launchBriefPackageFit = document.getElementById("launchBriefPackageFit");
+        const launchBriefEmailPreview = document.getElementById("launchBriefEmailPreview");
+        const launchBriefInvoiceLink = document.getElementById("launchBriefInvoiceLink");
+        const krw = new Intl.NumberFormat("en-US");
+
+        function launchNumberValue(input, fallback) {
+            const parsed = Number.parseInt(input.value, 10);
+            return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+        }
+
+        function currentLaunchPackage() {
+            return launchBriefPackages[launchBriefPackage.value] || launchBriefPackages["launch-visual-sprint"];
+        }
+
+        function updateLaunchBrief() {
+            const selected = currentLaunchPackage();
+            const averageOrderValue = launchNumberValue(launchBriefAov, 100000);
+            const recoveryOrders = Math.ceil(selected.price / averageOrderValue);
+            const recoveryText = `Estimated paid orders to recover sprint fee: about ${recoveryOrders}`;
+            const body = [
+                "Hi, I want to request a Kova App Launch Visual Sprint invoice.",
+                "",
+                `Selected package: ${selected.label}`,
+                `Referral source: ${launchBriefSource.value || "App launch visuals page"}`,
+                `Primary outcome: ${launchBriefOutcome.value || "Launch posts"}`,
+                `Average paid order value: ${krw.format(averageOrderValue)} KRW`,
+                recoveryText,
+                `App or product URL: ${launchBriefAppUrl.value || "not provided yet"}`,
+                `Target launch date: ${launchBriefLaunchDate.value || "not provided yet"}`,
+                `Source materials or references: ${launchBriefMaterialsLink.value || "not provided yet"}`,
+                `Notes: ${launchBriefNotes.value || "none"}`,
+                "",
+                "Please reply with invoice/payment setup and next scope-confirmation steps.",
+            ].join("\n");
+
+            launchBriefRecoveryOrders.textContent = recoveryText;
+            launchBriefPackageFit.textContent = selected.fit;
+            launchBriefEmailPreview.value = body;
+            launchBriefEmailPreview.textContent = body;
+            launchBriefInvoiceLink.href = `mailto:alyduho984530@gmail.com?subject=${encodeURIComponent("Kova App Launch Visual Sprint invoice request")}&body=${encodeURIComponent(body)}`;
+        }
+
+        if (launchBriefForm) {
+            const sourceParam = launchBriefParams.get("source");
+            const packageParam = launchBriefParams.get("package");
+            const aovParam = launchBriefParams.get("aov");
+            if (sourceParam && launchBriefSources[sourceParam.toLowerCase()]) {
+                launchBriefSource.value = launchBriefSources[sourceParam.toLowerCase()];
+            }
+            if (packageParam && launchBriefPackages[packageParam]) {
+                launchBriefPackage.value = packageParam;
+            }
+            if (aovParam && Number.parseInt(aovParam, 10) > 0) {
+                launchBriefAov.value = String(Number.parseInt(aovParam, 10));
+            }
+            launchBriefForm.addEventListener("input", updateLaunchBrief);
+            launchBriefForm.addEventListener("change", updateLaunchBrief);
+            launchBriefPackage.addEventListener("change", updateLaunchBrief);
+            updateLaunchBrief();
+        }
+    </script>
 </body>
 </html>
