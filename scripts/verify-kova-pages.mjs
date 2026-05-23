@@ -238,6 +238,91 @@ function verifyProHeadshotReadinessRuntime(html) {
   assert.match(decodeURIComponent(elements.get("proHeadshotInvoiceLink").href), /reference profile ready/);
 }
 
+function verifyDatingSourceReadinessRuntime(html) {
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const datingReadinessItems[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "Dating profile page must include the source readiness script");
+
+  const listeners = new Map();
+  const elements = new Map();
+  const addElement = (id, properties = {}) => {
+    const element = {
+      checked: false,
+      href: "",
+      textContent: "",
+      value: "",
+      options: [],
+      selectedIndex: 0,
+      ...properties,
+      addEventListener: (eventName, callback) => {
+        const key = `${id}:${eventName}`;
+        listeners.set(key, [...(listeners.get(key) || []), callback]);
+      },
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const fire = (id, eventName) => {
+    for (const callback of listeners.get(`${id}:${eventName}`) || []) {
+      callback();
+    }
+  };
+
+  addElement("datingSprintForm");
+  addElement("datingSprintPackage", {
+    value: "profile-refresh",
+    options: [
+      { dataset: { price: "149000" }, textContent: "Profile refresh - 149,000 KRW" },
+    ],
+  });
+  addElement("datingSprintSource", { value: "Lookey" });
+  addElement("datingSprintGoal", { value: "Dating app profile refresh" });
+  addElement("datingSprintAov", { value: "50000" });
+  addElement("datingSprintProfileLink", { value: "https://example.com/profile" });
+  addElement("datingSprintDeadline", { value: "This week" });
+  addElement("datingSprintNotes", { value: "" });
+  addElement("datingSprintEmailPreview");
+  addElement("datingSprintInvoiceLink");
+  addElement("datingReadinessFaceVisible", { checked: true });
+  addElement("datingReadinessLighting", { checked: true });
+  addElement("datingReadinessPhotoVariety");
+  addElement("datingReadinessReferenceReady");
+  addElement("datingReadinessScore");
+  addElement("datingReadinessRecommendation");
+  addElement("datingReadinessInvoiceNote");
+
+  vm.runInNewContext(
+    scriptMatch[1],
+    {
+      document: {
+        getElementById: (id) => elements.get(id) ?? null,
+      },
+      encodeURIComponent,
+      URLSearchParams,
+      window: {
+        location: {
+          search: "?source=lookey&package=profile-refresh",
+        },
+      },
+    },
+    { timeout: 1000 },
+  );
+
+  assert.equal(elements.get("datingReadinessScore").textContent, "2/4 ready");
+  assert.match(elements.get("datingReadinessRecommendation").textContent, /Add varied source photos and a reference style/);
+  assert.match(elements.get("datingSprintEmailPreview").textContent, /Profile photo readiness: 2\/4 ready/);
+  assert.match(decodeURIComponent(elements.get("datingSprintInvoiceLink").href), /Profile photo readiness: 2\/4 ready/);
+
+  elements.get("datingReadinessPhotoVariety").checked = true;
+  fire("datingReadinessPhotoVariety", "change");
+  elements.get("datingReadinessReferenceReady").checked = true;
+  fire("datingReadinessReferenceReady", "change");
+
+  assert.equal(elements.get("datingReadinessScore").textContent, "4/4 ready");
+  assert.equal(elements.get("datingReadinessRecommendation").textContent, "This profile source set is ready for invoice review.");
+  assert.match(elements.get("datingSprintEmailPreview").textContent, /Profile photo readiness: 4\/4 ready/);
+  assert.match(decodeURIComponent(elements.get("datingSprintInvoiceLink").href), /reference style ready/);
+}
+
 const requiredFiles = [
   "Kova/index.html",
   "Kova/download/index.html",
@@ -1177,6 +1262,16 @@ assert.match(dating, /id="datingSprintProfileLink"/);
 assert.match(dating, /id="datingSprintDeadline"/);
 assert.match(dating, /id="datingSprintEmailPreview"/);
 assert.match(dating, /id="datingSprintInvoiceLink"/);
+assert.match(dating, /Source photo readiness checker/);
+assert.match(dating, /id="datingSourceReadinessChecker"/);
+assert.match(dating, /id="datingReadinessFaceVisible"/);
+assert.match(dating, /id="datingReadinessLighting"/);
+assert.match(dating, /id="datingReadinessPhotoVariety"/);
+assert.match(dating, /id="datingReadinessReferenceReady"/);
+assert.match(dating, /id="datingReadinessScore"/);
+assert.match(dating, /id="datingReadinessRecommendation"/);
+assert.match(dating, /id="datingReadinessInvoiceNote"/);
+assert.match(dating, /Profile photo readiness:/);
 assert.match(dating, /function updateDatingSprintBrief/);
 assert.match(dating, /Estimated paid orders to recover fee:/);
 assert.match(dating, /No live checkout, payment link, or buyer message is created/);
@@ -1188,6 +1283,7 @@ assert.match(dating, /\.\.\/ai-profile-headshot-generator\//);
 assert.match(dating, /\.\.\/ai-photo-editor-styles\//);
 assert.match(dating, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(dating, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+verifyDatingSourceReadinessRuntime(dating);
 
 assert.match(pet, /<title>AI Pet Portrait Generator \| Kova<\/title>/);
 assert.match(pet, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-pet-portrait-generator\/">/);

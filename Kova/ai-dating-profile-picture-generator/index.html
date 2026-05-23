@@ -136,6 +136,15 @@
         .field input,
         .field select { width: 100%; min-height: 46px; border: 2px solid var(--ink); border-radius: 8px; padding: 0 12px; background: #fffdf7; color: var(--ink); font: inherit; }
         .field.full { grid-column: 1 / -1; }
+        .readiness-panel { grid-column: 1 / -1; display: grid; gap: 12px; padding-top: 16px; border-top: 2px solid var(--line); }
+        .readiness-summary { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: baseline; }
+        .readiness-summary h3 { margin: 0; font-size: 1.12rem; }
+        .readiness-summary strong { color: var(--accent); }
+        .readiness-copy { margin: 0; color: var(--muted); line-height: 1.55; }
+        .readiness-checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+        .readiness-item { display: flex; gap: 10px; align-items: flex-start; color: var(--muted); font-weight: 800; line-height: 1.45; }
+        .readiness-item input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--accent); }
+        .readiness-note { margin: 0; color: var(--muted); line-height: 1.55; }
         .preview-box { display: grid; gap: 12px; align-content: start; }
         .preview-box h3 { margin: 0; font-size: 1.24rem; }
         .preview { min-height: 240px; margin: 0; padding: 16px; border: 2px solid var(--ink); border-radius: 8px; background: #101114; color: var(--white); white-space: pre-wrap; line-height: 1.58; overflow-wrap: anywhere; }
@@ -303,6 +312,9 @@
                             <option value="BlahChat">BlahChat</option>
                             <option value="AnyThoughts">AnyThoughts</option>
                             <option value="Anypick">Anypick</option>
+                            <option value="MODEE">MODEE</option>
+                            <option value="Lookey">Lookey</option>
+                            <option value="Fashion photo page">Fashion photo page</option>
                         </select>
                     </label>
                     <label class="field">
@@ -330,6 +342,32 @@
                         <span>Notes</span>
                         <input id="datingSprintNotes" name="notes" placeholder="Style, source photo readiness, audience, constraints">
                     </label>
+                    <div class="readiness-panel" id="datingSourceReadinessChecker" aria-labelledby="datingReadinessTitle">
+                        <div class="readiness-summary">
+                            <h3 id="datingReadinessTitle">Source photo readiness checker</h3>
+                            <strong id="datingReadinessScore">0/4 ready</strong>
+                        </div>
+                        <p class="readiness-copy" id="datingReadinessRecommendation">Add source photos before invoice review.</p>
+                        <div class="readiness-checks" aria-label="Dating profile source photo checklist">
+                            <label class="readiness-item">
+                                <input type="checkbox" id="datingReadinessFaceVisible" checked>
+                                <span>Clear face visible in the source photo</span>
+                            </label>
+                            <label class="readiness-item">
+                                <input type="checkbox" id="datingReadinessLighting" checked>
+                                <span>Natural lighting without heavy blur or obstruction</span>
+                            </label>
+                            <label class="readiness-item">
+                                <input type="checkbox" id="datingReadinessPhotoVariety">
+                                <span>At least 3 varied source photos or angles are ready</span>
+                            </label>
+                            <label class="readiness-item">
+                                <input type="checkbox" id="datingReadinessReferenceReady">
+                                <span>Reference dating/social profile style is ready</span>
+                            </label>
+                        </div>
+                        <p class="readiness-note" id="datingReadinessInvoiceNote">Profile photo readiness: 2/4 ready</p>
+                    </div>
                 </form>
                 <div class="preview-box">
                     <h3>Dating sprint invoice email preview</h3>
@@ -402,8 +440,29 @@
             rizzet: "Rizzet",
             seductionrules: "SeductionRules",
             secretmind: "SecretMind",
-            facematch: "FaceMatch"
+            facematch: "FaceMatch",
+            modee: "MODEE",
+            lookey: "Lookey",
+            "fashion-photo": "Fashion photo page"
         };
+        const datingReadinessItems = [
+            {
+                id: "datingReadinessFaceVisible",
+                readyLabel: "clear face ready"
+            },
+            {
+                id: "datingReadinessLighting",
+                readyLabel: "natural light ready"
+            },
+            {
+                id: "datingReadinessPhotoVariety",
+                readyLabel: "photo variety ready"
+            },
+            {
+                id: "datingReadinessReferenceReady",
+                readyLabel: "reference style ready"
+            }
+        ];
 
         function fieldValue(id, fallback = "") {
             const field = document.getElementById(id);
@@ -415,17 +474,38 @@
             return Number(field.options[field.selectedIndex].dataset.price || 149000);
         }
 
+        function datingReadinessState() {
+            const readyItems = datingReadinessItems.filter((item) => {
+                const field = document.getElementById(item.id);
+                return field && field.checked;
+            });
+            const scoreLabel = readyItems.length + "/" + datingReadinessItems.length + " ready";
+            const recommendation = readyItems.length === datingReadinessItems.length
+                ? "This profile source set is ready for invoice review."
+                : "Add varied source photos and a reference style before invoice review.";
+            const details = readyItems.length
+                ? readyItems.map((item) => item.readyLabel).join(", ")
+                : "no source-photo checks ready yet";
+            return { details, recommendation, scoreLabel };
+        }
+
         function updateDatingSprintBrief() {
             const packageField = document.getElementById("datingSprintPackage");
             const packageLabel = packageLabels[packageField.value] || packageField.options[packageField.selectedIndex].textContent;
             const averageOrderValue = Math.max(1, Number(fieldValue("datingSprintAov", "50000").replace(/[^0-9]/g, "")) || 50000);
             const recoveryOrders = Math.ceil(selectedPackagePrice() / averageOrderValue);
+            const readiness = datingReadinessState();
+            document.getElementById("datingReadinessScore").textContent = readiness.scoreLabel;
+            document.getElementById("datingReadinessRecommendation").textContent = readiness.recommendation;
+            document.getElementById("datingReadinessInvoiceNote").textContent = "Profile photo readiness: " + readiness.scoreLabel;
             const body = [
                 "Selected package: " + packageLabel,
                 "Referral source: " + fieldValue("datingSprintSource", "Direct dating profile page"),
                 "Primary goal: " + fieldValue("datingSprintGoal", "Dating app profile refresh"),
                 "Profile or reference link: " + fieldValue("datingSprintProfileLink", "Not added yet"),
                 "Target deadline: " + fieldValue("datingSprintDeadline", "Open"),
+                "Profile photo readiness: " + readiness.scoreLabel,
+                "Readiness details: " + readiness.details,
                 "Average paid order value: " + averageOrderValue.toLocaleString("en-US") + " KRW",
                 "Estimated paid orders to recover fee: about " + recoveryOrders,
                 "Notes: " + fieldValue("datingSprintNotes", "Source photos and preferred style will be shared before invoice."),
@@ -448,6 +528,10 @@
         }
         document.getElementById("datingSprintForm").addEventListener("input", updateDatingSprintBrief);
         document.getElementById("datingSprintForm").addEventListener("change", updateDatingSprintBrief);
+        datingReadinessItems.forEach((item) => {
+            const field = document.getElementById(item.id);
+            if (field) field.addEventListener("change", updateDatingSprintBrief);
+        });
         updateDatingSprintBrief();
     </script>
 </body>
