@@ -713,9 +713,25 @@ function verifyAppLaunchBriefRuntime(html) {
   assert.match(decodeURIComponent(elements.get("launchBriefInvoiceLink").href), /Estimated paid orders to recover sprint fee: about 20/);
 }
 
-function verifyProductPhotoBriefRuntime(html) {
+function verifyProductPhotoBriefRuntime(html, options = {}) {
+  const {
+    search = "?source=figurine&package=shop-launch-pack&aov=120000&productCount=8",
+    expectedSource = "AI figurine generator page",
+    initialPackage = "shop-launch-pack",
+    initialAov = "120000",
+    initialProductCount = "8",
+    initialRecoveryOrders = "9",
+    initialPackageLabel = "Shop launch pack - 990,000 KRW",
+    initialFitPattern = /Shop launch pack is best when a small catalog needs product listings and launch ads/,
+    changedPackage = "campaign-product-system",
+    changedAov = "250000",
+    changedProductCount = "18",
+    changedRecoveryOrders = "12",
+    changedPackageLabel = "Campaign product system - 2,900,000 KRW+",
+    changedFitPattern = /Campaign product system is best when one product line needs ads, listing images, and launch visuals/,
+  } = options;
   const scriptMatch = html.match(/<script>\s*([\s\S]*?const productBriefPackages[\s\S]*?)\s*<\/script>/);
-  assert.ok(scriptMatch, "AI figurine page must include the product photo brief builder script");
+  assert.ok(scriptMatch, "Product photo brief page must include the product photo brief builder script");
 
   const listeners = new Map();
   const elements = new Map();
@@ -772,7 +788,7 @@ function verifyProductPhotoBriefRuntime(html) {
       URLSearchParams,
       window: {
         location: {
-          search: "?source=figurine&package=shop-launch-pack&aov=120000&productCount=8",
+          search,
         },
       },
       Intl,
@@ -780,32 +796,32 @@ function verifyProductPhotoBriefRuntime(html) {
     { timeout: 1000 },
   );
 
-  assert.equal(elements.get("productBriefPackage").value, "shop-launch-pack");
-  assert.equal(elements.get("productBriefSource").value, "AI figurine generator page");
-  assert.equal(elements.get("productBriefProductCount").value, "8");
-  assert.equal(elements.get("productBriefAov").value, "120000");
-  assert.equal(elements.get("productBriefRecoveryOrders").textContent, "Estimated paid orders to recover sprint fee: about 9");
-  assert.match(elements.get("productBriefPackageFit").textContent, /Shop launch pack is best when a small catalog needs product listings and launch ads/);
-  assert.match(elements.get("productBriefEmailPreview").value, /Selected package: Shop launch pack - 990,000 KRW/);
-  assert.match(elements.get("productBriefEmailPreview").value, /Referral source: AI figurine generator page/);
-  assert.match(elements.get("productBriefEmailPreview").value, /Product count: 8/);
-  assert.match(elements.get("productBriefEmailPreview").value, /Average paid order value: 120,000 KRW/);
-  assert.match(elements.get("productBriefEmailPreview").value, /Estimated paid orders to recover sprint fee: about 9/);
+  assert.equal(elements.get("productBriefPackage").value, initialPackage);
+  assert.equal(elements.get("productBriefSource").value, expectedSource);
+  assert.equal(elements.get("productBriefProductCount").value, initialProductCount);
+  assert.equal(elements.get("productBriefAov").value, initialAov);
+  assert.equal(elements.get("productBriefRecoveryOrders").textContent, `Estimated paid orders to recover sprint fee: about ${initialRecoveryOrders}`);
+  assert.match(elements.get("productBriefPackageFit").textContent, initialFitPattern);
+  assert.match(elements.get("productBriefEmailPreview").value, new RegExp(`Selected package: ${initialPackageLabel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+  assert.match(elements.get("productBriefEmailPreview").value, new RegExp(`Referral source: ${expectedSource.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+  assert.match(elements.get("productBriefEmailPreview").value, new RegExp(`Product count: ${initialProductCount}`));
+  assert.match(elements.get("productBriefEmailPreview").value, new RegExp(`Average paid order value: ${new Intl.NumberFormat("en-US").format(Number(initialAov))} KRW`));
+  assert.match(elements.get("productBriefEmailPreview").value, new RegExp(`Estimated paid orders to recover sprint fee: about ${initialRecoveryOrders}`));
   assert.match(decodeURIComponent(elements.get("productBriefInvoiceLink").href), /Kova Product Photo Sprint invoice request/);
-  assert.match(decodeURIComponent(elements.get("productBriefInvoiceLink").href), /Shop launch pack - 990,000 KRW/);
+  assert.match(decodeURIComponent(elements.get("productBriefInvoiceLink").href), new RegExp(initialPackageLabel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 
-  elements.get("productBriefPackage").value = "campaign-product-system";
+  elements.get("productBriefPackage").value = changedPackage;
   fire("productBriefPackage", "change");
-  elements.get("productBriefAov").value = "250000";
-  elements.get("productBriefProductCount").value = "18";
+  elements.get("productBriefAov").value = changedAov;
+  elements.get("productBriefProductCount").value = changedProductCount;
   fire("productBriefForm", "input");
 
-  assert.equal(elements.get("productBriefRecoveryOrders").textContent, "Estimated paid orders to recover sprint fee: about 12");
-  assert.match(elements.get("productBriefPackageFit").textContent, /Campaign product system is best when one product line needs ads, listing images, and launch visuals/);
-  assert.match(elements.get("productBriefEmailPreview").value, /Selected package: Campaign product system - 2,900,000 KRW\+/);
-  assert.match(elements.get("productBriefEmailPreview").value, /Product count: 18/);
-  assert.match(elements.get("productBriefEmailPreview").value, /Average paid order value: 250,000 KRW/);
-  assert.match(decodeURIComponent(elements.get("productBriefInvoiceLink").href), /Estimated paid orders to recover sprint fee: about 12/);
+  assert.equal(elements.get("productBriefRecoveryOrders").textContent, `Estimated paid orders to recover sprint fee: about ${changedRecoveryOrders}`);
+  assert.match(elements.get("productBriefPackageFit").textContent, changedFitPattern);
+  assert.match(elements.get("productBriefEmailPreview").value, new RegExp(`Selected package: ${changedPackageLabel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+  assert.match(elements.get("productBriefEmailPreview").value, new RegExp(`Product count: ${changedProductCount}`));
+  assert.match(elements.get("productBriefEmailPreview").value, new RegExp(`Average paid order value: ${new Intl.NumberFormat("en-US").format(Number(changedAov))} KRW`));
+  assert.match(decodeURIComponent(elements.get("productBriefInvoiceLink").href), new RegExp(`Estimated paid orders to recover sprint fee: about ${changedRecoveryOrders}`));
 }
 
 const requiredFiles = [
@@ -825,6 +841,7 @@ const requiredFiles = [
   "Kova/pricing/index.html",
   "Kova/examples/index.html",
   "Kova/ai-photo-editor-styles/index.html",
+  "Kova/ai-product-photo-generator/index.html",
   "Kova/ai-figurine-generator/index.html",
   "Kova/ai-fashion-photo-generator/index.html",
   "Kova/ai-selfie-generator/index.html",
@@ -856,7 +873,7 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, appStoreScreenshots, ideaVisualizer, studioSprint, teamHeadshotSprint, hiringPageHeadshots, corporateHeadshots, pricing, examples, styles, figurine, fashion, selfie, linkedin, profileHeadshot, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, appStoreScreenshots, ideaVisualizer, studioSprint, teamHeadshotSprint, hiringPageHeadshots, corporateHeadshots, pricing, examples, styles, productPhoto, figurine, fashion, selfie, linkedin, profileHeadshot, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
@@ -874,6 +891,7 @@ const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor
   readFile("Kova/pricing/index.html", "utf8"),
   readFile("Kova/examples/index.html", "utf8"),
   readFile("Kova/ai-photo-editor-styles/index.html", "utf8"),
+  readFile("Kova/ai-product-photo-generator/index.html", "utf8"),
   readFile("Kova/ai-figurine-generator/index.html", "utf8"),
   readFile("Kova/ai-fashion-photo-generator/index.html", "utf8"),
   readFile("Kova/ai-selfie-generator/index.html", "utf8"),
@@ -909,6 +927,7 @@ assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-hiring-page-headshots\
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-corporate-headshot-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-selfie-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-fashion-photo-generator\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-product-photo-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-figurine-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-linkedin-photo-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-avatar-generator\//);
@@ -950,6 +969,7 @@ assert.match(index, /studio-sprint\//);
 assert.match(index, /team-headshot-sprint\//);
 assert.match(index, /ai-hiring-page-headshots\//);
 assert.match(index, /ai-corporate-headshot-generator\//);
+assert.match(index, /ai-product-photo-generator\//);
 assert.match(index, /ai-photo-editor-styles\//);
 assert.match(index, /ai-fashion-photo-generator\//);
 assert.match(index, /ai-selfie-generator\//);
@@ -1609,6 +1629,7 @@ assert.match(styles, /\.\.\/pricing\//);
 assert.match(styles, /\.\.\/free-ai-photo-editor\//);
 assert.match(styles, /\.\.\/ai-selfie-generator\//);
 assert.match(styles, /\.\.\/ai-fashion-photo-generator\//);
+assert.match(styles, /\.\.\/ai-product-photo-generator\//);
 assert.match(styles, /\.\.\/ai-figurine-generator\//);
 assert.match(styles, /\.\.\/ai-linkedin-photo-generator\//);
 assert.match(styles, /\.\.\/app-launch-visuals\//);
@@ -1618,6 +1639,56 @@ assert.match(styles, /\.\.\/ai-anime-portrait-generator\//);
 assert.match(styles, /\.\.\/privacy\.html/);
 assert.match(styles, /\.\.\/terms\.html/);
 assert.match(styles, /\.\.\/support\.html/);
+
+assert.match(productPhoto, /<title>AI Product Photo Generator \| Kova Product Photo Sprint<\/title>/);
+assert.match(productPhoto, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-product-photo-generator\/">/);
+assert.match(productPhoto, /AI Product Photo Generator/);
+assert.match(productPhoto, /ecommerce product photos/i);
+assert.match(productPhoto, /product listing visuals/i);
+assert.match(productPhoto, /Shopify product page/i);
+assert.match(productPhoto, /Product Photo Sprint brief builder/);
+assert.match(productPhoto, /290,000 KRW/);
+assert.match(productPhoto, /990,000 KRW/);
+assert.match(productPhoto, /2,900,000 KRW\+/);
+assert.match(productPhoto, /id="productBriefBuilder"/);
+assert.match(productPhoto, /id="productBriefForm"/);
+assert.match(productPhoto, /id="productBriefPackage"/);
+assert.match(productPhoto, /id="productBriefSource"/);
+assert.match(productPhoto, /id="productBriefProductCount"/);
+assert.match(productPhoto, /id="productBriefSalesChannel"/);
+assert.match(productPhoto, /id="productBriefAov"/);
+assert.match(productPhoto, /id="productBriefProductUrl"/);
+assert.match(productPhoto, /id="productBriefRecoveryOrders"/);
+assert.match(productPhoto, /id="productBriefPackageFit"/);
+assert.match(productPhoto, /id="productBriefEmailPreview"/);
+assert.match(productPhoto, /id="productBriefInvoiceLink"/);
+assert.match(productPhoto, /Kova Product Photo Sprint invoice request/);
+assert.match(productPhoto, /Estimated paid orders to recover sprint fee:/);
+assert.match(productPhoto, /const productBriefPackages/);
+assert.match(productPhoto, /No live checkout, payment link, store edit, or buyer message is created/);
+assert.match(productPhoto, /assets\/figurine\.webp/);
+assert.match(productPhoto, /assets\/dollbox\.webp/);
+assert.match(productPhoto, /\.\.\/ai-figurine-generator\/\?source=product-photo&package=shop-launch-pack#productBriefBuilder/);
+assert.match(productPhoto, /\.\.\/app-launch-visuals\/#launchBriefBuilder/);
+assert.match(productPhoto, /\.\.\/studio-sprint\/#sprintBriefBuilder/);
+assert.match(productPhoto, new RegExp(iosUrl.replaceAll(".", "\\.")));
+assert.match(productPhoto, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+verifyProductPhotoBriefRuntime(productPhoto, {
+  search: "?source=product-photo&package=campaign-product-system&aov=250000&productCount=18",
+  expectedSource: "AI product photo generator page",
+  initialPackage: "campaign-product-system",
+  initialAov: "250000",
+  initialProductCount: "18",
+  initialRecoveryOrders: "12",
+  initialPackageLabel: "Campaign product system - 2,900,000 KRW+",
+  initialFitPattern: /Campaign product system is best when one product line needs ads, listing images, and launch visuals/,
+  changedPackage: "shop-launch-pack",
+  changedAov: "120000",
+  changedProductCount: "8",
+  changedRecoveryOrders: "9",
+  changedPackageLabel: "Shop launch pack - 990,000 KRW",
+  changedFitPattern: /Shop launch pack is best when a small catalog needs product listings and launch ads/,
+});
 
 assert.match(figurine, /<title>AI Figurine Generator \| Kova<\/title>/);
 assert.match(figurine, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-figurine-generator\/">/);
@@ -1635,6 +1706,7 @@ assert.match(figurine, /assets\/dollbox\.webp/);
 assert.match(figurine, /\.\.\/download\/index\.html/);
 assert.match(figurine, /\.\.\/pricing\//);
 assert.match(figurine, /\.\.\/ai-profile-headshot-generator\//);
+assert.match(figurine, /\.\.\/ai-product-photo-generator\//);
 assert.match(figurine, /\.\.\/ai-photo-editor-styles\//);
 assert.match(figurine, /Product Photo Sprint brief builder/);
 assert.match(figurine, /id="productBriefBuilder"/);
