@@ -1026,6 +1026,20 @@
       word-break: break-word;
     }
 
+    .project-paid-link {
+      align-self: flex-start;
+      color: var(--ink);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.68rem;
+      font-weight: 800;
+      line-height: 1.2;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+      word-break: break-word;
+    }
+
     .project-card footer {
       display: flex;
       justify-content: space-between;
@@ -1627,7 +1641,7 @@
   <script>
     const projects = [
       { name: "AI Creator Prompt Pack", cat: "ai", icon: "rocket-favicon.svg", detail: "AI-Creator-Prompt-Pack/" },
-      { name: "Kova", cat: "ai", icon: "icons/Kova.png", ios: "https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914", android: "https://play.google.com/store/apps/details?id=com.aly.kova", detail: "Kova/" },
+      { name: "Kova", cat: "ai", icon: "icons/Kova.png", ios: "https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914", android: "https://play.google.com/store/apps/details?id=com.aly.kova", detail: "Kova/", paidUrl: "https://gumroad.com/checkout?product=nffhl&quantity=1" },
       { name: "AppHub", cat: "ai", icon: "icons/AppHub.png", ios: "https://apps.apple.com/app/app-hub-manage-plan-apps/id6745819583", android: "https://play.google.com/store/apps/details?id=com.aly.AppHub", detail: "AppHub/" },
       { name: "FriendAI", cat: "ai", icon: "icons/FriendAI.png", ios: "https://apps.apple.com/app/friend-ai-personal-friend/id6749029092", android: "https://play.google.com/store/apps/details?id=com.aly.FriendAI", detail: "FriendAI/" },
       { name: "MindMapAI", cat: "ai", icon: "icons/MindMapAI.png", ios: "https://apps.apple.com/us/app/idea-note-mindmap-ai/id6751484503", android: "https://play.google.com/store/apps/details?id=com.aly.MindMapAI", detail: "MindMapAI/" },
@@ -1706,11 +1720,18 @@
         card.innerHTML = `
           <img src="${project.icon}" alt="${project.name}" loading="lazy">
           <h3>${project.name}</h3>
+          ${project.paidUrl ? `<a class="project-paid-link" href="${project.paidUrl}" target="_blank" rel="noopener" data-paid-action aria-label="Buy AI Creator Prompt Pack from ${project.name}">Buy prompt pack</a>` : ""}
           <footer>
             <span class="cat">${categoryLabels[project.cat]}</span>
             <span class="idx">${String(index + 1).padStart(2, "0")}</span>
           </footer>
         `;
+
+        const paidLink = card.querySelector("[data-paid-action]");
+        if (paidLink) {
+          paidLink.addEventListener("click", (event) => event.stopPropagation());
+          paidLink.addEventListener("keydown", (event) => event.stopPropagation());
+        }
 
         if (getStoreUrl(project)) {
           card.addEventListener("click", () => openProject(project));
