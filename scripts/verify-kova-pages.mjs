@@ -255,6 +255,7 @@ const requiredFiles = [
   "Kova/pricing/index.html",
   "Kova/examples/index.html",
   "Kova/ai-photo-editor-styles/index.html",
+  "Kova/ai-fashion-photo-generator/index.html",
   "Kova/ai-selfie-generator/index.html",
   "Kova/ai-linkedin-photo-generator/index.html",
   "Kova/ai-profile-headshot-generator/index.html",
@@ -284,7 +285,7 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, appStoreScreenshots, ideaVisualizer, studioSprint, teamHeadshotSprint, hiringPageHeadshots, corporateHeadshots, pricing, examples, styles, selfie, linkedin, profileHeadshot, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, appStoreScreenshots, ideaVisualizer, studioSprint, teamHeadshotSprint, hiringPageHeadshots, corporateHeadshots, pricing, examples, styles, fashion, selfie, linkedin, profileHeadshot, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
@@ -302,6 +303,7 @@ const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor
   readFile("Kova/pricing/index.html", "utf8"),
   readFile("Kova/examples/index.html", "utf8"),
   readFile("Kova/ai-photo-editor-styles/index.html", "utf8"),
+  readFile("Kova/ai-fashion-photo-generator/index.html", "utf8"),
   readFile("Kova/ai-selfie-generator/index.html", "utf8"),
   readFile("Kova/ai-linkedin-photo-generator/index.html", "utf8"),
   readFile("Kova/ai-profile-headshot-generator/index.html", "utf8"),
@@ -334,6 +336,7 @@ assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/team-headshot-sprint\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-hiring-page-headshots\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-corporate-headshot-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-selfie-generator\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-fashion-photo-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-linkedin-photo-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-avatar-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-anime-portrait-generator\//);
@@ -375,6 +378,7 @@ assert.match(index, /team-headshot-sprint\//);
 assert.match(index, /ai-hiring-page-headshots\//);
 assert.match(index, /ai-corporate-headshot-generator\//);
 assert.match(index, /ai-photo-editor-styles\//);
+assert.match(index, /ai-fashion-photo-generator\//);
 assert.match(index, /ai-selfie-generator\//);
 assert.match(index, /ai-linkedin-photo-generator\//);
 assert.match(index, /ai-avatar-generator\//);
@@ -988,6 +992,7 @@ assert.match(styles, /\.\.\/download\/index\.html/);
 assert.match(styles, /\.\.\/pricing\//);
 assert.match(styles, /\.\.\/free-ai-photo-editor\//);
 assert.match(styles, /\.\.\/ai-selfie-generator\//);
+assert.match(styles, /\.\.\/ai-fashion-photo-generator\//);
 assert.match(styles, /\.\.\/ai-linkedin-photo-generator\//);
 assert.match(styles, /\.\.\/app-launch-visuals\//);
 assert.match(styles, /\.\.\/ai-idea-visualizer\//);
@@ -996,6 +1001,31 @@ assert.match(styles, /\.\.\/ai-anime-portrait-generator\//);
 assert.match(styles, /\.\.\/privacy\.html/);
 assert.match(styles, /\.\.\/terms\.html/);
 assert.match(styles, /\.\.\/support\.html/);
+
+assert.match(fashion, /<title>AI Fashion Photo Generator \| Kova<\/title>/);
+assert.match(fashion, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-fashion-photo-generator\/">/);
+assert.match(fashion, /AI Fashion Photo Generator/);
+assert.match(fashion, /fashion photo/i);
+assert.match(fashion, /outfit photo/i);
+assert.match(fashion, /style profile pictures/i);
+assert.match(fashion, /20 starter credits/i);
+assert.match(fashion, /about 2 standard image generations/i);
+assert.match(fashion, /10 credits per standard image generation/i);
+assert.match(fashion, /SoftwareApplication/);
+assert.match(fashion, /FAQPage/);
+assert.match(fashion, /assets\/profile_headshot_female_before\.webp/);
+assert.match(fashion, /assets\/profile_headshot_female_after\.webp/);
+assert.match(fashion, /assets\/profile_headshot_male_before\.webp/);
+assert.match(fashion, /assets\/profile_headshot_male_after\.webp/);
+assert.match(fashion, /assets\/polaroid\.webp/);
+assert.match(fashion, /\.\.\/download\/index\.html/);
+assert.match(fashion, /\.\.\/pricing\//);
+assert.match(fashion, /\.\.\/examples\//);
+assert.match(fashion, /\.\.\/ai-dating-profile-picture-generator\/\?source=fashion-photo&package=profile-refresh#datingSprintBuilder/);
+assert.match(fashion, /\.\.\/ai-profile-headshot-generator\//);
+assert.match(fashion, /\.\.\/ai-photo-editor-styles\//);
+assert.match(fashion, new RegExp(iosUrl.replaceAll(".", "\\.")));
+assert.match(fashion, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
 
 assert.match(selfie, /<title>AI Selfie Generator \| Kova<\/title>/);
 assert.match(selfie, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-selfie-generator\/">/);

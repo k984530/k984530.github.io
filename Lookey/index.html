@@ -193,6 +193,19 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        .kova-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .kova-link.secondary {
+            background: white;
+            color: #111;
+            border: 2px solid #111;
+        }
+
         .kova-link:hover {
             transform: translateY(-4px);
             box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
@@ -246,6 +259,10 @@
 
             .kova-promo img {
                 margin: 0 auto;
+            }
+
+            .kova-actions {
+                justify-content: center;
             }
         }
     </style>
@@ -312,10 +329,13 @@
         <div class="kova-promo">
             <img src="../Kova/download/Icon.png" alt="Kova AI Photo Editor icon">
             <div>
-                <h2>Need a new AI photo?</h2>
-                <p>Try Kova with 20 starter credits, enough for about 2 standard image generations, and turn one photo into collectible figurines, anime portraits, Polaroids, cyberpunk edits, and share-ready profile images.</p>
+                <h2>Need a better profile photo?</h2>
+                <p>Try Kova with 20 starter credits, enough for about 2 standard image generations, and turn one photo into a fashion photo set, style profile pictures, dating profile images, Polaroids, anime portraits, and share-ready profile images.</p>
             </div>
-            <a class="kova-link" href="../Kova/">Open Kova</a>
+            <div class="kova-actions">
+                <a class="kova-link" href="../Kova/ai-fashion-photo-generator/">Open Kova</a>
+                <a class="kova-link secondary" href="../Kova/ai-dating-profile-picture-generator/?source=lookey&package=profile-refresh#datingSprintBuilder">Style profile sprint</a>
+            </div>
         </div>
 
     </main>

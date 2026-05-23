@@ -134,6 +134,7 @@ const aiPlatformKovaIntentDirs = new Map([
 ]);
 
 const styleKovaIntentDirs = new Map([
+  ["Lookey", "lookey"],
   ["MODEE", "modee"],
 ]);
 
@@ -299,11 +300,14 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     if (styleKovaIntentDirs.has(dir)) {
       const source = styleKovaIntentDirs.get(dir);
       const expectedLink = `../Kova/ai-dating-profile-picture-generator/?source=${source}&package=profile-refresh#datingSprintBuilder`;
-      if (!html.includes("../Kova/ai-dating-profile-picture-generator/")) {
-        failures.push(`${dir}: missing Kova style profile intent link`);
+      if (!html.includes("../Kova/ai-fashion-photo-generator/")) {
+        failures.push(`${dir}: missing Kova fashion-photo intent link`);
       }
       if (!html.includes(expectedLink)) {
         failures.push(`${dir}: missing source-aware Kova style profile sprint link`);
+      }
+      if (!/fashion photo|style profile pictures/i.test(html)) {
+        failures.push(`${dir}: missing Kova fashion-photo intent copy`);
       }
       if (!html.includes("style profile pictures")) {
         failures.push(`${dir}: missing Kova style profile intent copy`);

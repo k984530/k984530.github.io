@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fashion Photo Generator | Kova</title>
+    <meta name="description" content="Create fashion photo, outfit photo, and style profile pictures from one phone portrait with Kova. New accounts include 20 starter credits.">
+    <meta name="keywords" content="AI fashion photo generator, fashion photo app, outfit photo generator, style profile pictures, Kova AI photo editor">
+    <link rel="canonical" href="https://won-space.com/Kova/ai-fashion-photo-generator/">
+
+    <meta property="og:title" content="AI Fashion Photo Generator | Kova">
+    <meta property="og:description" content="Turn one outfit or portrait photo into fashion photo looks, style profile pictures, and profile-ready images with Kova.">
+    <meta property="og:image" content="https://won-space.com/Kova/assets/profile_headshot_female_after.webp">
+    <meta property="og:url" content="https://won-space.com/Kova/ai-fashion-photo-generator/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Fashion Photo Generator | Kova">
+    <meta name="twitter:description" content="Create outfit photo looks and style profile pictures from one phone photo.">
+    <meta name="twitter:image" content="https://won-space.com/Kova/assets/profile_headshot_female_after.webp">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "SoftwareApplication",
+                "name": "Kova: AI Photo Editor",
+                "applicationCategory": "PhotographyApplication",
+                "operatingSystem": "iOS, Android",
+                "description": "Kova turns one phone photo into fashion photo looks, outfit photos, style profile pictures, profile headshots, Polaroids, anime portraits, and other share-ready edits.",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                },
+                "url": "https://won-space.com/Kova/ai-fashion-photo-generator/",
+                "downloadUrl": [
+                    "https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914",
+                    "https://play.google.com/store/apps/details?id=com.aly.kova"
+                ],
+                "image": [
+                    "https://won-space.com/Kova/assets/profile_headshot_female_before.webp",
+                    "https://won-space.com/Kova/assets/profile_headshot_female_after.webp",
+                    "https://won-space.com/Kova/assets/profile_headshot_male_before.webp",
+                    "https://won-space.com/Kova/assets/profile_headshot_male_after.webp",
+                    "https://won-space.com/Kova/assets/polaroid.webp"
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Can I make a fashion photo from one phone photo?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes. Kova starts from one portrait or outfit photo and lets you create profile-ready style images, Polaroids, headshots, and other AI fashion photo directions."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How many starter credits does Kova include?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "New accounts include 20 starter credits, enough for about 2 standard image generations. A standard image generation uses 10 credits."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Can Kova help with profile pictures?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Kova can create style profile pictures for dating profiles, creator bios, social accounts, and polished headshot-style pages."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        * { box-sizing: border-box; }
+        :root {
+            --ink: #101114;
+            --paper: #fffaf0;
+            --muted: #68635b;
+            --line: rgba(16, 17, 20, 0.16);
+            --accent: #ff5c7a;
+            --blue: #2477ff;
+            --mint: #35bf8e;
+            --yellow: #f3c94d;
+            --white: #ffffff;
+        }
+        body {
+            margin: 0;
+            min-width: 320px;
+            background:
+                linear-gradient(90deg, rgba(16, 17, 20, 0.045) 1px, transparent 1px) 0 0 / 56px 56px,
+                linear-gradient(0deg, rgba(16, 17, 20, 0.032) 1px, transparent 1px) 0 0 / 56px 56px,
+                var(--paper);
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        a { color: inherit; }
+        .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+            gap: 46px;
+            align-items: center;
+            padding: 66px 0 54px;
+        }
+        .crumb { display: inline-block; margin-bottom: 22px; color: var(--muted); font-weight: 800; text-decoration: none; }
+        .eyebrow { margin: 0 0 16px; color: var(--accent); font-weight: 900; text-transform: uppercase; }
+        h1 { max-width: 780px; margin: 0; font-size: clamp(2.8rem, 7vw, 6.7rem); line-height: 0.9; letter-spacing: 0; text-transform: uppercase; }
+        .lead { max-width: 660px; margin: 24px 0 0; color: var(--muted); font-size: clamp(1.06rem, 2vw, 1.34rem); line-height: 1.56; }
+        .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+        .button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; padding: 0 20px; border: 2px solid var(--ink); border-radius: 8px; background: var(--ink); color: var(--white); font-weight: 800; text-decoration: none; box-shadow: 7px 7px 0 var(--yellow); }
+        .button.secondary { background: var(--white); color: var(--ink); box-shadow-color: var(--blue); }
+        .value-card { margin-top: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 18px; box-shadow: 8px 8px 0 var(--mint); }
+        .value-card strong { display: block; margin-bottom: 6px; }
+        .value-card p { margin: 0; color: var(--muted); line-height: 1.55; }
+        .fashion-board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .sample { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); overflow: hidden; box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.1); }
+        .sample img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: #ece7dd; }
+        .sample figcaption { display: flex; justify-content: space-between; gap: 10px; padding: 12px 14px; font-weight: 800; }
+        .sample figcaption span { color: var(--muted); font-weight: 700; }
+        .section { padding: 56px 0; border-top: 2px solid var(--line); }
+        .section-head { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 42px; align-items: end; margin-bottom: 22px; }
+        .section h2 { margin: 0; font-size: clamp(2rem, 4.4vw, 3.8rem); line-height: 0.96; text-transform: uppercase; }
+        .section-head p { margin: 0; color: var(--muted); line-height: 1.66; }
+        .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+        .card { min-height: 188px; padding: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.08); }
+        .card:nth-child(2) { background: #e9f1ff; }
+        .card:nth-child(3) { background: #fff2f6; }
+        .card b { display: block; margin-bottom: 8px; color: var(--accent); font-size: 0.82rem; text-transform: uppercase; }
+        .card h3 { margin: 0 0 10px; font-size: 1.24rem; }
+        .card p { margin: 0; color: var(--muted); line-height: 1.62; }
+        .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .compare article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 22px; }
+        .compare article:first-child { background: #eef9f3; }
+        .compare h3 { margin: 0 0 8px; font-size: 1.24rem; }
+        .compare p { margin: 0; color: var(--muted); line-height: 1.65; }
+        .service-box { border: 2px solid var(--ink); border-radius: 8px; background: #e9f1ff; padding: 26px; box-shadow: 8px 8px 0 var(--blue); }
+        .service-box h2 { margin: 0 0 10px; font-size: 1.48rem; }
+        .service-box p { max-width: 760px; margin: 0 0 18px; color: var(--muted); line-height: 1.65; }
+        .faq { display: grid; gap: 14px; }
+        .faq article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 20px; }
+        .faq h3 { margin: 0 0 8px; }
+        .faq p { margin: 0; color: var(--muted); line-height: 1.65; }
+        .closing { padding: 56px 0 76px; }
+        .closing-box { border: 2px solid var(--ink); border-radius: 8px; background: #eef9f3; padding: 26px; box-shadow: 8px 8px 0 var(--mint); }
+        .closing-box h2 { margin: 0 0 10px; font-size: 1.48rem; }
+        .closing-box p { max-width: 720px; margin: 0 0 20px; color: var(--muted); line-height: 1.65; }
+        footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
+        @media (max-width: 900px) {
+            .hero, .section-head, .compare { grid-template-columns: 1fr; }
+            .cards { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 560px) {
+            .fashion-board { grid-template-columns: 1fr; }
+            .button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="hero shell">
+            <div>
+                <a class="crumb" href="../">Kova</a>
+                <p class="eyebrow">Style profile pictures</p>
+                <h1>AI Fashion Photo Generator</h1>
+                <p class="lead">Turn one outfit photo or portrait into fashion photo looks, style profile pictures, dating profile images, polished headshots, and share-ready social visuals without writing prompts.</p>
+                <div class="cta-row" aria-label="Download Kova">
+                    <a class="button" href="../download/index.html">Open download page</a>
+                    <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914" target="_blank" rel="noopener">App Store</a>
+                    <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova" target="_blank" rel="noopener">Google Play</a>
+                </div>
+                <aside class="value-card" aria-label="Kova starter credits">
+                    <strong>20 starter credits included</strong>
+                    <p>New accounts can try about 2 standard image generations. Standard image edits use 10 credits per standard image generation.</p>
+                </aside>
+            </div>
+            <div class="fashion-board" aria-label="Kova fashion photo examples">
+                <figure class="sample">
+                    <img src="../assets/profile_headshot_female_before.webp" alt="Outfit portrait source photo before Kova AI edit">
+                    <figcaption>Outfit photo <span>before</span></figcaption>
+                </figure>
+                <figure class="sample">
+                    <img src="../assets/profile_headshot_female_after.webp" alt="Fashion profile photo made with Kova">
+                    <figcaption>Style profile <span>after</span></figcaption>
+                </figure>
+                <figure class="sample">
+                    <img src="../assets/profile_headshot_male_before.webp" alt="Portrait source photo before Kova style edit">
+                    <figcaption>Portrait <span>before</span></figcaption>
+                </figure>
+                <figure class="sample">
+                    <img src="../assets/profile_headshot_male_after.webp" alt="Polished style profile picture made with Kova">
+                    <figcaption>Profile image <span>after</span></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="fitTitle">
+            <div class="section-head">
+                <h2 id="fitTitle">Fashion Photos With A Job</h2>
+                <p>MODEE and Lookey visitors already care about style, attraction, and profile context. This page gives that traffic a direct Kova promise before routing high-intent buyers into the profile sprint.</p>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <b>1</b>
+                    <h3>Outfit photo refresh</h3>
+                    <p>Create a cleaner fashion photo from a real look, useful for style posts, dating profiles, and creator bios.</p>
+                </article>
+                <article class="card">
+                    <b>2</b>
+                    <h3>Style profile pictures</h3>
+                    <p>Make a profile image that feels styled instead of generic, with a polished crop and clearer visual intent.</p>
+                </article>
+                <article class="card">
+                    <b>3</b>
+                    <h3>Social variants</h3>
+                    <p>Use Kova for Polaroid-style mood, headshot-like polish, or playful profile directions from the same source photo.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="creditTitle">
+            <div class="section-head">
+                <h2 id="creditTitle">Try Two Style Directions</h2>
+                <p>Starter credits make the first session concrete: test one practical profile direction, then use the second generation for a warmer fashion photo or Polaroid-style variant.</p>
+            </div>
+            <div class="compare">
+                <article>
+                    <h3>20 starter credits</h3>
+                    <p>New accounts can try about 2 standard image generations, enough to compare a clean style profile picture against one more expressive outfit photo direction.</p>
+                </article>
+                <article>
+                    <h3>More generations</h3>
+                    <p>Use the pricing page to compare 100/500/1000 credit packs and monthly plans when you want more profile or fashion photo variations.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section shell" id="fashionPhotoBrief" aria-labelledby="serviceTitle">
+            <div class="service-box">
+                <h2 id="serviceTitle">Need a finished profile set?</h2>
+                <p>Self-serve Kova is best for fast experiments. If the photo needs to sell a profile, route the source, goal, deadline, and reference profile into the style profile sprint so it can be reviewed before invoice instructions are sent.</p>
+                <div class="cta-row">
+                    <a class="button" href="../ai-dating-profile-picture-generator/?source=fashion-photo&package=profile-refresh#datingSprintBuilder">Style profile sprint</a>
+                    <a class="button secondary" href="../ai-profile-headshot-generator/">Profile headshots</a>
+                    <a class="button secondary" href="../examples/">See examples</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section shell" aria-labelledby="faqTitle">
+            <div class="section-head">
+                <h2 id="faqTitle">Fashion Photo FAQ</h2>
+                <p>Kova keeps the path simple: bring one real photo, choose a direction, and generate a profile-ready result.</p>
+            </div>
+            <div class="faq">
+                <article>
+                    <h3>Can I use an outfit photo?</h3>
+                    <p>Yes. A clear outfit photo or portrait gives Kova enough context to create fashion photo and style profile directions.</p>
+                </article>
+                <article>
+                    <h3>Does it work for dating profiles?</h3>
+                    <p>Yes. The same style profile pictures can support dating profiles, social bios, creator pages, and headshot-like profile surfaces.</p>
+                </article>
+                <article>
+                    <h3>What else should I try?</h3>
+                    <p>Explore AI photo editor styles, compare examples, or use the profile headshot route when the goal is more professional than fashion-led.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="closing shell">
+            <div class="closing-box">
+                <h2>Open Kova on your phone</h2>
+                <p>Create the first style photo in the mobile app, compare examples, or review credit packs before generating more variations.</p>
+                <div class="cta-row">
+                    <a class="button" href="../download/index.html">Open download page</a>
+                    <a class="button secondary" href="../pricing/">Pricing & credits</a>
+                    <a class="button secondary" href="../ai-photo-editor-styles/">AI photo editor styles</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shell">
+        <span>Contact: <a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></span>
+        <nav class="footer-links" aria-label="Kova policies">
+            <a href="../ai-photo-editor-styles/">Styles</a>
+            <a href="../ai-profile-headshot-generator/">Profile headshots</a>
+            <a href="../ai-dating-profile-picture-generator/">Dating profiles</a>
+            <a href="../pricing/">Pricing</a>
+            <a href="../privacy.html">Privacy</a>
+            <a href="../terms.html">Terms</a>
+            <a href="../support.html">Support</a>
+        </nav>
+    </footer>
+</body>
+</html>
