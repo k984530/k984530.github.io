@@ -401,6 +401,84 @@ function verifyFashionStyleSprintRuntime(html) {
   assert.match(decodeURIComponent(elements.get("styleProfileInvoiceLink").href), /Average paid order value: 100%2C000 KRW|Average paid order value: 100,000 KRW/);
 }
 
+function verifyLinkedInHeadshotSprintRuntime(html) {
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const linkedinSprintPackages[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "LinkedIn photo page must include the LinkedIn Headshot Sprint script");
+
+  const listeners = new Map();
+  const elements = new Map();
+  const addElement = (id, properties = {}) => {
+    const element = {
+      href: "",
+      textContent: "",
+      value: "",
+      options: [],
+      selectedIndex: 0,
+      ...properties,
+      addEventListener: (eventName, callback) => {
+        const key = `${id}:${eventName}`;
+        listeners.set(key, [...(listeners.get(key) || []), callback]);
+      },
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const fire = (id, eventName) => {
+    for (const callback of listeners.get(`${id}:${eventName}`) || []) {
+      callback();
+    }
+  };
+
+  addElement("linkedinSprintForm");
+  addElement("linkedinSprintPackage", {
+    value: "linkedin-profile-refresh",
+    options: [
+      { dataset: { price: "290000" }, textContent: "LinkedIn profile refresh - 290,000 KRW" },
+      { dataset: { price: "990000" }, textContent: "Executive profile pack - 990,000 KRW" },
+    ],
+  });
+  addElement("linkedinSprintSource", { value: "LinkedIn photo page" });
+  addElement("linkedinSprintUse", { value: "LinkedIn or resume profile" });
+  addElement("linkedinSprintAov", { value: "200000" });
+  addElement("linkedinSprintProfileLink", { value: "https://example.com/linkedin" });
+  addElement("linkedinSprintDeadline", { value: "This week" });
+  addElement("linkedinSprintNotes", { value: "" });
+  addElement("linkedinSprintEmailPreview");
+  addElement("linkedinSprintInvoiceLink");
+
+  vm.runInNewContext(
+    scriptMatch[1],
+    {
+      document: {
+        getElementById: (id) => elements.get(id) ?? null,
+      },
+      encodeURIComponent,
+      URLSearchParams,
+      window: {
+        location: {
+          search: "?source=linkedin&package=executive-profile-pack",
+        },
+      },
+    },
+    { timeout: 1000 },
+  );
+
+  assert.equal(elements.get("linkedinSprintPackage").value, "executive-profile-pack");
+  assert.equal(elements.get("linkedinSprintSource").value, "LinkedIn photo page");
+  assert.match(elements.get("linkedinSprintEmailPreview").textContent, /Selected package: Executive profile pack - 990,000 KRW/);
+  assert.match(elements.get("linkedinSprintEmailPreview").textContent, /Referral source: LinkedIn photo page/);
+  assert.match(elements.get("linkedinSprintEmailPreview").textContent, /Estimated paid orders to recover fee: about 5/);
+  assert.match(decodeURIComponent(elements.get("linkedinSprintInvoiceLink").href), /Kova LinkedIn Headshot Sprint invoice request/);
+  assert.match(decodeURIComponent(elements.get("linkedinSprintInvoiceLink").href), /Executive profile pack - 990,000 KRW/);
+
+  elements.get("linkedinSprintAov").value = "300000";
+  fire("linkedinSprintForm", "input");
+
+  assert.match(elements.get("linkedinSprintEmailPreview").textContent, /Average paid order value: 300,000 KRW/);
+  assert.match(elements.get("linkedinSprintEmailPreview").textContent, /Estimated paid orders to recover fee: about 4/);
+  assert.match(decodeURIComponent(elements.get("linkedinSprintInvoiceLink").href), /Average paid order value: 300,000 KRW/);
+}
+
 const requiredFiles = [
   "Kova/index.html",
   "Kova/download/index.html",
@@ -1250,8 +1328,18 @@ assert.match(linkedin, /\.\.\/ai-photo-editor-styles\//);
 assert.match(linkedin, /\.\.\/team-headshot-sprint\//);
 assert.match(linkedin, /\.\.\/ai-hiring-page-headshots\//);
 assert.match(linkedin, /\.\.\/ai-corporate-headshot-generator\//);
+assert.match(linkedin, /id="linkedinSprintBuilder"/);
+assert.match(linkedin, /LinkedIn Headshot Sprint brief builder/);
+assert.match(linkedin, /id="linkedinSprintPackage"/);
+assert.match(linkedin, /id="linkedinSprintSource"/);
+assert.match(linkedin, /id="linkedinSprintAov"/);
+assert.match(linkedin, /id="linkedinSprintEmailPreview"/);
+assert.match(linkedin, /id="linkedinSprintInvoiceLink"/);
+assert.match(linkedin, /Kova LinkedIn Headshot Sprint invoice request/);
+assert.match(linkedin, /Estimated paid orders to recover fee:/);
 assert.match(linkedin, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(linkedin, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+verifyLinkedInHeadshotSprintRuntime(linkedin);
 
 assert.match(profileHeadshot, /<title>AI Profile Picture & Headshot Generator \| Kova<\/title>/);
 assert.match(profileHeadshot, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-profile-headshot-generator\/">/);

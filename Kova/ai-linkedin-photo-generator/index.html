@@ -123,6 +123,24 @@
         .card p { margin: 0; color: var(--muted); line-height: 1.62; }
         .comparison { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
         .comparison img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 2px solid var(--ink); border-radius: 8px; background: #ece7dd; }
+        .sprint-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 18px; }
+        .sprint-card { min-height: 204px; padding: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.08); }
+        .sprint-card:nth-child(2) { background: #e9f1ff; }
+        .sprint-card:nth-child(3) { background: #fff4d6; }
+        .sprint-card strong { display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.16rem; }
+        .sprint-card h3 { margin: 0 0 10px; font-size: 1.24rem; }
+        .sprint-card p { margin: 0; color: var(--muted); line-height: 1.58; }
+        .brief-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr); gap: 18px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 22px; box-shadow: 8px 8px 0 var(--blue); }
+        .brief-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .field { display: grid; gap: 7px; font-weight: 800; }
+        .field span { color: var(--muted); font-size: 0.86rem; text-transform: uppercase; }
+        .field input,
+        .field select { width: 100%; min-height: 46px; border: 2px solid var(--ink); border-radius: 8px; padding: 0 12px; background: #fffdf7; color: var(--ink); font: inherit; }
+        .field.full { grid-column: 1 / -1; }
+        .preview-box { display: grid; gap: 12px; align-content: start; }
+        .preview-box h3 { margin: 0; font-size: 1.24rem; }
+        .preview { min-height: 240px; margin: 0; padding: 16px; border: 2px solid var(--ink); border-radius: 8px; background: #101114; color: var(--white); white-space: pre-wrap; line-height: 1.58; overflow-wrap: anywhere; }
+        .safety-note { margin: 0; color: var(--muted); line-height: 1.55; }
         .faq { display: grid; gap: 14px; }
         .faq article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 20px; }
         .faq h3 { margin: 0 0 8px; }
@@ -135,8 +153,12 @@
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 900px) {
             .hero, .section-head { grid-template-columns: 1fr; }
-            .cards { grid-template-columns: 1fr; }
+            .cards,
+            .sprint-grid,
+            .brief-panel,
+            .brief-form { grid-template-columns: 1fr; }
             .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .field.full { grid-column: auto; }
         }
         @media (max-width: 560px) {
             .hero-visual, .comparison { grid-template-columns: 1fr; }
@@ -153,6 +175,7 @@
                 <p class="lead">Turn one phone photo into a polished LinkedIn profile photo, resume portrait, or professional headshot. Kova keeps the path concrete: choose a clear photo, pick a profile style, and compare the result before buying more credits.</p>
                 <div class="cta-row" aria-label="Download Kova">
                     <a class="button" href="../download/index.html">Open download page</a>
+                    <a class="button secondary" href="#linkedinSprintBuilder">Build LinkedIn brief</a>
                     <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914">App Store</a>
                     <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova">Google Play</a>
                 </div>
@@ -228,6 +251,82 @@
             </div>
         </section>
 
+        <section class="section shell" id="linkedinSprintBuilder" aria-labelledby="linkedinSprintTitle">
+            <div class="section-head">
+                <h2 id="linkedinSprintTitle">LinkedIn Headshot Sprint brief builder</h2>
+                <p>Professional-profile visitors can move from a self-serve headshot idea into a scoped paid sprint before leaving the page. The builder keeps package, source, use case, profile link, deadline, and paid-order recovery math visible before an invoice email opens.</p>
+            </div>
+            <div class="sprint-grid" aria-label="LinkedIn Headshot Sprint packages">
+                <article class="sprint-card">
+                    <strong>290,000 KRW</strong>
+                    <h3>LinkedIn profile refresh</h3>
+                    <p>One polished profile direction for LinkedIn, resume pages, portfolio bios, or professional community profiles.</p>
+                </article>
+                <article class="sprint-card">
+                    <strong>990,000 KRW</strong>
+                    <h3>Executive profile pack</h3>
+                    <p>Multiple headshot variants for founder pages, speaking profiles, sales bios, and cross-platform professional use.</p>
+                </article>
+                <article class="sprint-card">
+                    <strong>2,900,000 KRW+</strong>
+                    <h3>Founder visibility system</h3>
+                    <p>A higher-touch profile set for founders, consultants, and teams preparing a launch, investor update, or hiring push.</p>
+                </article>
+            </div>
+            <div class="brief-panel">
+                <form class="brief-form" id="linkedinSprintForm">
+                    <label class="field">
+                        <span>Package</span>
+                        <select id="linkedinSprintPackage" name="package">
+                            <option value="linkedin-profile-refresh">LinkedIn profile refresh - 290,000 KRW</option>
+                            <option value="executive-profile-pack">Executive profile pack - 990,000 KRW</option>
+                            <option value="founder-visibility-system">Founder visibility system - 2,900,000 KRW+</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Referral source</span>
+                        <select id="linkedinSprintSource" name="source">
+                            <option value="LinkedIn photo page">LinkedIn photo page</option>
+                            <option value="Professional headshot page">Professional headshot page</option>
+                            <option value="Team Headshot Sprint">Team Headshot Sprint</option>
+                            <option value="Direct Kova page">Direct Kova page</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Primary use</span>
+                        <select id="linkedinSprintUse" name="use">
+                            <option>LinkedIn or resume profile</option>
+                            <option>Founder bio or portfolio page</option>
+                            <option>Sales profile or speaker page</option>
+                            <option>Hiring page or team page</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Average paid order value</span>
+                        <input id="linkedinSprintAov" name="aov" inputmode="numeric" value="200000">
+                    </label>
+                    <label class="field full">
+                        <span>Profile or reference link</span>
+                        <input id="linkedinSprintProfileLink" name="profileLink" placeholder="LinkedIn, resume, founder page, portfolio, or reference URL">
+                    </label>
+                    <label class="field">
+                        <span>Target deadline</span>
+                        <input id="linkedinSprintDeadline" name="deadline" placeholder="This week / launch date / open">
+                    </label>
+                    <label class="field">
+                        <span>Notes</span>
+                        <input id="linkedinSprintNotes" name="notes" placeholder="Source photo readiness, role, tone, audience, usage scope">
+                    </label>
+                </form>
+                <div class="preview-box">
+                    <h3>LinkedIn invoice email preview</h3>
+                    <pre class="preview" id="linkedinSprintEmailPreview"></pre>
+                    <p class="safety-note">No live checkout, payment link, or buyer message is created. This page only opens a draft invoice-request email for manual review.</p>
+                    <a class="button" id="linkedinSprintInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20LinkedIn%20Headshot%20Sprint%20invoice%20request">Create LinkedIn invoice email</a>
+                </div>
+            </div>
+        </section>
+
         <section class="section shell" aria-labelledby="faqTitle">
             <div class="section-head">
                 <h2 id="faqTitle">Questions</h2>
@@ -276,5 +375,74 @@
             <a href="../support.html">Support</a>
         </nav>
     </footer>
+    <script>
+        const linkedinSprintPackages = {
+            "linkedin-profile-refresh": {
+                label: "LinkedIn profile refresh - 290,000 KRW",
+                price: 290000
+            },
+            "executive-profile-pack": {
+                label: "Executive profile pack - 990,000 KRW",
+                price: 990000
+            },
+            "founder-visibility-system": {
+                label: "Founder visibility system - 2,900,000 KRW+",
+                price: 2900000
+            }
+        };
+
+        const linkedinSprintSources = {
+            linkedin: "LinkedIn photo page",
+            "linkedin-photo": "LinkedIn photo page",
+            "profile-headshot": "Professional headshot page",
+            professional: "Professional headshot page",
+            team: "Team Headshot Sprint",
+            direct: "Direct Kova page"
+        };
+
+        function linkedinSprintFieldValue(id, fallback = "") {
+            const field = document.getElementById(id);
+            return field && field.value.trim() ? field.value.trim() : fallback;
+        }
+
+        function selectedLinkedInSprintPackage() {
+            const field = document.getElementById("linkedinSprintPackage");
+            return linkedinSprintPackages[field.value] || linkedinSprintPackages["linkedin-profile-refresh"];
+        }
+
+        function updateLinkedInSprintBrief() {
+            const selectedPackage = selectedLinkedInSprintPackage();
+            const averageOrderValue = Math.max(1, Number(linkedinSprintFieldValue("linkedinSprintAov", "200000").replace(/[^0-9]/g, "")) || 200000);
+            const recoveryOrders = Math.ceil(selectedPackage.price / averageOrderValue);
+            const body = [
+                "Selected package: " + selectedPackage.label,
+                "Referral source: " + linkedinSprintFieldValue("linkedinSprintSource", "LinkedIn photo page"),
+                "Primary use: " + linkedinSprintFieldValue("linkedinSprintUse", "LinkedIn or resume profile"),
+                "Profile or reference link: " + linkedinSprintFieldValue("linkedinSprintProfileLink", "Not added yet"),
+                "Target deadline: " + linkedinSprintFieldValue("linkedinSprintDeadline", "Open"),
+                "Average paid order value: " + averageOrderValue.toLocaleString("en-US") + " KRW",
+                "Estimated paid orders to recover fee: about " + recoveryOrders,
+                "Notes: " + linkedinSprintFieldValue("linkedinSprintNotes", "Source photos and preferred professional usage will be shared before invoice."),
+                "",
+                "Please reply with scope, invoice details, and source-photo checklist before any payment link or production work."
+            ].join("\n");
+
+            document.getElementById("linkedinSprintEmailPreview").textContent = body;
+            document.getElementById("linkedinSprintInvoiceLink").href = "mailto:alyduho984530@gmail.com?subject=" + encodeURIComponent("Kova LinkedIn Headshot Sprint invoice request") + "&body=" + encodeURIComponent(body);
+        }
+
+        const linkedinSprintParams = new URLSearchParams(window.location.search);
+        const linkedinSprintPackageParam = linkedinSprintParams.get("package");
+        const linkedinSprintSourceParam = linkedinSprintParams.get("source");
+        if (linkedinSprintPackageParam && linkedinSprintPackages[linkedinSprintPackageParam]) {
+            document.getElementById("linkedinSprintPackage").value = linkedinSprintPackageParam;
+        }
+        if (linkedinSprintSourceParam && linkedinSprintSources[linkedinSprintSourceParam.toLowerCase()]) {
+            document.getElementById("linkedinSprintSource").value = linkedinSprintSources[linkedinSprintSourceParam.toLowerCase()];
+        }
+        document.getElementById("linkedinSprintForm").addEventListener("input", updateLinkedInSprintBrief);
+        document.getElementById("linkedinSprintForm").addEventListener("change", updateLinkedInSprintBrief);
+        updateLinkedInSprintBrief();
+    </script>
 </body>
 </html>
