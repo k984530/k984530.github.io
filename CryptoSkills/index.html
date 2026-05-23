@@ -106,6 +106,80 @@
             height: 60px;
             width: auto;
         }
+
+        .pro-lane {
+            background: #07113f;
+            color: white;
+            border-radius: 20px;
+            padding: 34px;
+            margin-bottom: 40px;
+            box-shadow: 0 14px 34px rgba(7, 17, 63, 0.28);
+        }
+
+        .pro-lane h2 {
+            font-size: 2em;
+            margin-bottom: 14px;
+        }
+
+        .pro-lane p {
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 1.05em;
+            line-height: 1.8;
+            max-width: 780px;
+        }
+
+        .pro-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .pro-point {
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 14px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .pro-point strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 1.05em;
+        }
+
+        .pro-point span {
+            color: rgba(255, 255, 255, 0.72);
+            line-height: 1.6;
+        }
+
+        .pro-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .pro-action {
+            display: inline-flex;
+            align-items: center;
+            min-height: 46px;
+            padding: 0 18px;
+            border-radius: 12px;
+            background: #7dd3fc;
+            color: #07113f;
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pro-action.secondary {
+            background: white;
+        }
+
+        .pro-action:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+        }
         
         .features {
             background: white;
@@ -273,6 +347,28 @@
                 Available on iOS and Android devices
             </p>
         </div>
+        <section class="pro-lane" id="cryptoSkillsProLane" aria-labelledby="cryptoSkillsProTitle">
+            <h2 id="cryptoSkillsProTitle">Crypto Skills Pro for a weekly signal routine</h2>
+            <p>Use Crypto Skills Pro to turn AI market notes into a repeatable educational market analysis workflow. Review signal context, check a risk checklist, and compare alerts before deciding what to study next. Signals are educational and not financial advice.</p>
+            <div class="pro-points" aria-label="Crypto Skills Pro reasons to upgrade">
+                <div class="pro-point">
+                    <strong>Signal review loop</strong>
+                    <span>Build a weekly signal routine around major crypto moves, trend changes, and watchlist updates.</span>
+                </div>
+                <div class="pro-point">
+                    <strong>Risk checklist</strong>
+                    <span>Slow down before acting with position-size, volatility, and confirmation prompts.</span>
+                </div>
+                <div class="pro-point">
+                    <strong>Cross-store access</strong>
+                    <span>Open the same Pro path from iPhone or Android and continue your market study.</span>
+                </div>
+            </div>
+            <div class="pro-actions" aria-label="Crypto Skills Pro store links">
+                <a class="pro-action" href="https://apps.apple.com/app/crypto-skills-ai-signal/id6747077362" target="_blank" rel="noopener">Open Crypto Skills Pro on iOS</a>
+                <a class="pro-action secondary" href="https://play.google.com/store/apps/details?id=com.aly.CryptoSkills" target="_blank" rel="noopener">Open Crypto Skills Pro on Android</a>
+            </div>
+        </section>
         
         <div class="features">
             <h2>Features</h2>
