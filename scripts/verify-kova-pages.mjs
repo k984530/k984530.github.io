@@ -873,7 +873,7 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, appStoreScreenshots, ideaVisualizer, studioSprint, teamHeadshotSprint, hiringPageHeadshots, corporateHeadshots, pricing, examples, styles, productPhoto, figurine, fashion, selfie, linkedin, profileHeadshot, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, appStoreScreenshots, ideaVisualizer, studioSprint, teamHeadshotSprint, tenMScopeLock, hiringPageHeadshots, corporateHeadshots, pricing, examples, styles, productPhoto, figurine, fashion, selfie, linkedin, profileHeadshot, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
@@ -886,6 +886,7 @@ const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor
   readFile("Kova/ai-idea-visualizer/index.html", "utf8"),
   readFile("Kova/studio-sprint/index.html", "utf8"),
   readFile("Kova/team-headshot-sprint/index.html", "utf8"),
+  readFile("Kova/10m-scope-lock/index.html", "utf8"),
   readFile("Kova/ai-hiring-page-headshots/index.html", "utf8"),
   readFile("Kova/ai-corporate-headshot-generator/index.html", "utf8"),
   readFile("Kova/pricing/index.html", "utf8"),
@@ -923,6 +924,7 @@ assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-app-store-screenshot-s
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-idea-visualizer\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/studio-sprint\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/team-headshot-sprint\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/10m-scope-lock\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-hiring-page-headshots\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-corporate-headshot-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-selfie-generator\//);
@@ -1366,6 +1368,7 @@ assert.match(studioSprint, /\.\.\/app-launch-visuals\//);
 assert.match(studioSprint, /\.\.\/ai-app-store-screenshot-service\//);
 assert.match(studioSprint, /\.\.\/ai-idea-visualizer\//);
 assert.match(studioSprint, /\.\.\/team-headshot-sprint\//);
+assert.match(studioSprint, /\.\.\/10m-scope-lock\//);
 assert.match(studioSprint, /\.\.\/download\/index\.html/);
 assert.match(studioSprint, /\.\.\/\.\.\/AI-Creator-Prompt-Pack\//);
 assert.match(studioSprint, new RegExp(iosUrl.replaceAll(".", "\\.")));
@@ -1453,9 +1456,38 @@ assert.match(teamHeadshotSprint, /\.\.\/ai-hiring-page-headshots\//);
 assert.match(teamHeadshotSprint, /\.\.\/ai-corporate-headshot-generator\//);
 assert.match(teamHeadshotSprint, /\.\.\/ai-corporate-headshot-generator\/#sourcePhotoReadiness/);
 assert.match(teamHeadshotSprint, /\.\.\/studio-sprint\//);
+assert.match(teamHeadshotSprint, /\.\.\/10m-scope-lock\//);
 assert.match(teamHeadshotSprint, /\.\.\/download\/index\.html/);
 assert.match(teamHeadshotSprint, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(teamHeadshotSprint, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+
+assert.match(tenMScopeLock, /<title>Kova 10M Scope Lock \| AI Sprint SOW<\/title>/);
+assert.match(tenMScopeLock, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/10m-scope-lock\/">/);
+assert.match(tenMScopeLock, /Kova 10M Scope Lock/);
+assert.match(tenMScopeLock, /10,000,000 KRW/);
+assert.match(tenMScopeLock, /Scope lock before payment/);
+assert.match(tenMScopeLock, /No live contract, invoice, payment link, or buyer message starts from this page/);
+assert.match(tenMScopeLock, /Team Headshot Sprint/);
+assert.match(tenMScopeLock, /Studio Sprint/);
+assert.match(tenMScopeLock, /Hiring page visual system - 9,900,000 KRW\+/);
+assert.match(tenMScopeLock, /Portfolio revenue system - 9,900,000 KRW\+/);
+assert.match(tenMScopeLock, /Statement of work/);
+assert.match(tenMScopeLock, /Acceptance criteria/);
+assert.match(tenMScopeLock, /Payment due before production begins/);
+assert.match(tenMScopeLock, /new written quote/);
+assert.match(tenMScopeLock, /Buyer or company name/);
+assert.match(tenMScopeLock, /Decision owner/);
+assert.match(tenMScopeLock, /Source materials URL/);
+assert.match(tenMScopeLock, /Acceptance owner/);
+assert.match(tenMScopeLock, /mailto:alyduho984530@gmail\.com\?subject=Kova%2010M%20Scope%20Lock%20request/);
+assert.match(tenMScopeLock, /Selected service path:/);
+assert.match(tenMScopeLock, /Quote amount: 10,000,000 KRW/);
+assert.match(tenMScopeLock, /Commercial usage scope:/);
+assert.match(tenMScopeLock, /Receipt or tax invoice details:/);
+assert.match(tenMScopeLock, /Action-time confirmation required before any live send/);
+assert.match(tenMScopeLock, /\.\.\/studio-sprint\//);
+assert.match(tenMScopeLock, /\.\.\/team-headshot-sprint\//);
+assert.match(tenMScopeLock, /\.\.\/examples\//);
 
 assert.match(hiringPageHeadshots, /<title>AI Hiring Page Headshots \| Kova Team Headshot Sprint<\/title>/);
 assert.match(hiringPageHeadshots, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-hiring-page-headshots\/">/);
