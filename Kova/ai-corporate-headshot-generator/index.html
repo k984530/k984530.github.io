@@ -326,6 +326,50 @@
             font-weight: 950;
             line-height: 1.06;
         }
+        .brief-builder {
+            display: grid;
+            gap: 14px;
+            margin-top: 16px;
+        }
+        .brief-fields {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+        .brief-field {
+            display: grid;
+            gap: 7px;
+            color: var(--muted);
+            font-weight: 850;
+        }
+        .brief-field.wide { grid-column: 1 / -1; }
+        .brief-field input,
+        .brief-field select,
+        .brief-field textarea {
+            width: 100%;
+            min-height: 48px;
+            border: 2px solid var(--line);
+            border-radius: 8px;
+            background: #fffdf7;
+            color: var(--ink);
+            font: inherit;
+            font-weight: 800;
+            padding: 10px 12px;
+        }
+        .brief-field textarea {
+            min-height: 92px;
+            resize: vertical;
+        }
+        .brief-metrics {
+            display: grid;
+            gap: 8px;
+            padding: 14px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: #eaf1ff;
+            font-weight: 850;
+        }
+        .brief-metrics p { margin: 0; }
         .brief-preview {
             width: 100%;
             min-height: 314px;
@@ -337,6 +381,7 @@
             line-height: 1.55;
             padding: 14px;
             resize: vertical;
+            white-space: pre-wrap;
         }
         .faq {
             display: grid;
@@ -373,9 +418,11 @@
             .hero,
             .section-head,
             .cards,
-            .checklist-grid {
+            .checklist-grid,
+            .brief-fields {
                 grid-template-columns: 1fr;
             }
+            .brief-field.wide { grid-column: auto; }
         }
         @media (max-width: 560px) {
             .proof-board { grid-template-columns: 1fr; }
@@ -392,6 +439,7 @@
                 <p class="lead">A B2B entry point for employee headshots, company headshots, executive bios, sales profiles, LinkedIn portraits, and hiring pages that need one consistent visual direction.</p>
                 <div class="cta-row" aria-label="Corporate headshot actions">
                     <a class="button" href="../team-headshot-sprint/#teamCostCalculator">Estimate team cost</a>
+                    <a class="button secondary" href="#sourcePhotoReadiness">Build corporate brief</a>
                     <a class="button secondary" href="#sourcePhotoReadiness">Check photo readiness</a>
                     <a class="button secondary" href="mailto:alyduho984530@gmail.com?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request&body=Selected%20package%3A%20Team%20profile%20pack%20-%202%2C900%2C000%20KRW%0ABuyer%20or%20company%3A%20%0ATeam%20size%3A%20%0ALinkedIn%20or%20company%20page%3A%20%0ACommercial%20usage%20scope%3A%20Employee%20headshots%2C%20company%20directory%2C%20LinkedIn%20profiles%2C%20and%20hiring%20page%0ATarget%20deadline%3A%20%0ANotes%3A%20">Request corporate invoice</a>
                     <a class="button secondary" href="../download/index.html">Install Kova</a>
@@ -472,8 +520,59 @@
             </div>
             <div class="checklist-grid">
                 <div class="checklist-panel" id="sourcePhotoReadiness">
-                    <h3>Source photo readiness checker</h3>
-                    <p class="note">Check what the team already has. The result only updates this page and the invoice email preview.</p>
+                    <div id="corporateBriefBuilder">
+                    <h3>Corporate Headshot brief builder</h3>
+                    <p class="note">Source photo readiness checker: combine package, team size, source-photo readiness, and company context before opening an invoice request.</p>
+                    <form class="brief-builder" id="corporateBriefForm">
+                        <div class="brief-fields">
+                            <label class="brief-field" for="corporateBriefPackage">
+                                Package
+                                <select id="corporateBriefPackage" name="corporate_brief_package">
+                                    <option value="founder-profile-refresh" data-price="990000">Founder profile refresh - 990,000 KRW</option>
+                                    <option value="team-profile-pack" data-price="2900000" selected>Team profile pack - 2,900,000 KRW</option>
+                                    <option value="hiring-page-visual-system" data-price="9900000">Hiring page visual system - 9,900,000 KRW+</option>
+                                </select>
+                            </label>
+                            <label class="brief-field" for="corporateBriefSource">
+                                Referral source
+                                <select id="corporateBriefSource" name="corporate_brief_source">
+                                    <option>Corporate headshot page</option>
+                                    <option>Hiring page headshots page</option>
+                                    <option>LinkedIn photo page</option>
+                                    <option>Team Headshot Sprint</option>
+                                </select>
+                            </label>
+                            <label class="brief-field" for="corporateBriefTeamSize">
+                                Team size
+                                <input id="corporateBriefTeamSize" name="corporate_brief_team_size" type="number" min="1" step="1" value="6" inputmode="numeric">
+                            </label>
+                            <label class="brief-field" for="corporateBriefUseCase">
+                                Corporate use case
+                                <select id="corporateBriefUseCase" name="corporate_brief_use_case">
+                                    <option>Employee directory refresh</option>
+                                    <option>Sales and founder profiles</option>
+                                    <option>Company team page update</option>
+                                    <option>Hiring page and recruiting deck</option>
+                                </select>
+                            </label>
+                            <label class="brief-field wide" for="corporateBriefCompanyPage">
+                                Company, directory, or LinkedIn URL
+                                <input id="corporateBriefCompanyPage" name="corporate_brief_company_page" type="url" inputmode="url" placeholder="https://example.com/team">
+                            </label>
+                            <label class="brief-field" for="corporateBriefDeadline">
+                                Target deadline
+                                <input id="corporateBriefDeadline" name="corporate_brief_deadline" type="text" placeholder="This month">
+                            </label>
+                            <label class="brief-field wide" for="corporateBriefNotes">
+                                Notes
+                                <textarea id="corporateBriefNotes" name="corporate_brief_notes" placeholder="Mention source photo status, company brand direction, required crops, or public launch timing."></textarea>
+                            </label>
+                        </div>
+                        <div class="brief-metrics" aria-live="polite">
+                            <p id="corporateBriefCostPerPerson">Estimated per-person sprint cost: 484,000 KRW</p>
+                            <p id="corporateBriefPackageFit">Estimated package fit: Team profile pack is usually best for 2 to 8 people.</p>
+                        </div>
+                    </form>
                     <div class="readiness-options">
                         <label class="readiness-option" for="readinessFaceVisible">
                             <input id="readinessFaceVisible" type="checkbox" checked>
@@ -498,8 +597,9 @@
                         <p class="note" id="readinessRecommendation">Add obstruction-free photos and a reference URL before invoice review.</p>
                     </div>
                     <div class="cta-row">
-                        <a class="button" id="readinessInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request&body=Selected%20package%3A%20Team%20profile%20pack%20-%202%2C900%2C000%20KRW%0ABuyer%20or%20company%3A%20%0ATeam%20size%3A%20%0ALinkedIn%20or%20company%20page%3A%20%0ACommercial%20usage%20scope%3A%20Employee%20headshots%2C%20company%20directory%2C%20LinkedIn%20profiles%2C%20and%20hiring%20page%0APhoto%20readiness%3A%202%2F4%20ready%0ATarget%20deadline%3A%20%0ANotes%3A%20">Request with readiness note</a>
+                        <a class="button" id="readinessInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Corporate%20Headshot%20Sprint%20invoice%20request&body=Selected%20package%3A%20Team%20profile%20pack%20-%202%2C900%2C000%20KRW%0AReferral%20source%3A%20Corporate%20headshot%20page%0ATeam%20size%3A%206%0AEstimated%20per-person%20sprint%20cost%3A%20484%2C000%20KRW%0ACommercial%20usage%20scope%3A%20Employee%20headshots%2C%20company%20directory%2C%20LinkedIn%20profiles%2C%20and%20hiring%20page%0ACorporate%20use%20case%3A%20Employee%20directory%20refresh%0APhoto%20readiness%3A%202%2F4%20ready%0ACompany%2C%20directory%2C%20or%20LinkedIn%20URL%3A%20%0ATarget%20deadline%3A%20%0ANotes%3A%20">Create corporate invoice email</a>
                         <a class="button secondary" href="../ai-hiring-page-headshots/">Hiring page headshots</a>
+                    </div>
                     </div>
                 </div>
                 <label class="checklist-panel" for="corporateInvoicePreview">
@@ -571,36 +671,90 @@ Notes:</textarea>
     </footer>
     <script>
         (() => {
+            const corporateBriefPackages = {
+                "founder-profile-refresh": {
+                    label: "Founder profile refresh - 990,000 KRW",
+                    price: 990000,
+                    scope: "Founder LinkedIn profile, executive bio, and company about page",
+                    fit: "Founder profile refresh is usually best for one executive, founder, or public-facing lead.",
+                },
+                "team-profile-pack": {
+                    label: "Team profile pack - 2,900,000 KRW",
+                    price: 2900000,
+                    scope: "Employee headshots, company directory, LinkedIn profiles, and hiring page",
+                    fit: "Team profile pack is usually best for 2 to 8 people.",
+                },
+                "hiring-page-visual-system": {
+                    label: "Hiring page visual system - 9,900,000 KRW+",
+                    price: 9900000,
+                    scope: "Company team page, hiring page portraits, recruiting deck, and launch material",
+                    fit: "Hiring page visual system is usually best for 9 or more people.",
+                },
+            };
+            const corporateBriefSources = {
+                corporate: "Corporate headshot page",
+                hiring: "Hiring page headshots page",
+                linkedin: "LinkedIn photo page",
+                team: "Team Headshot Sprint",
+            };
             const readinessItems = [
                 { id: "readinessFaceVisible", label: "face clearly visible" },
                 { id: "readinessLighting", label: "enough light and natural expression" },
                 { id: "readinessNoObstruction", label: "no obstruction, heavy blur, or extreme filters" },
                 { id: "readinessReferenceUrl", label: "company or LinkedIn reference URL ready" },
             ];
+            const params = new URLSearchParams(window.location.search);
+            const form = document.getElementById("corporateBriefForm");
             const preview = document.getElementById("corporateInvoicePreview");
             const invoiceLink = document.getElementById("readinessInvoiceLink");
+            const costPerPerson = document.getElementById("corporateBriefCostPerPerson");
+            const packageFit = document.getElementById("corporateBriefPackageFit");
             const score = document.getElementById("readinessScore");
             const recommendation = document.getElementById("readinessRecommendation");
 
-            function invoiceBody(checkedItems) {
+            function field(id) {
+                return document.getElementById(id);
+            }
+            function fieldValue(id) {
+                return field(id)?.value?.trim() || "";
+            }
+            function selectedPackage() {
+                return corporateBriefPackages[fieldValue("corporateBriefPackage")] || corporateBriefPackages["team-profile-pack"];
+            }
+            function teamSize() {
+                const size = Number.parseInt(fieldValue("corporateBriefTeamSize"), 10);
+                return Number.isFinite(size) && size > 0 ? size : 1;
+            }
+            function formatKrw(value) {
+                return `${new Intl.NumberFormat("en-US").format(value)} KRW`;
+            }
+            function checkedReadinessItems() {
+                return readinessItems
+                    .filter((item) => document.getElementById(item.id)?.checked)
+                    .map((item) => item.label);
+            }
+            function invoiceBody(checkedItems, perPerson) {
+                const selected = selectedPackage();
                 const readinessLine = `${checkedItems.length}/4 ready${checkedItems.length ? ` (${checkedItems.join(", ")})` : ""}`;
                 return [
-                    "Selected package: Team profile pack - 2,900,000 KRW",
-                    "Buyer or company:",
-                    "Team size:",
-                    "LinkedIn or company page:",
-                    "Commercial usage scope: Employee headshots, company directory, LinkedIn profiles, and hiring page",
+                    `Selected package: ${selected.label}`,
+                    `Referral source: ${fieldValue("corporateBriefSource") || "Corporate headshot page"}`,
+                    `Team size: ${teamSize()}`,
+                    `Estimated per-person sprint cost: ${formatKrw(perPerson)}`,
+                    `Commercial usage scope: ${selected.scope}`,
+                    `Corporate use case: ${fieldValue("corporateBriefUseCase") || "Employee directory refresh"}`,
                     `Photo readiness: ${readinessLine}`,
-                    "Target deadline:",
-                    "Notes:",
+                    `Company, directory, or LinkedIn URL: ${fieldValue("corporateBriefCompanyPage")}`,
+                    `Target deadline: ${fieldValue("corporateBriefDeadline")}`,
+                    `Notes: ${fieldValue("corporateBriefNotes")}`,
                 ].join("\n");
             }
 
             function updatePhotoReadinessChecker() {
-                const checkedItems = readinessItems
-                    .filter((item) => document.getElementById(item.id)?.checked)
-                    .map((item) => item.label);
+                const checkedItems = checkedReadinessItems();
                 const count = checkedItems.length;
+                const selected = selectedPackage();
+                const perPerson = Math.ceil(selected.price / teamSize());
 
                 if (score) {
                     score.textContent = `${count}/4 ready`;
@@ -612,15 +766,37 @@ Notes:</textarea>
                             ? "The photos are close. Send them with the missing item noted in the invoice request."
                             : "Add clearer source photos or a reference URL before invoice review.";
                 }
-                const body = invoiceBody(checkedItems);
+                if (costPerPerson) {
+                    costPerPerson.textContent = `Estimated per-person sprint cost: ${formatKrw(perPerson)}`;
+                }
+                if (packageFit) {
+                    packageFit.textContent = `Estimated package fit: ${selected.fit}`;
+                }
+                const body = invoiceBody(checkedItems, perPerson);
                 if (preview) {
                     preview.value = body;
                 }
                 if (invoiceLink) {
-                    invoiceLink.href = `mailto:alyduho984530@gmail.com?subject=${encodeURIComponent("Kova Team Headshot Sprint invoice request")}&body=${encodeURIComponent(body)}`;
+                    invoiceLink.href = `mailto:alyduho984530@gmail.com?subject=${encodeURIComponent("Kova Corporate Headshot Sprint invoice request")}&body=${encodeURIComponent(body)}`;
                 }
             }
 
+            const packageParam = params.get("package");
+            if (packageParam && corporateBriefPackages[packageParam]) {
+                field("corporateBriefPackage").value = packageParam;
+            }
+            const sourceParam = params.get("source");
+            const mappedSource = sourceParam ? corporateBriefSources[sourceParam] : "";
+            if (mappedSource) {
+                field("corporateBriefSource").value = mappedSource;
+            }
+            const teamSizeParam = params.get("teamSize");
+            if (teamSizeParam) {
+                field("corporateBriefTeamSize").value = teamSizeParam;
+            }
+
+            form?.addEventListener("input", updatePhotoReadinessChecker);
+            form?.addEventListener("change", updatePhotoReadinessChecker);
             for (const item of readinessItems) {
                 document.getElementById(item.id)?.addEventListener("change", updatePhotoReadinessChecker);
             }

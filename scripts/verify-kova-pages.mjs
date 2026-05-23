@@ -7,33 +7,59 @@ const androidUrl = "https://play.google.com/store/apps/details?id=com.aly.kova";
 const contactEmail = "alyduho984530@gmail.com";
 
 function verifyReadinessCheckerRuntime(html) {
-  const scriptMatch = html.match(/<script>\s*([\s\S]*?const readinessItems[\s\S]*?)\s*<\/script>/);
-  assert.ok(scriptMatch, "Corporate headshot page must include the readiness checker script");
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const corporateBriefPackages[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "Corporate headshot page must include the corporate brief builder script");
 
   const listeners = new Map();
   const elements = new Map();
-  const checkboxIds = [
-    ["readinessFaceVisible", true],
-    ["readinessLighting", true],
-    ["readinessNoObstruction", false],
-    ["readinessReferenceUrl", false],
-  ];
-
-  for (const [id, checked] of checkboxIds) {
-    elements.set(id, {
-      checked,
+  const addElement = (id, properties = {}) => {
+    const element = {
+      checked: false,
+      href: "",
+      textContent: "",
+      value: "",
+      options: [],
+      selectedIndex: 0,
+      ...properties,
       addEventListener: (eventName, callback) => {
-        if (eventName === "change") {
-          listeners.set(id, callback);
-        }
+        const key = `${id}:${eventName}`;
+        listeners.set(key, [...(listeners.get(key) || []), callback]);
       },
-    });
-  }
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const fire = (id, eventName) => {
+    for (const callback of listeners.get(`${id}:${eventName}`) || []) {
+      callback();
+    }
+  };
 
-  elements.set("corporateInvoicePreview", { value: "" });
-  elements.set("readinessInvoiceLink", { href: "" });
-  elements.set("readinessScore", { textContent: "" });
-  elements.set("readinessRecommendation", { textContent: "" });
+  addElement("corporateBriefForm");
+  addElement("corporateBriefPackage", {
+    value: "team-profile-pack",
+    options: [
+      { dataset: { price: "990000" }, textContent: "Founder profile refresh - 990,000 KRW" },
+      { dataset: { price: "2900000" }, textContent: "Team profile pack - 2,900,000 KRW" },
+      { dataset: { price: "9900000" }, textContent: "Hiring page visual system - 9,900,000 KRW+" },
+    ],
+  });
+  addElement("corporateBriefSource", { value: "Corporate headshot page" });
+  addElement("corporateBriefTeamSize", { value: "6" });
+  addElement("corporateBriefCompanyPage", { value: "https://example.com/team" });
+  addElement("corporateBriefUseCase", { value: "Employee directory refresh" });
+  addElement("corporateBriefDeadline", { value: "This month" });
+  addElement("corporateBriefNotes", { value: "" });
+  addElement("corporateBriefCostPerPerson");
+  addElement("corporateBriefPackageFit");
+  addElement("corporateInvoicePreview");
+  addElement("readinessInvoiceLink");
+  addElement("readinessScore");
+  addElement("readinessRecommendation");
+  addElement("readinessFaceVisible", { checked: true });
+  addElement("readinessLighting", { checked: true });
+  addElement("readinessNoObstruction");
+  addElement("readinessReferenceUrl");
 
   vm.runInNewContext(
     scriptMatch[1],
@@ -42,23 +68,52 @@ function verifyReadinessCheckerRuntime(html) {
         getElementById: (id) => elements.get(id) ?? null,
       },
       encodeURIComponent,
+      URLSearchParams,
+      window: {
+        location: {
+          search: "?source=hiring&package=hiring-page-visual-system&teamSize=12",
+        },
+      },
+      Intl,
     },
     { timeout: 1000 },
   );
 
+  assert.equal(elements.get("corporateBriefPackage").value, "hiring-page-visual-system");
+  assert.equal(elements.get("corporateBriefSource").value, "Hiring page headshots page");
+  assert.equal(elements.get("corporateBriefTeamSize").value, "12");
+  assert.equal(elements.get("corporateBriefCostPerPerson").textContent, "Estimated per-person sprint cost: 825,000 KRW");
+  assert.match(elements.get("corporateInvoicePreview").value, /Selected package: Hiring page visual system - 9,900,000 KRW\+/);
+  assert.match(elements.get("corporateInvoicePreview").value, /Referral source: Hiring page headshots page/);
+  assert.match(elements.get("corporateInvoicePreview").value, /Team size: 12/);
+  assert.match(elements.get("corporateInvoicePreview").value, /Estimated per-person sprint cost: 825,000 KRW/);
   assert.equal(elements.get("readinessScore").textContent, "2/4 ready");
   assert.match(elements.get("corporateInvoicePreview").value, /Photo readiness: 2\/4 ready/);
+  assert.match(decodeURIComponent(elements.get("readinessInvoiceLink").href), /Kova Corporate Headshot Sprint invoice request/);
   assert.match(decodeURIComponent(elements.get("readinessInvoiceLink").href), /Photo readiness: 2\/4 ready/);
 
   elements.get("readinessNoObstruction").checked = true;
-  listeners.get("readinessNoObstruction")();
+  fire("readinessNoObstruction", "change");
   elements.get("readinessReferenceUrl").checked = true;
-  listeners.get("readinessReferenceUrl")();
+  fire("readinessReferenceUrl", "change");
 
   assert.equal(elements.get("readinessScore").textContent, "4/4 ready");
   assert.equal(elements.get("readinessRecommendation").textContent, "These photos are ready for invoice review.");
   assert.match(elements.get("corporateInvoicePreview").value, /Photo readiness: 4\/4 ready/);
+  assert.match(elements.get("corporateInvoicePreview").value, /company or LinkedIn reference URL ready/);
   assert.match(decodeURIComponent(elements.get("readinessInvoiceLink").href), /Photo readiness: 4\/4 ready/);
+
+  elements.get("corporateBriefPackage").value = "team-profile-pack";
+  fire("corporateBriefPackage", "change");
+  elements.get("corporateBriefTeamSize").value = "4";
+  fire("corporateBriefForm", "input");
+
+  assert.equal(elements.get("corporateBriefCostPerPerson").textContent, "Estimated per-person sprint cost: 725,000 KRW");
+  assert.match(elements.get("corporateBriefPackageFit").textContent, /Team profile pack is usually best for 2 to 8 people/);
+  assert.match(elements.get("corporateInvoicePreview").value, /Selected package: Team profile pack - 2,900,000 KRW/);
+  assert.match(elements.get("corporateInvoicePreview").value, /Team size: 4/);
+  assert.match(elements.get("corporateInvoicePreview").value, /Estimated per-person sprint cost: 725,000 KRW/);
+  assert.match(decodeURIComponent(elements.get("readinessInvoiceLink").href), /Estimated per-person sprint cost: 725,000 KRW/);
 }
 
 function verifyTeamSourcePacketRuntime(html) {
@@ -1234,6 +1289,19 @@ assert.match(corporateHeadshots, /Request corporate invoice/);
 assert.match(corporateHeadshots, /Source photo checklist/);
 assert.match(corporateHeadshots, /Source photo readiness checker/);
 assert.match(corporateHeadshots, /id="sourcePhotoReadiness"/);
+assert.match(corporateHeadshots, /id="corporateBriefBuilder"/);
+assert.match(corporateHeadshots, /Corporate Headshot brief builder/);
+assert.match(corporateHeadshots, /id="corporateBriefForm"/);
+assert.match(corporateHeadshots, /id="corporateBriefPackage"/);
+assert.match(corporateHeadshots, /id="corporateBriefSource"/);
+assert.match(corporateHeadshots, /id="corporateBriefTeamSize"/);
+assert.match(corporateHeadshots, /id="corporateBriefCompanyPage"/);
+assert.match(corporateHeadshots, /id="corporateBriefUseCase"/);
+assert.match(corporateHeadshots, /id="corporateBriefCostPerPerson"/);
+assert.match(corporateHeadshots, /id="corporateBriefPackageFit"/);
+assert.match(corporateHeadshots, /Kova Corporate Headshot Sprint invoice request/);
+assert.match(corporateHeadshots, /Estimated per-person sprint cost:/);
+assert.match(corporateHeadshots, /const corporateBriefPackages/);
 assert.match(corporateHeadshots, /id="readinessFaceVisible"/);
 assert.match(corporateHeadshots, /id="readinessLighting"/);
 assert.match(corporateHeadshots, /id="readinessNoObstruction"/);
