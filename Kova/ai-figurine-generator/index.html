@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Figurine Generator | Kova</title>
-    <meta name="description" content="Turn one photo into a collectible AI figurine or toy-box portrait with Kova. See before-and-after examples, download links, and credit options.">
-    <meta name="keywords" content="AI figurine generator, AI action figure photo, AI toy box portrait, collectible figurine app, Kova AI figurine">
+    <meta name="description" content="Turn one photo into a collectible AI figurine, toy-box portrait, or AI product photo generator brief with Kova. Build ecommerce product photos and product listing visuals from one page.">
+    <meta name="keywords" content="AI figurine generator, AI action figure photo, AI toy box portrait, AI product photo generator, ecommerce product photos, product listing visuals, Kova AI figurine">
     <link rel="canonical" href="https://won-space.com/Kova/ai-figurine-generator/">
 
     <meta property="og:title" content="AI Figurine Generator | Kova">
-    <meta property="og:description" content="Create collectible toy-style AI figurine edits from one phone photo.">
+    <meta property="og:description" content="Create collectible toy-style AI figurine edits and scope product-photo sprint visuals from one phone photo.">
     <meta property="og:image" content="https://won-space.com/Kova/assets/figurine_female_after.webp">
     <meta property="og:url" content="https://won-space.com/Kova/ai-figurine-generator/">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI Figurine Generator | Kova">
-    <meta name="twitter:description" content="Create collectible toy-style AI figurine edits from one phone photo.">
+    <meta name="twitter:description" content="Create collectible toy-style AI figurine edits and scope product-photo sprint visuals from one phone photo.">
     <meta name="twitter:image" content="https://won-space.com/Kova/assets/figurine_female_after.webp">
 
     <script type="application/ld+json">
@@ -26,7 +26,7 @@
         "name": "Kova",
         "applicationCategory": "PhotographyApplication",
         "operatingSystem": "iOS, Android",
-        "description": "Kova is an AI photo editor for figurine, doll box, profile headshot, anime, Polaroid, and other photo styles.",
+        "description": "Kova is an AI photo editor for figurine, doll box, product photo, profile headshot, anime, Polaroid, and other photo styles.",
         "offers": {
             "@type": "Offer",
             "price": "0",
@@ -86,6 +86,16 @@
         .card p { margin: 0; color: var(--muted); line-height: 1.62; }
         .comparison { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
         .comparison img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 2px solid var(--ink); border-radius: 8px; background: #ece7dd; }
+        .brief-panel { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 24px; box-shadow: 8px 8px 0 var(--mint); }
+        .brief-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        label { display: grid; gap: 7px; font-weight: 800; }
+        input, select, textarea { width: 100%; border: 2px solid var(--ink); border-radius: 8px; padding: 12px; color: var(--ink); background: #fffdf8; font: inherit; }
+        textarea { min-height: 196px; resize: vertical; }
+        .full { grid-column: 1 / -1; }
+        .metric-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+        .metric { border: 2px solid var(--ink); border-radius: 8px; background: #eef9f3; padding: 14px 16px; font-weight: 900; line-height: 1.5; }
+        .metric:nth-child(2) { background: #fff7d6; }
+        .safety-note { margin: 16px 0 0; padding: 14px 16px; border: 2px solid var(--ink); border-radius: 8px; background: #fff2f6; color: var(--ink); line-height: 1.55; }
         .faq { display: grid; gap: 14px; }
         .faq article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 20px; }
         .faq h3 { margin: 0 0 8px; }
@@ -97,7 +107,7 @@
         footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 940px) {
-            .hero, .section-head { grid-template-columns: 1fr; }
+            .hero, .section-head, .brief-grid, .metric-row { grid-template-columns: 1fr; }
             .cards { grid-template-columns: 1fr; }
             .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
@@ -113,8 +123,9 @@
             <div>
                 <a class="crumb" href="../">Kova</a>
                 <h1>AI Figurine Generator</h1>
-                <p class="lead">Turn a portrait into a collectible toy-style edit with a store-shelf figurine look. Kova gives you ready-made figurine and doll-box styles, so you can start from one phone photo instead of writing a long prompt.</p>
+                <p class="lead">Turn a portrait into a collectible toy-style edit with a store-shelf figurine look. Kova also gives ecommerce teams a fast AI product photo generator path for product listing visuals, gift-box concepts, and launch ads from one phone photo.</p>
                 <div class="cta-row" aria-label="Download Kova">
+                    <a class="button" href="#productBriefBuilder">Build product photo brief</a>
                     <a class="button" href="../download/index.html">Open download page</a>
                     <a class="button secondary" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914">App Store</a>
                     <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.aly.kova">Google Play</a>
@@ -146,12 +157,12 @@
                 <article class="card">
                     <b>Doll box</b>
                     <h3>Fashion package style</h3>
-                    <p>Try a cleaner retail-box look with accessory slots and a more premium product-photo feel.</p>
+                    <p>Try a cleaner retail-box look with accessory slots and a more premium product-photo feel for ecommerce product photos.</p>
                 </article>
                 <article class="card">
-                    <b>Share loop</b>
-                    <h3>Made for posts</h3>
-                    <p>Save the result, compare variations, and share the best version from your phone.</p>
+                    <b>Commerce</b>
+                    <h3>Listing visual direction</h3>
+                    <p>Use figurine, toy-box, and product-photo concepts as a quick direction board for product listing visuals and launch ads.</p>
                 </article>
             </div>
         </section>
@@ -168,6 +179,73 @@
                 <img src="../assets/figurine_male_after.webp" alt="Male portrait after AI figurine edit">
                 <img src="../assets/dollbox.webp" alt="Kova doll box AI photo style">
             </div>
+        </section>
+
+        <section id="productBriefBuilder" class="section shell" aria-labelledby="productBriefTitle">
+            <div class="section-head">
+                <h2 id="productBriefTitle">Product Photo Sprint brief builder</h2>
+                <p>Turn toy-box and figurine interest into a scoped product-photo invoice email. The estimate shows how many paid orders need to recover the sprint fee from the buyer's average paid order value.</p>
+            </div>
+            <form id="productBriefForm" class="brief-panel">
+                <div class="brief-grid">
+                    <label>
+                        Package
+                        <select id="productBriefPackage" name="product_brief_package">
+                            <option value="creator-product-refresh" data-price="290000">Refresh - 290k</option>
+                            <option value="shop-launch-pack" data-price="990000">Shop launch - 990k</option>
+                            <option value="campaign-product-system" data-price="2900000">Campaign - 2.9M+</option>
+                        </select>
+                    </label>
+                    <label>
+                        Referral source
+                        <input id="productBriefSource" name="product_brief_source" value="AI figurine generator page">
+                    </label>
+                    <label>
+                        Product count
+                        <input id="productBriefProductCount" name="product_brief_product_count" type="number" min="1" step="1" value="3">
+                    </label>
+                    <label>
+                        Sales channel
+                        <select id="productBriefSalesChannel" name="product_brief_sales_channel">
+                            <option>Shopify product page</option>
+                            <option>Cafe24 store</option>
+                            <option>Amazon or marketplace listing</option>
+                            <option>Instagram shop launch</option>
+                            <option>Ad landing page</option>
+                        </select>
+                    </label>
+                    <label>
+                        Average paid order value
+                        <input id="productBriefAov" name="product_brief_aov" type="number" min="50000" step="10000" value="100000">
+                    </label>
+                    <label>
+                        Product or store URL
+                        <input id="productBriefProductUrl" name="product_brief_product_url" type="url" placeholder="https://example.com/product">
+                    </label>
+                    <label>
+                        Target delivery date
+                        <input id="productBriefDeadline" name="product_brief_deadline" placeholder="This month">
+                    </label>
+                    <label class="full">
+                        Notes
+                        <textarea id="productBriefNotes" name="product_brief_notes" placeholder="Product category, reference style, hero SKU, markets, claims to avoid, or launch blockers"></textarea>
+                    </label>
+                    <label class="full">
+                        Product invoice email preview
+                        <textarea id="productBriefEmailPreview" name="product_brief_email_preview" readonly></textarea>
+                    </label>
+                </div>
+                <div class="metric-row" aria-label="Product Photo Sprint estimates">
+                    <div id="productBriefRecoveryOrders" class="metric">Estimated paid orders to recover sprint fee: about 3</div>
+                    <div id="productBriefPackageFit" class="metric">Creator product refresh is best for one hero product, creator drop, or toy-box concept.</div>
+                </div>
+                <p class="safety-note">No live checkout, payment link, store edit, or buyer message is created. This only prepares a local email draft in your mail app.</p>
+                <div class="cta-row">
+                    <a id="productBriefInvoiceLink" class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Product%20Photo%20Sprint%20invoice%20request">Create product invoice email</a>
+                    <a class="button secondary" href="../app-launch-visuals/#launchBriefBuilder">Launch visual brief</a>
+                    <a class="button secondary" href="../studio-sprint/#sprintBriefBuilder">Full Studio Sprint brief</a>
+                </div>
+            </form>
         </section>
 
         <section class="section shell" aria-labelledby="pricingTitle">
@@ -227,5 +305,108 @@
             <a href="../support.html">Support</a>
         </nav>
     </footer>
+    <script>
+        const productBriefPackages = {
+            "creator-product-refresh": {
+                label: "Creator product refresh - 290,000 KRW",
+                price: 290000,
+                fit: "Creator product refresh is best for one hero product, creator drop, or toy-box concept.",
+            },
+            "shop-launch-pack": {
+                label: "Shop launch pack - 990,000 KRW",
+                price: 990000,
+                fit: "Shop launch pack is best when a small catalog needs product listings and launch ads.",
+            },
+            "campaign-product-system": {
+                label: "Campaign product system - 2,900,000 KRW+",
+                price: 2900000,
+                fit: "Campaign product system is best when one product line needs ads, listing images, and launch visuals.",
+            },
+        };
+        const productBriefSources = {
+            direct: "AI figurine generator page",
+            figurine: "AI figurine generator page",
+            fashion: "AI fashion photo page",
+            apphub: "AppHub landing page",
+            launch: "App launch visuals page",
+            studio: "Kova Studio Sprint page",
+        };
+        const productBriefParams = new URLSearchParams(window.location.search);
+        const productBriefForm = document.getElementById("productBriefForm");
+        const productBriefPackage = document.getElementById("productBriefPackage");
+        const productBriefSource = document.getElementById("productBriefSource");
+        const productBriefProductCount = document.getElementById("productBriefProductCount");
+        const productBriefSalesChannel = document.getElementById("productBriefSalesChannel");
+        const productBriefAov = document.getElementById("productBriefAov");
+        const productBriefProductUrl = document.getElementById("productBriefProductUrl");
+        const productBriefDeadline = document.getElementById("productBriefDeadline");
+        const productBriefNotes = document.getElementById("productBriefNotes");
+        const productBriefRecoveryOrders = document.getElementById("productBriefRecoveryOrders");
+        const productBriefPackageFit = document.getElementById("productBriefPackageFit");
+        const productBriefEmailPreview = document.getElementById("productBriefEmailPreview");
+        const productBriefInvoiceLink = document.getElementById("productBriefInvoiceLink");
+        const productKrw = new Intl.NumberFormat("en-US");
+
+        function productNumberValue(input, fallback) {
+            const parsed = Number.parseInt(input.value, 10);
+            return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+        }
+
+        function currentProductPackage() {
+            return productBriefPackages[productBriefPackage.value] || productBriefPackages["creator-product-refresh"];
+        }
+
+        function updateProductBrief() {
+            const selected = currentProductPackage();
+            const averageOrderValue = productNumberValue(productBriefAov, 100000);
+            const productCount = productNumberValue(productBriefProductCount, 1);
+            const recoveryOrders = Math.ceil(selected.price / averageOrderValue);
+            const recoveryText = `Estimated paid orders to recover sprint fee: about ${recoveryOrders}`;
+            const body = [
+                "Hi, I want to request a Kova Product Photo Sprint invoice.",
+                "",
+                `Selected package: ${selected.label}`,
+                `Referral source: ${productBriefSource.value || "AI figurine generator page"}`,
+                `Product count: ${productCount}`,
+                `Sales channel: ${productBriefSalesChannel.value || "Shopify product page"}`,
+                `Average paid order value: ${productKrw.format(averageOrderValue)} KRW`,
+                recoveryText,
+                `Product or store URL: ${productBriefProductUrl.value || "not provided yet"}`,
+                `Target delivery date: ${productBriefDeadline.value || "not provided yet"}`,
+                `Notes: ${productBriefNotes.value || "none"}`,
+                "",
+                "Please reply with invoice/payment setup and next scope-confirmation steps.",
+            ].join("\n");
+
+            productBriefRecoveryOrders.textContent = recoveryText;
+            productBriefPackageFit.textContent = selected.fit;
+            productBriefEmailPreview.value = body;
+            productBriefEmailPreview.textContent = body;
+            productBriefInvoiceLink.href = `mailto:alyduho984530@gmail.com?subject=${encodeURIComponent("Kova Product Photo Sprint invoice request")}&body=${encodeURIComponent(body)}`;
+        }
+
+        if (productBriefForm) {
+            const sourceParam = productBriefParams.get("source");
+            const packageParam = productBriefParams.get("package");
+            const aovParam = productBriefParams.get("aov");
+            const productCountParam = productBriefParams.get("productCount");
+            if (sourceParam && productBriefSources[sourceParam.toLowerCase()]) {
+                productBriefSource.value = productBriefSources[sourceParam.toLowerCase()];
+            }
+            if (packageParam && productBriefPackages[packageParam]) {
+                productBriefPackage.value = packageParam;
+            }
+            if (aovParam && Number.parseInt(aovParam, 10) > 0) {
+                productBriefAov.value = String(Number.parseInt(aovParam, 10));
+            }
+            if (productCountParam && Number.parseInt(productCountParam, 10) > 0) {
+                productBriefProductCount.value = String(Number.parseInt(productCountParam, 10));
+            }
+            productBriefForm.addEventListener("input", updateProductBrief);
+            productBriefForm.addEventListener("change", updateProductBrief);
+            productBriefPackage.addEventListener("change", updateProductBrief);
+            updateProductBrief();
+        }
+    </script>
 </body>
 </html>

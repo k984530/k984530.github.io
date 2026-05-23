@@ -713,6 +713,101 @@ function verifyAppLaunchBriefRuntime(html) {
   assert.match(decodeURIComponent(elements.get("launchBriefInvoiceLink").href), /Estimated paid orders to recover sprint fee: about 20/);
 }
 
+function verifyProductPhotoBriefRuntime(html) {
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const productBriefPackages[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "AI figurine page must include the product photo brief builder script");
+
+  const listeners = new Map();
+  const elements = new Map();
+  const addElement = (id, properties = {}) => {
+    const element = {
+      href: "",
+      textContent: "",
+      value: "",
+      options: [],
+      selectedIndex: 0,
+      ...properties,
+      addEventListener: (eventName, callback) => {
+        const key = `${id}:${eventName}`;
+        listeners.set(key, [...(listeners.get(key) || []), callback]);
+      },
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const fire = (id, eventName) => {
+    for (const callback of listeners.get(`${id}:${eventName}`) || []) {
+      callback();
+    }
+  };
+
+  addElement("productBriefForm");
+  addElement("productBriefPackage", {
+    value: "creator-product-refresh",
+    options: [
+      { dataset: { price: "290000" }, textContent: "Creator product refresh - 290,000 KRW" },
+      { dataset: { price: "990000" }, textContent: "Shop launch pack - 990,000 KRW" },
+      { dataset: { price: "2900000" }, textContent: "Campaign product system - 2,900,000 KRW+" },
+    ],
+  });
+  addElement("productBriefSource", { value: "AI figurine generator page" });
+  addElement("productBriefProductCount", { value: "3" });
+  addElement("productBriefSalesChannel", { value: "Shopify product page" });
+  addElement("productBriefAov", { value: "100000" });
+  addElement("productBriefProductUrl", { value: "https://example.com/product" });
+  addElement("productBriefDeadline", { value: "This month" });
+  addElement("productBriefNotes", { value: "" });
+  addElement("productBriefRecoveryOrders");
+  addElement("productBriefPackageFit");
+  addElement("productBriefEmailPreview");
+  addElement("productBriefInvoiceLink");
+
+  vm.runInNewContext(
+    scriptMatch[1],
+    {
+      document: {
+        getElementById: (id) => elements.get(id) ?? null,
+      },
+      encodeURIComponent,
+      URLSearchParams,
+      window: {
+        location: {
+          search: "?source=figurine&package=shop-launch-pack&aov=120000&productCount=8",
+        },
+      },
+      Intl,
+    },
+    { timeout: 1000 },
+  );
+
+  assert.equal(elements.get("productBriefPackage").value, "shop-launch-pack");
+  assert.equal(elements.get("productBriefSource").value, "AI figurine generator page");
+  assert.equal(elements.get("productBriefProductCount").value, "8");
+  assert.equal(elements.get("productBriefAov").value, "120000");
+  assert.equal(elements.get("productBriefRecoveryOrders").textContent, "Estimated paid orders to recover sprint fee: about 9");
+  assert.match(elements.get("productBriefPackageFit").textContent, /Shop launch pack is best when a small catalog needs product listings and launch ads/);
+  assert.match(elements.get("productBriefEmailPreview").value, /Selected package: Shop launch pack - 990,000 KRW/);
+  assert.match(elements.get("productBriefEmailPreview").value, /Referral source: AI figurine generator page/);
+  assert.match(elements.get("productBriefEmailPreview").value, /Product count: 8/);
+  assert.match(elements.get("productBriefEmailPreview").value, /Average paid order value: 120,000 KRW/);
+  assert.match(elements.get("productBriefEmailPreview").value, /Estimated paid orders to recover sprint fee: about 9/);
+  assert.match(decodeURIComponent(elements.get("productBriefInvoiceLink").href), /Kova Product Photo Sprint invoice request/);
+  assert.match(decodeURIComponent(elements.get("productBriefInvoiceLink").href), /Shop launch pack - 990,000 KRW/);
+
+  elements.get("productBriefPackage").value = "campaign-product-system";
+  fire("productBriefPackage", "change");
+  elements.get("productBriefAov").value = "250000";
+  elements.get("productBriefProductCount").value = "18";
+  fire("productBriefForm", "input");
+
+  assert.equal(elements.get("productBriefRecoveryOrders").textContent, "Estimated paid orders to recover sprint fee: about 12");
+  assert.match(elements.get("productBriefPackageFit").textContent, /Campaign product system is best when one product line needs ads, listing images, and launch visuals/);
+  assert.match(elements.get("productBriefEmailPreview").value, /Selected package: Campaign product system - 2,900,000 KRW\+/);
+  assert.match(elements.get("productBriefEmailPreview").value, /Product count: 18/);
+  assert.match(elements.get("productBriefEmailPreview").value, /Average paid order value: 250,000 KRW/);
+  assert.match(decodeURIComponent(elements.get("productBriefInvoiceLink").href), /Estimated paid orders to recover sprint fee: about 12/);
+}
+
 const requiredFiles = [
   "Kova/index.html",
   "Kova/download/index.html",
@@ -730,6 +825,7 @@ const requiredFiles = [
   "Kova/pricing/index.html",
   "Kova/examples/index.html",
   "Kova/ai-photo-editor-styles/index.html",
+  "Kova/ai-figurine-generator/index.html",
   "Kova/ai-fashion-photo-generator/index.html",
   "Kova/ai-selfie-generator/index.html",
   "Kova/ai-linkedin-photo-generator/index.html",
@@ -760,7 +856,7 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, appStoreScreenshots, ideaVisualizer, studioSprint, teamHeadshotSprint, hiringPageHeadshots, corporateHeadshots, pricing, examples, styles, fashion, selfie, linkedin, profileHeadshot, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
+const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor, appLaunch, appStoreScreenshots, ideaVisualizer, studioSprint, teamHeadshotSprint, hiringPageHeadshots, corporateHeadshots, pricing, examples, styles, figurine, fashion, selfie, linkedin, profileHeadshot, avatar, anime, dating, pet, journal, privacy, terms, support] = await Promise.all([
   readFile("index.html", "utf8"),
   readFile("sitemap.xml", "utf8"),
   readFile("Kova/index.html", "utf8"),
@@ -778,6 +874,7 @@ const [rootIndex, sitemap, index, download, sharedResult, quickStart, freeEditor
   readFile("Kova/pricing/index.html", "utf8"),
   readFile("Kova/examples/index.html", "utf8"),
   readFile("Kova/ai-photo-editor-styles/index.html", "utf8"),
+  readFile("Kova/ai-figurine-generator/index.html", "utf8"),
   readFile("Kova/ai-fashion-photo-generator/index.html", "utf8"),
   readFile("Kova/ai-selfie-generator/index.html", "utf8"),
   readFile("Kova/ai-linkedin-photo-generator/index.html", "utf8"),
@@ -812,6 +909,7 @@ assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-hiring-page-headshots\
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-corporate-headshot-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-selfie-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-fashion-photo-generator\//);
+assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-figurine-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-linkedin-photo-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-avatar-generator\//);
 assert.match(sitemap, /https:\/\/won-space\.com\/Kova\/ai-anime-portrait-generator\//);
@@ -1511,6 +1609,7 @@ assert.match(styles, /\.\.\/pricing\//);
 assert.match(styles, /\.\.\/free-ai-photo-editor\//);
 assert.match(styles, /\.\.\/ai-selfie-generator\//);
 assert.match(styles, /\.\.\/ai-fashion-photo-generator\//);
+assert.match(styles, /\.\.\/ai-figurine-generator\//);
 assert.match(styles, /\.\.\/ai-linkedin-photo-generator\//);
 assert.match(styles, /\.\.\/app-launch-visuals\//);
 assert.match(styles, /\.\.\/ai-idea-visualizer\//);
@@ -1519,6 +1618,44 @@ assert.match(styles, /\.\.\/ai-anime-portrait-generator\//);
 assert.match(styles, /\.\.\/privacy\.html/);
 assert.match(styles, /\.\.\/terms\.html/);
 assert.match(styles, /\.\.\/support\.html/);
+
+assert.match(figurine, /<title>AI Figurine Generator \| Kova<\/title>/);
+assert.match(figurine, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-figurine-generator\/">/);
+assert.match(figurine, /AI Figurine Generator/);
+assert.match(figurine, /AI product photo generator/i);
+assert.match(figurine, /ecommerce product photos/i);
+assert.match(figurine, /product listing visuals/i);
+assert.match(figurine, /toy-box portrait/i);
+assert.match(figurine, /SoftwareApplication/);
+assert.match(figurine, /assets\/figurine_female_before\.webp/);
+assert.match(figurine, /assets\/figurine_female_after\.webp/);
+assert.match(figurine, /assets\/figurine_male_before\.webp/);
+assert.match(figurine, /assets\/figurine_male_after\.webp/);
+assert.match(figurine, /assets\/dollbox\.webp/);
+assert.match(figurine, /\.\.\/download\/index\.html/);
+assert.match(figurine, /\.\.\/pricing\//);
+assert.match(figurine, /\.\.\/ai-profile-headshot-generator\//);
+assert.match(figurine, /\.\.\/ai-photo-editor-styles\//);
+assert.match(figurine, /Product Photo Sprint brief builder/);
+assert.match(figurine, /id="productBriefBuilder"/);
+assert.match(figurine, /id="productBriefForm"/);
+assert.match(figurine, /id="productBriefPackage"/);
+assert.match(figurine, /id="productBriefSource"/);
+assert.match(figurine, /id="productBriefProductCount"/);
+assert.match(figurine, /id="productBriefAov"/);
+assert.match(figurine, /id="productBriefSalesChannel"/);
+assert.match(figurine, /id="productBriefProductUrl"/);
+assert.match(figurine, /id="productBriefRecoveryOrders"/);
+assert.match(figurine, /id="productBriefPackageFit"/);
+assert.match(figurine, /id="productBriefEmailPreview"/);
+assert.match(figurine, /id="productBriefInvoiceLink"/);
+assert.match(figurine, /Kova Product Photo Sprint invoice request/);
+assert.match(figurine, /Estimated paid orders to recover sprint fee:/);
+assert.match(figurine, /const productBriefPackages/);
+assert.match(figurine, /No live checkout, payment link, store edit, or buyer message is created/);
+assert.match(figurine, new RegExp(iosUrl.replaceAll(".", "\\.")));
+assert.match(figurine, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+verifyProductPhotoBriefRuntime(figurine);
 
 assert.match(fashion, /<title>AI Fashion Photo Generator \| Kova<\/title>/);
 assert.match(fashion, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-fashion-photo-generator\/">/);
