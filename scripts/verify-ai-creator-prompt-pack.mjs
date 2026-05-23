@@ -72,7 +72,7 @@ assert.equal(productNode.name, "AI Creator Prompt Pack");
 assert.equal(productNode.sku, "ai-creator-prompt-pack-v1");
 assert.equal(productNode.offers.price, "29000");
 assert.equal(productNode.offers.priceCurrency, "KRW");
-assert.equal(productNode.offers.url, "https://9384469612723.gumroad.com/l/ai-creator-prompt-pack-v1");
+assert.equal(productNode.offers.url, "https://gumroad.com/checkout?product=rkmll&quantity=1");
 assert.equal(productNode.offers.availability, "https://schema.org/InStock");
 assert.equal(productNode.offers.seller.name, "alyduho.develop");
 assert.equal(productNode.isRelatedTo.name, "Kova: AI Photo Editor");
