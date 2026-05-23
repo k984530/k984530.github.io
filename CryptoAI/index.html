@@ -197,6 +197,68 @@
             transform: translateY(-4px);
             box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
         }
+
+        .pro-lane {
+            background: white;
+            border-radius: 20px;
+            padding: 34px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .pro-lane h2 {
+            color: #FF6B6B;
+            font-size: 2em;
+            margin-bottom: 12px;
+        }
+
+        .pro-lane p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+
+        .pro-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin: 24px 0;
+        }
+
+        .pro-point {
+            border: 1px solid #ffd1a3;
+            border-radius: 14px;
+            padding: 16px;
+            background: #fff7ed;
+        }
+
+        .pro-point strong {
+            display: block;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .pro-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .pro-action {
+            display: inline-block;
+            padding: 13px 16px;
+            border-radius: 12px;
+            background: #FF6B6B;
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pro-action:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 22px rgba(255, 107, 107, 0.25);
+        }
         
         .contact {
             text-align: center;
@@ -273,6 +335,29 @@
                 Available on iOS and Android devices
             </p>
         </div>
+
+        <section class="pro-lane" id="cryptoAiProLane" aria-labelledby="cryptoAiProTitle">
+            <h2 id="cryptoAiProTitle">Crypto AI Pro for a weekly strategy review</h2>
+            <p>Use Crypto AI Pro to turn market prompts into a repeatable educational market analysis workflow. Build a custom AI assistant, compare a timeframe checklist, and review strategy notes before deciding what to study next. Training content is educational and not financial advice.</p>
+            <div class="pro-points">
+                <div class="pro-point">
+                    <strong>Custom AI assistant</strong>
+                    Keep your selected trading skills and prompts aligned to the way you study crypto markets.
+                </div>
+                <div class="pro-point">
+                    <strong>Timeframe checklist</strong>
+                    Review short, mid, and long-term context before turning analysis into a study note.
+                </div>
+                <div class="pro-point">
+                    <strong>Weekly strategy review</strong>
+                    Revisit the same market routine each week so signals are compared consistently.
+                </div>
+            </div>
+            <div class="pro-actions">
+                <a class="pro-action" href="https://apps.apple.com/app/crypto-ai-bitcoin-assistant/id6749213360" target="_blank" rel="noopener">Open Crypto AI Pro on iOS</a>
+                <a class="pro-action" href="https://play.google.com/store/apps/details?id=com.aly.CryptoAI" target="_blank" rel="noopener">Open Crypto AI Pro on Android</a>
+            </div>
+        </section>
         
         <div class="features">
             <h2>Features</h2>
