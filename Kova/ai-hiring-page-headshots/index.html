@@ -281,6 +281,50 @@
             color: var(--muted);
             font-weight: 800;
         }
+        .brief-builder {
+            display: grid;
+            gap: 14px;
+            margin-top: 16px;
+        }
+        .brief-fields {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+        .brief-field {
+            display: grid;
+            gap: 7px;
+            color: var(--muted);
+            font-weight: 850;
+        }
+        .brief-field.wide { grid-column: 1 / -1; }
+        .brief-field input,
+        .brief-field select,
+        .brief-field textarea {
+            width: 100%;
+            min-height: 48px;
+            border: 2px solid var(--line);
+            border-radius: 8px;
+            background: #fffdf7;
+            color: var(--ink);
+            font: inherit;
+            font-weight: 800;
+            padding: 10px 12px;
+        }
+        .brief-field textarea {
+            min-height: 92px;
+            resize: vertical;
+        }
+        .brief-metrics {
+            display: grid;
+            gap: 8px;
+            padding: 14px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: #eaf1ff;
+            font-weight: 850;
+        }
+        .brief-metrics p { margin: 0; }
         .brief-preview {
             width: 100%;
             min-height: 306px;
@@ -292,6 +336,7 @@
             line-height: 1.55;
             padding: 14px;
             resize: vertical;
+            white-space: pre-wrap;
         }
         .faq {
             display: grid;
@@ -328,9 +373,11 @@
             .hero,
             .section-head,
             .cards,
-            .path-grid {
+            .path-grid,
+            .brief-fields {
                 grid-template-columns: 1fr;
             }
+            .brief-field.wide { grid-column: auto; }
         }
         @media (max-width: 560px) {
             .proof-board { grid-template-columns: 1fr; }
@@ -347,6 +394,7 @@
                 <p class="lead">A focused Kova Team Headshot Sprint route for startup hiring page portraits, founder bios, team pages, and LinkedIn profiles that need to look consistent before a recruiting push.</p>
                 <div class="cta-row" aria-label="Hiring page headshot actions">
                     <a class="button" href="../team-headshot-sprint/">Open Team Headshot Sprint</a>
+                    <a class="button secondary" href="#hiringPageBriefBuilder">Build hiring brief</a>
                     <a class="button secondary" href="mailto:alyduho984530@gmail.com?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request&body=Selected%20package%3A%20Hiring%20page%20visual%20system%20-%209%2C900%2C000%20KRW%2B%0ABuyer%20or%20company%3A%20%0ATeam%20size%3A%20%0ALinkedIn%20or%20company%20page%3A%20%0ACommercial%20usage%20scope%3A%20Startup%20hiring%20page%2C%20team%20page%2C%20LinkedIn%20profiles%2C%20and%20launch%20deck%0ATarget%20deadline%3A%20%0ANotes%3A%20">Request team invoice</a>
                     <a class="button secondary" href="../ai-corporate-headshot-generator/">Corporate headshots</a>
                     <a class="button secondary" href="../download/index.html">Install Kova</a>
@@ -425,30 +473,69 @@
                 <h2 id="briefTitle">Invoice-Ready Brief</h2>
                 <p>This page does not create a live payment link. It routes high-intent buyers into the Team Headshot Sprint invoice request with the fields needed to confirm scope first.</p>
             </div>
-            <div class="path-grid">
+            <div class="path-grid" id="hiringPageBriefBuilder">
                 <div class="path-panel">
-                    <h3>What to include</h3>
-                    <p class="note">A useful request gives enough context to price the work and confirm commercial usage before production starts.</p>
-                    <ul>
-                        <li>Buyer or company name</li>
-                        <li>Team size and target deadline</li>
-                        <li>LinkedIn, team page, or startup hiring page URL</li>
-                        <li>Commercial usage scope and source photo readiness</li>
-                    </ul>
-                    <div class="cta-row">
-                        <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request&body=Selected%20package%3A%20Hiring%20page%20visual%20system%20-%209%2C900%2C000%20KRW%2B%0ABuyer%20or%20company%3A%20%0ATeam%20size%3A%20%0ALinkedIn%20or%20company%20page%3A%20%0ACommercial%20usage%20scope%3A%20Startup%20hiring%20page%2C%20team%20page%2C%20LinkedIn%20profiles%2C%20and%20launch%20deck%0ATarget%20deadline%3A%20%0ANotes%3A%20">Request team invoice</a>
-                    </div>
+                    <h3>Hiring Page Headshot brief builder</h3>
+                    <p class="note">Adjust the package, team size, source, and hiring-page context before opening the buyer email. Nothing is sent until the buyer sends the email from their own mail app.</p>
+                    <form class="brief-builder" id="hiringBriefForm">
+                        <div class="brief-fields">
+                            <label class="brief-field" for="hiringBriefPackage">
+                                Package
+                                <select id="hiringBriefPackage" name="hiring_brief_package">
+                                    <option value="founder-profile-refresh" data-price="990000">Founder profile refresh - 990,000 KRW</option>
+                                    <option value="team-profile-pack" data-price="2900000">Team profile pack - 2,900,000 KRW</option>
+                                    <option value="hiring-page-visual-system" data-price="9900000" selected>Hiring page visual system - 9,900,000 KRW+</option>
+                                </select>
+                            </label>
+                            <label class="brief-field" for="hiringBriefSource">
+                                Referral source
+                                <select id="hiringBriefSource" name="hiring_brief_source">
+                                    <option>Hiring page headshots page</option>
+                                    <option>LinkedIn photo page</option>
+                                    <option>Corporate headshot page</option>
+                                    <option>Team Headshot Sprint</option>
+                                </select>
+                            </label>
+                            <label class="brief-field" for="hiringBriefTeamSize">
+                                Team size
+                                <input id="hiringBriefTeamSize" name="hiring_brief_team_size" type="number" min="1" step="1" value="9" inputmode="numeric">
+                            </label>
+                            <label class="brief-field" for="hiringBriefGoal">
+                                Hiring use case
+                                <select id="hiringBriefGoal" name="hiring_brief_goal">
+                                    <option>Recruiting launch</option>
+                                    <option>Startup hiring page refresh</option>
+                                    <option>Founder and team page update</option>
+                                    <option>Launch deck plus LinkedIn profiles</option>
+                                </select>
+                            </label>
+                            <label class="brief-field wide" for="hiringBriefCompanyPage">
+                                Hiring page, LinkedIn, or company URL
+                                <input id="hiringBriefCompanyPage" name="hiring_brief_company_page" type="url" inputmode="url" placeholder="https://example.com/careers">
+                            </label>
+                            <label class="brief-field" for="hiringBriefDeadline">
+                                Target deadline
+                                <input id="hiringBriefDeadline" name="hiring_brief_deadline" type="text" placeholder="This month">
+                            </label>
+                            <label class="brief-field wide" for="hiringBriefNotes">
+                                Notes
+                                <textarea id="hiringBriefNotes" name="hiring_brief_notes" placeholder="Mention hiring push, team photo readiness, brand direction, or required portrait crops."></textarea>
+                            </label>
+                        </div>
+                        <div class="brief-metrics" aria-live="polite">
+                            <p id="hiringBriefCostPerPerson">Estimated per-person sprint cost: 1,100,000 KRW</p>
+                            <p id="hiringBriefPackageFit">Estimated package fit: Hiring page visual system is usually best for 9 or more people.</p>
+                        </div>
+                    </form>
                 </div>
-                <label class="path-panel" for="teamInvoicePreview">
+                <div class="path-panel">
                     <h3>Team invoice email preview</h3>
-                    <textarea class="brief-preview" id="teamInvoicePreview" readonly>Selected package: Hiring page visual system - 9,900,000 KRW+
-Buyer or company:
-Team size:
-LinkedIn or company page:
-Commercial usage scope: Startup hiring page, team page, LinkedIn profiles, and launch deck
-Target deadline:
-Notes:</textarea>
-                </label>
+                    <div class="brief-preview" id="hiringBriefEmailPreview" role="textbox" aria-readonly="true"></div>
+                    <div class="cta-row">
+                        <a class="button" id="hiringBriefInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Hiring%20Page%20Headshot%20Sprint%20invoice%20request&body=Selected%20package%3A%20Hiring%20page%20visual%20system%20-%209%2C900%2C000%20KRW%2B%0AReferral%20source%3A%20Hiring%20page%20headshots%20page%0ATeam%20size%3A%209%0AEstimated%20per-person%20sprint%20cost%3A%201%2C100%2C000%20KRW%0ACommercial%20usage%20scope%3A%20Startup%20hiring%20page%2C%20team%20page%2C%20LinkedIn%20profiles%2C%20and%20launch%20deck%0AHiring%20use%20case%3A%20Recruiting%20launch%0AHiring%20page%2C%20LinkedIn%2C%20or%20company%20URL%3A%20%0ATarget%20deadline%3A%20%0ANotes%3A%20">Create hiring invoice email</a>
+                    </div>
+                    <p class="note">This is a mailto draft only. It does not create a checkout, charge a buyer, or submit a live form.</p>
+                </div>
             </div>
         </section>
 
@@ -501,5 +588,105 @@ Notes:</textarea>
             <a href="../support.html">Support</a>
         </nav>
     </footer>
+    <script>
+        (() => {
+            const hiringBriefPackages = {
+                "founder-profile-refresh": {
+                    label: "Founder profile refresh - 990,000 KRW",
+                    price: 990000,
+                    scope: "Founder LinkedIn profile, bio page, and launch material",
+                    fit: "Founder profile refresh is usually best for one public-facing leader.",
+                },
+                "team-profile-pack": {
+                    label: "Team profile pack - 2,900,000 KRW",
+                    price: 2900000,
+                    scope: "LinkedIn profiles, company team page, and recruiting announcement",
+                    fit: "Team profile pack is usually best for 2 to 8 people.",
+                },
+                "hiring-page-visual-system": {
+                    label: "Hiring page visual system - 9,900,000 KRW+",
+                    price: 9900000,
+                    scope: "Startup hiring page, team page, LinkedIn profiles, and launch deck",
+                    fit: "Hiring page visual system is usually best for 9 or more people.",
+                },
+            };
+            const hiringBriefSources = {
+                hiring: "Hiring page headshots page",
+                linkedin: "LinkedIn photo page",
+                corporate: "Corporate headshot page",
+                team: "Team Headshot Sprint",
+            };
+            const params = new URLSearchParams(window.location.search);
+            const form = document.getElementById("hiringBriefForm");
+            const preview = document.getElementById("hiringBriefEmailPreview");
+            const invoiceLink = document.getElementById("hiringBriefInvoiceLink");
+            const packageFit = document.getElementById("hiringBriefPackageFit");
+            const costPerPerson = document.getElementById("hiringBriefCostPerPerson");
+
+            function field(id) {
+                return document.getElementById(id);
+            }
+            function fieldValue(id) {
+                return field(id)?.value?.trim() || "";
+            }
+            function formatKrw(value) {
+                return `${new Intl.NumberFormat("en-US").format(value)} KRW`;
+            }
+            function selectedPackage() {
+                return hiringBriefPackages[fieldValue("hiringBriefPackage")] || hiringBriefPackages["hiring-page-visual-system"];
+            }
+            function teamSize() {
+                const size = Number.parseInt(fieldValue("hiringBriefTeamSize"), 10);
+                return Number.isFinite(size) && size > 0 ? size : 1;
+            }
+            function updateHiringBrief() {
+                const selected = selectedPackage();
+                const size = teamSize();
+                const perPerson = Math.ceil(selected.price / size);
+                const body = [
+                    `Selected package: ${selected.label}`,
+                    `Referral source: ${fieldValue("hiringBriefSource") || "Hiring page headshots page"}`,
+                    `Team size: ${size}`,
+                    `Estimated per-person sprint cost: ${formatKrw(perPerson)}`,
+                    `Commercial usage scope: ${selected.scope}`,
+                    `Hiring use case: ${fieldValue("hiringBriefGoal") || "Recruiting launch"}`,
+                    `Hiring page, LinkedIn, or company URL: ${fieldValue("hiringBriefCompanyPage")}`,
+                    `Target deadline: ${fieldValue("hiringBriefDeadline")}`,
+                    `Notes: ${fieldValue("hiringBriefNotes")}`,
+                ].join("\n");
+
+                if (costPerPerson) {
+                    costPerPerson.textContent = `Estimated per-person sprint cost: ${formatKrw(perPerson)}`;
+                }
+                if (packageFit) {
+                    packageFit.textContent = `Estimated package fit: ${selected.fit}`;
+                }
+                if (preview) {
+                    preview.textContent = body;
+                }
+                if (invoiceLink) {
+                    invoiceLink.href = `mailto:alyduho984530@gmail.com?subject=${encodeURIComponent("Kova Hiring Page Headshot Sprint invoice request")}&body=${encodeURIComponent(body)}`;
+                }
+            }
+
+            const packageParam = params.get("package");
+            if (packageParam && hiringBriefPackages[packageParam]) {
+                field("hiringBriefPackage").value = packageParam;
+            }
+            const sourceParam = params.get("source");
+            const mappedSource = sourceParam ? hiringBriefSources[sourceParam] : "";
+            if (mappedSource) {
+                field("hiringBriefSource").value = mappedSource;
+            }
+            const teamSizeParam = params.get("teamSize");
+            if (teamSizeParam) {
+                field("hiringBriefTeamSize").value = teamSizeParam;
+            }
+
+            form?.addEventListener("input", updateHiringBrief);
+            form?.addEventListener("change", updateHiringBrief);
+            updateHiringBrief();
+        })();
+    </script>
 </body>
 </html>

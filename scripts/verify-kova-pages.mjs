@@ -479,6 +479,94 @@ function verifyLinkedInHeadshotSprintRuntime(html) {
   assert.match(decodeURIComponent(elements.get("linkedinSprintInvoiceLink").href), /Average paid order value: 300,000 KRW/);
 }
 
+function verifyHiringPageBriefRuntime(html) {
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const hiringBriefPackages[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "Hiring page headshots page must include the hiring brief builder script");
+
+  const listeners = new Map();
+  const elements = new Map();
+  const addElement = (id, properties = {}) => {
+    const element = {
+      href: "",
+      textContent: "",
+      value: "",
+      options: [],
+      selectedIndex: 0,
+      ...properties,
+      addEventListener: (eventName, callback) => {
+        const key = `${id}:${eventName}`;
+        listeners.set(key, [...(listeners.get(key) || []), callback]);
+      },
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const fire = (id, eventName) => {
+    for (const callback of listeners.get(`${id}:${eventName}`) || []) {
+      callback();
+    }
+  };
+
+  addElement("hiringBriefForm");
+  addElement("hiringBriefPackage", {
+    value: "team-profile-pack",
+    options: [
+      { dataset: { price: "990000" }, textContent: "Founder profile refresh - 990,000 KRW" },
+      { dataset: { price: "2900000" }, textContent: "Team profile pack - 2,900,000 KRW" },
+      { dataset: { price: "9900000" }, textContent: "Hiring page visual system - 9,900,000 KRW+" },
+    ],
+  });
+  addElement("hiringBriefSource", { value: "Hiring page headshots page" });
+  addElement("hiringBriefTeamSize", { value: "9" });
+  addElement("hiringBriefCompanyPage", { value: "https://example.com/careers" });
+  addElement("hiringBriefGoal", { value: "Recruiting launch" });
+  addElement("hiringBriefDeadline", { value: "This month" });
+  addElement("hiringBriefNotes", { value: "" });
+  addElement("hiringBriefEmailPreview");
+  addElement("hiringBriefInvoiceLink");
+  addElement("hiringBriefPackageFit");
+  addElement("hiringBriefCostPerPerson");
+
+  vm.runInNewContext(
+    scriptMatch[1],
+    {
+      document: {
+        getElementById: (id) => elements.get(id) ?? null,
+      },
+      encodeURIComponent,
+      URLSearchParams,
+      window: {
+        location: {
+          search: "?source=linkedin&package=hiring-page-visual-system&teamSize=12",
+        },
+      },
+      Intl,
+    },
+    { timeout: 1000 },
+  );
+
+  assert.equal(elements.get("hiringBriefPackage").value, "hiring-page-visual-system");
+  assert.equal(elements.get("hiringBriefSource").value, "LinkedIn photo page");
+  assert.equal(elements.get("hiringBriefTeamSize").value, "12");
+  assert.equal(elements.get("hiringBriefCostPerPerson").textContent, "Estimated per-person sprint cost: 825,000 KRW");
+  assert.match(elements.get("hiringBriefEmailPreview").textContent, /Selected package: Hiring page visual system - 9,900,000 KRW\+/);
+  assert.match(elements.get("hiringBriefEmailPreview").textContent, /Referral source: LinkedIn photo page/);
+  assert.match(elements.get("hiringBriefEmailPreview").textContent, /Team size: 12/);
+  assert.match(elements.get("hiringBriefEmailPreview").textContent, /Estimated per-person sprint cost: 825,000 KRW/);
+  assert.match(decodeURIComponent(elements.get("hiringBriefInvoiceLink").href), /Kova Hiring Page Headshot Sprint invoice request/);
+
+  elements.get("hiringBriefPackage").value = "team-profile-pack";
+  fire("hiringBriefPackage", "change");
+  elements.get("hiringBriefTeamSize").value = "4";
+  fire("hiringBriefForm", "input");
+
+  assert.equal(elements.get("hiringBriefCostPerPerson").textContent, "Estimated per-person sprint cost: 725,000 KRW");
+  assert.match(elements.get("hiringBriefPackageFit").textContent, /Team profile pack is usually best for 2 to 8 people/);
+  assert.match(elements.get("hiringBriefEmailPreview").textContent, /Selected package: Team profile pack - 2,900,000 KRW/);
+  assert.match(elements.get("hiringBriefEmailPreview").textContent, /Team size: 4/);
+  assert.match(elements.get("hiringBriefEmailPreview").textContent, /Estimated per-person sprint cost: 725,000 KRW/);
+}
+
 const requiredFiles = [
   "Kova/index.html",
   "Kova/download/index.html",
@@ -1100,7 +1188,19 @@ assert.match(hiringPageHeadshots, /2,900,000 KRW/);
 assert.match(hiringPageHeadshots, /9,900,000 KRW\+/);
 assert.match(hiringPageHeadshots, /Team invoice email preview/);
 assert.match(hiringPageHeadshots, /Request team invoice/);
+assert.match(hiringPageHeadshots, /id="hiringPageBriefBuilder"/);
+assert.match(hiringPageHeadshots, /Hiring Page Headshot brief builder/);
+assert.match(hiringPageHeadshots, /id="hiringBriefForm"/);
+assert.match(hiringPageHeadshots, /id="hiringBriefPackage"/);
+assert.match(hiringPageHeadshots, /id="hiringBriefSource"/);
+assert.match(hiringPageHeadshots, /id="hiringBriefTeamSize"/);
+assert.match(hiringPageHeadshots, /id="hiringBriefCostPerPerson"/);
+assert.match(hiringPageHeadshots, /id="hiringBriefEmailPreview"/);
+assert.match(hiringPageHeadshots, /id="hiringBriefInvoiceLink"/);
+assert.match(hiringPageHeadshots, /Kova Hiring Page Headshot Sprint invoice request/);
+assert.match(hiringPageHeadshots, /Estimated per-person sprint cost:/);
 assert.match(hiringPageHeadshots, /mailto:alyduho984530@gmail\.com\?subject=Kova%20Team%20Headshot%20Sprint%20invoice%20request/);
+verifyHiringPageBriefRuntime(hiringPageHeadshots);
 assert.match(hiringPageHeadshots, /application\/ld\+json/);
 assert.match(hiringPageHeadshots, /Service/);
 assert.match(hiringPageHeadshots, /OfferCatalog/);
