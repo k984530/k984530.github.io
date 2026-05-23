@@ -323,6 +323,84 @@ function verifyDatingSourceReadinessRuntime(html) {
   assert.match(decodeURIComponent(elements.get("datingSprintInvoiceLink").href), /reference style ready/);
 }
 
+function verifyFashionStyleSprintRuntime(html) {
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const styleProfilePackages[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "Fashion photo page must include the style profile sprint script");
+
+  const listeners = new Map();
+  const elements = new Map();
+  const addElement = (id, properties = {}) => {
+    const element = {
+      href: "",
+      textContent: "",
+      value: "",
+      options: [],
+      selectedIndex: 0,
+      ...properties,
+      addEventListener: (eventName, callback) => {
+        const key = `${id}:${eventName}`;
+        listeners.set(key, [...(listeners.get(key) || []), callback]);
+      },
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const fire = (id, eventName) => {
+    for (const callback of listeners.get(`${id}:${eventName}`) || []) {
+      callback();
+    }
+  };
+
+  addElement("styleProfileSprintForm");
+  addElement("styleProfilePackage", {
+    value: "style-profile-refresh",
+    options: [
+      { dataset: { price: "149000" }, textContent: "Style profile refresh - 149,000 KRW" },
+      { dataset: { price: "390000" }, textContent: "Outfit social set - 390,000 KRW" },
+    ],
+  });
+  addElement("styleProfileSource", { value: "Fashion photo page" });
+  addElement("styleProfileGoal", { value: "Dating or social profile refresh" });
+  addElement("styleProfileAov", { value: "50000" });
+  addElement("styleProfileReference", { value: "https://example.com/style" });
+  addElement("styleProfileDeadline", { value: "This week" });
+  addElement("styleProfileNotes", { value: "" });
+  addElement("styleProfileEmailPreview");
+  addElement("styleProfileInvoiceLink");
+
+  vm.runInNewContext(
+    scriptMatch[1],
+    {
+      document: {
+        getElementById: (id) => elements.get(id) ?? null,
+      },
+      encodeURIComponent,
+      URLSearchParams,
+      window: {
+        location: {
+          search: "?source=modee&package=outfit-social-set",
+        },
+      },
+    },
+    { timeout: 1000 },
+  );
+
+  assert.equal(elements.get("styleProfilePackage").value, "outfit-social-set");
+  assert.equal(elements.get("styleProfileSource").value, "MODEE");
+  assert.match(elements.get("styleProfileEmailPreview").textContent, /Selected package: Outfit social set - 390,000 KRW/);
+  assert.match(elements.get("styleProfileEmailPreview").textContent, /Referral source: MODEE/);
+  assert.match(elements.get("styleProfileEmailPreview").textContent, /Estimated paid orders to recover fee: about 8/);
+  assert.match(decodeURIComponent(elements.get("styleProfileInvoiceLink").href), /Kova Style Profile Sprint invoice request/);
+  assert.match(decodeURIComponent(elements.get("styleProfileInvoiceLink").href), /Outfit social set - 390,000 KRW/);
+
+  elements.get("styleProfileAov").value = "100000";
+  fire("styleProfileSprintForm", "input");
+
+  assert.match(elements.get("styleProfileEmailPreview").textContent, /Average paid order value: 100,000 KRW/);
+  assert.match(elements.get("styleProfileEmailPreview").textContent, /Estimated paid orders to recover fee: about 4/);
+  assert.match(decodeURIComponent(elements.get("styleProfileInvoiceLink").href), /Average paid order value: 100%2C000 KRW|Average paid order value: 100,000 KRW/);
+}
+
 const requiredFiles = [
   "Kova/index.html",
   "Kova/download/index.html",
@@ -1109,8 +1187,18 @@ assert.match(fashion, /\.\.\/examples\//);
 assert.match(fashion, /\.\.\/ai-dating-profile-picture-generator\/\?source=fashion-photo&package=profile-refresh#datingSprintBuilder/);
 assert.match(fashion, /\.\.\/ai-profile-headshot-generator\//);
 assert.match(fashion, /\.\.\/ai-photo-editor-styles\//);
+assert.match(fashion, /id="styleProfileSprintBuilder"/);
+assert.match(fashion, /Style Profile Sprint brief builder/);
+assert.match(fashion, /id="styleProfilePackage"/);
+assert.match(fashion, /id="styleProfileSource"/);
+assert.match(fashion, /id="styleProfileAov"/);
+assert.match(fashion, /id="styleProfileEmailPreview"/);
+assert.match(fashion, /id="styleProfileInvoiceLink"/);
+assert.match(fashion, /Kova Style Profile Sprint invoice request/);
+assert.match(fashion, /Estimated paid orders to recover fee:/);
 assert.match(fashion, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(fashion, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+verifyFashionStyleSprintRuntime(fashion);
 
 assert.match(selfie, /<title>AI Selfie Generator \| Kova<\/title>/);
 assert.match(selfie, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-selfie-generator\/">/);

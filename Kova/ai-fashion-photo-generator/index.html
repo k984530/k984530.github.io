@@ -146,6 +146,24 @@
         .service-box { border: 2px solid var(--ink); border-radius: 8px; background: #e9f1ff; padding: 26px; box-shadow: 8px 8px 0 var(--blue); }
         .service-box h2 { margin: 0 0 10px; font-size: 1.48rem; }
         .service-box p { max-width: 760px; margin: 0 0 18px; color: var(--muted); line-height: 1.65; }
+        .sprint-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 18px; }
+        .sprint-card { min-height: 204px; padding: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.08); }
+        .sprint-card:nth-child(2) { background: #eef9f3; }
+        .sprint-card:nth-child(3) { background: #fff4d6; }
+        .sprint-card strong { display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.16rem; }
+        .sprint-card h3 { margin: 0 0 10px; font-size: 1.24rem; }
+        .sprint-card p { margin: 0; color: var(--muted); line-height: 1.58; }
+        .brief-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr); gap: 18px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 22px; box-shadow: 8px 8px 0 var(--blue); }
+        .brief-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .field { display: grid; gap: 7px; font-weight: 800; }
+        .field span { color: var(--muted); font-size: 0.86rem; text-transform: uppercase; }
+        .field input,
+        .field select { width: 100%; min-height: 46px; border: 2px solid var(--ink); border-radius: 8px; padding: 0 12px; background: #fffdf7; color: var(--ink); font: inherit; }
+        .field.full { grid-column: 1 / -1; }
+        .preview-box { display: grid; gap: 12px; align-content: start; }
+        .preview-box h3 { margin: 0; font-size: 1.24rem; }
+        .preview { min-height: 240px; margin: 0; padding: 16px; border: 2px solid var(--ink); border-radius: 8px; background: #101114; color: var(--white); white-space: pre-wrap; line-height: 1.58; overflow-wrap: anywhere; }
+        .safety-note { margin: 0; color: var(--muted); line-height: 1.55; }
         .faq { display: grid; gap: 14px; }
         .faq article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 20px; }
         .faq h3 { margin: 0 0 8px; }
@@ -158,7 +176,11 @@
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 900px) {
             .hero, .section-head, .compare { grid-template-columns: 1fr; }
-            .cards { grid-template-columns: 1fr; }
+            .cards,
+            .sprint-grid,
+            .brief-panel,
+            .brief-form { grid-template-columns: 1fr; }
+            .field.full { grid-column: auto; }
         }
         @media (max-width: 560px) {
             .fashion-board { grid-template-columns: 1fr; }
@@ -250,9 +272,86 @@
                 <h2 id="serviceTitle">Need a finished profile set?</h2>
                 <p>Self-serve Kova is best for fast experiments. If the photo needs to sell a profile, route the source, goal, deadline, and reference profile into the style profile sprint so it can be reviewed before invoice instructions are sent.</p>
                 <div class="cta-row">
-                    <a class="button" href="../ai-dating-profile-picture-generator/?source=fashion-photo&package=profile-refresh#datingSprintBuilder">Style profile sprint</a>
+                    <a class="button" href="#styleProfileSprintBuilder">Build style sprint brief</a>
+                    <a class="button secondary" href="../ai-dating-profile-picture-generator/?source=fashion-photo&package=profile-refresh#datingSprintBuilder">Dating profile sprint</a>
                     <a class="button secondary" href="../ai-profile-headshot-generator/">Profile headshots</a>
                     <a class="button secondary" href="../examples/">See examples</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section shell" id="styleProfileSprintBuilder" aria-labelledby="styleProfileSprintTitle">
+            <div class="section-head">
+                <h2 id="styleProfileSprintTitle">Style Profile Sprint brief builder</h2>
+                <p>MODEE, Lookey, and fashion-photo visitors can turn a style intent into a scoped paid sprint before leaving the page. The builder keeps package, source, goal, reference, deadline, and recovery math visible before an invoice email opens.</p>
+            </div>
+            <div class="sprint-grid" aria-label="Style Profile Sprint packages">
+                <article class="sprint-card">
+                    <strong>149,000 KRW</strong>
+                    <h3>Style profile refresh</h3>
+                    <p>One styled profile direction for dating, social, or creator bios with source-photo and crop notes before invoice.</p>
+                </article>
+                <article class="sprint-card">
+                    <strong>390,000 KRW</strong>
+                    <h3>Outfit social set</h3>
+                    <p>Multiple fashion-led variants for profile photos, outfit posts, social thumbnails, and warmer bio visuals.</p>
+                </article>
+                <article class="sprint-card">
+                    <strong>990,000 KRW+</strong>
+                    <h3>Creator style system</h3>
+                    <p>A cohesive visual set for creators, coaches, or paid communities that need repeatable profile proof.</p>
+                </article>
+            </div>
+            <div class="brief-panel">
+                <form class="brief-form" id="styleProfileSprintForm">
+                    <label class="field">
+                        <span>Package</span>
+                        <select id="styleProfilePackage" name="package">
+                            <option value="style-profile-refresh">Style profile refresh - 149,000 KRW</option>
+                            <option value="outfit-social-set">Outfit social set - 390,000 KRW</option>
+                            <option value="creator-style-system">Creator style system - 990,000 KRW+</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Referral source</span>
+                        <select id="styleProfileSource" name="source">
+                            <option value="Fashion photo page">Fashion photo page</option>
+                            <option value="MODEE">MODEE</option>
+                            <option value="Lookey">Lookey</option>
+                            <option value="Direct Kova style page">Direct Kova style page</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Primary goal</span>
+                        <select id="styleProfileGoal" name="goal">
+                            <option>Dating or social profile refresh</option>
+                            <option>Outfit post and profile set</option>
+                            <option>Creator bio visual system</option>
+                            <option>Style-led professional profile</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Average paid order value</span>
+                        <input id="styleProfileAov" name="aov" inputmode="numeric" value="50000">
+                    </label>
+                    <label class="field full">
+                        <span>Profile or reference link</span>
+                        <input id="styleProfileReference" name="reference" placeholder="Profile page, outfit reference, brand mood, or creator bio URL">
+                    </label>
+                    <label class="field">
+                        <span>Target deadline</span>
+                        <input id="styleProfileDeadline" name="deadline" placeholder="This week / content launch / open">
+                    </label>
+                    <label class="field">
+                        <span>Notes</span>
+                        <input id="styleProfileNotes" name="notes" placeholder="Style constraints, source photos, audience, usage scope">
+                    </label>
+                </form>
+                <div class="preview-box">
+                    <h3>Style invoice email preview</h3>
+                    <pre class="preview" id="styleProfileEmailPreview"></pre>
+                    <p class="safety-note">No live checkout, payment link, or buyer message is created. This page only opens a draft invoice-request email for manual review.</p>
+                    <a class="button" id="styleProfileInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Style%20Profile%20Sprint%20invoice%20request">Create style invoice email</a>
                 </div>
             </div>
         </section>
@@ -303,5 +402,73 @@
             <a href="../support.html">Support</a>
         </nav>
     </footer>
+    <script>
+        const styleProfilePackages = {
+            "style-profile-refresh": {
+                label: "Style profile refresh - 149,000 KRW",
+                price: 149000
+            },
+            "outfit-social-set": {
+                label: "Outfit social set - 390,000 KRW",
+                price: 390000
+            },
+            "creator-style-system": {
+                label: "Creator style system - 990,000 KRW+",
+                price: 990000
+            }
+        };
+
+        const styleProfileSources = {
+            "fashion-photo": "Fashion photo page",
+            fashion: "Fashion photo page",
+            modee: "MODEE",
+            lookey: "Lookey",
+            direct: "Direct Kova style page"
+        };
+
+        function styleProfileFieldValue(id, fallback = "") {
+            const field = document.getElementById(id);
+            return field && field.value.trim() ? field.value.trim() : fallback;
+        }
+
+        function selectedStyleProfilePackage() {
+            const field = document.getElementById("styleProfilePackage");
+            return styleProfilePackages[field.value] || styleProfilePackages["style-profile-refresh"];
+        }
+
+        function updateStyleProfileBrief() {
+            const selectedPackage = selectedStyleProfilePackage();
+            const averageOrderValue = Math.max(1, Number(styleProfileFieldValue("styleProfileAov", "50000").replace(/[^0-9]/g, "")) || 50000);
+            const recoveryOrders = Math.ceil(selectedPackage.price / averageOrderValue);
+            const body = [
+                "Selected package: " + selectedPackage.label,
+                "Referral source: " + styleProfileFieldValue("styleProfileSource", "Fashion photo page"),
+                "Primary goal: " + styleProfileFieldValue("styleProfileGoal", "Dating or social profile refresh"),
+                "Profile or reference link: " + styleProfileFieldValue("styleProfileReference", "Not added yet"),
+                "Target deadline: " + styleProfileFieldValue("styleProfileDeadline", "Open"),
+                "Average paid order value: " + averageOrderValue.toLocaleString("en-US") + " KRW",
+                "Estimated paid orders to recover fee: about " + recoveryOrders,
+                "Notes: " + styleProfileFieldValue("styleProfileNotes", "Source photos and preferred style references will be shared before invoice."),
+                "",
+                "Please reply with scope, invoice details, and source-photo checklist before any payment link or production work."
+            ].join("\n");
+
+            document.getElementById("styleProfileEmailPreview").textContent = body;
+            document.getElementById("styleProfileInvoiceLink").href = "mailto:alyduho984530@gmail.com?subject=" + encodeURIComponent("Kova Style Profile Sprint invoice request") + "&body=" + encodeURIComponent(body);
+        }
+
+        const styleProfileParams = new URLSearchParams(window.location.search);
+        const styleProfilePackageParam = styleProfileParams.get("package");
+        const styleProfileSourceParam = styleProfileParams.get("source");
+        if (styleProfilePackageParam && styleProfilePackages[styleProfilePackageParam]) {
+            document.getElementById("styleProfilePackage").value = styleProfilePackageParam;
+        }
+        if (styleProfileSourceParam && styleProfileSources[styleProfileSourceParam.toLowerCase()]) {
+            document.getElementById("styleProfileSource").value = styleProfileSources[styleProfileSourceParam.toLowerCase()];
+        }
+        document.getElementById("styleProfileSprintForm").addEventListener("input", updateStyleProfileBrief);
+        document.getElementById("styleProfileSprintForm").addEventListener("change", updateStyleProfileBrief);
+        updateStyleProfileBrief();
+    </script>
 </body>
 </html>
