@@ -426,6 +426,11 @@
             "founder-profile-kit": "Founder profile kit - 990,000 KRW",
             "market-facing-visual-system": "Market-facing visual system - 2,900,000 KRW+"
         };
+        const proPackagePrices = {
+            "professional-refresh": 290000,
+            "founder-profile-kit": 990000,
+            "market-facing-visual-system": 2900000
+        };
         const proSourceLabels = {
             cryptoai: "CryptoAI",
             cryptoskills: "CryptoSkills",
@@ -462,7 +467,8 @@
 
         function selectedProHeadshotPrice() {
             const field = document.getElementById("proHeadshotPackage");
-            return Number(field.options[field.selectedIndex].dataset.price || 290000);
+            const selectedOptionPrice = field.options[field.selectedIndex] && field.options[field.selectedIndex].dataset.price;
+            return proPackagePrices[field.value] || Number(selectedOptionPrice || 290000);
         }
 
         function proHeadshotReadinessNote() {
@@ -522,6 +528,16 @@
         if (proSourceParam && proSourceLabels[proSourceParam.toLowerCase()]) {
             document.getElementById("proHeadshotSource").value = proSourceLabels[proSourceParam.toLowerCase()];
         }
+        [
+            ["use", "proHeadshotUse"],
+            ["aov", "proHeadshotAov"],
+            ["profileLink", "proHeadshotProfileLink"],
+            ["deadline", "proHeadshotDeadline"],
+            ["notes", "proHeadshotNotes"]
+        ].forEach(([paramName, fieldId]) => {
+            const value = proParams.get(paramName);
+            if (value) document.getElementById(fieldId).value = value;
+        });
         document.getElementById("proHeadshotForm").addEventListener("input", updateProHeadshotBrief);
         document.getElementById("proHeadshotForm").addEventListener("change", updateProHeadshotBrief);
         for (const item of proReadinessItems) {

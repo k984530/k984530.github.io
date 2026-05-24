@@ -242,6 +242,8 @@ function verifyProHeadshotReadinessRuntime(html) {
     value: "professional-refresh",
     options: [
       { dataset: { price: "290000" }, textContent: "Professional refresh - 290,000 KRW" },
+      { dataset: { price: "990000" }, textContent: "Founder profile kit - 990,000 KRW" },
+      { dataset: { price: "2900000" }, textContent: "Market-facing visual system - 2,900,000 KRW+" },
     ],
   });
   addElement("proHeadshotSource", { value: "CryptoAI" });
@@ -270,16 +272,29 @@ function verifyProHeadshotReadinessRuntime(html) {
       URLSearchParams,
       window: {
         location: {
-          search: "?source=cryptoai&package=professional-refresh",
+          search: "?source=cryptoai&package=founder-profile-kit&use=Founder%20or%20analyst%20bio&aov=125000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.CryptoAI&deadline=This%20week&notes=Source%20app%20visitor%20wants%20professional%20finance%20headshot",
         },
       },
     },
     { timeout: 1000 },
   );
 
+  assert.equal(elements.get("proHeadshotPackage").value, "founder-profile-kit");
+  assert.equal(elements.get("proHeadshotSource").value, "CryptoAI");
+  assert.equal(elements.get("proHeadshotUse").value, "Founder or analyst bio");
+  assert.equal(elements.get("proHeadshotAov").value, "125000");
+  assert.equal(elements.get("proHeadshotProfileLink").value, "https://play.google.com/store/apps/details?id=com.aly.CryptoAI");
+  assert.equal(elements.get("proHeadshotDeadline").value, "This week");
+  assert.equal(elements.get("proHeadshotNotes").value, "Source app visitor wants professional finance headshot");
   assert.equal(elements.get("proReadinessScore").textContent, "2/4 ready");
   assert.match(elements.get("proReadinessRecommendation").textContent, /Add blur-free source photos and a reference profile/);
   assert.match(elements.get("proHeadshotEmailPreview").textContent, /Source photo readiness: 2\/4 ready/);
+  assert.match(elements.get("proHeadshotEmailPreview").textContent, /Selected package: Founder profile kit - 990,000 KRW/);
+  assert.match(elements.get("proHeadshotEmailPreview").textContent, /Referral source: CryptoAI/);
+  assert.match(elements.get("proHeadshotEmailPreview").textContent, /Primary use: Founder or analyst bio/);
+  assert.match(elements.get("proHeadshotEmailPreview").textContent, /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.aly\.CryptoAI/);
+  assert.match(elements.get("proHeadshotEmailPreview").textContent, /Average paid order value: 125,000 KRW/);
+  assert.match(elements.get("proHeadshotEmailPreview").textContent, /Estimated paid orders to recover fee: about 8/);
   assert.match(decodeURIComponent(elements.get("proHeadshotInvoiceLink").href), /Source photo readiness: 2\/4 ready/);
 
   elements.get("proReadinessNoObstruction").checked = true;

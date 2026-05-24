@@ -113,6 +113,13 @@ const professionalKovaIntentDirs = new Map([
   ["Wealtha", "wealtha"],
 ]);
 
+const professionalKovaIntentPrefillLinks = new Map([
+  ["ChartingSkills", "../Kova/ai-profile-headshot-generator/?source=chartingskills&package=professional-refresh&use=Finance%20creator%20profile&aov=100000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.ChartingSkill&deadline=This%20week&notes=Source%20app%20visitor%20wants%20professional%20finance%20headshot#proHeadshotBuilder"],
+  ["CryptoAI", "../Kova/ai-profile-headshot-generator/?source=cryptoai&package=professional-refresh&use=Finance%20creator%20profile&aov=100000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.CryptoAI&deadline=This%20week&notes=Source%20app%20visitor%20wants%20professional%20finance%20headshot#proHeadshotBuilder"],
+  ["CryptoSkills", "../Kova/ai-profile-headshot-generator/?source=cryptoskills&package=professional-refresh&use=Finance%20creator%20profile&aov=100000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.CryptoSkills&deadline=This%20week&notes=Source%20app%20visitor%20wants%20professional%20finance%20headshot#proHeadshotBuilder"],
+  ["Wealtha", "../Kova/ai-profile-headshot-generator/?source=wealtha&package=professional-refresh&use=Finance%20creator%20profile&aov=100000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.Wealtha&deadline=This%20week&notes=Source%20app%20visitor%20wants%20professional%20finance%20headshot#proHeadshotBuilder"],
+]);
+
 const journalKovaIntentDirs = new Set([
   "Growvi",
   "Selah",
@@ -277,7 +284,7 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     }
     if (professionalKovaIntentDirs.has(dir)) {
       const source = professionalKovaIntentDirs.get(dir);
-      const expectedLink = `../Kova/ai-profile-headshot-generator/?source=${source}&package=professional-refresh#proHeadshotBuilder`;
+      const expectedLink = professionalKovaIntentPrefillLinks.get(dir) ?? `../Kova/ai-profile-headshot-generator/?source=${source}&package=professional-refresh#proHeadshotBuilder`;
       if (!html.includes("../Kova/ai-profile-headshot-generator/")) {
         failures.push(`${dir}: missing Kova profile-headshot intent link`);
       }
