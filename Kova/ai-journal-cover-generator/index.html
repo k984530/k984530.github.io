@@ -135,6 +135,23 @@
         .card b { display: block; margin-bottom: 8px; color: var(--accent); font-size: 0.82rem; text-transform: uppercase; }
         .card h3 { margin: 0 0 10px; font-size: 1.24rem; }
         .card p { margin: 0; color: var(--muted); line-height: 1.62; }
+        .sprint-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 18px; }
+        .sprint-card { min-height: 184px; padding: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(47, 115, 255, 0.16); }
+        .sprint-card:nth-child(2) { background: #edf7f0; }
+        .sprint-card:nth-child(3) { background: #fff4cf; }
+        .sprint-card strong { display: block; margin-bottom: 10px; color: var(--accent); font-size: 1.24rem; }
+        .sprint-card h3 { margin: 0 0 10px; font-size: 1.18rem; }
+        .sprint-card p { margin: 0; color: var(--muted); line-height: 1.58; }
+        .brief-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr); gap: 18px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 22px; box-shadow: 8px 8px 0 var(--blue); }
+        .brief-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .field { display: grid; gap: 7px; font-weight: 800; }
+        .field.full { grid-column: 1 / -1; }
+        .field span { color: var(--muted); font-size: 0.88rem; text-transform: uppercase; }
+        select, input { width: 100%; min-height: 48px; border: 2px solid var(--ink); border-radius: 8px; padding: 0 12px; background: var(--paper); color: var(--ink); font: inherit; font-weight: 700; }
+        .brief-output { display: grid; gap: 12px; align-content: start; }
+        .brief-output strong { font-size: 1.08rem; }
+        .brief-note { margin: 0; color: var(--muted); line-height: 1.55; }
+        .preview { min-height: 224px; margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; border: 2px solid var(--line); border-radius: 8px; background: #111214; color: #fffaf0; padding: 14px; font: 0.88rem/1.55 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
         .faq { display: grid; gap: 14px; }
         .faq article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 20px; }
         .faq h3 { margin: 0 0 8px; }
@@ -147,7 +164,8 @@
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 900px) {
             .hero, .section-head { grid-template-columns: 1fr; }
-            .cards { grid-template-columns: 1fr; }
+            .cards, .sprint-grid, .brief-panel, .brief-form { grid-template-columns: 1fr; }
+            .field.full { grid-column: auto; }
         }
         @media (max-width: 560px) {
             .preview-grid { grid-template-columns: 1fr; }
@@ -243,9 +261,91 @@
             <div class="cta-row">
                 <a class="button" href="../quick-start/">Quick start</a>
                 <a class="button secondary" href="https://gumroad.com/checkout?product=nffhl&quantity=1" aria-label="Buy AI Creator Prompt Pack on Gumroad">Buy ₩29,000 prompt pack</a>
+                <a class="button secondary" href="#journalCoverSprintBuilder">Build journal sprint brief</a>
                 <a class="button secondary" href="../pricing/">Compare pricing</a>
                 <a class="button secondary" href="../examples/">See examples</a>
                 <a class="button secondary" href="../ai-photo-editor-styles/">See all styles</a>
+            </div>
+        </section>
+
+        <section class="section shell" id="journalCoverSprintBuilder" aria-labelledby="journalCoverSprintTitle">
+            <div class="section-head">
+                <h2 id="journalCoverSprintTitle">Journal Cover Sprint brief builder</h2>
+                <p>Diary, sleep, prayer, and parenting visitors can turn one quiet visual intent into a scoped paid sprint before leaving the page. The builder keeps package, source, goal, reference, deadline, and recovery math visible before an invoice email opens.</p>
+            </div>
+            <div class="sprint-grid" aria-label="Journal Cover Sprint packages">
+                <article class="sprint-card">
+                    <strong>149,000 KRW</strong>
+                    <h3>Private memory cover</h3>
+                    <p>One cover direction for a diary entry, private memory, sleep log, or personal milestone using one source photo.</p>
+                </article>
+                <article class="sprint-card">
+                    <strong>390,000 KRW</strong>
+                    <h3>Reflection card set</h3>
+                    <p>Multiple calm card variants for prayer, gratitude, sleep, wellness, family milestones, or monthly recaps.</p>
+                </article>
+                <article class="sprint-card">
+                    <strong>990,000 KRW+</strong>
+                    <h3>Journal visual system</h3>
+                    <p>A repeatable visual set for creators, paid communities, or app teams that need a consistent memory-keeping look.</p>
+                </article>
+            </div>
+            <div class="brief-panel">
+                <form class="brief-form" id="journalCoverSprintForm">
+                    <label class="field">
+                        <span>Package</span>
+                        <select id="journalCoverPackage" name="package">
+                            <option value="private-memory-cover">Private memory cover - 149,000 KRW</option>
+                            <option value="reflection-card-set">Reflection card set - 390,000 KRW</option>
+                            <option value="family-memory-cover">Family memory cover - 390,000 KRW</option>
+                            <option value="journal-visual-system">Journal visual system - 990,000 KRW+</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Referral source</span>
+                        <select id="journalCoverSource" name="source">
+                            <option>Direct journal cover page</option>
+                            <option>Growvi</option>
+                            <option>Selah</option>
+                            <option>StarDiary</option>
+                            <option>SweetSleep</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Primary goal</span>
+                        <select id="journalCoverGoal" name="goal">
+                            <option>Private diary memory cover</option>
+                            <option>Prayer and gratitude reflection cards</option>
+                            <option>Sleep reflection card set</option>
+                            <option>Family milestone journal cover</option>
+                            <option>Journal visual system</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Average paid order value</span>
+                        <input id="journalCoverAov" name="aov" inputmode="numeric" value="50000">
+                    </label>
+                    <label class="field full">
+                        <span>Reference or source link</span>
+                        <input id="journalCoverReference" name="reference" placeholder="Journal app, reflection page, moodboard, or photo reference URL">
+                    </label>
+                    <label class="field">
+                        <span>Target deadline</span>
+                        <input id="journalCoverDeadline" name="deadline" placeholder="This week / monthly recap / open">
+                    </label>
+                    <label class="field">
+                        <span>Notes</span>
+                        <input id="journalCoverNotes" name="notes" placeholder="Tone, privacy constraints, source photos, audience, usage scope">
+                    </label>
+                </form>
+                <div class="brief-output">
+                    <strong id="journalCoverRecoveryOrders">Estimated paid orders to recover fee: about 3</strong>
+                    <p class="brief-note" id="journalCoverPackageFit">Good fit for one diary, milestone, sleep, or private memory cover from one source photo.</p>
+                    <p class="brief-note">Journal cover sprint invoices stay manual for review before any payment link or production work.</p>
+                    <pre class="preview" id="journalCoverEmailPreview"></pre>
+                    <a class="button" id="journalCoverInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Journal%20Cover%20Sprint%20invoice%20request">Create journal invoice email</a>
+                    <a class="button secondary" href="https://gumroad.com/checkout?product=nffhl&quantity=1" aria-label="Buy AI Creator Prompt Pack on Gumroad">Buy ₩29,000 prompt pack</a>
+                </div>
             </div>
         </section>
 
@@ -298,5 +398,96 @@
             <a href="../support.html">Support</a>
         </nav>
     </footer>
+    <script>
+        const journalCoverPackages = {
+            "private-memory-cover": {
+                fit: "Good fit for one diary, milestone, sleep, or private memory cover from one source photo.",
+                label: "Private memory cover - 149,000 KRW",
+                price: 149000
+            },
+            "reflection-card-set": {
+                fit: "Good fit for prayer, gratitude, sleep, or wellness card sets that need multiple calm variants.",
+                label: "Reflection card set - 390,000 KRW",
+                price: 390000
+            },
+            "family-memory-cover": {
+                fit: "Good fit for parent-owned milestone visuals, memory books, and family journal covers.",
+                label: "Family memory cover - 390,000 KRW",
+                price: 390000
+            },
+            "journal-visual-system": {
+                fit: "Best for creators, paid communities, or app teams that need a repeatable journal visual system.",
+                label: "Journal visual system - 990,000 KRW+",
+                price: 990000
+            }
+        };
+
+        const journalCoverSources = {
+            growvi: "Growvi",
+            selah: "Selah",
+            stardiary: "StarDiary",
+            sweetsleep: "SweetSleep",
+            direct: "Direct journal cover page",
+            journal: "Direct journal cover page"
+        };
+
+        function journalCoverFieldValue(id, fallback = "") {
+            const field = document.getElementById(id);
+            return field && field.value.trim() ? field.value.trim() : fallback;
+        }
+
+        function selectedJournalCoverPackage() {
+            const field = document.getElementById("journalCoverPackage");
+            return journalCoverPackages[field.value] || journalCoverPackages["private-memory-cover"];
+        }
+
+        function updateJournalCoverBrief() {
+            const selectedPackage = selectedJournalCoverPackage();
+            const averageOrderValue = Math.max(1, Number(journalCoverFieldValue("journalCoverAov", "50000").replace(/[^0-9]/g, "")) || 50000);
+            const recoveryOrders = Math.ceil(selectedPackage.price / averageOrderValue);
+            document.getElementById("journalCoverRecoveryOrders").textContent = "Estimated paid orders to recover fee: about " + recoveryOrders;
+            document.getElementById("journalCoverPackageFit").textContent = selectedPackage.fit;
+
+            const body = [
+                "Selected package: " + selectedPackage.label,
+                "Referral source: " + journalCoverFieldValue("journalCoverSource", "Direct journal cover page"),
+                "Primary goal: " + journalCoverFieldValue("journalCoverGoal", "Private diary memory cover"),
+                "Reference or source link: " + journalCoverFieldValue("journalCoverReference", "Not added yet"),
+                "Target deadline: " + journalCoverFieldValue("journalCoverDeadline", "Open"),
+                "Average paid order value: " + averageOrderValue.toLocaleString("en-US") + " KRW",
+                "Estimated paid orders to recover fee: about " + recoveryOrders,
+                "Notes: " + journalCoverFieldValue("journalCoverNotes", "Source photos and preferred journal cover style will be shared before invoice."),
+                "",
+                "Please reply with scope, invoice details, and source-photo checklist before any payment link or production work."
+            ].join("\n");
+
+            document.getElementById("journalCoverEmailPreview").textContent = body;
+            document.getElementById("journalCoverInvoiceLink").href = "mailto:alyduho984530@gmail.com?subject=" + encodeURIComponent("Kova Journal Cover Sprint invoice request") + "&body=" + encodeURIComponent(body);
+        }
+
+        const journalCoverParams = new URLSearchParams(window.location.search);
+        const journalCoverPackageParam = journalCoverParams.get("package");
+        const journalCoverSourceParam = journalCoverParams.get("source");
+        if (journalCoverPackageParam && journalCoverPackages[journalCoverPackageParam]) {
+            document.getElementById("journalCoverPackage").value = journalCoverPackageParam;
+        }
+        if (journalCoverSourceParam && journalCoverSources[journalCoverSourceParam.toLowerCase()]) {
+            document.getElementById("journalCoverSource").value = journalCoverSources[journalCoverSourceParam.toLowerCase()];
+        }
+        [
+            ["goal", "journalCoverGoal"],
+            ["aov", "journalCoverAov"],
+            ["reference", "journalCoverReference"],
+            ["deadline", "journalCoverDeadline"],
+            ["notes", "journalCoverNotes"]
+        ].forEach(([paramName, fieldId]) => {
+            const value = journalCoverParams.get(paramName);
+            if (value) document.getElementById(fieldId).value = value;
+        });
+
+        document.getElementById("journalCoverSprintForm").addEventListener("input", updateJournalCoverBrief);
+        document.getElementById("journalCoverSprintForm").addEventListener("change", updateJournalCoverBrief);
+        updateJournalCoverBrief();
+    </script>
 </body>
 </html>

@@ -491,6 +491,89 @@ function verifyPetPortraitSprintRuntime(html) {
   assert.match(elements.get("petPortraitEmailPreview").textContent, /Selected package: Pet brand system - 990,000 KRW\+/);
 }
 
+function verifyJournalCoverSprintRuntime(html) {
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const journalCoverPackages[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "Journal cover page must include the journal cover sprint script");
+
+  const listeners = new Map();
+  const elements = new Map();
+  const addElement = (id, properties = {}) => {
+    const element = {
+      href: "",
+      textContent: "",
+      value: "",
+      ...properties,
+      addEventListener: (eventName, callback) => {
+        const key = `${id}:${eventName}`;
+        listeners.set(key, [...(listeners.get(key) || []), callback]);
+      },
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const fire = (id, eventName) => {
+    for (const callback of listeners.get(`${id}:${eventName}`) || []) {
+      callback();
+    }
+  };
+
+  addElement("journalCoverSprintForm");
+  addElement("journalCoverPackage", { value: "private-memory-cover" });
+  addElement("journalCoverSource", { value: "Direct journal cover page" });
+  addElement("journalCoverGoal", { value: "Private diary memory cover" });
+  addElement("journalCoverAov", { value: "50000" });
+  addElement("journalCoverReference", { value: "" });
+  addElement("journalCoverDeadline", { value: "" });
+  addElement("journalCoverNotes", { value: "" });
+  addElement("journalCoverRecoveryOrders");
+  addElement("journalCoverPackageFit");
+  addElement("journalCoverEmailPreview");
+  addElement("journalCoverInvoiceLink");
+
+  vm.runInNewContext(
+    scriptMatch[1],
+    {
+      document: {
+        getElementById: (id) => elements.get(id) ?? null,
+      },
+      encodeURIComponent,
+      URLSearchParams,
+      window: {
+        location: {
+          search: "?source=selah&package=reflection-card-set&goal=Prayer%20and%20gratitude%20reflection%20cards&aov=50000&reference=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.Selah&deadline=This%20week&notes=Source%20app%20visitor%20wants%20reflection%20card%20visuals",
+        },
+      },
+    },
+    { timeout: 1000 },
+  );
+
+  assert.equal(elements.get("journalCoverPackage").value, "reflection-card-set");
+  assert.equal(elements.get("journalCoverSource").value, "Selah");
+  assert.equal(elements.get("journalCoverGoal").value, "Prayer and gratitude reflection cards");
+  assert.equal(elements.get("journalCoverAov").value, "50000");
+  assert.equal(elements.get("journalCoverReference").value, "https://play.google.com/store/apps/details?id=com.aly.Selah");
+  assert.equal(elements.get("journalCoverDeadline").value, "This week");
+  assert.equal(elements.get("journalCoverNotes").value, "Source app visitor wants reflection card visuals");
+  assert.equal(elements.get("journalCoverRecoveryOrders").textContent, "Estimated paid orders to recover fee: about 8");
+  assert.match(elements.get("journalCoverPackageFit").textContent, /Good fit for prayer, gratitude, sleep, or wellness card sets/);
+  assert.match(elements.get("journalCoverEmailPreview").textContent, /Selected package: Reflection card set - 390,000 KRW/);
+  assert.match(elements.get("journalCoverEmailPreview").textContent, /Referral source: Selah/);
+  assert.match(elements.get("journalCoverEmailPreview").textContent, /Primary goal: Prayer and gratitude reflection cards/);
+  assert.match(elements.get("journalCoverEmailPreview").textContent, /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.aly\.Selah/);
+  assert.match(decodeURIComponent(elements.get("journalCoverInvoiceLink").href), /Kova Journal Cover Sprint invoice request/);
+  assert.match(decodeURIComponent(elements.get("journalCoverInvoiceLink").href), /Reflection card set - 390,000 KRW/);
+
+  elements.get("journalCoverPackage").value = "journal-visual-system";
+  fire("journalCoverPackage", "change");
+  elements.get("journalCoverAov").value = "100000";
+  fire("journalCoverSprintForm", "input");
+
+  assert.equal(elements.get("journalCoverRecoveryOrders").textContent, "Estimated paid orders to recover fee: about 10");
+  assert.match(elements.get("journalCoverPackageFit").textContent, /Best for creators, paid communities, or app teams/);
+  assert.match(elements.get("journalCoverEmailPreview").textContent, /Selected package: Journal visual system - 990,000 KRW\+/);
+  assert.match(elements.get("journalCoverEmailPreview").textContent, /Average paid order value: 100,000 KRW/);
+}
+
 function verifyFashionStyleSprintRuntime(html) {
   const scriptMatch = html.match(/<script>\s*([\s\S]*?const styleProfilePackages[\s\S]*?)\s*<\/script>/);
   assert.ok(scriptMatch, "Fashion photo page must include the style profile sprint script");
@@ -2254,8 +2337,20 @@ assert.match(journal, /\.\.\/download\/index\.html/);
 assert.match(journal, /\.\.\/pricing\//);
 assert.match(journal, /\.\.\/examples\//);
 assert.match(journal, /\.\.\/ai-photo-editor-styles\//);
+assert.match(journal, /id="journalCoverSprintBuilder"/);
+assert.match(journal, /Journal Cover Sprint brief builder/);
+assert.match(journal, /id="journalCoverPackage"/);
+assert.match(journal, /id="journalCoverSource"/);
+assert.match(journal, /id="journalCoverGoal"/);
+assert.match(journal, /id="journalCoverAov"/);
+assert.match(journal, /id="journalCoverReference"/);
+assert.match(journal, /id="journalCoverEmailPreview"/);
+assert.match(journal, /id="journalCoverInvoiceLink"/);
+assert.match(journal, /Kova Journal Cover Sprint invoice request/);
+assert.match(journal, /Estimated paid orders to recover fee:/);
 assert.match(journal, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(journal, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+verifyJournalCoverSprintRuntime(journal);
 
 assert.match(privacy, /Privacy Policy/);
 assert.match(privacy, /Kova/);

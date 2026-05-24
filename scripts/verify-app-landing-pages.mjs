@@ -127,6 +127,13 @@ const journalKovaIntentDirs = new Set([
   "SweetSleep",
 ]);
 
+const journalKovaIntentPrefillLinks = new Map([
+  ["Growvi", "../Kova/ai-journal-cover-generator/?source=growvi&package=family-memory-cover&goal=Family%20milestone%20journal%20cover&aov=50000&reference=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.Growvi&deadline=This%20week&notes=Source%20app%20visitor%20wants%20family%20milestone%20journal%20covers#journalCoverSprintBuilder"],
+  ["Selah", "../Kova/ai-journal-cover-generator/?source=selah&package=reflection-card-set&goal=Prayer%20and%20gratitude%20reflection%20cards&aov=50000&reference=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.Selah&deadline=This%20week&notes=Source%20app%20visitor%20wants%20reflection%20card%20visuals#journalCoverSprintBuilder"],
+  ["StarDiary", "../Kova/ai-journal-cover-generator/?source=stardiary&package=private-memory-cover&goal=Private%20diary%20memory%20cover&aov=50000&reference=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fstar-diary-stella-notes%2Fid6756995556&deadline=This%20week&notes=Source%20app%20visitor%20wants%20nightly%20memory%20covers#journalCoverSprintBuilder"],
+  ["SweetSleep", "../Kova/ai-journal-cover-generator/?source=sweetsleep&package=reflection-card-set&goal=Sleep%20reflection%20card%20set&aov=50000&reference=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.SweetSleep&deadline=This%20week&notes=Source%20app%20visitor%20wants%20sleep%20reflection%20visuals#journalCoverSprintBuilder"],
+]);
+
 const toolKovaIntentDirs = new Map([
   ["GeniePlanner", "genieplanner"],
   ["MobileCode", "mobilecode"],
@@ -312,11 +319,20 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
         failures.push(`${dir}: missing Kova professional headshot sprint CTA`);
       }
     }
-    if (journalKovaIntentDirs.has(dir) && !html.includes("../Kova/ai-journal-cover-generator/")) {
-      failures.push(`${dir}: missing Kova journal-cover intent link`);
-    }
-    if (journalKovaIntentDirs.has(dir) && !html.includes("journal cover visuals")) {
-      failures.push(`${dir}: missing Kova journal-cover intent copy`);
+    if (journalKovaIntentDirs.has(dir)) {
+      const expectedLink = journalKovaIntentPrefillLinks.get(dir);
+      if (!html.includes("../Kova/ai-journal-cover-generator/")) {
+        failures.push(`${dir}: missing Kova journal-cover intent link`);
+      }
+      if (!html.includes(expectedLink)) {
+        failures.push(`${dir}: missing source-aware Kova journal cover sprint link`);
+      }
+      if (!html.includes("journal cover visuals")) {
+        failures.push(`${dir}: missing Kova journal-cover intent copy`);
+      }
+      if (!html.includes("Journal cover sprint")) {
+        failures.push(`${dir}: missing Kova journal cover sprint CTA`);
+      }
     }
     if (toolKovaIntentDirs.has(dir) && !html.includes("../Kova/app-launch-visuals/")) {
       failures.push(`${dir}: missing Kova app-launch visuals intent link`);
@@ -385,7 +401,7 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     if (!html.includes("../Kova/download/Icon.png")) {
       failures.push(`${dir}: missing Kova promo icon`);
     }
-    if (!html.includes("Open Kova")) {
+    if (!/Open Kova|Profile photo sprint|Pet portrait sprint|Professional headshot sprint|Screenshot service|Book Studio Sprint|Style profile sprint|Journal cover sprint/.test(html)) {
       failures.push(`${dir}: missing Kova promo CTA`);
     }
     if (!html.includes("20 starter credits")) {
