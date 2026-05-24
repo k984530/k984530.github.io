@@ -129,6 +129,14 @@ const appMakerScreenshotDirs = new Map([
   ["VibePlanning", "vibeplanning"],
 ]);
 
+const appMakerScreenshotPrefillLinks = new Map([
+  ["AppHub", "../Kova/ai-app-store-screenshot-service/?source=apphub&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.AppHub#screenshotBriefBuilder"],
+  ["GeniePlanner", "../Kova/ai-app-store-screenshot-service/?source=genieplanner&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.GeniePlanner#screenshotBriefBuilder"],
+  ["MobileCode", "../Kova/ai-app-store-screenshot-service/?source=mobilecode&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.MobileCode#screenshotBriefBuilder"],
+  ["StatUP", "../Kova/ai-app-store-screenshot-service/?source=statup&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.StatUP#screenshotBriefBuilder"],
+  ["VibePlanning", "../Kova/ai-app-store-screenshot-service/?source=vibeplanning&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.VibePlanning#screenshotBriefBuilder"],
+]);
+
 const aiPlatformKovaIntentDirs = new Map([
   ["OneAI", "oneai"],
 ]);
@@ -197,10 +205,7 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
       failures.push(`${dir}: missing Kova Studio Sprint service CTA`);
     }
     if (appMakerScreenshotDirs.has(dir)) {
-      const source = appMakerScreenshotDirs.get(dir);
-      const expectedLink = dir === "AppHub"
-        ? "../Kova/ai-app-store-screenshot-service/?source=apphub&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.AppHub#screenshotBriefBuilder"
-        : `../Kova/ai-app-store-screenshot-service/?source=${source}&package=launch-visual-sprint#screenshotBriefBuilder`;
+      const expectedLink = appMakerScreenshotPrefillLinks.get(dir);
       if (!html.includes(expectedLink)) {
         failures.push(`${dir}: missing source-aware Kova screenshot service link`);
       }
