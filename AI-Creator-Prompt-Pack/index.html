@@ -143,7 +143,7 @@
         .card:nth-child(3) { background: #eef9f3; }
         .card b { display: block; margin-bottom: 8px; color: var(--accent); font-size: 0.82rem; text-transform: uppercase; }
         .card h3 { margin: 0 0 10px; font-size: 1.24rem; }
-        .card p, .card li { color: var(--muted); line-height: 1.62; }
+        .card p, .card li { color: var(--muted); line-height: 1.62; overflow-wrap: anywhere; }
         .card p { margin: 0; }
         .card ul { margin: 0; padding-left: 18px; }
         .bundle-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
@@ -153,6 +153,17 @@
         .bundle-panel h3 { margin: 10px 0; font-size: 1.34rem; }
         .bundle-panel p { margin: 0; color: var(--muted); line-height: 1.64; }
         .bundle-panel .cta-row { margin-top: auto; padding-top: 22px; }
+        .selector-panel { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr); gap: 16px; align-items: stretch; }
+        .selector-options { display: grid; gap: 12px; }
+        .selector-button { width: 100%; min-height: 72px; padding: 16px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); color: var(--ink); text-align: left; font: inherit; box-shadow: 6px 6px 0 rgba(16, 17, 20, 0.08); cursor: pointer; }
+        .selector-button[aria-pressed="true"] { background: #e9f1ff; box-shadow-color: var(--blue); }
+        .selector-button b { display: block; margin-bottom: 5px; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; }
+        .selector-button span { color: var(--muted); line-height: 1.45; }
+        .recommendation { display: grid; gap: 14px; min-height: 310px; padding: 24px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 var(--yellow); }
+        .recommendation b { color: var(--accent); font-size: 0.82rem; text-transform: uppercase; }
+        .recommendation h3 { margin: 0; font-size: 1.5rem; }
+        .recommendation p { margin: 0; color: var(--muted); line-height: 1.64; }
+        .file-path { display: inline-flex; width: fit-content; max-width: 100%; padding: 9px 11px; border: 2px solid var(--ink); border-radius: 8px; background: var(--paper); font-family: "SFMono-Regular", Consolas, monospace; font-size: 0.88rem; overflow-wrap: anywhere; }
         .upsell-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
         .upsell-card { display: flex; min-height: 260px; flex-direction: column; align-items: flex-start; padding: 22px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(16, 17, 20, 0.08); }
         .upsell-card:nth-child(2) { background: #eef9f3; box-shadow-color: var(--mint); }
@@ -172,7 +183,7 @@
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 880px) {
             .hero, .section-head { grid-template-columns: 1fr; }
-            .grid, .bundle-grid, .upsell-grid { grid-template-columns: 1fr; }
+            .grid, .bundle-grid, .selector-panel, .upsell-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 520px) {
             .button { width: 100%; }
@@ -254,6 +265,39 @@
                     <div class="cta-row">
                         <a class="button" href="https://gumroad.com/checkout?product=nffhl&quantity=1" target="_blank" rel="noopener">Buy ₩29,000 prompt pack</a>
                         <a class="button secondary" href="../Kova/pricing/">Kova pricing</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section shell" id="promptUseSelector" aria-labelledby="selectorTitle">
+            <div class="section-head">
+                <h2 id="selectorTitle">Choose your first prompt workflow</h2>
+                <p>Pick the job you want the pack to do first. The recommendation shows where to start in the ZIP before opening the ₩29,000 checkout.</p>
+            </div>
+            <div class="selector-panel">
+                <div class="selector-options" aria-label="Prompt pack use cases">
+                    <button class="selector-button" type="button" data-pack-use="creator" aria-pressed="true">
+                        <b>Creator batch</b>
+                        <span>Plan daily visuals, captions, and repeatable AI influencer posts.</span>
+                    </button>
+                    <button class="selector-button" type="button" data-pack-use="launch" aria-pressed="false">
+                        <b>App launch</b>
+                        <span>Turn an app feature into store, launch-board, and social post ideas.</span>
+                    </button>
+                    <button class="selector-button" type="button" data-pack-use="product" aria-pressed="false">
+                        <b>Product promo</b>
+                        <span>Create product listing visuals, promo angles, and soft-sell captions.</span>
+                    </button>
+                </div>
+                <article class="recommendation" data-pack-recommendation aria-live="polite">
+                    <b>Recommended file path</b>
+                    <span class="file-path" data-pack-file>creator-workflows.md</span>
+                    <h3 data-pack-title>Start with the creator batch workflow</h3>
+                    <p data-pack-copy>Use the creator-workflows.md sequence to turn one Kova result into a repeatable post format, then pull caption starters for the first three posts.</p>
+                    <div class="cta-row">
+                        <a class="button" href="https://gumroad.com/checkout?product=nffhl&quantity=1" target="_blank" rel="noopener">Buy ₩29,000 prompt pack</a>
+                        <a class="button secondary" href="download/ai-creator-prompt-pack-v1-sample.zip" download>Free sample</a>
                     </div>
                 </article>
             </div>
@@ -404,5 +448,45 @@
             <a href="../Kova/ai-profile-headshot-generator/">Headshots</a>
         </nav>
     </footer>
+    <script>
+        (() => {
+            const workflows = {
+                creator: {
+                    file: "creator-workflows.md",
+                    title: "Start with the creator batch workflow",
+                    copy: "Use the creator-workflows.md sequence to turn one Kova result into a repeatable post format, then pull caption starters for the first three posts.",
+                },
+                launch: {
+                    file: "app-launch-prompts.md",
+                    title: "Start with the app launch prompt set",
+                    copy: "Use app-launch-prompts.md to translate the app benefit into a launch-board visual, store screenshot idea, short CTA, and founder update.",
+                },
+                product: {
+                    file: "product-visual-prompts.md",
+                    title: "Start with the product promo prompts",
+                    copy: "Use product-visual-prompts.md to turn one product or offer into listing visuals, campaign angles, and soft-sell captions.",
+                },
+            };
+            const buttons = Array.from(document.querySelectorAll("[data-pack-use]"));
+            const file = document.querySelector("[data-pack-file]");
+            const title = document.querySelector("[data-pack-title]");
+            const copy = document.querySelector("[data-pack-copy]");
+
+            function selectWorkflow(key) {
+                const workflow = workflows[key] || workflows.creator;
+                buttons.forEach((button) => {
+                    button.setAttribute("aria-pressed", String(button.dataset.packUse === key));
+                });
+                if (file) file.textContent = workflow.file;
+                if (title) title.textContent = workflow.title;
+                if (copy) copy.textContent = workflow.copy;
+            }
+
+            buttons.forEach((button) => {
+                button.addEventListener("click", () => selectWorkflow(button.dataset.packUse));
+            });
+            selectWorkflow("creator");
+        })();
+    </script>
 </body>
 </html>
