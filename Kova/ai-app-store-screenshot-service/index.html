@@ -243,6 +243,10 @@
                         </select>
                     </label>
                     <label>
+                        Referral source
+                        <input id="screenshotReferralSource" name="screenshot_referral_source" type="text" value="Screenshot service page">
+                    </label>
+                    <label>
                         Store surface
                         <select id="screenshotPlatform" name="screenshot_platform">
                             <option>App Store screenshots</option>
@@ -319,13 +323,40 @@
             "creator-campaign-system": "Creator campaign system - 2,900,000 KRW",
             "portfolio-revenue-system": "Portfolio revenue system - 9,900,000 KRW+",
         };
+        const packagePrices = {
+            "launch-visual-sprint": 990000,
+            "creator-campaign-system": 2900000,
+            "portfolio-revenue-system": 9900000,
+        };
+        const screenshotBriefSources = {
+            apphub: "AppHub landing page",
+            applaunch: "App launch visuals page",
+            genieplanner: "GeniePlanner landing page",
+            mobilecode: "MobileCode landing page",
+            statup: "StatUP landing page",
+            studio: "Kova Studio Sprint page",
+            vibeplanning: "VibePlanning landing page",
+        };
+        const screenshotPlatformParams = {
+            appstore: "App Store screenshots",
+            play: "Google Play graphics",
+            both: "App Store and Google Play",
+            web: "Store screenshots plus web launch page",
+        };
+        const screenshotBriefParams = new URLSearchParams(window.location.search);
+
+        function screenshotPositiveNumber(value, fallback) {
+            const parsed = Number.parseInt(value, 10);
+            return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+        }
 
         function updateScreenshotBrief() {
             const packageSelect = document.getElementById("screenshotPackage");
             const selectedOption = packageSelect.options[packageSelect.selectedIndex];
-            const packagePrice = Number(selectedOption.dataset.price || "990000");
-            const averageOrderValue = Math.max(1000, Number(document.getElementById("screenshotAov").value || "100000"));
+            const packagePrice = packagePrices[packageSelect.value] || Number(selectedOption.dataset.price || "990000");
+            const averageOrderValue = Math.max(1000, screenshotPositiveNumber(document.getElementById("screenshotAov").value, 100000));
             const paidOrders = Math.ceil(packagePrice / averageOrderValue);
+            const referralSource = document.getElementById("screenshotReferralSource").value || "Screenshot service page";
             const platform = document.getElementById("screenshotPlatform").value;
             const appUrl = document.getElementById("screenshotAppUrl").value || "Not provided yet";
             const valueProp = document.getElementById("screenshotValueProp").value;
@@ -335,6 +366,7 @@
                 "Kova App Store Screenshot Service invoice request",
                 "",
                 `Selected package: ${packageLabels[packageSelect.value]}`,
+                `Referral source: ${referralSource}`,
                 `Store surface: ${platform}`,
                 `App or store URL: ${appUrl}`,
                 `Top value proposition: ${valueProp}`,
@@ -351,7 +383,41 @@
             document.getElementById("screenshotInvoiceLink").href = `mailto:alyduho984530@gmail.com?subject=${encodeURIComponent("Kova App Store Screenshot Service invoice request")}&body=${encodeURIComponent(body)}`;
         }
 
-        for (const id of ["screenshotPackage", "screenshotPlatform", "screenshotAppUrl", "screenshotValueProp", "screenshotSlotCount", "screenshotLaunchDate", "screenshotAov"]) {
+        const sourceParam = screenshotBriefParams.get("source");
+        const packageParam = screenshotBriefParams.get("package");
+        const platformParam = screenshotBriefParams.get("platform");
+        const slotsParam = screenshotBriefParams.get("slots");
+        const aovParam = screenshotBriefParams.get("aov");
+        const appUrlParam = screenshotBriefParams.get("appUrl");
+        const valuePropParam = screenshotBriefParams.get("valueProp");
+        if (sourceParam && screenshotBriefSources[sourceParam.toLowerCase()]) {
+            document.getElementById("screenshotReferralSource").value = screenshotBriefSources[sourceParam.toLowerCase()];
+        }
+        if (packageParam && packageLabels[packageParam]) {
+            document.getElementById("screenshotPackage").value = packageParam;
+        }
+        if (platformParam && screenshotPlatformParams[platformParam.toLowerCase()]) {
+            document.getElementById("screenshotPlatform").value = screenshotPlatformParams[platformParam.toLowerCase()];
+        }
+        if (slotsParam) {
+            document.getElementById("screenshotSlotCount").value = String(screenshotPositiveNumber(slotsParam, 6));
+        }
+        if (aovParam) {
+            document.getElementById("screenshotAov").value = String(screenshotPositiveNumber(aovParam, 100000));
+        }
+        if (appUrlParam) {
+            document.getElementById("screenshotAppUrl").value = appUrlParam;
+        }
+        if (valuePropParam) {
+            document.getElementById("screenshotValueProp").value = valuePropParam;
+        }
+
+        const screenshotBriefBuilder = document.getElementById("screenshotBriefBuilder");
+        if (screenshotBriefBuilder) {
+            screenshotBriefBuilder.addEventListener("input", updateScreenshotBrief);
+            screenshotBriefBuilder.addEventListener("change", updateScreenshotBrief);
+        }
+        for (const id of ["screenshotPackage", "screenshotReferralSource", "screenshotPlatform", "screenshotAppUrl", "screenshotValueProp", "screenshotSlotCount", "screenshotLaunchDate", "screenshotAov"]) {
             document.getElementById(id).addEventListener("input", updateScreenshotBrief);
             document.getElementById(id).addEventListener("change", updateScreenshotBrief);
         }

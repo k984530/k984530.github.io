@@ -713,6 +713,99 @@ function verifyAppLaunchBriefRuntime(html) {
   assert.match(decodeURIComponent(elements.get("launchBriefInvoiceLink").href), /Estimated paid orders to recover sprint fee: about 20/);
 }
 
+function verifyScreenshotBriefRuntime(html) {
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const packageLabels[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "Screenshot service page must include the screenshot brief builder script");
+
+  const listeners = new Map();
+  const elements = new Map();
+  const addElement = (id, properties = {}) => {
+    const element = {
+      href: "",
+      textContent: "",
+      value: "",
+      options: [],
+      selectedIndex: 0,
+      ...properties,
+      addEventListener: (eventName, callback) => {
+        const key = `${id}:${eventName}`;
+        listeners.set(key, [...(listeners.get(key) || []), callback]);
+      },
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const fire = (id, eventName) => {
+    for (const callback of listeners.get(`${id}:${eventName}`) || []) {
+      callback();
+    }
+  };
+
+  addElement("screenshotBriefBuilder");
+  addElement("screenshotPackage", {
+    value: "launch-visual-sprint",
+    options: [
+      { dataset: { price: "990000" }, textContent: "Launch visual sprint - 990,000 KRW" },
+      { dataset: { price: "2900000" }, textContent: "Creator campaign system - 2,900,000 KRW" },
+      { dataset: { price: "9900000" }, textContent: "Portfolio revenue system - 9,900,000 KRW+" },
+    ],
+  });
+  addElement("screenshotReferralSource", { value: "Screenshot service page" });
+  addElement("screenshotPlatform", { value: "App Store screenshots" });
+  addElement("screenshotAppUrl", { value: "" });
+  addElement("screenshotValueProp", { value: "Show the result first, then explain the paid upgrade path." });
+  addElement("screenshotSlotCount", { value: "6" });
+  addElement("screenshotLaunchDate", { value: "" });
+  addElement("screenshotAov", { value: "100000" });
+  addElement("screenshotEmailPreview");
+  addElement("screenshotRecoveryEstimate");
+  addElement("screenshotInvoiceLink");
+
+  vm.runInNewContext(
+    scriptMatch[1],
+    {
+      document: {
+        getElementById: (id) => elements.get(id) ?? null,
+      },
+      encodeURIComponent,
+      URLSearchParams,
+      window: {
+        location: {
+          search: "?source=apphub&package=creator-campaign-system&aov=250000&platform=both&slots=8&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.AppHub",
+        },
+      },
+      Intl,
+    },
+    { timeout: 1000 },
+  );
+
+  assert.equal(elements.get("screenshotPackage").value, "creator-campaign-system");
+  assert.equal(elements.get("screenshotReferralSource").value, "AppHub landing page");
+  assert.equal(elements.get("screenshotPlatform").value, "App Store and Google Play");
+  assert.equal(elements.get("screenshotSlotCount").value, "8");
+  assert.equal(elements.get("screenshotAov").value, "250000");
+  assert.equal(elements.get("screenshotAppUrl").value, "https://play.google.com/store/apps/details?id=com.aly.AppHub");
+  assert.equal(elements.get("screenshotRecoveryEstimate").textContent, "Estimated paid orders to recover fee: 12");
+  assert.match(elements.get("screenshotEmailPreview").value, /Selected package: Creator campaign system - 2,900,000 KRW/);
+  assert.match(elements.get("screenshotEmailPreview").value, /Referral source: AppHub landing page/);
+  assert.match(elements.get("screenshotEmailPreview").value, /Store surface: App Store and Google Play/);
+  assert.match(elements.get("screenshotEmailPreview").value, /App or store URL: https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.aly\.AppHub/);
+  assert.match(elements.get("screenshotEmailPreview").value, /Average paid order value: 250,000 KRW/);
+  assert.match(elements.get("screenshotEmailPreview").value, /Estimated paid orders to recover fee: 12/);
+  assert.match(decodeURIComponent(elements.get("screenshotInvoiceLink").href), /Kova App Store Screenshot Service invoice request/);
+  assert.match(decodeURIComponent(elements.get("screenshotInvoiceLink").href), /Referral source: AppHub landing page/);
+
+  elements.get("screenshotPackage").value = "portfolio-revenue-system";
+  fire("screenshotPackage", "change");
+  elements.get("screenshotAov").value = "500000";
+  fire("screenshotBriefBuilder", "input");
+
+  assert.equal(elements.get("screenshotRecoveryEstimate").textContent, "Estimated paid orders to recover fee: 20");
+  assert.match(elements.get("screenshotEmailPreview").value, /Selected package: Portfolio revenue system - 9,900,000 KRW\+/);
+  assert.match(elements.get("screenshotEmailPreview").value, /Average paid order value: 500,000 KRW/);
+  assert.match(decodeURIComponent(elements.get("screenshotInvoiceLink").href), /Estimated paid orders to recover fee: 20/);
+}
+
 function verifyProductPhotoBriefRuntime(html, options = {}) {
   const {
     search = "?source=figurine&package=shop-launch-pack&aov=120000&productCount=8",
@@ -993,13 +1086,13 @@ assert.match(index, /9,900,000 KRW\+/);
 assert.match(index, /Request screenshot invoice/);
 assert.match(index, /Request launch invoice/);
 assert.match(index, /Request team invoice/);
-assert.match(index, /No live checkout, store submission, or buyer message starts from this page/);
+assert.match(index, /live Gumroad 50% deposit checkouts/);
 assert.match(index, /ai-app-store-screenshot-service\/#screenshotBriefBuilder/);
 assert.match(index, /studio-sprint\/#sprintBriefBuilder/);
 assert.match(index, /team-headshot-sprint\/#teamBriefBuilder/);
 
 assert.match(download, /const iosUrl = "https:\/\/apps\.apple\.com\/us\/app\/kova-ai-photo-editor\/id6766026914"/);
-assert.match(download, /const androidUrl = "https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.aly\.kova"/);
+assert.match(download, /const androidUrl = "https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.aly\.kova(?:&referrer=[^"]+)?"/);
 assert.match(download, /iPhone\|iPad\|iPod/);
 assert.match(download, /Android/i);
 assert.match(download, /App Store/);
@@ -1126,7 +1219,7 @@ assert.match(appLaunch, /id="launchBriefInvoiceLink"/);
 assert.match(appLaunch, /Kova App Launch Visual Sprint invoice request/);
 assert.match(appLaunch, /Estimated paid orders to recover sprint fee:/);
 assert.match(appLaunch, /const launchBriefPackages/);
-assert.match(appLaunch, /No live checkout, payment link, store edit, or buyer message is created/);
+assert.match(appLaunch, /invoice builder only prepares a local email draft/);
 assert.match(appLaunch, /\.\.\/\.\.\/AppHub\//);
 assert.match(appLaunch, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(appLaunch, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
@@ -1144,6 +1237,7 @@ assert.match(appStoreScreenshots, /9,900,000 KRW\+/);
 assert.match(appStoreScreenshots, /Screenshot brief builder/);
 assert.match(appStoreScreenshots, /id="screenshotBriefBuilder"/);
 assert.match(appStoreScreenshots, /id="screenshotPackage"/);
+assert.match(appStoreScreenshots, /id="screenshotReferralSource"/);
 assert.match(appStoreScreenshots, /id="screenshotPlatform"/);
 assert.match(appStoreScreenshots, /id="screenshotAppUrl"/);
 assert.match(appStoreScreenshots, /id="screenshotValueProp"/);
@@ -1153,12 +1247,14 @@ assert.match(appStoreScreenshots, /id="screenshotAov"/);
 assert.match(appStoreScreenshots, /id="screenshotEmailPreview"/);
 assert.match(appStoreScreenshots, /id="screenshotInvoiceLink"/);
 assert.match(appStoreScreenshots, /function updateScreenshotBrief/);
+assert.match(appStoreScreenshots, /URLSearchParams\(window\.location\.search\)/);
 assert.match(appStoreScreenshots, /Math\.ceil\(packagePrice \/ averageOrderValue\)/);
 assert.match(appStoreScreenshots, /Selected package:/);
+assert.match(appStoreScreenshots, /Referral source:/);
 assert.match(appStoreScreenshots, /Store surface:/);
 assert.match(appStoreScreenshots, /Screenshot slots:/);
 assert.match(appStoreScreenshots, /Estimated paid orders to recover fee:/);
-assert.match(appStoreScreenshots, /No live payment link, store edit, or review submission is created/);
+assert.match(appStoreScreenshots, /no store edit or review submission is created/);
 assert.match(appStoreScreenshots, /application\/ld\+json/);
 assert.match(appStoreScreenshots, /Service/);
 assert.match(appStoreScreenshots, /OfferCatalog/);
@@ -1174,6 +1270,7 @@ assert.match(appStoreScreenshots, /\.\.\/\.\.\/MobileCode\//);
 assert.match(appStoreScreenshots, /mailto:alyduho984530@gmail\.com\?subject=Kova%20App%20Store%20Screenshot%20Service%20invoice%20request/);
 assert.match(appStoreScreenshots, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(appStoreScreenshots, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+verifyScreenshotBriefRuntime(appStoreScreenshots);
 
 assert.match(ideaVisualizer, /<title>AI Idea Visualizer \| Kova<\/title>/);
 assert.match(ideaVisualizer, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-idea-visualizer\/">/);
@@ -1466,7 +1563,7 @@ assert.match(tenMScopeLock, /<link rel="canonical" href="https:\/\/won-space\.co
 assert.match(tenMScopeLock, /Kova 10M Scope Lock/);
 assert.match(tenMScopeLock, /10,000,000 KRW/);
 assert.match(tenMScopeLock, /Scope lock before payment/);
-assert.match(tenMScopeLock, /No live contract, invoice, payment link, or buyer message starts from this page/);
+assert.match(tenMScopeLock, /No live 10,000,000 KRW service contract/);
 assert.match(tenMScopeLock, /Team Headshot Sprint/);
 assert.match(tenMScopeLock, /Studio Sprint/);
 assert.match(tenMScopeLock, /Hiring page visual system - 9,900,000 KRW\+/);
@@ -1886,7 +1983,7 @@ assert.match(profileHeadshot, /id="proReadinessInvoiceNote"/);
 assert.match(profileHeadshot, /Source photo readiness:/);
 assert.match(profileHeadshot, /function updateProHeadshotBrief/);
 assert.match(profileHeadshot, /Estimated paid orders to recover fee:/);
-assert.match(profileHeadshot, /No live checkout, payment link, or buyer message is created/);
+assert.match(profileHeadshot, /invoice button only opens a draft email for manual review/);
 assert.match(profileHeadshot, /mailto:alyduho984530@gmail\.com\?subject=Kova%20Professional%20Headshot%20Sprint%20invoice%20request/);
 assert.match(profileHeadshot, /\.\.\/ai-linkedin-photo-generator\//);
 assert.match(profileHeadshot, /\.\.\/team-headshot-sprint\//);
@@ -1968,7 +2065,7 @@ assert.match(dating, /id="datingReadinessInvoiceNote"/);
 assert.match(dating, /Profile photo readiness:/);
 assert.match(dating, /function updateDatingSprintBrief/);
 assert.match(dating, /Estimated paid orders to recover fee:/);
-assert.match(dating, /No live checkout, payment link, or buyer message is created/);
+assert.match(dating, /Profile sprint invoices stay manual for review/);
 assert.match(dating, /mailto:alyduho984530@gmail\.com\?subject=Kova%20Dating%20Profile%20Photo%20Sprint%20invoice%20request/);
 assert.match(dating, /\.\.\/download\/index\.html/);
 assert.match(dating, /\.\.\/pricing\//);
