@@ -100,6 +100,12 @@ const petKovaIntentDirs = new Set([
   "DogsThoughts",
 ]);
 
+const petKovaIntentPrefillLinks = new Map([
+  ["CatsDiary", "../Kova/ai-pet-portrait-generator/?source=catsdiary&package=pet-memory&goal=Pet%20memory%20portrait&petType=Cat&aov=50000&petPhotoLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.CatsDiary&deadline=This%20week&notes=Source%20app%20visitor%20wants%20cat%20portrait#petPortraitBuilder"],
+  ["CatsThoughts", "../Kova/ai-pet-portrait-generator/?source=catsthoughts&package=pet-memory&goal=Pet%20memory%20portrait&petType=Cat&aov=50000&petPhotoLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.CatsThoughts&deadline=This%20week&notes=Source%20app%20visitor%20wants%20cat%20portrait#petPortraitBuilder"],
+  ["DogsThoughts", "../Kova/ai-pet-portrait-generator/?source=dogsthoughts&package=pet-memory&goal=Pet%20memory%20portrait&petType=Dog&aov=50000&petPhotoLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.DogsThoughts&deadline=This%20week&notes=Source%20app%20visitor%20wants%20dog%20portrait#petPortraitBuilder"],
+]);
+
 const professionalKovaIntentDirs = new Map([
   ["ChartingSkills", "chartingskills"],
   ["CryptoAI", "cryptoai"],
@@ -254,11 +260,20 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
         failures.push(`${dir}: missing Kova dating profile sprint CTA`);
       }
     }
-    if (petKovaIntentDirs.has(dir) && !html.includes("../Kova/ai-pet-portrait-generator/")) {
-      failures.push(`${dir}: missing Kova pet-portrait intent link`);
-    }
-    if (petKovaIntentDirs.has(dir) && !html.includes("pet portrait")) {
-      failures.push(`${dir}: missing Kova pet-portrait intent copy`);
+    if (petKovaIntentDirs.has(dir)) {
+      const expectedLink = petKovaIntentPrefillLinks.get(dir);
+      if (!html.includes("../Kova/ai-pet-portrait-generator/")) {
+        failures.push(`${dir}: missing Kova pet-portrait intent link`);
+      }
+      if (!html.includes(expectedLink)) {
+        failures.push(`${dir}: missing source-aware Kova pet portrait sprint link`);
+      }
+      if (!html.includes("pet portrait")) {
+        failures.push(`${dir}: missing Kova pet-portrait intent copy`);
+      }
+      if (!html.includes("Pet portrait sprint")) {
+        failures.push(`${dir}: missing Kova pet portrait sprint CTA`);
+      }
     }
     if (professionalKovaIntentDirs.has(dir)) {
       const source = professionalKovaIntentDirs.get(dir);

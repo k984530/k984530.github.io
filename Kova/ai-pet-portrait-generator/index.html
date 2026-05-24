@@ -128,6 +128,19 @@
         .card b { display: block; margin-bottom: 8px; color: var(--rose); font-size: 0.82rem; text-transform: uppercase; }
         .card h3 { margin: 0 0 10px; font-size: 1.24rem; }
         .card p { margin: 0; color: var(--muted); line-height: 1.62; }
+        .sprint-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 18px; }
+        .sprint-card { min-height: 176px; padding: 20px; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); box-shadow: 8px 8px 0 rgba(21, 23, 28, 0.08); }
+        .sprint-card strong { color: var(--rose); font-size: 1.15rem; }
+        .sprint-card h3 { margin: 8px 0 10px; font-size: 1.2rem; }
+        .sprint-card p { margin: 0; color: var(--muted); line-height: 1.58; }
+        .brief-panel { border: 2px solid var(--ink); border-radius: 8px; background: #ffffff; padding: 22px; box-shadow: 8px 8px 0 var(--blue); }
+        .brief-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .field { display: grid; gap: 7px; color: var(--muted); font-size: 0.86rem; font-weight: 800; }
+        .field.full { grid-column: 1 / -1; }
+        .field select, .field input { width: 100%; min-height: 48px; border: 2px solid var(--ink); border-radius: 8px; padding: 0 12px; color: var(--ink); background: #fff; font: inherit; font-size: 0.98rem; }
+        .brief-output { display: grid; gap: 12px; margin-top: 16px; }
+        .brief-note { margin: 0; color: var(--muted); line-height: 1.55; }
+        .preview { min-height: 210px; margin: 0; white-space: pre-wrap; border: 2px solid var(--ink); border-radius: 8px; background: #fbfcf6; padding: 14px; color: var(--ink); font: 0.92rem/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow: auto; }
         .style-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
         .style-strip img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 2px solid var(--ink); border-radius: 8px; background: #edf0e8; }
         .closing { padding: 56px 0 76px; }
@@ -138,7 +151,7 @@
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 900px) {
             .hero, .section-head { grid-template-columns: 1fr; }
-            .cards { grid-template-columns: 1fr; }
+            .cards, .sprint-grid, .brief-form { grid-template-columns: 1fr; }
         }
         @media (max-width: 560px) {
             .pet-board, .style-strip { grid-template-columns: 1fr; }
@@ -205,6 +218,91 @@
             </div>
         </section>
 
+        <section class="section shell" aria-labelledby="petPortraitTitle">
+            <div class="section-head" id="petPortraitBuilder">
+                <h2 id="petPortraitTitle">Pet Portrait Sprint</h2>
+                <p>Turn pet-photo traffic into a reviewed Kova production request before any payment link or creative work. The sprint starts with a source-photo checklist and a manual invoice reply.</p>
+            </div>
+            <div class="sprint-grid" aria-label="Kova pet portrait sprint packages">
+                <article class="sprint-card">
+                    <strong>149,000 KRW</strong>
+                    <h3>Pet memory portrait</h3>
+                    <p>One pet, one hero portrait direction, and a simple source-photo checklist for owners who want a keepsake image.</p>
+                </article>
+                <article class="sprint-card">
+                    <strong>390,000 KRW</strong>
+                    <h3>Social pet set</h3>
+                    <p>Multiple social-ready portrait crops for pet accounts, diary apps, or sharing a favorite cat or dog image.</p>
+                </article>
+                <article class="sprint-card">
+                    <strong>990,000 KRW+</strong>
+                    <h3>Pet brand system</h3>
+                    <p>A broader visual system for shops, creators, communities, or launches built around a recognizable pet mascot.</p>
+                </article>
+            </div>
+            <div class="brief-panel">
+                <form class="brief-form" id="petPortraitForm">
+                    <label class="field">
+                        <span>Package</span>
+                        <select id="petPortraitPackage" name="package">
+                            <option value="pet-memory">Pet memory portrait - 149,000 KRW</option>
+                            <option value="social-pet-set">Social pet set - 390,000 KRW</option>
+                            <option value="pet-brand-system">Pet brand system - 990,000 KRW+</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Referral source</span>
+                        <select id="petPortraitSource" name="source">
+                            <option>Direct pet portrait page</option>
+                            <option>CatsDiary</option>
+                            <option>CatsThoughts</option>
+                            <option>DogsThoughts</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Primary goal</span>
+                        <select id="petPortraitGoal" name="goal">
+                            <option>Pet memory portrait</option>
+                            <option>Shareable pet portrait set</option>
+                            <option>Pet brand or mascot system</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Pet type</span>
+                        <select id="petPortraitPetType" name="petType">
+                            <option>Cat</option>
+                            <option>Dog</option>
+                            <option>Multiple pets</option>
+                            <option>Pet mascot</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Average paid order value</span>
+                        <input id="petPortraitAov" name="aov" inputmode="numeric" value="50000">
+                    </label>
+                    <label class="field">
+                        <span>Target deadline</span>
+                        <input id="petPortraitDeadline" name="deadline" placeholder="This week / gift date / open">
+                    </label>
+                    <label class="field full">
+                        <span>Pet photo or source link</span>
+                        <input id="petPortraitPhotoLink" name="petPhotoLink" placeholder="Pet app, gallery, profile, or reference URL">
+                    </label>
+                    <label class="field full">
+                        <span>Notes</span>
+                        <input id="petPortraitNotes" name="notes" placeholder="Pet name, style, source-photo readiness, audience, constraints">
+                    </label>
+                </form>
+                <div class="brief-output">
+                    <strong id="petPortraitRecoveryOrders">Estimated paid orders to recover fee: about 3</strong>
+                    <p class="brief-note" id="petPortraitPackageFit">Good fit when the visitor can share 1-3 clear pet photos.</p>
+                    <p class="brief-note">Pet sprint invoices stay manual for review before any payment link is sent.</p>
+                    <pre class="preview" id="petPortraitEmailPreview"></pre>
+                    <a class="button" id="petPortraitInvoiceLink" href="mailto:alyduho984530@gmail.com?subject=Kova%20Pet%20Portrait%20Sprint%20invoice%20request">Create pet sprint invoice email</a>
+                </div>
+            </div>
+        </section>
+
         <section class="section shell" aria-labelledby="stylesTitle">
             <div class="section-head">
                 <h2 id="stylesTitle">Style Directions</h2>
@@ -249,5 +347,84 @@
             <a href="../support.html">Support</a>
         </nav>
     </footer>
+    <script>
+        const petPortraitPackages = {
+            "pet-memory": {
+                fit: "Good fit when the visitor can share 1-3 clear pet photos.",
+                label: "Pet memory portrait - 149,000 KRW",
+                price: 149000
+            },
+            "social-pet-set": {
+                fit: "Good fit when the visitor can share 3-6 clear pet photos for social-ready variations.",
+                label: "Social pet set - 390,000 KRW",
+                price: 390000
+            },
+            "pet-brand-system": {
+                fit: "Best for shops, creators, or communities that need a repeatable pet visual system.",
+                label: "Pet brand system - 990,000 KRW+",
+                price: 990000
+            }
+        };
+        const petPortraitSources = {
+            catsdiary: "CatsDiary",
+            catsthoughts: "CatsThoughts",
+            dogsthoughts: "DogsThoughts"
+        };
+
+        function petFieldValue(id, fallback = "") {
+            const field = document.getElementById(id);
+            return field && field.value.trim() ? field.value.trim() : fallback;
+        }
+
+        function updatePetPortraitBrief() {
+            const selectedPackage = petPortraitPackages[petFieldValue("petPortraitPackage", "pet-memory")] || petPortraitPackages["pet-memory"];
+            const averageOrderValue = Math.max(1, Number(petFieldValue("petPortraitAov", "50000").replace(/[^0-9]/g, "")) || 50000);
+            const recoveryOrders = Math.ceil(selectedPackage.price / averageOrderValue);
+            document.getElementById("petPortraitRecoveryOrders").textContent = "Estimated paid orders to recover fee: about " + recoveryOrders;
+            document.getElementById("petPortraitPackageFit").textContent = selectedPackage.fit;
+
+            const body = [
+                "Selected package: " + selectedPackage.label,
+                "Referral source: " + petFieldValue("petPortraitSource", "Direct pet portrait page"),
+                "Primary goal: " + petFieldValue("petPortraitGoal", "Pet memory portrait"),
+                "Pet type: " + petFieldValue("petPortraitPetType", "Cat"),
+                "Pet photo or source link: " + petFieldValue("petPortraitPhotoLink", "Not added yet"),
+                "Target deadline: " + petFieldValue("petPortraitDeadline", "Open"),
+                "Average paid order value: " + averageOrderValue.toLocaleString("en-US") + " KRW",
+                "Estimated paid orders to recover fee: about " + recoveryOrders,
+                "Notes: " + petFieldValue("petPortraitNotes", "Source photos and preferred portrait style will be shared before invoice."),
+                "",
+                "Please reply with scope, invoice details, and a pet source-photo checklist before any payment link or production work."
+            ].join("\n");
+
+            document.getElementById("petPortraitEmailPreview").textContent = body;
+            document.getElementById("petPortraitInvoiceLink").href = "mailto:alyduho984530@gmail.com?subject=" + encodeURIComponent("Kova Pet Portrait Sprint invoice request") + "&body=" + encodeURIComponent(body);
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const packageParam = params.get("package");
+        const sourceParam = params.get("source");
+        if (packageParam && petPortraitPackages[packageParam]) {
+            document.getElementById("petPortraitPackage").value = packageParam;
+        }
+        if (sourceParam && petPortraitSources[sourceParam.toLowerCase()]) {
+            document.getElementById("petPortraitSource").value = petPortraitSources[sourceParam.toLowerCase()];
+        }
+        [
+            ["goal", "petPortraitGoal"],
+            ["petType", "petPortraitPetType"],
+            ["aov", "petPortraitAov"],
+            ["petPhotoLink", "petPortraitPhotoLink"],
+            ["deadline", "petPortraitDeadline"],
+            ["notes", "petPortraitNotes"]
+        ].forEach(([paramName, fieldId]) => {
+            const value = params.get(paramName);
+            if (value) document.getElementById(fieldId).value = value;
+        });
+
+        document.getElementById("petPortraitForm").addEventListener("input", updatePetPortraitBrief);
+        document.getElementById("petPortraitForm").addEventListener("change", updatePetPortraitBrief);
+        updatePetPortraitBrief();
+    </script>
 </body>
 </html>

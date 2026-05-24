@@ -393,6 +393,89 @@ function verifyDatingSourceReadinessRuntime(html) {
   assert.match(decodeURIComponent(elements.get("datingSprintInvoiceLink").href), /reference style ready/);
 }
 
+function verifyPetPortraitSprintRuntime(html) {
+  const scriptMatch = html.match(/<script>\s*([\s\S]*?const petPortraitPackages[\s\S]*?)\s*<\/script>/);
+  assert.ok(scriptMatch, "Pet portrait page must include the pet portrait sprint script");
+
+  const listeners = new Map();
+  const elements = new Map();
+  const addElement = (id, properties = {}) => {
+    const element = {
+      href: "",
+      textContent: "",
+      value: "",
+      ...properties,
+      addEventListener: (eventName, callback) => {
+        const key = `${id}:${eventName}`;
+        listeners.set(key, [...(listeners.get(key) || []), callback]);
+      },
+    };
+    elements.set(id, element);
+    return element;
+  };
+  const fire = (id, eventName) => {
+    for (const callback of listeners.get(`${id}:${eventName}`) || []) {
+      callback();
+    }
+  };
+
+  addElement("petPortraitForm");
+  addElement("petPortraitPackage", { value: "pet-memory" });
+  addElement("petPortraitSource", { value: "Direct pet portrait page" });
+  addElement("petPortraitGoal", { value: "Pet memory portrait" });
+  addElement("petPortraitPetType", { value: "Cat" });
+  addElement("petPortraitAov", { value: "50000" });
+  addElement("petPortraitPhotoLink", { value: "" });
+  addElement("petPortraitDeadline", { value: "" });
+  addElement("petPortraitNotes", { value: "" });
+  addElement("petPortraitRecoveryOrders");
+  addElement("petPortraitPackageFit");
+  addElement("petPortraitEmailPreview");
+  addElement("petPortraitInvoiceLink");
+
+  vm.runInNewContext(
+    scriptMatch[1],
+    {
+      document: {
+        getElementById: (id) => elements.get(id) ?? null,
+      },
+      encodeURIComponent,
+      URLSearchParams,
+      window: {
+        location: {
+          search: "?source=dogsthoughts&package=social-pet-set&goal=Shareable%20pet%20portrait%20set&petType=Dog&aov=65000&petPhotoLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.DogsThoughts&deadline=This%20week&notes=Source%20app%20visitor%20wants%20dog%20portrait",
+        },
+      },
+    },
+    { timeout: 1000 },
+  );
+
+  assert.equal(elements.get("petPortraitPackage").value, "social-pet-set");
+  assert.equal(elements.get("petPortraitSource").value, "DogsThoughts");
+  assert.equal(elements.get("petPortraitGoal").value, "Shareable pet portrait set");
+  assert.equal(elements.get("petPortraitPetType").value, "Dog");
+  assert.equal(elements.get("petPortraitAov").value, "65000");
+  assert.equal(elements.get("petPortraitPhotoLink").value, "https://play.google.com/store/apps/details?id=com.aly.DogsThoughts");
+  assert.equal(elements.get("petPortraitDeadline").value, "This week");
+  assert.equal(elements.get("petPortraitNotes").value, "Source app visitor wants dog portrait");
+  assert.equal(elements.get("petPortraitRecoveryOrders").textContent, "Estimated paid orders to recover fee: about 6");
+  assert.match(elements.get("petPortraitPackageFit").textContent, /Good fit when the visitor can share 3-6 clear pet photos/);
+  assert.match(elements.get("petPortraitEmailPreview").textContent, /Selected package: Social pet set - 390,000 KRW/);
+  assert.match(elements.get("petPortraitEmailPreview").textContent, /Referral source: DogsThoughts/);
+  assert.match(elements.get("petPortraitEmailPreview").textContent, /Pet type: Dog/);
+  assert.match(elements.get("petPortraitEmailPreview").textContent, /Average paid order value: 65,000 KRW/);
+  assert.match(decodeURIComponent(elements.get("petPortraitInvoiceLink").href), /Kova Pet Portrait Sprint invoice request/);
+
+  elements.get("petPortraitPackage").value = "pet-brand-system";
+  fire("petPortraitPackage", "change");
+  elements.get("petPortraitAov").value = "100000";
+  fire("petPortraitForm", "input");
+
+  assert.equal(elements.get("petPortraitRecoveryOrders").textContent, "Estimated paid orders to recover fee: about 10");
+  assert.match(elements.get("petPortraitPackageFit").textContent, /Best for shops, creators, or communities/);
+  assert.match(elements.get("petPortraitEmailPreview").textContent, /Selected package: Pet brand system - 990,000 KRW\+/);
+}
+
 function verifyFashionStyleSprintRuntime(html) {
   const scriptMatch = html.match(/<script>\s*([\s\S]*?const styleProfilePackages[\s\S]*?)\s*<\/script>/);
   assert.ok(scriptMatch, "Fashion photo page must include the style profile sprint script");
@@ -2102,6 +2185,22 @@ assert.match(pet, /dog photo/i);
 assert.match(pet, /20 starter credits/i);
 assert.match(pet, /about 2 standard image generations/i);
 assert.match(pet, /10 credits per standard image generation/i);
+assert.match(pet, /Pet Portrait Sprint/);
+assert.match(pet, /149,000 KRW/);
+assert.match(pet, /390,000 KRW/);
+assert.match(pet, /990,000 KRW\+/);
+assert.match(pet, /id="petPortraitBuilder"/);
+assert.match(pet, /id="petPortraitPackage"/);
+assert.match(pet, /id="petPortraitSource"/);
+assert.match(pet, /id="petPortraitGoal"/);
+assert.match(pet, /id="petPortraitPetType"/);
+assert.match(pet, /id="petPortraitPhotoLink"/);
+assert.match(pet, /id="petPortraitDeadline"/);
+assert.match(pet, /id="petPortraitEmailPreview"/);
+assert.match(pet, /id="petPortraitInvoiceLink"/);
+assert.match(pet, /Estimated paid orders to recover fee:/);
+assert.match(pet, /Pet sprint invoices stay manual for review/);
+assert.match(pet, /mailto:alyduho984530@gmail\.com\?subject=Kova%20Pet%20Portrait%20Sprint%20invoice%20request/);
 assert.match(pet, /application\/ld\+json/);
 assert.match(pet, /SoftwareApplication/);
 assert.match(pet, /download\/Icon\.png/);
@@ -2111,6 +2210,7 @@ assert.match(pet, /\.\.\/examples\//);
 assert.match(pet, /\.\.\/ai-photo-editor-styles\//);
 assert.match(pet, new RegExp(iosUrl.replaceAll(".", "\\.")));
 assert.match(pet, new RegExp(androidUrl.replaceAll(".", "\\.").replace("?", "\\?")));
+verifyPetPortraitSprintRuntime(pet);
 
 assert.match(journal, /<title>AI Journal Cover Generator \| Kova<\/title>/);
 assert.match(journal, /<link rel="canonical" href="https:\/\/won-space\.com\/Kova\/ai-journal-cover-generator\/">/);
