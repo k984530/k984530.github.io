@@ -152,10 +152,10 @@
         
         .kova-promo {
             display: grid;
-            grid-template-columns: 88px minmax(0, 1fr) auto;
-            align-items: center;
+            grid-template-columns: 88px minmax(0, 1fr);
+            align-items: start;
             gap: 22px;
-            background: #fffaf0;
+            background: #fffdf8;
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 40px;
@@ -169,16 +169,105 @@
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
         }
 
-        .kova-promo h2 {
+        .kova-heading h2 {
             margin: 0 0 8px;
             color: #111;
             font-size: 1.55em;
         }
 
-        .kova-promo p {
+        .kova-heading p,
+        .launch-result p {
             margin: 0;
             color: #666;
             line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .kova-launch-lane {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .launch-path-options {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .launch-path-option {
+            appearance: none;
+            border: 1px solid #e2d7c4;
+            border-radius: 14px;
+            background: #fff;
+            color: #1f2933;
+            cursor: pointer;
+            font: inherit;
+            min-height: 96px;
+            padding: 16px;
+            text-align: left;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .launch-path-option:hover,
+        .launch-path-option:focus-visible {
+            border-color: #111;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+            outline: none;
+            transform: translateY(-2px);
+        }
+
+        .launch-path-option.is-active {
+            background: #111;
+            border-color: #111;
+            color: #fff;
+        }
+
+        .launch-path-option span {
+            display: block;
+            font-size: 0.78em;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .launch-result {
+            background: #111;
+            border-radius: 18px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            justify-content: space-between;
+            min-height: 220px;
+            padding: 22px;
+        }
+
+        .launch-result strong {
+            display: block;
+            font-size: 0.82em;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            color: #f9d77e;
+        }
+
+        .launch-result h3 {
+            font-size: 1.35em;
+            margin: 0 0 8px;
+        }
+
+        .launch-result p {
+            color: rgba(255, 255, 255, 0.76);
+        }
+
+        .launch-result-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .kova-link {
@@ -209,6 +298,24 @@
             background: white;
             color: #111;
             border: 2px solid #111;
+        }
+
+        .launch-result .kova-link {
+            background: #f9d77e;
+            color: #111;
+        }
+
+        .launch-result .kova-link.secondary {
+            background: transparent;
+            border-color: rgba(255, 255, 255, 0.5);
+            color: #fff;
+        }
+
+        .launch-static-links {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .contact {
@@ -262,6 +369,19 @@
             }
 
             .kova-actions {
+                justify-content: center;
+            }
+
+            .kova-launch-lane {
+                grid-template-columns: 1fr;
+            }
+
+            .launch-path-options {
+                grid-template-columns: 1fr;
+            }
+
+            .launch-result-actions,
+            .launch-static-links {
                 justify-content: center;
             }
         }
@@ -326,19 +446,35 @@
                 </div>
             </div>
         </div>
-        <div class="kova-promo">
+        <div class="kova-promo" id="apphubLaunchLane">
             <img src="../Kova/download/Icon.png" alt="Kova AI Photo Editor icon">
-            <div>
+            <div class="kova-heading">
                 <h2>Need app launch visuals?</h2>
-                <p>Try Kova with 20 starter credits, enough for about 2 standard image generations, and turn one photo into app launch visuals, App Store screenshots, founder profiles, product-style images, Polaroids, and share-ready profile images.</p>
+                <p>Try Kova with 20 starter credits, enough for about 2 standard image generations, then choose the fastest paid path for app launch visuals, App Store screenshots, creator campaigns, or a larger portfolio revenue system.</p>
             </div>
-            <div class="kova-actions">
-                <a class="kova-link" href="../Kova/app-launch-visuals/">Open Kova</a>
-                <a class="kova-link secondary" href="https://gumroad.com/checkout?product=nffhl&quantity=1" aria-label="Buy AI Creator Prompt Pack on Gumroad">Buy ₩29,000 prompt pack</a>
-                <a class="kova-link secondary" href="https://appshunter.io/launches/kova-ai-photo-editor" target="_blank" rel="noopener">AppsHunter launch live</a>
-                <a class="kova-link secondary" href="https://gumroad.com/checkout?product=ithrs&quantity=1" target="_blank" rel="noopener" aria-label="Pay Kova Studio Sprint Creator Campaign deposit on Gumroad">Pay creator deposit · 2,900,000 KRW + launch-week bonus: 2 extra prompt recipes</a>
-                <a class="kova-link secondary" href="../Kova/ai-app-store-screenshot-service/?source=apphub&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.AppHub#screenshotBriefBuilder">Screenshot service</a>
-                <a class="kova-link secondary" href="../Kova/studio-sprint/?source=apphub&package=launch-visual-sprint#launch-visual-sprint">Book Studio Sprint</a>
+            <div class="kova-launch-lane" aria-label="Choose a Kova app launch path">
+                <div class="launch-path-options" role="group" aria-label="Kova launch path options">
+                    <button class="launch-path-option is-active" id="promptPath" type="button" data-apphub-launch-option data-path="promptPack" aria-pressed="true"><span>₩29K</span>Prompt pack</button>
+                    <button class="launch-path-option" id="screenshotPath" type="button" data-apphub-launch-option data-path="screenshots" aria-pressed="false"><span>Brief</span>Screenshot service</button>
+                    <button class="launch-path-option" id="campaignPath" type="button" data-apphub-launch-option data-path="creatorCampaign" aria-pressed="false"><span>Deposit</span>Creator campaign</button>
+                    <button class="launch-path-option" id="portfolioPath" type="button" data-apphub-launch-option data-path="portfolioSystem" aria-pressed="false"><span>Scope</span>Portfolio system</button>
+                </div>
+                <div class="launch-result" aria-live="polite">
+                    <div>
+                        <strong id="apphubLaunchPrice">₩29,000 self-serve</strong>
+                        <h3 id="apphubLaunchTitle">Start with the prompt pack</h3>
+                        <p id="apphubLaunchCopy">Buy the AI Creator Prompt Pack when you want reusable Kova launch prompts before commissioning a full sprint.</p>
+                    </div>
+                    <div class="launch-result-actions">
+                        <a class="kova-link" id="apphubLaunchPrimary" href="https://gumroad.com/checkout?product=nffhl&quantity=1" aria-label="Buy AI Creator Prompt Pack on Gumroad">Buy ₩29,000 prompt pack</a>
+                        <a class="kova-link secondary" id="apphubLaunchSecondary" href="../Kova/ai-app-store-screenshot-service/?source=apphub&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.AppHub#screenshotBriefBuilder">Screenshot service</a>
+                    </div>
+                </div>
+                <div class="launch-static-links" aria-label="Kova proof and fallback links">
+                    <a class="kova-link secondary" href="../Kova/app-launch-visuals/">Open Kova</a>
+                    <a class="kova-link secondary" href="https://appshunter.io/launches/kova-ai-photo-editor" target="_blank" rel="noopener">AppsHunter launch live</a>
+                    <a class="kova-link secondary" href="../Kova/studio-sprint/?source=apphub&package=launch-visual-sprint#launch-visual-sprint">Book Studio Sprint</a>
+                </div>
             </div>
         </div>
 
@@ -351,7 +487,78 @@
     </footer>
     
     <script>
-        // Smooth scroll for any future anchor links
+        const apphubLaunchPaths = {
+            promptPack: {
+                price: "₩29,000 self-serve",
+                title: "Start with the prompt pack",
+                copy: "Buy the AI Creator Prompt Pack when you want reusable Kova launch prompts before commissioning a full sprint.",
+                primaryText: "Buy ₩29,000 prompt pack",
+                primaryHref: "https://gumroad.com/checkout?product=nffhl&quantity=1",
+                secondaryText: "Screenshot service",
+                secondaryHref: "../Kova/ai-app-store-screenshot-service/?source=apphub&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.AppHub#screenshotBriefBuilder"
+            },
+            screenshots: {
+                price: "Brief builder",
+                title: "Turn AppHub planning into store screenshots",
+                copy: "Open a source-aware screenshot service brief when the store listing needs App Store screenshots, launch visuals, and a cleaner first impression.",
+                primaryText: "Screenshot service",
+                primaryHref: "../Kova/ai-app-store-screenshot-service/?source=apphub&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.AppHub#screenshotBriefBuilder",
+                secondaryText: "Buy prompt pack",
+                secondaryHref: "https://gumroad.com/checkout?product=nffhl&quantity=1"
+            },
+            creatorCampaign: {
+                price: "2,900,000 KRW package",
+                title: "Commission the creator campaign system",
+                copy: "Pay the Creator campaign deposit when a launch needs a campaign visual system. Launch-week bonus: 2 extra prompt recipes are included with creator deposits.",
+                primaryText: "Pay creator deposit",
+                primaryHref: "https://gumroad.com/checkout?product=ithrs&quantity=1",
+                secondaryText: "Book Studio Sprint",
+                secondaryHref: "../Kova/studio-sprint/?source=apphub&package=creator-campaign-system#creator-campaign-system"
+            },
+            portfolioSystem: {
+                price: "9,900,000+ KRW package",
+                title: "Scope the portfolio revenue system",
+                copy: "Use the readiness gate before any scope deposit so the buyer confirms offer, budget, timeline, and source materials first.",
+                primaryText: "Pay scope deposit",
+                primaryHref: "../Kova/10m-scope-lock/#scopeDepositReadiness",
+                secondaryText: "Book Studio Sprint",
+                secondaryHref: "../Kova/studio-sprint/?source=apphub&package=portfolio-revenue-system#portfolio-revenue-system"
+            }
+        };
+
+        const apphubLaunchOptions = document.querySelectorAll("[data-apphub-launch-option]");
+        const apphubLaunchPrice = document.getElementById("apphubLaunchPrice");
+        const apphubLaunchTitle = document.getElementById("apphubLaunchTitle");
+        const apphubLaunchCopy = document.getElementById("apphubLaunchCopy");
+        const apphubLaunchPrimary = document.getElementById("apphubLaunchPrimary");
+        const apphubLaunchSecondary = document.getElementById("apphubLaunchSecondary");
+
+        function updateApphubLaunchPath(pathKey) {
+            const path = apphubLaunchPaths[pathKey] || apphubLaunchPaths.promptPack;
+
+            apphubLaunchPrice.textContent = path.price;
+            apphubLaunchTitle.textContent = path.title;
+            apphubLaunchCopy.textContent = path.copy;
+            apphubLaunchPrimary.textContent = path.primaryText;
+            apphubLaunchPrimary.href = path.primaryHref;
+            apphubLaunchSecondary.textContent = path.secondaryText;
+            apphubLaunchSecondary.href = path.secondaryHref;
+
+            apphubLaunchOptions.forEach((button) => {
+                const isActive = button.dataset.path === pathKey;
+                button.classList.toggle("is-active", isActive);
+                button.ariaPressed = isActive ? "true" : "false";
+                button.setAttribute("aria-pressed", isActive ? "true" : "false");
+            });
+        }
+
+        if (apphubLaunchOptions.length && apphubLaunchPrice && apphubLaunchTitle && apphubLaunchCopy && apphubLaunchPrimary && apphubLaunchSecondary) {
+            apphubLaunchOptions.forEach((button) => {
+                button.addEventListener("click", () => updateApphubLaunchPath(button.dataset.path));
+            });
+            updateApphubLaunchPath("promptPack");
+        }
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
