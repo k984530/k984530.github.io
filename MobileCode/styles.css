@@ -79,7 +79,7 @@ h1 {
     background: white;
     border-radius: 20px;
     padding: 50px 40px;
-    margin: -40px auto 40px;
+    margin: 0 auto 40px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -421,7 +421,7 @@ h1 {
 
 .kova-promo {
     display: grid;
-    grid-template-columns: 88px minmax(0, 1fr) auto;
+    grid-template-columns: 88px minmax(0, 1fr) minmax(220px, auto);
     align-items: center;
     gap: 22px;
     background: #fffaf0;
@@ -431,11 +431,24 @@ h1 {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
+#mobilecodeKovaScreenshotShortcut {
+    margin: -40px auto 40px;
+}
+
 .kova-promo img {
     width: 88px;
     height: 88px;
     border-radius: 22px;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.kova-eyebrow {
+    margin: 0 0 6px;
+    color: #667eea;
+    font-size: 0.78em;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: uppercase;
 }
 
 .kova-promo h2 {
@@ -451,13 +464,17 @@ h1 {
 }
 
 .kova-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
     padding: 14px 18px;
     border-radius: 12px;
     background: #111;
     color: white;
     font-weight: 700;
     text-decoration: none;
+    text-align: center;
     white-space: nowrap;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -468,9 +485,7 @@ h1 {
 }
 
 .kova-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    display: grid;
     gap: 10px;
 }
 
@@ -631,7 +646,13 @@ footer {
     }
 
     .kova-actions {
+        width: 100%;
         justify-content: center;
+    }
+
+    .kova-link {
+        width: 100%;
+        white-space: normal;
     }
 }
 
