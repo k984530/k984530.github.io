@@ -139,6 +139,14 @@ const appMakerScreenshotPrefillLinks = new Map([
   ["VibePlanning", "../Kova/ai-app-store-screenshot-service/?source=vibeplanning&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.VibePlanning#screenshotBriefBuilder"],
 ]);
 
+const socialKovaIntentPrefillLinks = new Map([
+  ["ChatVibe", "../Kova/ai-dating-profile-picture-generator/?source=chatvibe&package=profile-refresh&goal=Dating%20app%20profile%20refresh&aov=50000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.loveExpert&deadline=This%20week&notes=Source%20app%20visitor%20wants%20profile%20photo%20refresh#datingSprintBuilder"],
+  ["FriendAI", "../Kova/ai-dating-profile-picture-generator/?source=friendai&package=profile-refresh&goal=Dating%20app%20profile%20refresh&aov=50000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.FriendAI&deadline=This%20week&notes=Source%20app%20visitor%20wants%20profile%20photo%20refresh#datingSprintBuilder"],
+  ["Rizzet", "../Kova/ai-dating-profile-picture-generator/?source=rizzet&package=profile-refresh&goal=Dating%20app%20profile%20refresh&aov=50000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.rizzChat&deadline=This%20week&notes=Source%20app%20visitor%20wants%20profile%20photo%20refresh#datingSprintBuilder"],
+  ["SeductionRules", "../Kova/ai-dating-profile-picture-generator/?source=seductionrules&package=profile-refresh&goal=Dating%20app%20profile%20refresh&aov=50000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.SeductionRules&deadline=This%20week&notes=Source%20app%20visitor%20wants%20profile%20photo%20refresh#datingSprintBuilder"],
+  ["faceMatch", "../Kova/ai-dating-profile-picture-generator/?source=facematch&package=profile-refresh&goal=Dating%20app%20profile%20refresh&aov=50000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.faceMatch&deadline=This%20week&notes=Source%20app%20visitor%20wants%20profile%20photo%20refresh#datingSprintBuilder"],
+]);
+
 const aiPlatformKovaIntentDirs = new Map([
   ["OneAI", "oneai"],
 ]);
@@ -232,7 +240,7 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     }
     if (socialKovaIntentDirs.has(dir)) {
       const source = socialKovaIntentDirs.get(dir);
-      const expectedLink = `../Kova/ai-dating-profile-picture-generator/?source=${source}&package=profile-refresh#datingSprintBuilder`;
+      const expectedLink = socialKovaIntentPrefillLinks.get(dir) ?? `../Kova/ai-dating-profile-picture-generator/?source=${source}&package=profile-refresh#datingSprintBuilder`;
       if (!html.includes("../Kova/ai-dating-profile-picture-generator/")) {
         failures.push(`${dir}: missing Kova dating-profile intent link`);
       }

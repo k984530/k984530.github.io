@@ -327,6 +327,8 @@ function verifyDatingSourceReadinessRuntime(html) {
     value: "profile-refresh",
     options: [
       { dataset: { price: "149000" }, textContent: "Profile refresh - 149,000 KRW" },
+      { dataset: { price: "390000" }, textContent: "Social set - 390,000 KRW" },
+      { dataset: { price: "990000" }, textContent: "Creator profile system - 990,000 KRW" },
     ],
   });
   addElement("datingSprintSource", { value: "Lookey" });
@@ -355,16 +357,29 @@ function verifyDatingSourceReadinessRuntime(html) {
       URLSearchParams,
       window: {
         location: {
-          search: "?source=lookey&package=profile-refresh",
+          search: "?source=friendai&package=social-set&goal=Social%20bio%20portrait%20set&aov=75000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.FriendAI&deadline=This%20week&notes=Source%20app%20visitor%20wants%20profile%20photo%20refresh",
         },
       },
     },
     { timeout: 1000 },
   );
 
+  assert.equal(elements.get("datingSprintPackage").value, "social-set");
+  assert.equal(elements.get("datingSprintSource").value, "FriendAI");
+  assert.equal(elements.get("datingSprintGoal").value, "Social bio portrait set");
+  assert.equal(elements.get("datingSprintAov").value, "75000");
+  assert.equal(elements.get("datingSprintProfileLink").value, "https://play.google.com/store/apps/details?id=com.aly.FriendAI");
+  assert.equal(elements.get("datingSprintDeadline").value, "This week");
+  assert.equal(elements.get("datingSprintNotes").value, "Source app visitor wants profile photo refresh");
   assert.equal(elements.get("datingReadinessScore").textContent, "2/4 ready");
   assert.match(elements.get("datingReadinessRecommendation").textContent, /Add varied source photos and a reference style/);
   assert.match(elements.get("datingSprintEmailPreview").textContent, /Profile photo readiness: 2\/4 ready/);
+  assert.match(elements.get("datingSprintEmailPreview").textContent, /Selected package: Social set - 390,000 KRW/);
+  assert.match(elements.get("datingSprintEmailPreview").textContent, /Referral source: FriendAI/);
+  assert.match(elements.get("datingSprintEmailPreview").textContent, /Primary goal: Social bio portrait set/);
+  assert.match(elements.get("datingSprintEmailPreview").textContent, /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.aly\.FriendAI/);
+  assert.match(elements.get("datingSprintEmailPreview").textContent, /Average paid order value: 75,000 KRW/);
+  assert.match(elements.get("datingSprintEmailPreview").textContent, /Estimated paid orders to recover fee: about 6/);
   assert.match(decodeURIComponent(elements.get("datingSprintInvoiceLink").href), /Profile photo readiness: 2\/4 ready/);
 
   elements.get("datingReadinessPhotoVariety").checked = true;

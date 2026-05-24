@@ -434,6 +434,11 @@
             "social-set": "Social set - 390,000 KRW",
             "creator-profile-system": "Creator profile system - 990,000 KRW+"
         };
+        const packagePrices = {
+            "profile-refresh": 149000,
+            "social-set": 390000,
+            "creator-profile-system": 990000
+        };
         const sourceLabels = {
             anythoughts: "AnyThoughts",
             anypick: "Anypick",
@@ -475,7 +480,8 @@
 
         function selectedPackagePrice() {
             const field = document.getElementById("datingSprintPackage");
-            return Number(field.options[field.selectedIndex].dataset.price || 149000);
+            const selectedOptionPrice = field.options[field.selectedIndex] && field.options[field.selectedIndex].dataset.price;
+            return packagePrices[field.value] || Number(selectedOptionPrice || 149000);
         }
 
         function datingReadinessState() {
@@ -530,6 +536,16 @@
         if (sourceParam && sourceLabels[sourceParam.toLowerCase()]) {
             document.getElementById("datingSprintSource").value = sourceLabels[sourceParam.toLowerCase()];
         }
+        [
+            ["goal", "datingSprintGoal"],
+            ["aov", "datingSprintAov"],
+            ["profileLink", "datingSprintProfileLink"],
+            ["deadline", "datingSprintDeadline"],
+            ["notes", "datingSprintNotes"]
+        ].forEach(([paramName, fieldId]) => {
+            const value = params.get(paramName);
+            if (value) document.getElementById(fieldId).value = value;
+        });
         document.getElementById("datingSprintForm").addEventListener("input", updateDatingSprintBrief);
         document.getElementById("datingSprintForm").addEventListener("change", updateDatingSprintBrief);
         datingReadinessItems.forEach((item) => {
