@@ -932,6 +932,7 @@
             const sourceLabels = {
                 apphub: "AppHub landing page",
                 genieplanner: "GeniePlanner landing page",
+                ghostlens: "GhostLens landing page",
                 mindmapai: "MindMapAI landing page",
                 mobilecode: "MobileCode landing page",
                 statup: "StatUP landing page",
@@ -959,15 +960,17 @@
                 ? sourceLabels.apphub
                 : /genieplanner/i.test(requestedSource)
                     ? sourceLabels.genieplanner
-                    : /mindmapai/i.test(requestedSource)
-                        ? sourceLabels.mindmapai
-                        : /mobilecode/i.test(requestedSource)
-                            ? sourceLabels.mobilecode
-                            : /statup/i.test(requestedSource)
-                                ? sourceLabels.statup
-                                : /vibeplanning/i.test(requestedSource)
-                                    ? sourceLabels.vibeplanning
-                                    : sourceLabels.direct;
+                    : /ghostlens/i.test(requestedSource)
+                        ? sourceLabels.ghostlens
+                        : /mindmapai/i.test(requestedSource)
+                            ? sourceLabels.mindmapai
+                            : /mobilecode/i.test(requestedSource)
+                                ? sourceLabels.mobilecode
+                                : /statup/i.test(requestedSource)
+                                    ? sourceLabels.statup
+                                    : /vibeplanning/i.test(requestedSource)
+                                        ? sourceLabels.vibeplanning
+                                        : sourceLabels.direct;
             const packageParam = params.get("package") || "";
             const selectedPackage = document.getElementById(packageParam);
 

@@ -164,6 +164,10 @@ const aiPlatformKovaIntentDirs = new Map([
   ["OneAI", "oneai"],
 ]);
 
+const creatorCampaignKovaIntentDirs = new Map([
+  ["GhostLens", "ghostlens"],
+]);
+
 const styleKovaIntentDirs = new Map([
   ["Lookey", "lookey"],
   ["MODEE", "modee"],
@@ -331,6 +335,19 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
       }
       if (!html.includes("AI selfie generator")) {
         failures.push(`${dir}: missing Kova AI selfie generator intent copy`);
+      }
+      if (!html.includes("Creator campaign sprint")) {
+        failures.push(`${dir}: missing Kova creator campaign sprint CTA`);
+      }
+    }
+    if (creatorCampaignKovaIntentDirs.has(dir)) {
+      const source = creatorCampaignKovaIntentDirs.get(dir);
+      const expectedLink = `../Kova/studio-sprint/?source=${source}&package=creator-campaign-system#creator-campaign-system`;
+      if (!html.includes(expectedLink)) {
+        failures.push(`${dir}: missing source-aware Kova creator campaign Studio Sprint link`);
+      }
+      if (!html.includes("creator campaign visuals")) {
+        failures.push(`${dir}: missing Kova creator campaign intent copy`);
       }
       if (!html.includes("Creator campaign sprint")) {
         failures.push(`${dir}: missing Kova creator campaign sprint CTA`);
