@@ -124,6 +124,7 @@ const toolKovaIntentDirs = new Map([
 const appMakerScreenshotDirs = new Map([
   ["AppHub", "apphub"],
   ["GeniePlanner", "genieplanner"],
+  ["MindMapAI", "mindmapai"],
   ["MobileCode", "mobilecode"],
   ["StatUP", "statup"],
   ["VibePlanning", "vibeplanning"],
@@ -132,6 +133,7 @@ const appMakerScreenshotDirs = new Map([
 const appMakerScreenshotPrefillLinks = new Map([
   ["AppHub", "../Kova/ai-app-store-screenshot-service/?source=apphub&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.AppHub#screenshotBriefBuilder"],
   ["GeniePlanner", "../Kova/ai-app-store-screenshot-service/?source=genieplanner&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.GeniePlanner#screenshotBriefBuilder"],
+  ["MindMapAI", "../Kova/ai-app-store-screenshot-service/?source=mindmapai&package=creator-campaign-system&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.MindMapAI#screenshotBriefBuilder"],
   ["MobileCode", "../Kova/ai-app-store-screenshot-service/?source=mobilecode&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.MobileCode#screenshotBriefBuilder"],
   ["StatUP", "../Kova/ai-app-store-screenshot-service/?source=statup&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.StatUP#screenshotBriefBuilder"],
   ["VibePlanning", "../Kova/ai-app-store-screenshot-service/?source=vibeplanning&package=launch-visual-sprint&platform=both&slots=8&aov=100000&appUrl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.VibePlanning#screenshotBriefBuilder"],
