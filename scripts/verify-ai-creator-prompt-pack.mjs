@@ -15,11 +15,11 @@ const [rootIndex, page, sitemap, kovaIndex, styles, figurine, headshot] = await 
 ]);
 
 assert.match(page, /AI Creator Prompt Pack/);
-assert.match(page, /\$19 USD/);
+assert.match(page, /₩29,000/);
 assert.match(page, /60 prompts/);
 assert.match(page, /7 workflows/);
 assert.match(page, /90 caption starters/);
-assert.match(page, /https:\/\/gumroad\.com\/checkout\?product=rkmll&quantity=1/);
+assert.match(page, /https:\/\/gumroad\.com\/checkout\?product=nffhl&quantity=1/);
 assert.match(page, /Buy on Gumroad/);
 assert.match(page, /Direct Gumroad checkout/);
 assert.doesNotMatch(page, /subject=AI%20Creator%20Prompt%20Pack%20order/);
@@ -32,10 +32,10 @@ assert.match(page, /<meta name="twitter:image" content="https:\/\/won-space\.com
 assert.match(page, /src="\.\.\/icons\/Kova\.png" alt="Kova app icon"/);
 assert.match(page, /How purchase works/);
 assert.match(page, /Direct Gumroad checkout is live/);
-assert.match(page, /Get instant purchase access/);
+assert.match(page, /full prompt pack after purchase/);
 assert.match(page, /Open the full ZIP/);
 assert.match(page, /ai-creator-prompt-pack-v1\.zip/);
-assert.match(page, /Personal and commercial use/);
+assert.match(page, /Commercial use allowed/);
 assert.match(page, /Do not resell the pack as-is/);
 assert.match(page, /Delivery and license FAQ/);
 assert.match(page, /Creator action figure/);
@@ -71,9 +71,9 @@ const productNode = graphNodes.find((node) => node["@type"] === "Product");
 assert.ok(productNode, "Product structured data should exist");
 assert.equal(productNode.name, "AI Creator Prompt Pack");
 assert.equal(productNode.sku, "ai-creator-prompt-pack-v1");
-assert.equal(productNode.offers.price, "19");
-assert.equal(productNode.offers.priceCurrency, "USD");
-assert.equal(productNode.offers.url, "https://gumroad.com/checkout?product=rkmll&quantity=1");
+assert.equal(productNode.offers.price, "29000");
+assert.equal(productNode.offers.priceCurrency, "KRW");
+assert.equal(productNode.offers.url, "https://gumroad.com/checkout?product=nffhl&quantity=1");
 assert.equal(productNode.offers.availability, "https://schema.org/InStock");
 assert.equal(productNode.offers.seller.name, "alyduho.develop");
 assert.equal(productNode.isRelatedTo.name, "Kova: AI Photo Editor");
@@ -84,7 +84,7 @@ assert.ok(faqNode.mainEntity.some((item) => /commercial use/.test(item.name)));
 assert.ok(faqNode.mainEntity.some((item) => /resell/.test(item.name)));
 assert.ok(faqNode.mainEntity.some((item) => /delivered/.test(item.name)));
 
-const gumroadLinks = [...page.matchAll(/href="https:\/\/gumroad\.com\/checkout\?product=rkmll&quantity=1"/g)];
+const gumroadLinks = [...page.matchAll(/href="https:\/\/gumroad\.com\/checkout\?product=nffhl&quantity=1"/g)];
 assert.ok(gumroadLinks.length >= 3, "Gumroad checkout should be linked from primary purchase surfaces");
 
 const customPromptMailLink = page.match(/mailto:alyduho984530@gmail\.com\?subject=AI%20Creator%20custom%20prompt%20bundle%20inquiry&body=([^"]+)/);
