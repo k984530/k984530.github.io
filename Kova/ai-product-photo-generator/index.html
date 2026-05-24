@@ -100,6 +100,13 @@
         .metric-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
         .metric { border: 2px solid var(--ink); border-radius: 8px; background: #eef9f3; padding: 14px 16px; font-weight: 900; line-height: 1.5; }
         .metric:nth-child(2) { background: #fff7d6; }
+        .readiness-panel { display: grid; gap: 14px; margin-top: 16px; border: 2px solid var(--ink); border-radius: 8px; background: #e9f1ff; padding: 18px; }
+        .readiness-panel strong { font-size: 1.08rem; }
+        .readiness-panel p { margin: 0; color: var(--muted); line-height: 1.58; }
+        .readiness-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+        .check-field { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 12px; }
+        .check-field input { width: 18px; min-width: 18px; height: 18px; margin-top: 2px; padding: 0; }
+        .check-field span { display: block; color: var(--muted); font-weight: 600; line-height: 1.45; }
         .safety-note { margin: 16px 0 0; padding: 14px 16px; border: 2px solid var(--ink); border-radius: 8px; background: #fff2f6; color: var(--ink); line-height: 1.55; }
         .faq { display: grid; gap: 14px; }
         .faq article { border: 2px solid var(--ink); border-radius: 8px; background: var(--white); padding: 20px; }
@@ -112,7 +119,7 @@
         footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding: 28px 0; border-top: 2px solid var(--line); color: var(--muted); }
         .footer-links { display: flex; flex-wrap: wrap; gap: 12px; font-weight: 800; }
         @media (max-width: 900px) {
-            .hero, .section-head, .brief-grid, .metric-row { grid-template-columns: 1fr; }
+            .hero, .section-head, .brief-grid, .metric-row, .readiness-grid { grid-template-columns: 1fr; }
             .cards { grid-template-columns: 1fr; }
         }
         @media (max-width: 560px) {
@@ -239,6 +246,33 @@
                     <div id="productBriefRecoveryOrders" class="metric">Estimated paid orders to recover sprint fee: about 3</div>
                     <div id="productBriefPackageFit" class="metric">Creator product refresh is best for one hero product, creator drop, or toy-box concept.</div>
                 </div>
+                <div class="readiness-panel" id="productSourceReadiness" aria-labelledby="productSourceReadinessTitle">
+                    <strong id="productSourceReadinessTitle">Product source readiness</strong>
+                    <p>Check the minimum source packet before invoice review. The readiness line is added to the email preview so the first reply can focus on scope, not missing assets.</p>
+                    <div class="readiness-grid" aria-label="Product source readiness checklist">
+                        <label class="check-field">
+                            <input id="productReadinessPhotos" type="checkbox" checked>
+                            <span>Clear product photos ready</span>
+                        </label>
+                        <label class="check-field">
+                            <input id="productReadinessUrl" type="checkbox" checked>
+                            <span>Product or store URL ready</span>
+                        </label>
+                        <label class="check-field">
+                            <input id="productReadinessChannel" type="checkbox">
+                            <span>Sales channel and SKU count ready</span>
+                        </label>
+                        <label class="check-field">
+                            <input id="productReadinessClaims" type="checkbox">
+                            <span>Product claim restrictions reviewed</span>
+                        </label>
+                    </div>
+                    <div class="metric-row" aria-label="Product source readiness result">
+                        <div id="productReadinessScore" class="metric">2/4 ready</div>
+                        <div id="productReadinessRecommendation" class="metric">Add channel/SKU details and claim restrictions before invoice review.</div>
+                    </div>
+                    <p id="productReadinessInvoiceNote">Product source readiness: 2/4 ready</p>
+                </div>
                 <p class="safety-note">No live checkout, payment link, store edit, or buyer message is created. This only prepares a local email draft in your mail app.</p>
                 <div class="cta-row">
                     <a id="productBriefInvoiceLink" class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Product%20Photo%20Sprint%20invoice%20request">Create product invoice email</a>
@@ -338,6 +372,31 @@
         const productBriefPackageFit = document.getElementById("productBriefPackageFit");
         const productBriefEmailPreview = document.getElementById("productBriefEmailPreview");
         const productBriefInvoiceLink = document.getElementById("productBriefInvoiceLink");
+        const productReadinessItems = [
+            {
+                id: "productReadinessPhotos",
+                readyLabel: "clear product photos ready",
+                missingLabel: "clear product photos",
+            },
+            {
+                id: "productReadinessUrl",
+                readyLabel: "product or store URL ready",
+                missingLabel: "product or store URL",
+            },
+            {
+                id: "productReadinessChannel",
+                readyLabel: "channel/SKU details ready",
+                missingLabel: "channel/SKU details",
+            },
+            {
+                id: "productReadinessClaims",
+                readyLabel: "claim restrictions reviewed",
+                missingLabel: "claim restrictions",
+            },
+        ];
+        const productReadinessScore = document.getElementById("productReadinessScore");
+        const productReadinessRecommendation = document.getElementById("productReadinessRecommendation");
+        const productReadinessInvoiceNote = document.getElementById("productReadinessInvoiceNote");
         const productKrw = new Intl.NumberFormat("en-US");
 
         function productNumberValue(input, fallback) {
@@ -349,12 +408,40 @@
             return productBriefPackages[productBriefPackage.value] || productBriefPackages["creator-product-refresh"];
         }
 
+        function productReadinessLine() {
+            const ready = [];
+            const missing = [];
+            for (const item of productReadinessItems) {
+                const control = document.getElementById(item.id);
+                if (control?.checked) {
+                    ready.push(item.readyLabel);
+                } else {
+                    missing.push(item.missingLabel);
+                }
+            }
+
+            const score = `${ready.length}/${productReadinessItems.length} ready`;
+            const recommendation = ready.length === productReadinessItems.length
+                ? "This product source packet is ready for invoice review."
+                : ready.length >= 2
+                    ? `Add ${missing.join(" and ")} before invoice review.`
+                    : "Add product photos, URL, channel/SKU details, and claim restrictions before invoice review.";
+            const line = `Product source readiness: ${score}${ready.length ? ` - ${ready.join(", ")}` : ""}${missing.length ? `; missing ${missing.join(", ")}` : ""}`;
+
+            if (productReadinessScore) productReadinessScore.textContent = score;
+            if (productReadinessRecommendation) productReadinessRecommendation.textContent = recommendation;
+            if (productReadinessInvoiceNote) productReadinessInvoiceNote.textContent = line;
+
+            return line;
+        }
+
         function updateProductBrief() {
             const selected = currentProductPackage();
             const averageOrderValue = productNumberValue(productBriefAov, 100000);
             const productCount = productNumberValue(productBriefProductCount, 1);
             const recoveryOrders = Math.ceil(selected.price / averageOrderValue);
             const recoveryText = `Estimated paid orders to recover sprint fee: about ${recoveryOrders}`;
+            const readinessLine = productReadinessLine();
             const body = [
                 "Hi, I want to request a Kova Product Photo Sprint invoice.",
                 "",
@@ -364,6 +451,7 @@
                 `Sales channel: ${productBriefSalesChannel.value || "Shopify product page"}`,
                 `Average paid order value: ${productKrw.format(averageOrderValue)} KRW`,
                 recoveryText,
+                readinessLine,
                 `Product or store URL: ${productBriefProductUrl.value || "not provided yet"}`,
                 `Target delivery date: ${productBriefDeadline.value || "not provided yet"}`,
                 `Notes: ${productBriefNotes.value || "none"}`,
@@ -398,6 +486,9 @@
             productBriefForm.addEventListener("input", updateProductBrief);
             productBriefForm.addEventListener("change", updateProductBrief);
             productBriefPackage.addEventListener("change", updateProductBrief);
+            for (const item of productReadinessItems) {
+                document.getElementById(item.id)?.addEventListener("change", updateProductBrief);
+            }
             updateProductBrief();
         }
     </script>

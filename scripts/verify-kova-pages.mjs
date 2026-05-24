@@ -1025,6 +1025,7 @@ function verifyProductPhotoBriefRuntime(html, options = {}) {
     changedRecoveryOrders = "12",
     changedPackageLabel = "Campaign product system - 2,900,000 KRW+",
     changedFitPattern = /Campaign product system is best when one product line needs ads, listing images, and launch visuals/,
+    expectProductReadiness = false,
   } = options;
   const scriptMatch = html.match(/<script>\s*([\s\S]*?const productBriefPackages[\s\S]*?)\s*<\/script>/);
   assert.ok(scriptMatch, "Product photo brief page must include the product photo brief builder script");
@@ -1033,6 +1034,7 @@ function verifyProductPhotoBriefRuntime(html, options = {}) {
   const elements = new Map();
   const addElement = (id, properties = {}) => {
     const element = {
+      checked: false,
       href: "",
       textContent: "",
       value: "",
@@ -1073,6 +1075,13 @@ function verifyProductPhotoBriefRuntime(html, options = {}) {
   addElement("productBriefPackageFit");
   addElement("productBriefEmailPreview");
   addElement("productBriefInvoiceLink");
+  addElement("productReadinessPhotos", { checked: true });
+  addElement("productReadinessUrl", { checked: true });
+  addElement("productReadinessChannel");
+  addElement("productReadinessClaims");
+  addElement("productReadinessScore");
+  addElement("productReadinessRecommendation");
+  addElement("productReadinessInvoiceNote");
 
   vm.runInNewContext(
     scriptMatch[1],
@@ -1105,6 +1114,22 @@ function verifyProductPhotoBriefRuntime(html, options = {}) {
   assert.match(elements.get("productBriefEmailPreview").value, new RegExp(`Estimated paid orders to recover sprint fee: about ${initialRecoveryOrders}`));
   assert.match(decodeURIComponent(elements.get("productBriefInvoiceLink").href), /Kova Product Photo Sprint invoice request/);
   assert.match(decodeURIComponent(elements.get("productBriefInvoiceLink").href), new RegExp(initialPackageLabel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  if (expectProductReadiness) {
+    assert.equal(elements.get("productReadinessScore").textContent, "2/4 ready");
+    assert.match(elements.get("productReadinessRecommendation").textContent, /Add channel\/SKU details and claim restrictions/);
+    assert.match(elements.get("productBriefEmailPreview").value, /Product source readiness: 2\/4 ready/);
+    assert.match(decodeURIComponent(elements.get("productBriefInvoiceLink").href), /Product source readiness: 2\/4 ready/);
+
+    elements.get("productReadinessChannel").checked = true;
+    fire("productReadinessChannel", "change");
+    elements.get("productReadinessClaims").checked = true;
+    fire("productReadinessClaims", "change");
+
+    assert.equal(elements.get("productReadinessScore").textContent, "4/4 ready");
+    assert.equal(elements.get("productReadinessRecommendation").textContent, "This product source packet is ready for invoice review.");
+    assert.match(elements.get("productBriefEmailPreview").value, /Product source readiness: 4\/4 ready/);
+    assert.match(decodeURIComponent(elements.get("productBriefInvoiceLink").href), /claim restrictions reviewed/);
+  }
 
   elements.get("productBriefPackage").value = changedPackage;
   fire("productBriefPackage", "change");
@@ -2015,6 +2040,17 @@ assert.match(productPhoto, /id="productBriefRecoveryOrders"/);
 assert.match(productPhoto, /id="productBriefPackageFit"/);
 assert.match(productPhoto, /id="productBriefEmailPreview"/);
 assert.match(productPhoto, /id="productBriefInvoiceLink"/);
+assert.match(productPhoto, /Product source readiness/);
+assert.match(productPhoto, /id="productSourceReadiness"/);
+assert.match(productPhoto, /id="productReadinessPhotos"/);
+assert.match(productPhoto, /id="productReadinessUrl"/);
+assert.match(productPhoto, /id="productReadinessChannel"/);
+assert.match(productPhoto, /id="productReadinessClaims"/);
+assert.match(productPhoto, /id="productReadinessScore"/);
+assert.match(productPhoto, /id="productReadinessRecommendation"/);
+assert.match(productPhoto, /id="productReadinessInvoiceNote"/);
+assert.match(productPhoto, /Product source readiness: /);
+assert.match(productPhoto, /const productReadinessItems/);
 assert.match(productPhoto, /Kova Product Photo Sprint invoice request/);
 assert.match(productPhoto, /Estimated paid orders to recover sprint fee:/);
 assert.match(productPhoto, /const productBriefPackages/);
@@ -2041,6 +2077,7 @@ verifyProductPhotoBriefRuntime(productPhoto, {
   changedRecoveryOrders: "9",
   changedPackageLabel: "Shop launch pack - 990,000 KRW",
   changedFitPattern: /Shop launch pack is best when a small catalog needs product listings and launch ads/,
+  expectProductReadiness: true,
 });
 
 assert.match(figurine, /<title>AI Figurine Generator \| Kova<\/title>/);
