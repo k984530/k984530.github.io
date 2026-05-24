@@ -152,7 +152,7 @@
 
         .kova-promo {
             display: grid;
-            grid-template-columns: 88px minmax(0, 1fr) auto;
+            grid-template-columns: 88px minmax(0, 1fr) minmax(220px, auto);
             align-items: center;
             gap: 22px;
             background: #fffaf0;
@@ -181,16 +181,35 @@
             line-height: 1.7;
         }
 
+        .kova-eyebrow {
+            margin-bottom: 8px;
+            color: #d35400;
+            font-size: 0.82em;
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
         .kova-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
             padding: 14px 18px;
             border-radius: 12px;
             background: #111;
             color: white;
             font-weight: 700;
             text-decoration: none;
+            text-align: center;
             white-space: nowrap;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .kova-link.secondary {
+            background: white;
+            color: #111;
+            border: 1px solid #f2c98d;
         }
 
         .kova-link:hover {
@@ -199,9 +218,7 @@
         }
 
         .kova-actions {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
+            display: grid;
             gap: 10px;
         }
         
@@ -256,7 +273,12 @@
             }
 
             .kova-actions {
-                justify-content: center;
+                width: 100%;
+            }
+
+            .kova-link {
+                width: 100%;
+                white-space: normal;
             }
         }
     </style>
@@ -271,6 +293,21 @@
     </header>
     
     <main class="container">
+        <section class="kova-promo" id="wealthaKovaHeadshotShortcut" aria-label="Fast Kova finance profile path for Wealtha visitors">
+            <img src="../Kova/download/Icon.png" alt="Kova AI Photo Editor icon">
+            <div>
+                <p class="kova-eyebrow">Fast Kova finance profile path</p>
+                <h2>Wealtha visitors: turn one photo into investor-facing profile headshots</h2>
+                <p>Try Kova with 20 starter credits, enough for about 2 standard image generations, then use the Finance creator profile sprint for a 100,000 KRW professional profile headshots path.</p>
+            </div>
+            <div class="kova-actions">
+                <a class="kova-link" href="https://gumroad.com/checkout?product=nffhl&quantity=1" target="_blank" rel="noopener" aria-label="Buy AI Creator Prompt Pack on Gumroad">Buy prompt pack · 29,000 KRW</a>
+                <a class="kova-link secondary" href="../Kova/ai-profile-headshot-generator/">Open Kova</a>
+                <a class="kova-link secondary" href="../Kova/ai-profile-headshot-generator/?source=wealtha&package=professional-refresh&use=Finance%20creator%20profile&aov=100000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.Wealtha&deadline=This%20week&notes=Source%20app%20visitor%20wants%20professional%20finance%20headshot#proHeadshotBuilder">Professional headshot sprint</a>
+                <a class="kova-link secondary" href="https://gumroad.com/checkout?product=ithrs&quantity=1" target="_blank" rel="noopener" aria-label="Pay Kova Studio Sprint Creator Campaign deposit on Gumroad">Pay creator deposit · 2,900,000 KRW</a>
+            </div>
+        </section>
+
         <div class="download-section">
             <div class="download-buttons">
                 <a href="https://apps.apple.com/app/stocks-crypto-fin-wealtha/id6746156248" class="download-btn" target="_blank" rel="noopener">
@@ -318,20 +355,6 @@
                     <h3 class="feature-title">Learn & Earn</h3>
                     <p class="feature-description">Educational content to improve your financial literacy.</p>
                 </div>
-            </div>
-        </div>
-        <div class="kova-promo">
-            <img src="../Kova/download/Icon.png" alt="Kova AI Photo Editor icon">
-            <div>
-                <h2>Make profile headshots for finance credibility</h2>
-                <p>Try Kova with 20 starter credits, enough for about 2 standard image generations, and turn one photo into profile headshots, investor-facing avatars, report visuals, and polished social images.</p>
-            </div>
-            <div class="kova-actions">
-                <a class="kova-link" href="../Kova/ai-profile-headshot-generator/">Open Kova</a>
-                <a class="kova-link" href="https://gumroad.com/checkout?product=nffhl&quantity=1" aria-label="Buy AI Creator Prompt Pack on Gumroad">Buy ₩29,000 prompt pack</a>
-                <a class="kova-link secondary" href="https://appshunter.io/launches/kova-ai-photo-editor" target="_blank" rel="noopener">AppsHunter launch live</a>
-                <a class="kova-link secondary" href="https://gumroad.com/checkout?product=ithrs&quantity=1" target="_blank" rel="noopener" aria-label="Pay Kova Studio Sprint Creator Campaign deposit on Gumroad">Pay creator deposit · 2,900,000 KRW + launch-week bonus: 2 extra prompt recipes</a>
-                <a class="kova-link" href="../Kova/ai-profile-headshot-generator/?source=wealtha&package=professional-refresh&use=Finance%20creator%20profile&aov=100000&profileLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.Wealtha&deadline=This%20week&notes=Source%20app%20visitor%20wants%20professional%20finance%20headshot#proHeadshotBuilder">Professional headshot sprint</a>
             </div>
         </div>
     </main>
