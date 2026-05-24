@@ -178,6 +178,11 @@ const styleKovaIntentDirs = new Map([
   ["MODEE", "modee"],
 ]);
 
+const styleKovaIntentPrefillLinks = new Map([
+  ["Lookey", "../Kova/ai-fashion-photo-generator/?source=lookey&package=outfit-social-set&goal=Style%20profile%20picture%20set&aov=100000&reference=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.Lookey&deadline=This%20week&notes=Source%20app%20visitor%20wants%20style%20profile%20pictures#styleProfileSprintBuilder"],
+  ["MODEE", "../Kova/ai-fashion-photo-generator/?source=modee&package=outfit-social-set&goal=Style%20profile%20picture%20set&aov=100000&reference=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.MODEE&deadline=This%20week&notes=Source%20app%20visitor%20wants%20style%20profile%20pictures#styleProfileSprintBuilder"],
+]);
+
 const rootIndex = await readFile("index.html", "utf8");
 const projectMatches = [...rootIndex.matchAll(/\{\s*name: "([^"]+)"([\s\S]*?)\s*\}/g)];
 const projects = new Map();
@@ -360,7 +365,7 @@ for (const [name, dir] of Object.entries(projectLandingDirs)) {
     }
     if (styleKovaIntentDirs.has(dir)) {
       const source = styleKovaIntentDirs.get(dir);
-      const expectedLink = `../Kova/ai-dating-profile-picture-generator/?source=${source}&package=profile-refresh#datingSprintBuilder`;
+      const expectedLink = styleKovaIntentPrefillLinks.get(dir) ?? `../Kova/ai-fashion-photo-generator/?source=${source}&package=outfit-social-set#styleProfileSprintBuilder`;
       if (!html.includes("../Kova/ai-fashion-photo-generator/")) {
         failures.push(`${dir}: missing Kova fashion-photo intent link`);
       }

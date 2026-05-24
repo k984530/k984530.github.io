@@ -546,7 +546,7 @@ function verifyFashionStyleSprintRuntime(html) {
       URLSearchParams,
       window: {
         location: {
-          search: "?source=modee&package=outfit-social-set",
+          search: "?source=modee&package=outfit-social-set&goal=Style%20profile%20picture%20set&aov=100000&reference=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.MODEE&deadline=This%20week&notes=Source%20app%20visitor%20wants%20style%20profile%20pictures",
         },
       },
     },
@@ -555,9 +555,16 @@ function verifyFashionStyleSprintRuntime(html) {
 
   assert.equal(elements.get("styleProfilePackage").value, "outfit-social-set");
   assert.equal(elements.get("styleProfileSource").value, "MODEE");
+  assert.equal(elements.get("styleProfileGoal").value, "Style profile picture set");
+  assert.equal(elements.get("styleProfileAov").value, "100000");
+  assert.equal(elements.get("styleProfileReference").value, "https://play.google.com/store/apps/details?id=com.aly.MODEE");
+  assert.equal(elements.get("styleProfileDeadline").value, "This week");
+  assert.equal(elements.get("styleProfileNotes").value, "Source app visitor wants style profile pictures");
   assert.match(elements.get("styleProfileEmailPreview").textContent, /Selected package: Outfit social set - 390,000 KRW/);
   assert.match(elements.get("styleProfileEmailPreview").textContent, /Referral source: MODEE/);
-  assert.match(elements.get("styleProfileEmailPreview").textContent, /Estimated paid orders to recover fee: about 8/);
+  assert.match(elements.get("styleProfileEmailPreview").textContent, /Primary goal: Style profile picture set/);
+  assert.match(elements.get("styleProfileEmailPreview").textContent, /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.aly\.MODEE/);
+  assert.match(elements.get("styleProfileEmailPreview").textContent, /Estimated paid orders to recover fee: about 4/);
   assert.match(decodeURIComponent(elements.get("styleProfileInvoiceLink").href), /Kova Style Profile Sprint invoice request/);
   assert.match(decodeURIComponent(elements.get("styleProfileInvoiceLink").href), /Outfit social set - 390,000 KRW/);
 

@@ -470,6 +470,18 @@
         if (styleProfileSourceParam && styleProfileSources[styleProfileSourceParam.toLowerCase()]) {
             document.getElementById("styleProfileSource").value = styleProfileSources[styleProfileSourceParam.toLowerCase()];
         }
+        for (const [paramName, fieldId] of [
+            ["goal", "styleProfileGoal"],
+            ["aov", "styleProfileAov"],
+            ["reference", "styleProfileReference"],
+            ["deadline", "styleProfileDeadline"],
+            ["notes", "styleProfileNotes"]
+        ]) {
+            const paramValue = styleProfileParams.get(paramName);
+            if (paramValue) {
+                document.getElementById(fieldId).value = paramValue;
+            }
+        }
         document.getElementById("styleProfileSprintForm").addEventListener("input", updateStyleProfileBrief);
         document.getElementById("styleProfileSprintForm").addEventListener("change", updateStyleProfileBrief);
         updateStyleProfileBrief();
