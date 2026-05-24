@@ -239,6 +239,7 @@
         }
 
         .package-grid,
+        .pilot-grid,
         .deliverables,
         .process-grid,
         .proof-grid,
@@ -250,6 +251,7 @@
         }
 
         .package,
+        .pilot-card,
         .deliverable,
         .process-step,
         .proof-card,
@@ -264,12 +266,41 @@
             min-height: 240px;
         }
 
+        .pilot-panel {
+            padding: 24px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
+            background: var(--white);
+            box-shadow: 10px 10px 0 rgba(36, 119, 255, 0.18);
+        }
+
+        .pilot-panel .section-note {
+            max-width: 840px;
+        }
+
+        .pilot-grid {
+            margin-top: 22px;
+        }
+
+        .pilot-card {
+            min-height: 178px;
+        }
+
+        .pilot-card:nth-child(2) {
+            background: #edf8f2;
+        }
+
+        .pilot-card:nth-child(3) {
+            background: #fff4cf;
+        }
+
         .package:target,
         .package[data-selected="true"] {
             box-shadow: 10px 10px 0 rgba(36, 119, 255, 0.22);
         }
 
         .package strong,
+        .pilot-card strong,
         .deliverable strong,
         .process-step strong,
         .proof-card strong,
@@ -290,6 +321,7 @@
         }
 
         .package p,
+        .pilot-card p,
         .deliverable p,
         .process-step p,
         .proof-card p,
@@ -504,6 +536,7 @@
         @media (max-width: 880px) {
             .hero,
             .package-grid,
+            .pilot-grid,
             .deliverables,
             .process-grid,
             .proof-grid,
@@ -539,12 +572,39 @@
                     <a class="button secondary" href="../team-headshot-sprint/">Team headshots</a>
                     <a class="button secondary" href="../10m-scope-lock/">10M scope lock</a>
                     <a class="button secondary" href="../../AI-Creator-Prompt-Pack/">Prompt pack</a>
+                    <a class="button secondary" href="#pilotIntakeTitle">Pilot intake</a>
                 </div>
             </div>
             <div class="visual-board" aria-label="Kova Studio Sprint visual examples">
                 <img src="../assets/profile_headshot.webp" alt="Founder profile visual made with Kova">
                 <img src="../assets/figurine.webp" alt="Product-style AI figurine visual">
                 <img src="../assets/polaroid.webp" alt="App launch post visual">
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="pilotIntakeTitle">
+            <div class="pilot-panel">
+                <h2 id="pilotIntakeTitle">Launch-week pilot intake</h2>
+                <p class="section-note">Use this when a product, creator offer, or portfolio funnel has enough source material to turn around a paid visual sprint this week. The first check is not taste; it is whether the smallest recoverable package clears the buyer's paid-order math.</p>
+                <div class="pilot-grid" aria-label="Kova Studio Sprint pilot proof and intake">
+                    <article class="pilot-card">
+                        <strong>2 pilot slots</strong>
+                        <p>Use the launch-week queue for one focused app launch or creator campaign where source materials, target audience, and deadline are already visible.</p>
+                    </article>
+                    <article class="pilot-card">
+                        <strong>Source-aware feeder proof</strong>
+                        <p>Owned pages now route at least 1,810+ Google Play lower-bound app-maker downloads and 500+ GhostLens lower-bound downloads into Studio Sprint paths.</p>
+                    </article>
+                    <article class="pilot-card">
+                        <strong>Paid-order check first</strong>
+                        <p>At 100,000 KRW average paid order value, the 990,000 KRW pilot needs about 10 paid orders before other costs.</p>
+                    </article>
+                </div>
+                <div class="cta-row">
+                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=Kova%20Studio%20Sprint%20launch-week%20pilot&body=Selected%20package%3A%20Launch%20visual%20sprint%20-%20990%2C000%20KRW%0AAverage%20paid%20order%20value%3A%20%0ALaunch%20date%3A%20%0AProduct%20or%20creator%20link%3A%20%0ASource%20materials%20link%3A%20%0ASmallest%20recoverable%20package%3A%20%0ANotes%3A%20">Request pilot fit check</a>
+                    <a class="button secondary" href="#sprintBriefBuilder">Build invoice-ready brief</a>
+                    <a class="button secondary" href="#paidOrderCalculatorTitle">Run paid-order calculator</a>
+                </div>
             </div>
         </section>
 
