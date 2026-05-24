@@ -152,7 +152,7 @@
 
         .kova-promo {
             display: grid;
-            grid-template-columns: 88px minmax(0, 1fr) auto;
+            grid-template-columns: 88px minmax(0, 1fr) minmax(220px, auto);
             align-items: center;
             gap: 22px;
             background: #fffaf0;
@@ -181,8 +181,27 @@
             line-height: 1.7;
         }
 
+        .kova-eyebrow {
+            margin-bottom: 6px;
+            color: #5b21b6;
+            font-size: 0.82em;
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .kova-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: stretch;
+        }
+
         .kova-link {
-            display: inline-block;
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
             padding: 14px 18px;
             border-radius: 12px;
             background: #111;
@@ -191,6 +210,12 @@
             text-decoration: none;
             white-space: nowrap;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .kova-link.secondary {
+            background: white;
+            color: #111;
+            border: 1px solid rgba(17, 17, 17, 0.12);
         }
 
         .kova-link:hover {
@@ -258,6 +283,14 @@
             .kova-promo img {
                 margin: 0 auto;
             }
+
+            .kova-actions {
+                width: 100%;
+            }
+
+            .kova-link {
+                white-space: normal;
+            }
         }
     </style>
 </head>
@@ -271,6 +304,20 @@
     </header>
     
     <main class="container">
+        <section class="kova-promo" id="catsdiaryKovaPetShortcut" aria-label="Fast Kova pet portrait path for CatsDiary visitors">
+            <img src="../Kova/download/Icon.png" alt="Kova AI Photo Editor icon">
+            <div>
+                <p class="kova-eyebrow">Fast Kova pet portrait path</p>
+                <h2>CatsDiary visitors: turn one cat memory into a paid Kova portrait</h2>
+                <p>Try Kova with 20 starter credits, enough for about 2 standard image generations, then use the prefilled pet portrait sprint for a 50,000 KRW memory portrait path.</p>
+            </div>
+            <div class="kova-actions">
+                <a class="kova-link" href="https://gumroad.com/checkout?product=nffhl&quantity=1" aria-label="Buy AI Creator Prompt Pack on Gumroad">Buy prompt pack · 29,000 KRW</a>
+                <a class="kova-link secondary" href="../Kova/ai-pet-portrait-generator/?source=catsdiary&package=pet-memory&goal=Pet%20memory%20portrait&petType=Cat&aov=50000&petPhotoLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.CatsDiary&deadline=This%20week&notes=Source%20app%20visitor%20wants%20cat%20portrait#petPortraitBuilder">Open Kova · Pet portrait sprint</a>
+                <a class="kova-link secondary" href="https://gumroad.com/checkout?product=ithrs&quantity=1" target="_blank" rel="noopener" aria-label="Pay Kova Studio Sprint Creator Campaign deposit on Gumroad">Pay creator deposit · 2,900,000 KRW</a>
+            </div>
+        </section>
+
         <div class="download-section">
             <div class="download-buttons">
                 <a href="https://apps.apple.com/us/app/cats-diary-photo-reminder/id6751799793" class="download-btn" target="_blank" rel="noopener">
@@ -285,19 +332,6 @@
             </p>
         </div>
 
-        <div class="kova-promo">
-            <img src="../Kova/download/Icon.png" alt="Kova AI Photo Editor icon">
-            <div>
-                <h2>Turn favorite cat photos into an AI pet portrait</h2>
-                <p>After saving cat memories in Cats Diary, try Kova with 20 starter credits, enough for about 2 standard image generations, and turn one cat photo into a pet portrait, keepsake style, or share-ready AI image.</p>
-            </div>
-            <a class="kova-link" href="../Kova/ai-pet-portrait-generator/">Open Kova</a>
-            <a class="kova-link" href="../Kova/ai-pet-portrait-generator/?source=catsdiary&package=pet-memory&goal=Pet%20memory%20portrait&petType=Cat&aov=50000&petPhotoLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.CatsDiary&deadline=This%20week&notes=Source%20app%20visitor%20wants%20cat%20portrait#petPortraitBuilder">Open Kova · Pet portrait sprint</a>
-            <a class="kova-link" href="https://gumroad.com/checkout?product=nffhl&quantity=1" aria-label="Buy AI Creator Prompt Pack on Gumroad">Buy ₩29,000 prompt pack</a>
-                <a class="kova-link secondary" href="https://appshunter.io/launches/kova-ai-photo-editor" target="_blank" rel="noopener">AppsHunter launch live</a>
-                <a class="kova-link secondary" href="https://gumroad.com/checkout?product=ithrs&quantity=1" target="_blank" rel="noopener" aria-label="Pay Kova Studio Sprint Creator Campaign deposit on Gumroad">Pay creator deposit · 2,900,000 KRW + launch-week bonus: 2 extra prompt recipes</a>
-        </div>
-        
         <div class="quote">
             "Capture your cat's precious moments and let us turn them into beautiful diary entries."
         </div>
