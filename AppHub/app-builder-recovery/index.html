@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppHub App Builder Recovery Sprint | App Publishing Trust Service</title>
+    <meta name="description" content="A focused AppHub recovery lane for app-builder and no-code app teams with traffic, subscription expectation friction, and publishing trust risk.">
+    <link rel="canonical" href="https://won-space.com/AppHub/app-builder-recovery/">
+    <meta property="og:title" content="AppHub App Builder Recovery Sprint">
+    <meta property="og:description" content="Repair subscription expectation, publishing trust, and generated-app reliability signals before buying more app-builder traffic.">
+    <meta property="og:image" content="https://won-space.com/AppHub/download/Icon.png">
+    <meta property="og:url" content="https://won-space.com/AppHub/app-builder-recovery/">
+    <meta property="og:type" content="website">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #f7f8fb;
+            color: #111827;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .shell {
+            margin: 0 auto;
+            max-width: 1120px;
+            padding: 28px 20px 56px;
+        }
+
+        .topbar {
+            align-items: center;
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .brand {
+            align-items: center;
+            display: inline-flex;
+            gap: 12px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .brand img {
+            border-radius: 12px;
+            height: 42px;
+            width: 42px;
+        }
+
+        .nav-link {
+            color: #4b5563;
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .hero,
+        .band {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        .hero {
+            display: grid;
+            gap: 28px;
+            grid-template-columns: minmax(0, 1.2fr) 300px;
+            padding: 38px;
+        }
+
+        .eyebrow {
+            color: #1f5f8b;
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2.25rem, 6vw, 4.5rem);
+            letter-spacing: 0;
+            line-height: 0.98;
+            margin-bottom: 18px;
+        }
+
+        .lead {
+            color: #4b5563;
+            font-size: 1.08rem;
+            max-width: 760px;
+        }
+
+        .signal-card {
+            align-self: start;
+            background: #0f172a;
+            border-radius: 16px;
+            color: #fff;
+            padding: 22px;
+        }
+
+        .signal-card img {
+            border-radius: 18px;
+            display: block;
+            height: 74px;
+            margin-bottom: 18px;
+            width: 74px;
+        }
+
+        .signal-card strong {
+            display: block;
+            font-size: 1.7rem;
+            line-height: 1.05;
+            margin-bottom: 8px;
+        }
+
+        .signal-card span {
+            color: rgba(255, 255, 255, 0.78);
+            display: block;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .button {
+            align-items: center;
+            background: #111827;
+            border-radius: 999px;
+            color: #fff;
+            display: inline-flex;
+            font-weight: 900;
+            min-height: 46px;
+            padding: 13px 18px;
+            text-decoration: none;
+        }
+
+        .button.secondary {
+            background: #e8f3f8;
+            color: #164a65;
+        }
+
+        .band {
+            margin-top: 20px;
+            padding: 30px;
+        }
+
+        .band h2 {
+            font-size: 1.8rem;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin-top: 18px;
+        }
+
+        .tile {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .tile strong {
+            display: block;
+            font-size: 1.28rem;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .tile p,
+        .band p,
+        li {
+            color: #4b5563;
+        }
+
+        .steps {
+            display: grid;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .step {
+            background: #f8fafc;
+            border-left: 4px solid #1f5f8b;
+            border-radius: 12px;
+            padding: 16px 18px;
+        }
+
+        .step b {
+            color: #111827;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .fine-print {
+            color: #6b7280;
+            font-size: 0.94rem;
+            margin-top: 14px;
+        }
+
+        @media (max-width: 820px) {
+            .hero,
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero,
+            .band {
+                padding: 24px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shell" id="apphubAppBuilderRecoveryPage" data-conversion-event="apphub_app_builder_recovery" data-offer-pipeline-value="2900000">
+        <nav class="topbar" aria-label="AppHub App Builder Recovery navigation">
+            <a class="brand" href="../">
+                <img src="../download/Icon.png" alt="AppHub icon">
+                <span>AppHub</span>
+            </a>
+            <a class="nav-link" href="../store-growth-sprint/">Store Growth Sprint</a>
+        </nav>
+
+        <header class="hero">
+            <div>
+                <p class="eyebrow">App-builder listing recovery</p>
+                <h1>AppHub App Builder Recovery Sprint</h1>
+                <p class="lead">For no-code and app-builder teams with real traffic but visible trust friction around subscription expectation, publishing trust, sign-in, and generated-app reliability. The page routes qualified intent into the AppHub inquiry builder before any payment discussion.</p>
+                <div class="cta-row">
+                    <a class="button" href="../store-growth-sprint/?source=app-builder-recovery&utm_campaign=apphub_app_builder_recovery&package=portfolio&timeline=This%20month&goal=Clarify%20subscription%2C%20publishing%2C%20sign-in%2C%20and%20generated-app%20reliability%20expectations%20for%20app-builder%20buyers.#apphubSprintBriefBuilder">Build app-builder recovery brief</a>
+                    <a class="button secondary" href="#packages">Compare scope</a>
+                </div>
+                <p class="fine-print">No invoice or payment request starts on this page.</p>
+            </div>
+            <aside class="signal-card" aria-label="AppHub public signal">
+                <img src="../download/Icon.png" alt="AppHub app icon">
+                <strong>1K+ AppHub downloads</strong>
+                <span>AppHub's own public store signal gives this recovery service a real before-state: traffic exists, trust needs work.</span>
+            </aside>
+        </header>
+
+        <section class="band" aria-labelledby="frictionTitle">
+            <p class="eyebrow">Why app builders</p>
+            <h2 id="frictionTitle">App-builder buyers convert only when the store promise feels reliable.</h2>
+            <div class="grid">
+                <div class="tile">
+                    <strong>Subscription expectation</strong>
+                    <p>Clarify what is free, what is paid, and when a builder should expect a subscription step.</p>
+                </div>
+                <div class="tile">
+                    <strong>Publishing trust</strong>
+                    <p>Rewrite the store story so publishing, export, and support promises match the user's real workflow.</p>
+                </div>
+                <div class="tile">
+                    <strong>Generated-app reliability</strong>
+                    <p>Turn review friction into screenshot direction, FAQ copy, and a launch-page proof checklist.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="band" id="packages" aria-labelledby="packagesTitle">
+            <p class="eyebrow">Scope</p>
+            <h2 id="packagesTitle">Start with the smallest repair that changes buyer trust.</h2>
+            <div class="grid">
+                <div class="tile">
+                    <strong>Store Growth Audit - 390,000 KRW</strong>
+                    <p>Listing teardown, review-risk map, screenshot direction, and one prioritized recovery checklist.</p>
+                </div>
+                <div class="tile">
+                    <strong>Recovery Sprint - 990,000 KRW</strong>
+                    <p>Listing rewrite, screenshot story, review-response themes, and app-builder launch-page conversion map.</p>
+                </div>
+                <div class="tile">
+                    <strong>Portfolio Recovery System - 2,900,000 KRW</strong>
+                    <p>A reusable recovery system for teams managing multiple app-builder listings and launch pages.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="band" aria-labelledby="flowTitle">
+            <p class="eyebrow">Flow</p>
+            <h2 id="flowTitle">Route the problem into the AppHub inquiry builder.</h2>
+            <div class="steps">
+                <div class="step">
+                    <b>1. Share the app-builder store page and public friction.</b>
+                    <p>Use downloads, rating, review themes, sign-in friction, export friction, or subscription confusion as the starting point.</p>
+                </div>
+                <div class="step">
+                    <b>2. Receive the smallest useful recovery scope.</b>
+                    <p>The response recommends audit, sprint, or portfolio recovery based on risk and buyer fit.</p>
+                </div>
+                <div class="step">
+                    <b>3. Confirm scope before money is requested.</b>
+                    <p>Work only moves forward after the problem, timeline, and deliverable are clear.</p>
+                </div>
+            </div>
+            <div class="cta-row">
+                <a class="button" href="../store-growth-sprint/?source=app-builder-recovery&utm_campaign=apphub_app_builder_recovery&package=portfolio&timeline=This%20month&goal=Clarify%20subscription%2C%20publishing%2C%20sign-in%2C%20and%20generated-app%20reliability%20expectations%20for%20app-builder%20buyers.#apphubSprintBriefBuilder">Open prefilled inquiry builder</a>
+                <a class="button secondary" href="../">Back to AppHub</a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
