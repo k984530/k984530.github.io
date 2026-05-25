@@ -381,7 +381,7 @@
             </div>
         </section>
 
-        <section class="section panel" id="apphubSprintBriefBuilder" data-conversion-event="apphub_sprint_inquiry_builder" aria-labelledby="briefBuilderTitle">
+        <section class="section panel" id="apphubSprintBriefBuilder" data-conversion-event="apphub_sprint_inquiry_builder" data-evidence-key="apphubSprintInquiryEvidence" aria-labelledby="briefBuilderTitle">
             <p class="eyebrow">Inquiry builder</p>
             <h2 id="briefBuilderTitle">Turn your store problem into a scoped review request.</h2>
             <p>Fill the fields that matter most for first response quality. The generated email keeps scope, package, and timing clear before any payment discussion.</p>
@@ -467,6 +467,12 @@
             portfolio: "Portfolio Recovery System - 2,900,000 KRW"
         };
 
+        const apphubSprintPackageValues = {
+            audit: 390000,
+            recovery: 990000,
+            portfolio: 2900000
+        };
+
         function apphubSprintValue(selector, fallback = "Not provided") {
             const element = document.querySelector(selector);
             const value = element && typeof element.value === "string" ? element.value.trim() : "";
@@ -542,18 +548,51 @@
             ].join("\n");
         }
 
-        function apphubSprintCaptureInquiryDraft(body, channel = "preview") {
+        function apphubSprintBuildInquiryEvidence(body, channel = "preview") {
             const tracking = apphubSprintTrackingContext();
+            const packageSlug = apphubSprintValue("#briefPackage", "recovery");
+            return {
+                eventName: "apphub_sprint_inquiry_builder",
+                channel,
+                appName: apphubSprintValue("#briefAppName"),
+                packageSlug,
+                packageLabel: apphubSprintPackages[packageSlug] || apphubSprintPackages.recovery,
+                estimatedPipelineValueKrw: apphubSprintPackageValues[packageSlug] || apphubSprintPackageValues.recovery,
+                storeLinks: apphubSprintValue("#briefStoreLinks"),
+                rating: apphubSprintValue("#briefCurrentRating"),
+                reviews: apphubSprintValue("#briefCurrentReviews"),
+                downloads: apphubSprintValue("#briefCurrentDownloads"),
+                timeline: apphubSprintValue("#briefTimeline"),
+                goal: apphubSprintValue("#briefRecoveryGoal"),
+                leadSource: tracking.leadSource,
+                campaign: tracking.campaign,
+                pageUrl: tracking.pageUrl,
+                body,
+                updatedAt: new Date().toISOString(),
+                actionBoundaries: {
+                    externalMessageSent: false,
+                    emailAccountDraftCreated: false,
+                    formSubmission: false,
+                    invoiceOrPaymentRequest: false,
+                    purchaseOrSubscription: false,
+                    paidAcquisition: false
+                }
+            };
+        }
+
+        function apphubSprintCaptureInquiryDraft(body, channel = "preview") {
+            const evidence = apphubSprintBuildInquiryEvidence(body, channel);
             try {
+                localStorage.setItem("apphubSprintInquiryEvidence", JSON.stringify(evidence));
                 localStorage.setItem("apphubSprintInquiryDraft", JSON.stringify({
-                    channel,
-                    appName: apphubSprintValue("#briefAppName"),
-                    packageSlug: apphubSprintValue("#briefPackage", "recovery"),
-                    leadSource: tracking.leadSource,
-                    campaign: tracking.campaign,
-                    pageUrl: tracking.pageUrl,
+                    channel: evidence.channel,
+                    appName: evidence.appName,
+                    packageSlug: evidence.packageSlug,
+                    leadSource: evidence.leadSource,
+                    campaign: evidence.campaign,
+                    pageUrl: evidence.pageUrl,
                     body,
-                    updatedAt: new Date().toISOString()
+                    updatedAt: evidence.updatedAt
                 }));
             } catch (error) {
                 // Local storage is optional; the generated mailto and preview still work without it.
@@ -611,9 +650,11 @@
             if (mailto) {
                 mailto.href = `mailto:alyduho984530@gmail.com?subject=AppHub%20Store%20Growth%20Sprint%20inquiry&body=${encodeURIComponent(body)}`;
             }
+            apphubSprintCaptureInquiryDraft(body);
         }
 
         window.buildApphubSprintMailto = buildApphubSprintMailto;
+        window.apphubSprintBuildInquiryEvidence = apphubSprintBuildInquiryEvidence;
         window.apphubSprintApplyPrefill = apphubSprintApplyPrefill;
         window.updateApphubSprintBrief = updateApphubSprintBrief;
         window.apphubSprintCopyBrief = apphubSprintCopyBrief;
@@ -626,6 +667,12 @@
             const copyButton = document.querySelector("#apphubSprintBriefCopy");
             if (copyButton) {
                 copyButton.addEventListener("click", apphubSprintCopyBrief);
+            }
+            const mailto = document.querySelector("#apphubSprintBriefMailto");
+            if (mailto) {
+                mailto.addEventListener("click", () => {
+                    apphubSprintCaptureInquiryDraft(buildApphubSprintMailto(), "mailto");
+                });
             }
             updateApphubSprintBrief();
         });
