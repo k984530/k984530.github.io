@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppHub Store Growth Sprint | App Listing Recovery Service</title>
+    <meta name="description" content="An inquiry-first AppHub service for app teams with traffic, weak ratings, and unclear store conversion. Packages at 390,000, 990,000, and 2,900,000 KRW.">
+    <link rel="canonical" href="https://won-space.com/AppHub/store-growth-sprint/">
+    <meta property="og:title" content="AppHub Store Growth Sprint">
+    <meta property="og:description" content="Use public store signals to repair an app listing, screenshot story, and launch-page conversion path.">
+    <meta property="og:image" content="https://won-space.com/AppHub/download/Icon.png">
+    <meta property="og:url" content="https://won-space.com/AppHub/store-growth-sprint/">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "AppHub Store Growth Sprint",
+        "serviceType": "App store listing recovery and launch conversion sprint",
+        "provider": {
+            "@type": "Person",
+            "name": "Choi Won"
+        },
+        "areaServed": "Worldwide",
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Store Growth Audit",
+                "price": "390000",
+                "priceCurrency": "KRW"
+            },
+            {
+                "@type": "Offer",
+                "name": "Recovery Sprint",
+                "price": "990000",
+                "priceCurrency": "KRW"
+            },
+            {
+                "@type": "Offer",
+                "name": "Portfolio Recovery System",
+                "price": "2900000",
+                "priceCurrency": "KRW"
+            }
+        ]
+    }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #f4f6fb;
+            color: #111827;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .shell {
+            margin: 0 auto;
+            max-width: 1120px;
+            padding: 28px 20px 56px;
+        }
+
+        .topbar {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .brand {
+            align-items: center;
+            display: inline-flex;
+            gap: 12px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .brand img {
+            border-radius: 12px;
+            height: 40px;
+            width: 40px;
+        }
+
+        .nav-link {
+            color: #4b5563;
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .hero,
+        .panel {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        .hero {
+            display: grid;
+            gap: 28px;
+            grid-template-columns: minmax(0, 1.15fr) 320px;
+            padding: 38px;
+        }
+
+        .eyebrow {
+            color: #3152b7;
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2.3rem, 6vw, 4.6rem);
+            letter-spacing: 0;
+            line-height: 0.96;
+            margin-bottom: 18px;
+        }
+
+        .lead {
+            color: #4b5563;
+            font-size: 1.08rem;
+            max-width: 720px;
+        }
+
+        .hero-card {
+            align-self: start;
+            background: #111827;
+            border-radius: 16px;
+            color: #fff;
+            padding: 22px;
+        }
+
+        .hero-card strong {
+            display: block;
+            font-size: 1.85rem;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .hero-card span {
+            color: rgba(255, 255, 255, 0.76);
+            display: block;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .button {
+            align-items: center;
+            background: #111827;
+            border-radius: 999px;
+            color: #fff;
+            display: inline-flex;
+            font-weight: 900;
+            min-height: 46px;
+            padding: 13px 18px;
+            text-decoration: none;
+        }
+
+        .button.secondary {
+            background: #e9eefc;
+            color: #233876;
+        }
+
+        .section {
+            margin-top: 20px;
+        }
+
+        .panel {
+            padding: 30px;
+        }
+
+        .panel h2 {
+            font-size: 1.8rem;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin-top: 18px;
+        }
+
+        .card {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .card strong {
+            display: block;
+            font-size: 1.45rem;
+            line-height: 1.05;
+            margin-bottom: 9px;
+        }
+
+        .card p,
+        .panel p,
+        li {
+            color: #4b5563;
+        }
+
+        .steps {
+            display: grid;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .step {
+            background: #f8fafc;
+            border-left: 4px solid #3152b7;
+            border-radius: 12px;
+            padding: 16px 18px;
+        }
+
+        .step b {
+            color: #111827;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .fine-print {
+            color: #6b7280;
+            font-size: 0.94rem;
+            margin-top: 14px;
+        }
+
+        @media (max-width: 820px) {
+            .hero,
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero,
+            .panel {
+                padding: 24px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shell" id="apphubStoreGrowthSprintPage">
+        <nav class="topbar" aria-label="AppHub Store Growth Sprint navigation">
+            <a class="brand" href="../">
+                <img src="../download/Icon.png" alt="AppHub icon">
+                <span>AppHub</span>
+            </a>
+            <a class="nav-link" href="../../">Portfolio</a>
+        </nav>
+
+        <header class="hero">
+            <div>
+                <p class="eyebrow">App store recovery service</p>
+                <h1>AppHub Store Growth Sprint</h1>
+                <p class="lead">For app teams with real traffic, visible rating friction, and a store page that is not converting trust into installs or paid intent. The sprint turns public review language into listing copy, screenshot direction, and a launch-page recovery checklist.</p>
+                <div class="cta-row">
+                    <a class="button" href="mailto:alyduho984530@gmail.com?subject=AppHub%20Store%20Growth%20Sprint%20inquiry&body=Hi%2C%20I%20want%20an%20AppHub%20Store%20Growth%20Sprint.%0A%0AApp%20name%3A%0AStore%20links%3A%0ACurrent%20downloads%20or%20traffic%3A%0ARating%20or%20review%20problem%3A%0APackage%3A%20390%2C000%20%2F%20990%2C000%20%2F%202%2C900%2C000%20KRW%0ATimeline%3A">Request sprint review</a>
+                    <a class="button secondary" href="#packages">Compare packages</a>
+                </div>
+                <p class="fine-print">No checkout, invoice, or payment request starts on this page.</p>
+            </div>
+            <aside class="hero-card" aria-label="Public AppHub signal">
+                <strong>1K+</strong>
+                <span>Google Play downloads</span>
+                <strong style="margin-top: 18px;">2.6</strong>
+                <span>public rating across 22 public reviews</span>
+            </aside>
+        </header>
+
+        <section class="section panel" aria-labelledby="signalsTitle">
+            <p class="eyebrow">Why this exists</p>
+            <h2 id="signalsTitle">AppHub has enough public signal to productize the recovery work.</h2>
+            <div class="grid" aria-label="Public proof">
+                <div class="card">
+                    <strong>1K+ Google Play downloads</strong>
+                    <p>Traffic exists, so the first job is not awareness. The first job is trust repair and clearer conversion.</p>
+                </div>
+                <div class="card">
+                    <strong>2.6 public rating</strong>
+                    <p>The rating creates urgency and gives the sprint a concrete before-state to improve around.</p>
+                </div>
+                <div class="card">
+                    <strong>22 public reviews</strong>
+                    <p>Review language can be translated into objections, promise fixes, and screenshot story priorities.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section panel" id="packages" aria-labelledby="packagesTitle">
+            <p class="eyebrow">Packages</p>
+            <h2 id="packagesTitle">Pick the smallest recovery step that can change the store story.</h2>
+            <div class="grid">
+                <div class="card">
+                    <strong>390,000 KRW</strong>
+                    <p><b>Store Growth Audit</b></p>
+                    <p>Store teardown, rating-risk notes, screenshot direction, and one prioritized recovery checklist.</p>
+                </div>
+                <div class="card">
+                    <strong>990,000 KRW</strong>
+                    <p><b>Recovery Sprint</b></p>
+                    <p>Full listing rewrite, screenshot brief, review-response themes, and launch-page conversion map.</p>
+                </div>
+                <div class="card">
+                    <strong>2,900,000 KRW</strong>
+                    <p><b>Portfolio Recovery System</b></p>
+                    <p>Reusable recovery framework for teams managing multiple app listings, launch pages, and review risks.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section panel" aria-labelledby="processTitle">
+            <p class="eyebrow">Flow</p>
+            <h2 id="processTitle">Inquiry first, then scope.</h2>
+            <div class="steps">
+                <div class="step">
+                    <b>1. Share store links and current rating friction.</b>
+                    <p>Include the app name, store URLs, traffic/download context, and review or conversion problem.</p>
+                </div>
+                <div class="step">
+                    <b>2. Receive a tight recovery path.</b>
+                    <p>The response identifies the right package, the highest-risk store promise, and the first deliverable.</p>
+                </div>
+                <div class="step">
+                    <b>3. Confirm scope before any payment request.</b>
+                    <p>Work starts only after written scope, timeline, and buyer fit are clear.</p>
+                </div>
+            </div>
+            <div class="cta-row">
+                <a class="button" href="mailto:alyduho984530@gmail.com?subject=AppHub%20Store%20Growth%20Sprint%20inquiry&body=Hi%2C%20I%20want%20an%20AppHub%20Store%20Growth%20Sprint.%0A%0AApp%20name%3A%0AStore%20links%3A%0ACurrent%20downloads%20or%20traffic%3A%0ARating%20or%20review%20problem%3A%0APackage%3A%20390%2C000%20%2F%20990%2C000%20%2F%202%2C900%2C000%20KRW%0ATimeline%3A">Request AppHub Store Growth Sprint</a>
+                <a class="button secondary" href="../">Back to AppHub</a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
