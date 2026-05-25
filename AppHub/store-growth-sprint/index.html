@@ -164,8 +164,10 @@
         .button {
             align-items: center;
             background: #111827;
+            border: 0;
             border-radius: 999px;
             color: #fff;
+            cursor: pointer;
             display: inline-flex;
             font-weight: 900;
             min-height: 46px;
@@ -176,6 +178,11 @@
         .button.secondary {
             background: #e9eefc;
             color: #233876;
+        }
+
+        .copy-status {
+            color: #475569;
+            margin-top: 12px;
         }
 
         .section {
@@ -424,9 +431,10 @@
             </div>
             <div class="cta-row">
                 <a class="button" id="apphubSprintBriefMailto" href="mailto:alyduho984530@gmail.com?subject=AppHub%20Store%20Growth%20Sprint%20inquiry">Send generated inquiry</a>
+                <button class="button secondary" id="apphubSprintBriefCopy" type="button">Copy generated brief</button>
                 <a class="button secondary" href="#processTitle">Review process</a>
             </div>
-            <p class="fine-print">The generated inquiry asks for recommended scope and next step before any payment request.</p>
+            <p class="fine-print copy-status" id="briefCopyStatus" aria-live="polite">The generated inquiry asks for recommended scope and next step before any payment request.</p>
         </section>
 
         <section class="section panel" aria-labelledby="processTitle">
@@ -534,6 +542,56 @@
             ].join("\n");
         }
 
+        function apphubSprintCaptureInquiryDraft(body, channel = "preview") {
+            const tracking = apphubSprintTrackingContext();
+            try {
+                localStorage.setItem("apphubSprintInquiryDraft", JSON.stringify({
+                    channel,
+                    appName: apphubSprintValue("#briefAppName"),
+                    packageSlug: apphubSprintValue("#briefPackage", "recovery"),
+                    leadSource: tracking.leadSource,
+                    campaign: tracking.campaign,
+                    pageUrl: tracking.pageUrl,
+                    body,
+                    updatedAt: new Date().toISOString()
+                }));
+            } catch (error) {
+                // Local storage is optional; the generated mailto and preview still work without it.
+            }
+        }
+
+        function apphubSprintSetCopyStatus(message) {
+            const status = document.querySelector("#briefCopyStatus");
+            if (status) {
+                status.textContent = message;
+            }
+        }
+
+        async function apphubSprintCopyBrief() {
+            const body = buildApphubSprintMailto();
+            const preview = document.querySelector("#generatedBriefPreview");
+            if (preview) {
+                preview.value = body;
+            }
+            try {
+                if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+                    await navigator.clipboard.writeText(body);
+                } else if (preview && typeof preview.select === "function" && document.execCommand) {
+                    preview.focus();
+                    preview.select();
+                    document.execCommand("copy");
+                } else {
+                    throw new Error("Clipboard unavailable");
+                }
+                apphubSprintCaptureInquiryDraft(body, "copy");
+                apphubSprintSetCopyStatus("Brief copied. Paste it into your email app.");
+            } catch (error) {
+                apphubSprintCaptureInquiryDraft(body, "copy-failed");
+                apphubSprintSetCopyStatus("Copy failed. Select the preview text and copy it manually.");
+            }
+            return body;
+        }
+
         function updateApphubSprintBrief() {
             const body = buildApphubSprintMailto();
             const mailto = document.querySelector("#apphubSprintBriefMailto");
@@ -558,12 +616,17 @@
         window.buildApphubSprintMailto = buildApphubSprintMailto;
         window.apphubSprintApplyPrefill = apphubSprintApplyPrefill;
         window.updateApphubSprintBrief = updateApphubSprintBrief;
+        window.apphubSprintCopyBrief = apphubSprintCopyBrief;
 
         document.addEventListener("DOMContentLoaded", () => {
             apphubSprintApplyPrefill();
             document
                 .querySelectorAll("#apphubSprintBriefBuilder input, #apphubSprintBriefBuilder textarea, #apphubSprintBriefBuilder select")
                 .forEach((element) => element.addEventListener("input", updateApphubSprintBrief));
+            const copyButton = document.querySelector("#apphubSprintBriefCopy");
+            if (copyButton) {
+                copyButton.addEventListener("click", apphubSprintCopyBrief);
+            }
             updateApphubSprintBrief();
         });
     </script>
