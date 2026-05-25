@@ -474,6 +474,43 @@
             };
         }
 
+        function apphubSprintFirstParam(params, names) {
+            for (const name of names) {
+                const value = params.get(name);
+                if (value && value.trim()) {
+                    return value.trim();
+                }
+            }
+            return "";
+        }
+
+        function apphubSprintSetValue(selector, value) {
+            const element = document.querySelector(selector);
+            if (element && typeof element.value === "string" && value) {
+                element.value = value;
+            }
+        }
+
+        function apphubSprintApplyPrefill() {
+            const params = new URLSearchParams(window.location.search || "");
+            [
+                ["#briefAppName", ["app", "app_name"]],
+                ["#briefStoreLinks", ["store", "store_url", "storeLink"]],
+                ["#briefCurrentRating", ["rating"]],
+                ["#briefCurrentReviews", ["reviews"]],
+                ["#briefCurrentDownloads", ["downloads", "traffic"]],
+                ["#briefTimeline", ["timeline"]],
+                ["#briefRecoveryGoal", ["goal", "recovery_goal"]]
+            ].forEach(([selector, names]) => {
+                apphubSprintSetValue(selector, apphubSprintFirstParam(params, names));
+            });
+
+            const packageSlug = apphubSprintFirstParam(params, ["package", "package_slug"]);
+            if (["audit", "recovery", "portfolio"].includes(packageSlug)) {
+                apphubSprintSetValue("#briefPackage", packageSlug);
+            }
+        }
+
         function buildApphubSprintMailto() {
             const tracking = apphubSprintTrackingContext();
             const selectedPackage = apphubSprintPackages[apphubSprintValue("#briefPackage", "recovery")] || apphubSprintPackages.recovery;
@@ -519,9 +556,11 @@
         }
 
         window.buildApphubSprintMailto = buildApphubSprintMailto;
+        window.apphubSprintApplyPrefill = apphubSprintApplyPrefill;
         window.updateApphubSprintBrief = updateApphubSprintBrief;
 
         document.addEventListener("DOMContentLoaded", () => {
+            apphubSprintApplyPrefill();
             document
                 .querySelectorAll("#apphubSprintBriefBuilder input, #apphubSprintBriefBuilder textarea, #apphubSprintBriefBuilder select")
                 .forEach((element) => element.addEventListener("input", updateApphubSprintBrief));
