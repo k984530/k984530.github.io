@@ -374,7 +374,7 @@
             </div>
         </section>
 
-        <section class="section panel" id="apphubSprintBriefBuilder" aria-labelledby="briefBuilderTitle">
+        <section class="section panel" id="apphubSprintBriefBuilder" data-conversion-event="apphub_sprint_inquiry_builder" aria-labelledby="briefBuilderTitle">
             <p class="eyebrow">Inquiry builder</p>
             <h2 id="briefBuilderTitle">Turn your store problem into a scoped review request.</h2>
             <p>Fill the fields that matter most for first response quality. The generated email keeps scope, package, and timing clear before any payment discussion.</p>
@@ -415,6 +415,8 @@
                     <label for="briefRecoveryGoal">Recovery goal</label>
                     <textarea id="briefRecoveryGoal" placeholder="Improve screenshots and rating trust before paid acquisition."></textarea>
                 </div>
+                <input id="briefLeadSource" type="hidden" value="apphub-store-growth-sprint">
+                <input id="briefCampaign" type="hidden" value="apphub_store_growth_sprint">
                 <div class="field full">
                     <label for="generatedBriefPreview">Generated brief preview</label>
                     <textarea id="generatedBriefPreview" readonly></textarea>
@@ -463,7 +465,17 @@
             return value || fallback;
         }
 
+        function apphubSprintTrackingContext() {
+            const params = new URLSearchParams(window.location.search || "");
+            return {
+                leadSource: params.get("source") || params.get("utm_source") || "apphub-store-growth-sprint",
+                campaign: params.get("utm_campaign") || params.get("campaign") || "apphub_store_growth_sprint",
+                pageUrl: window.location.href
+            };
+        }
+
         function buildApphubSprintMailto() {
+            const tracking = apphubSprintTrackingContext();
             const selectedPackage = apphubSprintPackages[apphubSprintValue("#briefPackage", "recovery")] || apphubSprintPackages.recovery;
             return [
                 "Hi, I want an AppHub Store Growth Sprint.",
@@ -474,8 +486,12 @@
                 `Public reviews: ${apphubSprintValue("#briefCurrentReviews")}`,
                 `Downloads or traffic: ${apphubSprintValue("#briefCurrentDownloads")}`,
                 `Package: ${selectedPackage}`,
+                `Package slug: ${apphubSprintValue("#briefPackage", "recovery")}`,
                 `Timeline: ${apphubSprintValue("#briefTimeline")}`,
                 `Goal: ${apphubSprintValue("#briefRecoveryGoal")}`,
+                `Lead source: ${tracking.leadSource}`,
+                `Campaign: ${tracking.campaign}`,
+                `Page URL: ${tracking.pageUrl}`,
                 "",
                 "Please reply with recommended scope and next step before any payment request."
             ].join("\n");
@@ -485,6 +501,15 @@
             const body = buildApphubSprintMailto();
             const mailto = document.querySelector("#apphubSprintBriefMailto");
             const preview = document.querySelector("#generatedBriefPreview");
+            const source = document.querySelector("#briefLeadSource");
+            const campaign = document.querySelector("#briefCampaign");
+            const tracking = apphubSprintTrackingContext();
+            if (source) {
+                source.value = tracking.leadSource;
+            }
+            if (campaign) {
+                campaign.value = tracking.campaign;
+            }
             if (preview) {
                 preview.value = body;
             }
