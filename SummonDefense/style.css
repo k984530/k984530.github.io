@@ -1,0 +1,19 @@
+:root { color-scheme: dark; --bg: #0d0f2a; --ink: #e8ecff; --muted: #9aa3cf; --line: #333a7a; --accent: #ffd36a; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.7 -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif; }
+main { max-width: 780px; margin: 0 auto; padding: 24px 16px 48px; }
+nav { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+a { color: var(--accent); }
+h1 { font-size: 26px; margin: 0 0 4px; }
+h2 { font-size: 20px; margin: 32px 0 8px; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+h3 { font-size: 17px; margin: 20px 0 6px; }
+.meta { color: var(--muted); font-size: 14px; margin-top: 0; }
+header.app { display: flex; gap: 16px; align-items: center; }
+header.app img { border-radius: 16px; flex: none; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; margin: 8px 0 16px; display: block; overflow-x: auto; }
+th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: right; white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+tr.names td { text-align: left; white-space: normal; color: var(--muted); font-size: 13px; }
+.en { color: var(--muted); font-size: 12px; }
+footer { margin-top: 48px; color: var(--muted); font-size: 14px; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
