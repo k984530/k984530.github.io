@@ -1,0 +1,440 @@
+{
+  "checked": "2026-11-22",
+  "sources": [
+    "https://itunes.apple.com/lookup?id=1659403932&entity=software&limit=200&country=us",
+    "https://itunes.apple.com/lookup?id=1659403932&entity=software&limit=200&country=kr",
+    "https://play.google.com/store/apps/details?id=<package> (200 = public, developer alyduho.develop)"
+  ],
+  "apps": [
+    {
+      "name": "AnyPick",
+      "title": "AnyPick",
+      "storeTitle": "AnyPick",
+      "date": "2025-02-18",
+      "icon": "portfolio/icons/anypick.webp",
+      "ios": "https://apps.apple.com/kr/app/anypick/id6740760810",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.anypick",
+      "detail": "Anypick/"
+    },
+    {
+      "name": "LoveExpert",
+      "title": "Chat Vibe Check",
+      "storeTitle": "Chat Vibe Check: Chat Analyzer",
+      "date": "2025-03-06",
+      "icon": "portfolio/icons/loveexpert.webp",
+      "ios": "https://apps.apple.com/app/chat-vibe-check-chat-analyzer/id6742811212",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.loveExpert",
+      "detail": "ChatVibe/"
+    },
+    {
+      "name": "RizzChat",
+      "title": "Rizzet",
+      "storeTitle": "Rizzet: Dating Text Coach",
+      "date": "2025-03-07",
+      "icon": "portfolio/icons/rizzchat.webp",
+      "ios": "https://apps.apple.com/app/rizzet/id6742974140",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.rizzChat",
+      "detail": "Rizzet/"
+    },
+    {
+      "name": "FaceMatch",
+      "title": "Moonlit Fortunes",
+      "storeTitle": "Moonlit Fortunes",
+      "date": "2025-03-12",
+      "icon": "portfolio/icons/facematch.webp",
+      "ios": "https://apps.apple.com/app/face-match-ai/id6743154306",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.faceMatch",
+      "detail": "faceMatch/"
+    },
+    {
+      "name": "MODEE",
+      "title": "MODEE",
+      "storeTitle": "MODEE - Fashion Assistant",
+      "date": "2025-03-20",
+      "icon": "portfolio/icons/modee.webp",
+      "ios": "https://apps.apple.com/app/modee-fashion-assistant/id6743519137",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.MODEE",
+      "detail": "MODEE/"
+    },
+    {
+      "name": "Anythoughts",
+      "title": "MoodPop",
+      "storeTitle": "MoodPop - Mood Cards",
+      "date": "2025-03-22",
+      "icon": "portfolio/icons/anythoughts.webp",
+      "ios": "https://apps.apple.com/app/any-thoughts/id6743646601",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.EmotiCam",
+      "detail": "AnyThoughts/"
+    },
+    {
+      "name": "CatsThoughts",
+      "title": "Cat's Thoughts",
+      "storeTitle": "Cat's Thoughts",
+      "date": "2025-03-23",
+      "icon": "portfolio/icons/catsthoughts.webp",
+      "ios": "https://apps.apple.com/app/cats-thoughts/id6743672789",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.CatsThoughts",
+      "detail": "CatsThoughts/"
+    },
+    {
+      "name": "DogsThoughts",
+      "title": "Dog Daily Diary",
+      "storeTitle": "Dog Daily Diary: Dog Mind",
+      "date": "2025-03-24",
+      "icon": "portfolio/icons/dogsthoughts.webp",
+      "ios": "https://apps.apple.com/app/dogs-thoughts/id6743701891",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.DogsThoughts",
+      "detail": "DogsThoughts/"
+    },
+    {
+      "name": "GeniePlanner",
+      "title": "Genie Planner",
+      "storeTitle": "Genie Planner",
+      "date": "2025-03-31",
+      "icon": "portfolio/icons/genieplanner.webp",
+      "ios": "https://apps.apple.com/app/genie-planner/id6743991901",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.GeniePlanner",
+      "detail": "GeniePlanner/"
+    },
+    {
+      "name": "Lookey",
+      "title": "Lookey",
+      "storeTitle": "AI Color & Style App Lookey",
+      "date": "2025-04-06",
+      "icon": "portfolio/icons/lookey.webp",
+      "ios": "https://apps.apple.com/app/lookey-ai/id6744290690",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.Lookey",
+      "detail": "Lookey/"
+    },
+    {
+      "name": "BlahChats",
+      "title": "BlahChat",
+      "storeTitle": "블라챗 - 대화 수다 동네친구 만들기",
+      "date": "2025-04-30",
+      "icon": "portfolio/icons/blahchats.webp",
+      "ios": "https://apps.apple.com/kr/app/id6744993951",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.BlahChat",
+      "detail": "BlahChat/"
+    },
+    {
+      "name": "Selah",
+      "title": "Selah",
+      "storeTitle": "Selah: Bible Verses & Prayer",
+      "date": "2025-05-07",
+      "icon": "portfolio/icons/selah.webp",
+      "ios": "https://apps.apple.com/us/app/a-bible-verse-selah/id6745543908",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.Selah",
+      "detail": "Selah/"
+    },
+    {
+      "name": "AppHub",
+      "title": "App Hub",
+      "storeTitle": "App Hub: App Idea Planner",
+      "date": "2025-05-14",
+      "icon": "portfolio/icons/apphub.webp",
+      "ios": "https://apps.apple.com/app/app-hub-manage-plan-apps/id6745819583",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.AppHub",
+      "detail": "AppHub/"
+    },
+    {
+      "name": "Growvi",
+      "title": "Growvi",
+      "storeTitle": "Growvi: For First-Time Parents",
+      "date": "2025-05-16",
+      "icon": "portfolio/icons/growvi.webp",
+      "ios": "https://apps.apple.com/app/parenting-tips-growvi/id6746027004",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.Growvi",
+      "detail": "Growvi/"
+    },
+    {
+      "name": "Wealtha",
+      "title": "Wealtha",
+      "storeTitle": "Stocks, Crypto, Fin : Wealtha",
+      "date": "2025-05-21",
+      "icon": "portfolio/icons/wealtha.webp",
+      "ios": "https://apps.apple.com/app/stocks-crypto-fin-wealtha/id6746156248",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.Wealtha",
+      "detail": "Wealtha/"
+    },
+    {
+      "name": "ChartingSkill",
+      "title": "Charting Skill",
+      "storeTitle": "Crypto, stock : Charting Skill",
+      "date": "2025-05-28",
+      "icon": "portfolio/icons/chartingskill.webp",
+      "ios": "https://apps.apple.com/app/crypto-stock-charting-skill/id6746440165",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.ChartingSkill",
+      "detail": "ChartingSkills/"
+    },
+    {
+      "name": "CryptoSkills",
+      "title": "Crypto Skills",
+      "storeTitle": "Crypto Skills: AI Signal",
+      "date": "2025-06-10",
+      "icon": "portfolio/icons/cryptoskills.webp",
+      "ios": "https://apps.apple.com/app/crypto-skills-ai-signal/id6747077362",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.CryptoSkills",
+      "detail": "CryptoSkills/"
+    },
+    {
+      "name": "MobileCode",
+      "title": "Mobile Code",
+      "storeTitle": "Mobile Code Remote Desktop",
+      "date": "2025-06-25",
+      "icon": "portfolio/icons/mobilecode.webp",
+      "ios": "https://apps.apple.com/us/app/mobile-code-remote-desktop/id6747654271",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.MobileCode",
+      "detail": "MobileCode/"
+    },
+    {
+      "name": "TheArtOfSeduction",
+      "title": "Seduction Rules",
+      "storeTitle": "Seduction Rules: Love Coach",
+      "date": "2025-07-11",
+      "icon": "portfolio/icons/theartofseduction.webp",
+      "ios": "https://apps.apple.com/app/seduction-rules/id6748376070",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.SeductionRules",
+      "detail": "SeductionRules/"
+    },
+    {
+      "name": "VibePlanning",
+      "title": "App Vibe Planning",
+      "storeTitle": "App Vibe Planning",
+      "date": "2025-07-14",
+      "icon": "portfolio/icons/vibeplanning.webp",
+      "ios": "https://apps.apple.com/app/app-vibe-planning/id6748576063",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.VibePlanning",
+      "detail": "VibePlanning/"
+    },
+    {
+      "name": "FriendAI",
+      "title": "Friend Chat",
+      "storeTitle": "Friend Chat – Getting Closer",
+      "date": "2025-07-24",
+      "icon": "portfolio/icons/friendai.webp",
+      "ios": "https://apps.apple.com/app/friend-ai-personal-friend/id6749029092",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.FriendAI",
+      "detail": "FriendAI/"
+    },
+    {
+      "name": "CryptoAI",
+      "title": "Crypto AI",
+      "storeTitle": "Crypto AI: Bitcoin Assistant",
+      "date": "2025-07-27",
+      "icon": "portfolio/icons/cryptoai.webp",
+      "ios": "https://apps.apple.com/app/crypto-ai-bitcoin-assistant/id6749213360",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.CryptoAI",
+      "detail": "CryptoAI/"
+    },
+    {
+      "name": "HeartAI",
+      "title": "Heart AI",
+      "storeTitle": "Heart AI: Personal Friend",
+      "date": "2025-08-11",
+      "icon": "portfolio/icons/heartai.webp",
+      "ios": "https://apps.apple.com/us/app/heart-ai-personal-friend/id6749819872",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.HeartAI",
+      "detail": "HeartAI/"
+    },
+    {
+      "name": "SweetSleep",
+      "title": "Sweet Sleep",
+      "storeTitle": "Sweet Sleep : Solving insomnia",
+      "date": "2025-08-18",
+      "icon": "portfolio/icons/sweetsleep.webp",
+      "ios": "https://apps.apple.com/app/sweet-sleep-solving-insomnia/id6751185069",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.SweetSleep",
+      "detail": "SweetSleep/"
+    },
+    {
+      "name": "MindMapAI",
+      "title": "MindMap AI",
+      "storeTitle": "Idea Note : MindMap AI",
+      "date": "2025-08-25",
+      "icon": "portfolio/icons/mindmapai.webp",
+      "ios": "https://apps.apple.com/us/app/idea-note-mindmap-ai/id6751484503",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.MindMapAI",
+      "detail": "MindMapAI/"
+    },
+    {
+      "name": "SecretMinds",
+      "title": "Secret Mind",
+      "storeTitle": "Secret Mind: Mind Analysis",
+      "date": "2025-08-26",
+      "icon": "portfolio/icons/secretminds.webp",
+      "ios": null,
+      "android": "https://play.google.com/store/apps/details?id=com.aly.SecretMind",
+      "detail": "SecretMind/"
+    },
+    {
+      "name": "CatsDiary",
+      "title": "Cat's Diary",
+      "storeTitle": "Cat's Diary – Photo & Reminder",
+      "date": "2025-09-01",
+      "icon": "portfolio/icons/catsdiary.webp",
+      "ios": "https://apps.apple.com/us/app/cats-diary-photo-reminder/id6751799793",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.CatsDiary",
+      "detail": "CatsDiary/"
+    },
+    {
+      "name": "StatUP",
+      "title": "StatUP",
+      "storeTitle": "StatUP : Goals·To-Do·Journal",
+      "date": "2025-09-09",
+      "icon": "portfolio/icons/statup.webp",
+      "ios": "https://apps.apple.com/us/app/statup-goals-to-do-journal/id6752215390",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.StatUP",
+      "detail": "StatUP/"
+    },
+    {
+      "name": "GhostLens",
+      "title": "Ghost Lens",
+      "storeTitle": "Ghost Lens",
+      "date": "2025-09-23",
+      "icon": "portfolio/icons/ghostlens.webp",
+      "ios": "https://apps.apple.com/us/app/ghost-lens/id6752831954",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.GhostLens",
+      "detail": "GhostLens/"
+    },
+    {
+      "name": "CryptoInsight",
+      "title": "Crypto Insight",
+      "storeTitle": "Crypto Insight - AI Crypto",
+      "date": "2025-10-05",
+      "icon": "portfolio/icons/cryptoinsight.webp",
+      "ios": "https://apps.apple.com/us/app/crypto-insight-ai-crypto/id6753616682",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.CryptoInsight",
+      "detail": "cryptoinsight/"
+    },
+    {
+      "name": "StarDiary",
+      "title": "Star Diary",
+      "storeTitle": "Star Diary -  Stella Notes",
+      "date": "2025-12-26",
+      "icon": "portfolio/icons/stardiary.webp",
+      "ios": "https://apps.apple.com/us/app/star-diary-stella-notes/id6756995556",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.StarDiary",
+      "detail": "StarDiary/"
+    },
+    {
+      "name": "Kova",
+      "title": "Kova",
+      "storeTitle": "Kova: AI Photo Editor",
+      "date": "2026-05-18",
+      "icon": "portfolio/icons/kova.webp",
+      "ios": "https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.kova&referrer=utm_source%3Dwon_space%26utm_medium%3Dkova_web%26utm_campaign%3Dplay_5_downloads",
+      "detail": "Kova/"
+    },
+    {
+      "name": "LifeGame",
+      "title": "Life Game",
+      "storeTitle": "Life Game",
+      "date": "2026-05-21",
+      "icon": "portfolio/icons/lifegame.webp",
+      "ios": "https://apps.apple.com/us/app/life-game/id6770162106",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.lifegame",
+      "detail": null
+    },
+    {
+      "name": "RagePal",
+      "title": "RagePal",
+      "storeTitle": "RagePal: Voodoo Doll Ritual",
+      "date": "2026-05-27",
+      "icon": "portfolio/icons/ragepal.webp",
+      "ios": "https://apps.apple.com/us/app/ragepal-voodoo-doll-ritual/id6771215764",
+      "android": "https://play.google.com/store/apps/details?id=com.aly.ragepal",
+      "detail": null
+    },
+    {
+      "name": "MyIdol",
+      "title": "My Idol",
+      "storeTitle": "My Idol: Chat",
+      "date": "2026-06-12",
+      "icon": "portfolio/icons/myidol.webp",
+      "ios": "https://apps.apple.com/us/app/my-idol-chat/id6775717936",
+      "android": null,
+      "detail": null
+    },
+    {
+      "name": "Starlight",
+      "title": "Starlight",
+      "storeTitle": "Starlight: Hardcore Tower TD",
+      "date": "2026-09-29",
+      "icon": "portfolio/icons/starlight.webp",
+      "ios": "https://apps.apple.com/us/app/starlight-hardcore-tower-td/id6816612386",
+      "android": "https://play.google.com/store/apps/details?id=com.alydoit.starlightdefense",
+      "detail": null
+    },
+    {
+      "name": "LastFlame",
+      "title": "Last Flame",
+      "storeTitle": "Last Flame: Frozen Survival",
+      "date": "2026-10-11",
+      "icon": "portfolio/icons/lastflame.webp",
+      "ios": null,
+      "android": "https://play.google.com/store/apps/details?id=com.alydoit.lastflame",
+      "detail": null
+    },
+    {
+      "name": "SquadRush",
+      "title": "Squad Rush",
+      "storeTitle": "Squad Rush: Zombie Road",
+      "date": "2026-10-11",
+      "icon": "portfolio/icons/squadrush.webp",
+      "ios": null,
+      "android": "https://play.google.com/store/apps/details?id=com.alydoit.squadrush",
+      "detail": null
+    },
+    {
+      "name": "PianoShower",
+      "title": "Piano Shower",
+      "storeTitle": "Piano Shower",
+      "date": "2026-10-12",
+      "icon": "portfolio/icons/pianoshower.webp",
+      "ios": null,
+      "android": "https://play.google.com/store/apps/details?id=com.alydoit.pianoshower",
+      "detail": null
+    },
+    {
+      "name": "SummonDefense",
+      "title": "Summon Defense",
+      "storeTitle": "Summon Defense",
+      "date": "2026-10-12",
+      "icon": "portfolio/icons/summondefense.webp",
+      "ios": null,
+      "android": "https://play.google.com/store/apps/details?id=com.alydoit.summondefense",
+      "detail": null
+    },
+    {
+      "name": "AuctionDefense",
+      "title": "Auction Defense",
+      "storeTitle": "Auction Defense",
+      "date": "2026-10-12",
+      "icon": "portfolio/icons/auctiondefense.webp",
+      "ios": null,
+      "android": "https://play.google.com/store/apps/details?id=com.alyduho.auctiondefense",
+      "detail": null
+    },
+    {
+      "name": "Muryang",
+      "title": "무량대수",
+      "storeTitle": "무한 레벨업 RPG : 무량대수",
+      "date": "2026-10-22",
+      "icon": "portfolio/icons/muryang.webp",
+      "ios": "https://apps.apple.com/us/app/%EB%AC%B4%ED%95%9C-%EB%A0%88%EB%B2%A8%EC%97%85-rpg-%EB%AC%B4%EB%9F%89%EB%8C%80%EC%88%98/id6825623066",
+      "android": "https://play.google.com/store/apps/details?id=com.alydoit.muryang",
+      "detail": null
+    },
+    {
+      "name": "NorthernDuke",
+      "title": "Northern Duke's Secret Bride",
+      "storeTitle": "Northern Duke's Secret Bride",
+      "date": "2026-11-05",
+      "icon": "portfolio/icons/northernduke.webp",
+      "ios": "https://apps.apple.com/us/app/northern-dukes-secret-bride/id6827559889",
+      "android": "https://play.google.com/store/apps/details?id=com.alyduho.struckthrough",
+      "detail": null
+    }
+  ]
+}
