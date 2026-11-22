@@ -55,9 +55,6 @@ def data_block():
         lines.append("            { " + ", ".join(parts) + " },")
     lines[-1] = lines[-1].rstrip(",")
     lines.append("        ];")
-    lines.append("        const services = [")
-    lines.append('            { name: "AI Creator Prompt Pack", icon: "rocket-favicon.svg", detail: "AI-Creator-Prompt-Pack/" }')
-    lines.append("        ];")
     lines.append("        const appStats = " + json.dumps(stats, ensure_ascii=False) + ";")
     return "\n".join(lines)
 

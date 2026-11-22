@@ -1,5 +1,6 @@
 // won-space.com 첫 화면 WebGL 장면.
 // 실제 앱 아이콘 타일이 흩어져 떠 있다가(첫 화면) → 앱 수 모양으로 모이고(숫자) → 갤러리 벽이 된다(전체 앱).
+// 배경은 portfolio/backgrounds.js의 세 판 중 하나(?bg=a|b|c). 움직임은 모두 느리고 묵직하게(튀는 탄성 없음).
 // three.js 0.186.1을 portfolio/lib에 고정해 쓴다(빌드 없이 ES module로 열린다).
 import {
     Color,
@@ -9,9 +10,7 @@ import {
     MeshStandardMaterial,
     NoToneMapping,
     PerspectiveCamera,
-    PMREMGenerator,
     Raycaster,
-    RoomEnvironment,
     Scene,
     Shape,
     SRGBColorSpace,
@@ -20,6 +19,7 @@ import {
     Vector3,
     WebGLRenderer,
 } from "./lib/three-0.186.1.min.js";
+import { createBackground, studioEnvironment } from "./backgrounds.js";
 
 const W = window.WON;
 const docEl = document.documentElement;
@@ -36,6 +36,10 @@ const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)")
 const BLACK = 0x080808;
 const FOV = 30;
 const CAM_Z = 24;
+// 기본 배경 판. 대표가 고르면 이 값만 남기고 나머지 판은 지운다.
+const BG_DEFAULT = "b";
+const bgParam = new URLSearchParams(window.location.search).get("bg");
+const BG_KIND = ["a", "b", "c"].includes(bgParam) ? bgParam : BG_DEFAULT;
 
 // 7×9 칸 숫자 글꼴. 획 굵기 한 칸. "4"는 20칸, "3"은 23칸이라 "43"이 타일 43개와 꼭 맞는다.
 const GLYPHS = {
@@ -180,25 +184,28 @@ function init() {
 
     const scene = new Scene();
     scene.background = new Color(BLACK);
-    const camera = new PerspectiveCamera(FOV, 1, 0.1, 120);
+    const camera = new PerspectiveCamera(FOV, 1, 0.5, 700);
     camera.position.set(0, 0, CAM_Z);
 
-    const pmrem = new PMREMGenerator(renderer);
-    const room = new RoomEnvironment();
-    // scene.environment에는 재질별 envMapIntensity가 먹지 않으므로 재질마다 envMap을 직접 건다.
-    const envMap = pmrem.fromScene(room, 0.04).texture;
-    room.dispose();
-    pmrem.dispose();
+    // 반사용 주변 환경: 어두운 스튜디오 + 흰 소프트박스(backgrounds.js). 재질마다 envMap을 직접 건다
+    // (scene.environment에는 재질별 envMapIntensity가 먹지 않는다).
+    const envMap = studioEnvironment(renderer);
 
-    const key = new DirectionalLight(0xffffff, 1.8);
-    key.position.set(-5, 7, 9);
+    // 부드러운 주광 하나 + 약한 윤곽광(둘 다 흰빛).
+    const key = new DirectionalLight(0xffffff, 1.7);
+    key.position.set(-5, 8, 9);
     scene.add(key);
-    const rim = new DirectionalLight(0xffffff, 0.9);
-    rim.position.set(6, -3, 4);
+    const rim = new DirectionalLight(0xffffff, 0.55);
+    rim.position.set(7, -2, 3);
     scene.add(rim);
 
     const geometry = tileGeometry();
-    const sideMaterial = new MeshStandardMaterial({ color: 0xffffff, roughness: 0.38, metalness: 0, envMap, envMapIntensity: 0.55 });
+    // 타일 두께는 은회색 금속: 모서리에 주변 빛이 은은하게 비친다.
+    const sideMaterial = new MeshStandardMaterial({ color: 0xffffff, roughness: 0.26, metalness: 1, envMap, envMapIntensity: 1.15 });
+    const lowPower = !finePointerQuery.matches || Math.min(window.screen.width, window.screen.height) < 700;
+    const debug = {};
+    const view = { w: 1, h: 1, visW: 1, visH: 1, portrait: false };
+    const background = createBackground(BG_KIND, { scene, camera, renderer, envMap, CAM_Z, FOV, lowPower, view, debug });
     const loader = new TextureLoader();
     const maxAniso = Math.min(8, renderer.capabilities.getMaxAnisotropy());
 
@@ -208,10 +215,10 @@ function init() {
         const face = new MeshStandardMaterial({
             color: 0x000000,
             emissive: 0x121212,
-            roughness: 0.42,
+            roughness: 0.26,
             metalness: 0,
             envMap,
-            envMapIntensity: 0.025,
+            envMapIntensity: 0.06,
         });
         const mesh = new Mesh(geometry, [face, sideMaterial]);
         mesh.userData.index = index;
@@ -257,7 +264,6 @@ function init() {
     });
 
     // ---------- 배치 ----------
-    const view = { w: 1, h: 1, visW: 1, visH: 1, portrait: false };
     const marks = { formStart: 1, formEnd: 2, holdEnd: 3, wallEnd: 4 };
 
     function pxToWorld(px, py, z) {
@@ -275,35 +281,34 @@ function init() {
         return { left: r.left - b.left, top: r.top - b.top, right: r.right - b.left, bottom: r.bottom - b.top };
     }
 
-    function textRects() {
-        const rects = [];
-        hero.querySelectorAll(".hero-title span, .hero-lede, .hero-sub, .hero-eyebrow, .hero-cue").forEach((el) => {
-            const range = document.createRange();
-            range.selectNodeContents(el);
-            for (const r of range.getClientRects()) {
-                const base = hero.getBoundingClientRect();
-                rects.push({ left: r.left - base.left - 14, top: r.top - base.top - 14, right: r.right - base.left + 14, bottom: r.bottom - base.top + 14 });
-            }
-        });
+    function avoidRects() {
+        // 첫 화면에서 타일이 덮지 않을 곳: 위쪽 띠(연락 줄)와 아래 가운데 스크롤 표시.
+        const rects = [{ left: 0, top: 0, right: view.w, bottom: view.portrait ? 64 : 76 }];
+        const cue = hero.querySelector(".hero-cue");
+        if (cue) {
+            const r = relRect(cue, hero);
+            rects.push({ left: r.left - 40, top: r.top - 30, right: r.right + 40, bottom: view.h });
+        }
         return rects;
     }
 
     function layoutScatter() {
-        const rects = textRects();
-        rects.push({ left: 0, top: 0, right: view.w, bottom: 64 });
+        const rects = avoidRects();
         const r = mulberry32(2025);
         const placed = [];
-        const base = view.portrait ? Math.max(40, Math.min(50, view.w * 0.125)) : Math.max(58, Math.min(92, view.h * 0.085));
+        const base = view.portrait ? Math.max(38, Math.min(48, view.w * 0.118)) : Math.max(52, Math.min(80, view.h * 0.074));
+        // 가장자리에 여백을 둔다.
+        const inset = view.portrait ? 14 : Math.max(28, view.w * 0.035);
         tiles.forEach((tile) => {
             let best = null;
             let bestScore = -Infinity;
             for (let attempt = 0; attempt < 64; attempt += 1) {
                 // 글자 · 화면 가장자리와 겹치지 않는 자리 중 다른 타일과 가장 먼 곳(best-candidate).
-                const z = lerp(-9, 3, r());
+                const z = lerp(-10, 2.5, r());
                 const sizePx = (base * (0.72 + r() * 0.5) * CAM_Z) / (CAM_Z - z);
                 const half = sizePx * 0.66;
-                const px = half + 6 + r() * Math.max(1, view.w - half * 2 - 12);
-                const py = 64 + half + r() * Math.max(1, view.h - 64 - half * 2 - 6);
+                const px = inset + half + r() * Math.max(1, view.w - inset * 2 - half * 2);
+                const py = 64 + half + r() * Math.max(1, view.h - 64 - inset - half * 2);
                 const box = { left: px - half, top: py - half, right: px + half, bottom: py + half };
                 let overlap = 0;
                 for (const t of rects) {
@@ -326,41 +331,30 @@ function init() {
             const world = pxToWorld(best.px, best.py, best.z);
             tile.S.pos.copy(world);
             tile.S.s = best.size * worldPerPx(best.z);
-            tile.S.rot.set((r() - 0.5) * 1.1, (r() - 0.5) * 1.5, (r() - 0.5) * 0.7);
+            tile.S.rot.set((r() - 0.5) * 0.8, (r() - 0.5) * 1.1, (r() - 0.5) * 0.5);
         });
     }
 
     function layoutForm() {
+        // 위 연락 줄과 아래 숫자 줄 사이 가운데에 "43"을 세운다. 여백을 넉넉히 둔다.
         const pin = numbers.querySelector(".numbers-pin");
-        const head = relRect(numbers.querySelector(".numbers-head"), pin);
-        const titleRange = document.createRange();
-        titleRange.selectNodeContents(numbers.querySelector(".section-title"));
-        const pinLeft = pin.getBoundingClientRect().left;
-        const titleRight = Math.max(...[...titleRange.getClientRects()].map((r) => r.right - pinLeft), 0);
         const statsBox = relRect(numbers.querySelector(".stats"), pin);
-        const gutter = Math.max(16, Math.min(56, view.w * 0.04));
-        const regions = [
-            { left: gutter, right: view.w - gutter, top: head.bottom + 18, bottom: statsBox.top - 22 },
-        ];
-        if (!view.portrait) {
-            regions.push({ left: titleRight + 56, right: view.w - gutter, top: 84, bottom: statsBox.top - 22 });
-        }
+        const gutter = Math.max(20, Math.min(56, view.w * 0.04));
+        const region = { left: gutter, right: view.w - gutter, top: view.portrait ? 84 : 104, bottom: statsBox.top - (view.portrait ? 36 : 52) };
         const { wide, tall } = glyphCells(String(count));
         let best = null;
-        for (const region of regions) {
-            for (const grid of [wide, tall]) {
-                const rw = region.right - region.left;
-                const rh = region.bottom - region.top;
-                if (rw <= 0 || rh <= 0) continue;
-                const cell = Math.min(rw / grid.cols, rh / grid.rows, view.portrait ? 64 : 76);
-                if (!best || cell > best.cell + 0.5) best = { cell, grid, region };
-            }
+        for (const grid of [wide, tall]) {
+            const rw = region.right - region.left;
+            const rh = region.bottom - region.top;
+            if (rw <= 0 || rh <= 0) continue;
+            const cell = Math.min(rw / grid.cols, rh / grid.rows, view.portrait ? 60 : 62);
+            if (!best || cell > best.cell + 0.5) best = { cell, grid, region };
         }
-        const { cell, grid, region } = best;
+        const { cell, grid } = best;
         const cx = (region.left + region.right) / 2;
         const cy = (region.top + region.bottom) / 2;
-        const tiltY = view.portrait ? -0.16 : -0.24;
-        const tiltX = 0.08;
+        const tiltY = view.portrait ? -0.14 : -0.2;
+        const tiltX = 0.07;
         const centerWorld = pxToWorld(cx, cy, 0);
         const cellWorld = cell * worldPerPx(0);
         const cells = grid.cells;
@@ -382,10 +376,9 @@ function init() {
     }
 
     function layoutWall() {
-        const head = relRect(wall.querySelector(".wall-head"), wall);
-        const gutter = Math.max(16, Math.min(56, view.w * 0.04));
-        const top = head.bottom + (view.portrait ? 22 : 30);
-        const bottom = view.h - (view.portrait ? 22 : 34);
+        const gutter = Math.max(20, Math.min(64, view.w * 0.05));
+        const top = view.portrait ? 84 : 104;
+        const bottom = view.h - (view.portrait ? 40 : 64);
         const left = gutter;
         const right = view.w - gutter;
         const aspect = (right - left) / Math.max(1, bottom - top);
@@ -395,7 +388,7 @@ function init() {
             cols -= 1;
             rows = Math.ceil(count / cols);
         }
-        const cell = Math.min((right - left) / cols, (bottom - top) / rows, 150);
+        const cell = Math.min((right - left) / cols, (bottom - top) / rows, 136);
         const gridW = cell * cols;
         const gridH = cell * rows;
         const x0 = (left + right) / 2 - gridW / 2 + cell / 2;
@@ -413,7 +406,7 @@ function init() {
             p.z = -curve * n * n;
             tile.L.pos.copy(p);
             tile.L.rot.set(0, (view.portrait ? -0.06 : -0.2) * n, 0);
-            tile.L.s = cellWorld * 0.8;
+            tile.L.s = cellWorld * 0.76;
         });
     }
 
@@ -441,6 +434,7 @@ function init() {
         renderer.setSize(w, h, false);
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
+        background.resize();
         layoutScatter();
         layoutForm();
         layoutWall();
@@ -465,8 +459,11 @@ function init() {
         pointer.moved = true;
     }
 
+    const ndcX = (x) => (x / view.w) * 2 - 1;
+    const ndcY = (y) => -(y / view.h) * 2 + 1;
+
     function pick(x, y) {
-        ndc.set((x / view.w) * 2 - 1, -(y / view.h) * 2 + 1);
+        ndc.set(ndcX(x), ndcY(y));
         raycaster.setFromCamera(ndc, camera);
         const hit = raycaster.intersectObjects(meshes, false)[0];
         return hit ? hit.object.userData.index : -1;
@@ -507,6 +504,7 @@ function init() {
         if (x < 0 || y < 0 || x > rect.width || y > rect.height) return;
         const touchLike = (downAt && downAt.type !== "mouse") || !finePointerQuery.matches;
         const index = pick(x, y);
+        if (index < 0 && !reduced) background.poke(ndcX(x), ndcY(y));
         if (touchLike) {
             pointer.touch = true;
             if (index >= 0 && index === selected) {
@@ -585,6 +583,9 @@ function init() {
     let last = performance.now();
     const start = performance.now();
     const introFrom = new Vector3();
+    let lastScroll = window.scrollY;
+    let energy = 0;
+    const bgState = { time: 0, dt: 0, a: 0, b: 0, energy: 0, reduced: false, pointer };
     const target = new Vector3();
     const targetRot = new Vector3();
     const tmp = new Vector3();
@@ -601,6 +602,11 @@ function init() {
         last = now;
         const time = (now - start) / 1000;
         let { a, b } = mixes();
+        // 스크롤 속도 → 배경의 기운(천천히 차오르고 천천히 가라앉는다).
+        const scrollNow = window.scrollY;
+        const speed = Math.abs(scrollNow - lastScroll) / dt;
+        lastScroll = scrollNow;
+        energy += (Math.min(1, speed / 2600) - energy) * (1 - Math.exp(-dt * (speed > 0 ? 2.2 : 0.9)));
         if (reduced) {
             // 움직임 줄이기: 구간마다 정지 배치만 보여 준다(사이를 잇는 움직임 없음).
             const y = window.scrollY;
@@ -617,17 +623,24 @@ function init() {
         const active = pointer.touch ? selected : hovered;
 
         if (!reduced) {
-            camera.position.x += ((pointer.inside ? pointer.nx * 0.45 : 0) - camera.position.x) * (1 - Math.exp(-dt * 3));
-            camera.position.y += ((pointer.inside ? pointer.ny * 0.3 : 0) - camera.position.y) * (1 - Math.exp(-dt * 3));
+            // 카메라는 천천히 미끄러진다: 아주 느린 흐름 + 커서 쪽으로 느리게 따라감.
+            const driftX = Math.sin(time * 0.06) * 0.35;
+            const driftY = Math.sin(time * 0.045 + 1.3) * 0.18;
+            camera.position.x += ((pointer.inside ? pointer.nx * 0.7 : 0) + driftX - camera.position.x) * (1 - Math.exp(-dt * 1.1));
+            camera.position.y += ((pointer.inside ? pointer.ny * 0.4 : 0) + driftY - camera.position.y) * (1 - Math.exp(-dt * 1.1));
+            camera.lookAt(0, 0, 0);
+        } else {
+            camera.position.set(0, 0, CAM_Z);
             camera.lookAt(0, 0, 0);
         }
         camera.updateMatrixWorld();
 
         const pushRadius = Math.max(110, Math.min(190, view.w * 0.12));
-        const stiffness = 70;
-        const damping = 2 * Math.sqrt(stiffness) * 0.78;
-        const rotEase = 1 - Math.exp(-dt * 8);
-        const hoverEase = 1 - Math.exp(-dt * 12);
+        // 임계 감쇠보다 조금 무겁게: 넘치거나 튀지 않고 느리게 자리를 잡는다.
+        const stiffness = 15;
+        const damping = 2 * Math.sqrt(stiffness) * 1.08;
+        const rotEase = 1 - Math.exp(-dt * 3.2);
+        const hoverEase = 1 - Math.exp(-dt * 5);
 
         tiles.forEach((tile, i) => {
             const ta = reduced ? a : easeInOut(clamp01((a - tile.delay) / 0.7));
@@ -638,19 +651,19 @@ function init() {
 
             if (!reduced) {
                 const calm = (1 - ta) * (1 - tb);
-                target.y += Math.sin(time * 0.55 * tile.bob + tile.phase) * 0.22 * calm;
-                target.x += Math.cos(time * 0.4 * tile.bob + tile.phase) * 0.12 * calm;
-                targetRot.x += Math.sin(time * 0.5 + tile.phase) * 0.08 * calm;
-                targetRot.y += Math.cos(time * 0.45 + tile.phase) * 0.1 * calm;
+                target.y += Math.sin(time * 0.28 * tile.bob + tile.phase) * 0.14 * calm;
+                target.x += Math.cos(time * 0.2 * tile.bob + tile.phase) * 0.08 * calm;
+                targetRot.x += Math.sin(time * 0.25 + tile.phase) * 0.05 * calm;
+                targetRot.y += Math.cos(time * 0.22 + tile.phase) * 0.06 * calm;
                 const flight = Math.sin(Math.PI * ta) + Math.sin(Math.PI * tb);
-                targetRot.y += flight * tile.spin;
-                targetRot.x += flight * tile.spinX;
-                target.z += flight * 1.6;
+                targetRot.y += flight * tile.spin * 0.22;
+                targetRot.x += flight * tile.spinX * 0.22;
+                target.z += flight * 0.9;
 
-                // 첫 화면 등장: 멀리서 차례로 날아온다.
-                const intro = clamp01((time - 0.15 - tile.introDelay * 0.9) / 0.6);
+                // 첫 화면 등장: 어둠 속 뒤쪽에서 차례로 천천히 떠오른다.
+                const intro = clamp01((time - 0.2 - tile.introDelay * 1.4) / 0.9);
                 if (intro <= 0) {
-                    introFrom.set(tile.S.pos.x * 1.8, tile.S.pos.y * 1.8, -55);
+                    introFrom.set(tile.S.pos.x, tile.S.pos.y - 0.6, tile.S.pos.z - 22);
                     target.copy(introFrom);
                 }
 
@@ -663,9 +676,9 @@ function init() {
                     const d = Math.hypot(dx, dy);
                     if (d < pushRadius && d > 0.001 && i !== active) {
                         const f = Math.pow(1 - d / pushRadius, 2);
-                        const unit = worldPerPx(tile.pos.z) * 26;
-                        tile.push.set((dx / d) * f * unit, -(dy / d) * f * unit, -f * s * 0.5);
-                        tile.tilt.set((dy / d) * f * 0.55, (dx / d) * f * 0.55);
+                        const unit = worldPerPx(tile.pos.z) * 12;
+                        tile.push.set((dx / d) * f * unit, -(dy / d) * f * unit, -f * s * 0.3);
+                        tile.tilt.set((dy / d) * f * 0.22, (dx / d) * f * 0.22);
                     }
                 }
                 target.add(tile.push);
@@ -675,9 +688,9 @@ function init() {
 
             tile.hover += ((i === active ? 1 : 0) - tile.hover) * (reduced ? 1 : hoverEase);
             if (tile.hover > 0.001) {
-                target.z += tile.hover * Math.max(1.2, s * 1.6);
+                target.z += tile.hover * Math.max(0.8, s * 0.9);
                 targetRot.multiplyScalar(1 - tile.hover * 0.85);
-                s *= 1 + tile.hover * 0.18;
+                s *= 1 + tile.hover * 0.07;
             }
 
             if (reduced) {
@@ -699,6 +712,15 @@ function init() {
             projected.copy(tile.pos).project(camera);
             tile.screen.set((projected.x * 0.5 + 0.5) * view.w, (-projected.y * 0.5 + 0.5) * view.h);
         });
+
+        bgState.time = reduced ? 0 : time;
+        bgState.dt = dt;
+        bgState.a = a;
+        bgState.b = b;
+        bgState.energy = reduced ? 0 : energy;
+        bgState.reduced = reduced;
+        pointer.fine = finePointerQuery.matches && !pointer.touch;
+        background.update(bgState);
 
         renderer.render(scene, camera);
         updateLabel(active);
@@ -743,7 +765,7 @@ function init() {
             tile.scale = lerp(lerp(tile.S.s, tile.F.s, a), tile.L.s, b);
             tile.introDelay = -1;
         } else {
-            tile.pos.set(tile.S.pos.x * 1.8, tile.S.pos.y * 1.8, -55);
+            tile.pos.set(tile.S.pos.x, tile.S.pos.y - 0.6, tile.S.pos.z - 22);
         }
     });
 
@@ -803,7 +825,7 @@ function init() {
     if (motionQuery.addEventListener) motionQuery.addEventListener("change", onMotionChange);
 
     docEl.classList.add("webgl-ready");
-    window.__wonScene = { tiles, marks, view, get loaded() { return loaded; }, get running() { return running; }, get frames() { return frameCount; } };
+    window.__wonScene = { tiles, marks, view, bg: BG_KIND, debug, get loaded() { return loaded; }, get running() { return running; }, get frames() { return frameCount; } };
     startLoop();
     requestRender();
 }
