@@ -1,0 +1,145 @@
+{
+  "checked": "2026-11-22",
+  "source": "Public channel pages (youtube.com/@handle/videos), latest uploads first. Images are stored here, not hotlinked.",
+  "channels": [
+    {
+      "name": "K-AI Studio",
+      "handle": "@AlyFilm-u3y",
+      "url": "https://www.youtube.com/@AlyFilm-u3y",
+      "topic": "Cinematic AI shorts",
+      "avatar": "portfolio/channels/kai-studio.webp",
+      "thumbs": [
+        {
+          "src": "portfolio/channels/kai-studio-1.webp",
+          "video": "https://www.youtube.com/watch?v=0MwbjSgrlro"
+        },
+        {
+          "src": "portfolio/channels/kai-studio-2.webp",
+          "video": "https://www.youtube.com/watch?v=vsrrD7RqAIk"
+        },
+        {
+          "src": "portfolio/channels/kai-studio-3.webp",
+          "video": "https://www.youtube.com/watch?v=pXUWHJ5myxQ"
+        }
+      ]
+    },
+    {
+      "name": "픽셀실록",
+      "handle": "@pixelsillok",
+      "url": "https://www.youtube.com/@pixelsillok",
+      "topic": "Game history documentary",
+      "avatar": "portfolio/channels/pixelsillok.webp",
+      "thumbs": [
+        {
+          "src": "portfolio/channels/pixelsillok-1.webp",
+          "video": "https://www.youtube.com/watch?v=ObScc3tNcRo"
+        },
+        {
+          "src": "portfolio/channels/pixelsillok-2.webp",
+          "video": "https://www.youtube.com/watch?v=_T-RVUaP7sI"
+        },
+        {
+          "src": "portfolio/channels/pixelsillok-3.webp",
+          "video": "https://www.youtube.com/watch?v=7CCOs24EkDo"
+        }
+      ]
+    },
+    {
+      "name": "Tiny Chaos Cinema",
+      "handle": "@TinyChaosCinema",
+      "url": "https://www.youtube.com/@TinyChaosCinema",
+      "topic": "Silent animal comedy",
+      "avatar": "portfolio/channels/tiny-chaos-cinema.webp",
+      "thumbs": [
+        {
+          "src": "portfolio/channels/tiny-chaos-cinema-1.webp",
+          "video": "https://www.youtube.com/watch?v=hZIau9biHpI"
+        },
+        {
+          "src": "portfolio/channels/tiny-chaos-cinema-2.webp",
+          "video": "https://www.youtube.com/watch?v=vL1PxYuZolQ"
+        }
+      ]
+    },
+    {
+      "name": "확률포커",
+      "handle": "@probpoker_kr",
+      "url": "https://www.youtube.com/@probpoker_kr",
+      "topic": "Poker by probability",
+      "avatar": "portfolio/channels/probpoker.webp",
+      "thumbs": [
+        {
+          "src": "portfolio/channels/probpoker-1.webp",
+          "video": "https://www.youtube.com/watch?v=4HmA3Nb5KDw"
+        },
+        {
+          "src": "portfolio/channels/probpoker-2.webp",
+          "video": "https://www.youtube.com/watch?v=NfwXn43TCvk"
+        },
+        {
+          "src": "portfolio/channels/probpoker-3.webp",
+          "video": "https://www.youtube.com/watch?v=glSOIk9lfu4"
+        }
+      ]
+    },
+    {
+      "name": "보류시리즈",
+      "handle": "@boryuseries",
+      "url": "https://www.youtube.com/@boryuseries",
+      "topic": "Dark fantasy · urban mystery",
+      "avatar": "portfolio/channels/boryu.webp",
+      "thumbs": [
+        {
+          "src": "portfolio/channels/boryu-1.webp",
+          "video": "https://www.youtube.com/watch?v=V7ww6shQMmg"
+        },
+        {
+          "src": "portfolio/channels/boryu-2.webp",
+          "video": "https://www.youtube.com/watch?v=B1Nnb292GqY"
+        },
+        {
+          "src": "portfolio/channels/boryu-3.webp",
+          "video": "https://www.youtube.com/watch?v=8_XGU4OFaz0"
+        }
+      ]
+    },
+    {
+      "name": "AlyDoit Games",
+      "handle": "@alydoitgames_ko",
+      "url": "https://www.youtube.com/@alydoitgames_ko",
+      "topic": "In-house mobile games",
+      "avatar": "portfolio/channels/alydoit-games.webp",
+      "thumbs": [
+        {
+          "src": "portfolio/channels/alydoit-games-1.webp",
+          "video": "https://www.youtube.com/watch?v=NXJd-P3vx3A"
+        },
+        {
+          "src": "portfolio/channels/alydoit-games-2.webp",
+          "video": "https://www.youtube.com/watch?v=B4VSe6hSD_c"
+        }
+      ]
+    },
+    {
+      "name": "끝내 버틴 사람들",
+      "handle": "@kkeutnae_kr",
+      "url": "https://www.youtube.com/@kkeutnae_kr",
+      "topic": "True-story documentary",
+      "avatar": "portfolio/channels/kkeutnae.webp",
+      "thumbs": [
+        {
+          "src": "portfolio/channels/kkeutnae-1.webp",
+          "video": "https://www.youtube.com/watch?v=uxOuPVYH4jM"
+        },
+        {
+          "src": "portfolio/channels/kkeutnae-2.webp",
+          "video": "https://www.youtube.com/watch?v=vGEoDFMSIZE"
+        },
+        {
+          "src": "portfolio/channels/kkeutnae-3.webp",
+          "video": "https://www.youtube.com/watch?v=nVAXXsAzxzM"
+        }
+      ]
+    }
+  ]
+}

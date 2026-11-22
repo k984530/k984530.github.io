@@ -34,7 +34,7 @@ import {
     WebGLRenderTarget,
     Pass,
     FullScreenQuad,
-} from "./lib/three-0.186.1.min.js?v=20261122e";
+} from "./lib/three-0.186.1.min.js?v=20261122f";
 
 export const STAGE_NAMES = { 1: "제품 공개 스튜디오", 2: "검은 액체 금속" };
 
@@ -82,6 +82,18 @@ vec4 readMirror(vec2 uv) {
     return c;
 }
 `;
+
+// 이야기 장면의 띠 조명: 지금 달의 탑 발치에 바닥(수면)을 가로지르는 부드러운 흰 빛 띠 하나. [x, z, 폭, 세기]
+const BAND_GLSL = /* glsl */ `
+uniform vec4 uBand;
+float bandLight(vec2 p) {
+    float dx = (p.x - uBand.x) / uBand.z;
+    float dz = (p.y - uBand.y) / 3.2;
+    return uBand.w * exp(-dx * dx) * exp(-dz * dz);
+}
+`;
+
+const lerp = (a, b, t) => a + (b - a) * t;
 
 // ---------- 스튜디오 환경광 ----------
 
@@ -498,6 +510,7 @@ function studioStage(ctx) {
         tShadow: { value: shadow.target.texture },
         uShadowBox: { value: shadow.box },
         uShadow: { value: 0.9 },
+        uBand: { value: new Vector4(0, 0, 1, 0) },
     };
     // 광택 현무암: 아주 어두운 바탕 + 맑은 코팅(띠 조명이 길게 비침). 넓은 결로 거칠기가 조금씩 다르고, 판이 아주 완만하게 굽어 반사가 살짝 흔들린다.
     const floorMaterial = new MeshPhysicalMaterial({
@@ -519,6 +532,7 @@ function studioStage(ctx) {
             .replace("#include <common>", `#include <common>
 ${NOISE_GLSL}
 ${MIRROR_GLSL}
+${BAND_GLSL}
 uniform sampler2D tShadow;
 uniform vec4 uShadowBox;
 uniform float uShadow;
@@ -550,6 +564,7 @@ clearcoatNormal = normalize(clearcoatNormal - (viewMatrix * vec4(slabGrad.x, 0.0
     float fres = 0.045 + 0.955 * pow(1.0 - NoV, 5.0);
     outgoingLight *= 1.0 - contact;
     outgoingLight = outgoingLight * (1.0 - refl.a * fres) + refl.rgb * fres * uReflect;
+    outgoingLight += vec3(bandLight(vStone.xz)) * (1.0 - contact * 0.6);
 }
 #include <opaque_fragment>`);
     };
@@ -624,11 +639,16 @@ clearcoatNormal = normalize(clearcoatNormal - (viewMatrix * vec4(slabGrad.x, 0.0
 
     function update(state) {
         // 띠 조명은 타일 앞을 아주 천천히 오간다(한 번 오가는 데 40초). 첫 등장 때는 바깥에서 들어와 앞면을 한 번 쓸고 지나간다.
-        // 스크롤하면 빛이 조금 밀린다. 달력 · 숫자 · 벽에서는 바닥 광택을 거의 꺼서 타일 뒤에 빛 얼룩이 뜨지 않게 한다.
+        // 이야기 장면(출시 탑)에서는 빛이 카메라와 함께 돌아 탑 앞면을 비추고, 바닥 광택 · 반사는 그대로 둔다(탑이 바닥에 비친다).
+        // 숫자 · 벽에서는 바닥 광택을 거의 꺼서 타일 뒤에 빛 얼룩이 뜨지 않게 한다.
         const intro = state.reduced ? 1 : easeInOut(Math.min(1, state.time / 4.2));
-        const sway = Math.sin((state.time * Math.PI * 2) / 40) * 0.42;
-        envRotation.y = (1 - intro) * -1.25 + sway + state.scrollTurn * 0.5 - 0.12;
-        floorMaterial.envMapIntensity = state.reveal * (1 - 0.94 * state.form) * floorGloss;
+        const sway = Math.sin((state.time * Math.PI * 2) / 40) * 0.42 * (1 - 0.6 * state.story);
+        envRotation.y = (1 - intro) * -1.25 + sway + state.scrollTurn * 0.5 - 0.12 + state.yaw;
+        floorMaterial.envMapIntensity = state.reveal * (1 - 0.94 * state.form) * floorGloss * lerp(1, 0.14, state.story);
+        fade.k.value = lerp(1.25, 0.55, state.story);
+        uniforms.uBand.value.set(state.bandX, state.bandZ, state.bandW, state.band * 0.07 * state.reveal);
+        scene.fog.near = lerp(15, 60, state.story);
+        scene.fog.far = lerp(64, 220, state.story);
     }
 
     function prepare(renderer, camera, meshes) {
@@ -675,6 +695,8 @@ function liquidStage(ctx) {
         uTime: { value: 0 },
         uRipples: { value: ripples },
         uCenter: { value: new Vector2(0, -10) },
+        uBand: { value: new Vector4(0, 0, 1, 0) },
+        uReflDist: { value: new Vector2(12.5, 22) },
     };
     // 물결 네 겹: [방향 x, 방향 z, 파수, 높이, 속도]. 셰이더와 타일 띄우기(surface)가 같은 값을 쓴다.
     const WAVE_SET = [
@@ -738,7 +760,9 @@ vec3 objectNormal = normalize(vec3(-liq.y, 1.0, -liq.z));`)
             .replace("#include <common>", `#include <common>
 ${WAVES}
 ${MIRROR_GLSL}
+${BAND_GLSL}
 uniform float uReflect;
+uniform vec2 uReflDist;
 varying vec4 vMirrorCoord;
 varying vec3 vLiquid;`)
             .replace("#include <normal_fragment_maps>", `#include <normal_fragment_maps>
@@ -752,10 +776,11 @@ normal = normalize((viewMatrix * vec4(liqN, 0.0)).xyz);`)
             .replace("#include <opaque_fragment>", `{
     // 가까운 타일만 수면에 또렷이 비치고, 먼 반사는 물결에 늘어나 어지러워지기 전에 사라진다.
     vec2 bend = liqN.xz * 0.03 / (1.0 + length(vViewPosition) * 0.04);
-    vec4 refl = readMirror(vMirrorCoord.xy / vMirrorCoord.w + bend) * (1.0 - smoothstep(12.5, 22.0, length(vViewPosition)));
+    vec4 refl = readMirror(vMirrorCoord.xy / vMirrorCoord.w + bend) * (1.0 - smoothstep(uReflDist.x, uReflDist.y, length(vViewPosition)));
     float NoV = saturate(dot(normal, geometryViewDir));
     float fres = 0.42 + 0.58 * pow(1.0 - NoV, 3.0);
     outgoingLight = outgoingLight * (1.0 - refl.a * fres * 0.9) + refl.rgb * fres * uReflect;
+    outgoingLight += vec3(bandLight(vLiquid.xz));
 }
 #include <opaque_fragment>`);
     };
@@ -854,8 +879,14 @@ normal = normalize((viewMatrix * vec4(liqN, 0.0)).xyz);`)
         liquidMaterial.envMapIntensity = 0.05 * state.reveal * (1 - 0.75 * state.form) * (1 - state.wall);
         uniforms.uTime.value = state.reduced ? 0 : state.time;
         const intro = state.reduced ? 1 : easeInOut(Math.min(1, state.time / 4.2));
-        const sway = Math.sin((state.time * Math.PI * 2) / 48) * 0.36;
-        envRotation.y = (1 - intro) * 0.35 + sway + state.scrollTurn * 0.4;
+        const sway = Math.sin((state.time * Math.PI * 2) / 48) * 0.36 * (1 - 0.6 * state.story);
+        envRotation.y = (1 - intro) * 0.35 + sway + state.scrollTurn * 0.4 + state.yaw;
+        // 이야기 장면은 카메라가 멀어 수면 반사가 사라지는 거리를 늘린다(출시 탑이 수면에 비친다).
+        uniforms.uReflDist.value.set(lerp(12.5, 30, state.story), lerp(22, 62, state.story));
+        uniforms.uBand.value.set(state.bandX, state.bandZ, state.bandW, state.band * 0.05 * state.reveal);
+        fade.k.value = lerp(0.6, 0.3, state.story);
+        scene.fog.near = lerp(16, 60, state.story);
+        scene.fog.far = lerp(64, 220, state.story);
         const t = state.reduced ? 0 : state.time;
         markPos.set(dropBase.x, surface(dropBase.x, dropBase.z, t) + dropBase.y, dropBase.z);
     }
