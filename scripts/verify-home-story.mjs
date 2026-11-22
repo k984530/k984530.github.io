@@ -81,7 +81,7 @@ const projectsBlock = (html.match(/const projects = \[([\s\S]*?)\n\s*\];/) || []
 const projectCount = (projectsBlock.match(/\{ name: /g) || []).length;
 check(projectCount === expected.total, `쪽 자료 projects ${projectCount}개 ≠ ${expected.total}`);
 
-// 5) 채널: 목록 · 쪽 자료 · 그림 파일. 비어 있으면 구역이 숨겨져 있다. 구독자 수는 어디에도 없다.
+// 5) 채널: 목록 · 쪽 자료 · 프로필 그림. 비어 있으면 구역이 숨겨져 있다. 구독자 수 · 영상 썸네일은 어디에도 없다.
 const section = html.match(/<section class="channels" id="channels"( hidden)?/);
 check(section, "채널 구역을 찾지 못함");
 if (section) check(Boolean(section[1]) === (channels.length === 0), `채널 구역 hidden=${Boolean(section[1])}, 채널 ${channels.length}개`);
@@ -98,13 +98,18 @@ channels.forEach((c, i) => {
         check(item[2] === c.avatar, `채널 ${i + 1} 프로필 ${item[2]} ≠ ${c.avatar}`);
     }
     check(/^https:\/\/www\.youtube\.com\/@[A-Za-z0-9_.-]+$/.test(c.url), `채널 ${c.name} 주소 형식: ${c.url}`);
-    check(c.thumbs.length >= 2 && c.thumbs.length <= 3, `채널 ${c.name} 썸네일 ${c.thumbs.length}장(2~3장이어야 함)`);
-    for (const src of [c.avatar, ...c.thumbs.map((t) => t.src)]) {
-        check(!/^https?:/.test(src), `채널 ${c.name} 그림을 바깥 주소로 씀: ${src}`);
-        check(fs.existsSync(path.join(root, src)), `채널 ${c.name} 그림 파일 없음: ${src}`);
-        check(pageChannels.includes(JSON.stringify(src)), `쪽 자료에 그림 경로 없음: ${src}`);
-    }
+    check(!("thumbs" in c), `채널 ${c.name}: 자료에 썸네일 항목이 남아 있음`);
+    check(!/^https?:/.test(c.avatar), `채널 ${c.name} 프로필을 바깥 주소로 씀: ${c.avatar}`);
+    check(fs.existsSync(path.join(root, c.avatar)), `채널 ${c.name} 프로필 파일 없음: ${c.avatar}`);
+    check(pageChannels.includes(JSON.stringify(c.avatar)), `쪽 자료에 프로필 경로 없음: ${c.avatar}`);
 });
+check(!/thumbs/.test(pageChannels), "쪽 자료 channels에 썸네일 항목이 남아 있음");
+// 채널 그림 폴더에는 자료가 쓰는 프로필만 있다(지운 썸네일이 남지 않게).
+const channelDir = path.join(root, "portfolio/channels");
+if (fs.existsSync(channelDir)) {
+    const used = new Set(channels.map((c) => path.basename(c.avatar)));
+    for (const file of fs.readdirSync(channelDir)) check(used.has(file), `portfolio/channels/${file}: 자료가 쓰지 않는 파일`);
+}
 check(!/subscriber|구독자/i.test(html), "index.html에 구독자 표기가 있음");
 
 // 6) 쉼(빈 달) 장면은 없다.
@@ -115,4 +120,4 @@ if (failures.length) {
     failures.forEach((f) => console.error(`  - ${f}`));
     process.exit(1);
 }
-console.log(`verify-home-story: 통과 (앱 ${expected.total} · App Store ${expected.appStore} · Google Play ${expected.googlePlay} · ${expected.firstYear}년 ${expected.firstYearCount} · 게임 ${expected.gamesCount} · 채널 ${expected.channels} · data-stat ${statEls.length}곳)`);
+console.log(`verify-home-story: 통과 (앱 ${expected.total} · App Store ${expected.appStore} · Google Play ${expected.googlePlay} · ${expected.firstYear}년 ${expected.firstYearCount} · 게임 ${expected.gamesCount} · 채널 ${expected.channels}(프로필만) · data-stat ${statEls.length}곳)`);

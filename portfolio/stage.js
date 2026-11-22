@@ -34,7 +34,7 @@ import {
     WebGLRenderTarget,
     Pass,
     FullScreenQuad,
-} from "./lib/three-0.186.1.min.js?v=20261122f";
+} from "./lib/three-0.186.1.min.js?v=20261122g";
 
 export const STAGE_NAMES = { 1: "제품 공개 스튜디오", 2: "검은 액체 금속" };
 

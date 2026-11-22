@@ -507,7 +507,8 @@ img {
 }
 
 /* ---------- 유튜브 채널 ---------- */
-/* WebGL에서는 채널마다 3D 묶음(프로필 판 + 썸네일 판)이 서고, 아래 목록의 링크가 그 묶음 밑 이름표가 된다. */
+/* WebGL에서는 채널마다 둥근 3D 프로필 판이 서고, 아래 목록의 링크가 그 판 밑 이름표가 된다.
+   WebGL이 없으면 같은 목록이 둥근 프로필 + 이름 + 주제의 가운데 맞춤 격자로 남는다(데스크톱 4 + 3, 휴대폰 2열). */
 
 .channels {
     position: relative;
@@ -519,30 +520,35 @@ img {
 }
 
 .channel-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 0 32px;
-    max-width: 1100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 44px 24px;
+    max-width: 980px;
     margin: 0 auto;
-    padding: 32px var(--gutter) 0;
+    padding: 48px var(--gutter) 0;
     list-style: none;
 }
 
+.channel-item {
+    flex: 0 0 196px;
+    min-width: 0;
+}
+
 .channel-link {
-    display: grid;
-    grid-template-columns: 48px minmax(0, 1fr);
-    gap: 2px 14px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--line);
+    text-align: center;
     text-decoration: none;
     pointer-events: auto;
 }
 
 .channel-link img {
-    grid-row: span 2;
-    width: 48px;
-    height: 48px;
+    width: 128px;
+    height: 128px;
+    margin-bottom: 18px;
+    border: 1px solid var(--line);
     border-radius: 50%;
     background: var(--surface);
 }
@@ -604,7 +610,7 @@ img {
 }
 
 .channel-list.is-stage strong {
-    font-size: 0.86rem;
+    font-size: 0.92rem;
     overflow-wrap: anywhere;
 }
 
@@ -856,8 +862,23 @@ img {
         letter-spacing: 0.1em;
     }
 
+    .channel-list {
+        gap: 36px 16px;
+        padding-top: 40px;
+    }
+
+    .channel-item {
+        flex-basis: calc(50% - 8px);
+    }
+
+    .channel-link img {
+        width: 104px;
+        height: 104px;
+        margin-bottom: 14px;
+    }
+
     .channel-list.is-stage strong {
-        font-size: 0.78rem;
+        font-size: 0.8rem;
     }
 
     .channel-list.is-stage span {

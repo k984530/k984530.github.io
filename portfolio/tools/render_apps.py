@@ -96,8 +96,7 @@ def data_block(apps, stats, channels):
     lines.append("        const appStats = " + json.dumps(stats, ensure_ascii=False) + ";")
     lines.append("        const channels = [")
     for c in channels:
-        thumbs = ", ".join(js_str(t["src"]) for t in c["thumbs"])
-        lines.append(f'            {{ channel: {js_str(c["name"])}, topic: {js_str(c["topic"])}, url: {js_str(c["url"])}, avatar: {js_str(c["avatar"])}, thumbs: [{thumbs}] }},')
+        lines.append(f'            {{ channel: {js_str(c["name"])}, topic: {js_str(c["topic"])}, url: {js_str(c["url"])}, avatar: {js_str(c["avatar"])} }},')
     if channels:
         lines[-1] = lines[-1].rstrip(",")
     lines.append("        ];")

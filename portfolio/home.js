@@ -4,13 +4,12 @@
 //   출시 탑: 첫 앱부터 낸 순서대로 아이콘이 바닥 위 달별 탑에 하나씩 쌓인다(탑이 바닥에 비친다).
 //            카메라는 시간 축을 따라 옆으로 천천히 움직이며 지금까지 지나온 달만 담고, 띠 조명이 지금 달의 탑을 비춘다.
 //            축에는 앱을 낸 달만 놓는다(앱이 없는 달은 칸을 두지 않는다).
-//   숫자: 아이콘이 모여 앱 수("43")가 된다. → 벽: 모두 한 벽에 걸린다. → 채널: 유튜브 채널마다 프로필 + 썸네일 판 한 묶음.
+//   숫자: 아이콘이 모여 앱 수("43")가 된다. → 벽: 모두 한 벽에 걸린다. → 채널: 유튜브 채널마다 둥근 프로필 판 하나.
 //   끝: 비어 있는 다음 자리 하나가 앞으로 나온다.
 // 화면의 숫자 · 날짜는 모두 index.html의 자료(window.WON, portfolio/tools/render_apps.py가 채움)에서 계산한다.
 // 무대는 portfolio/stage.js의 두 판 중 하나(?bg=1|2). 움직임은 모두 느리고 묵직하게(튀는 탄성 없음).
 // three.js 0.186.1을 portfolio/lib에 고정해 쓴다(빌드 없이 ES module로 열린다).
 import {
-    BoxGeometry,
     Color,
     EffectComposer,
     Euler,
@@ -30,8 +29,8 @@ import {
     Vector2,
     Vector3,
     WebGLRenderer,
-} from "./lib/three-0.186.1.min.js?v=20261122f";
-import { createStage, DepthOfFieldPass, GrainPass } from "./stage.js?v=20261122f";
+} from "./lib/three-0.186.1.min.js?v=20261122g";
+import { createStage, DepthOfFieldPass, GrainPass } from "./stage.js?v=20261122g";
 
 const W = window.WON;
 const docEl = document.documentElement;
@@ -430,41 +429,26 @@ function init() {
         });
     });
 
-    // ---------- 유튜브 채널: 채널마다 둥근 프로필 판 하나 + 그 뒤에 최근 영상 썸네일 판 몇 장 ----------
+    // ---------- 유튜브 채널: 채널마다 둥근 프로필 판(메달) 하나 ----------
     const CH0 = count + 1;
     const discGeo = hasChannels ? discGeometry() : null;
-    const boardGeo = hasChannels ? new BoxGeometry(1, 0.5625, 0.05) : null;
     const channelItems = channelList ? [...channelList.querySelectorAll(".channel-item")] : [];
     const channels = channelData.map((data, k) => {
-        const part = (mesh, face, side, role) => {
-            mesh.userData.index = CH0 + k;
-            mesh.visible = false;
-            scene.add(mesh);
-            return { mesh, face, side, role, slot: slot(), pos: new Vector3(), rot: new Vector3(), scale: 0 };
-        };
-        const avatarFace = faceMaterial();
-        const avatarSide = sideMaterial();
-        const avatar = part(new Mesh(discGeo, [avatarFace, avatarSide]), avatarFace, avatarSide, "avatar");
-        const boards = data.thumbs.slice(0, 3).map((src, i) => {
-            const face = faceMaterial();
-            face.clearcoat = 0.45;
-            const side = sideMaterial();
-            const board = part(new Mesh(boardGeo, [side, side, side, side, face, side]), face, side, `board${i}`);
-            board.src = src;
-            board.light = [0.94, 0.62, 0.5][i];
-            return board;
-        });
+        const face = faceMaterial();
+        const side = sideMaterial();
+        const mesh = new Mesh(discGeo, [face, side]);
+        mesh.userData.index = CH0 + k;
+        mesh.visible = false;
+        scene.add(mesh);
+        const avatar = { mesh, face, side, slot: slot(), pos: new Vector3(), rot: new Vector3(), scale: 0, loaded: false };
         return {
             data,
             avatar,
-            parts: [...boards.slice().reverse(), avatar],
-            boards,
+            parts: [avatar],
             hover: 0,
             delay: k * 0.07,
             label: channelItems[k] || null,
-            anchor: new Vector3(),
             labelPx: { x: 0, y: 0, w: 120 },
-            loaded: false,
         };
     });
     const channelMeshes = channels.flatMap((c) => c.parts.map((part) => part.mesh));
@@ -487,7 +471,6 @@ function init() {
                 });
             };
             apply(c.avatar, c.data.avatar);
-            c.boards.forEach((board) => apply(board, board.src));
         });
     }
 
@@ -927,64 +910,74 @@ function init() {
     }
 
     // ---------- 채널 배치 ----------
-    // 화면을 가장 크게 쓰는 열 수를 고른다(데스크톱 4 + 3, 휴대폰 2열). 한 묶음 = 썸네일 판(가장 최근이 맨 앞) + 왼쪽 아래 프로필.
-    // 묶음 크기(폭 ow 기준): 가로 −0.5 ~ +0.47, 세로 위 0.51 ~ 아래 0.42(프로필 아래 끝).
-    const CH_TOP = 0.51;
-    const CH_BOTTOM = 0.42;
-    // 채널 묶음은 벽보다 카메라 가까이(거리 16) 세운다. 같은 화면 크기에서 바닥선이 아래로 내려가 화면을 더 넓게 쓴다.
+    // 채널마다 둥근 프로필 판 하나(화면 지름 ow). 화면을 가장 크게 쓰는 줄 수를 고르고(데스크톱 4 + 3, 휴대폰 2 + 3 + 2),
+    // 줄마다 가운데 맞춤이라 벌집처럼 엇갈린다. 마지막 줄은 바닥 바로 위에 서서 바닥에 비치고, 그 발치를 띠 조명이 비춘다.
+    // 판은 벽보다 카메라 가까이(거리 16) 세운다. 같은 화면 크기에서 바닥선이 아래로 내려가 화면을 더 넓게 쓴다.
     const CH_DEPTH = 16;
+    const chBand = { x: 0, z: 0, w: 1 };
+    function rowCounts(n, rows) {
+        // n개를 rows줄에 고르게 나눈다. 남는 것은 가운데 줄부터(두 줄이면 윗줄부터) 하나씩 더 준다.
+        const base = Math.floor(n / rows);
+        const counts = new Array(rows).fill(base);
+        const mid = (rows - 1) / 2;
+        const order = [...counts.keys()].sort((a, b) => Math.abs(a - mid) - Math.abs(b - mid) || a - b);
+        for (let i = 0; i < n - base * rows; i += 1) counts[order[i]] += 1;
+        return counts;
+    }
     function layoutChannels() {
         if (!hasChannels) return;
         const n = channels.length;
-        const gutter = view.portrait ? 14 : Math.max(32, Math.min(80, view.w * 0.06));
-        const top = textBottom([channelsSection]) + (view.portrait ? 26 : 34);
-        // 물체는 바닥선 위에서 끝나고(바닥에 묻히지 않게), 마지막 줄 이름표는 바닥선 아래 반사 위에 둔다.
-        const labelH = view.portrait ? 58 : 50;
-        const objBottom = Math.min(floorPxAt(CH_DEPTH) - 10, view.h - labelH - (view.portrait ? 14 : 22));
-        const gapY = view.portrait ? 14 : 20;
+        const gutter = view.portrait ? 12 : Math.max(32, Math.min(80, view.w * 0.06));
+        const top = textBottom([channelsSection]) + (view.portrait ? 30 : 40);
+        // 판은 바닥선 위에서 끝나고(바닥에 묻히지 않게), 마지막 줄 이름표는 바닥선 아래 반사 위에 둔다.
+        // 휴대폰 이름표는 이름 · 주제가 각각 두 줄로 꺾일 수 있다(네 줄).
+        const labelH = view.portrait ? 74 : 52;
+        const objBottom = Math.min(floorPxAt(CH_DEPTH) - 6, view.h - labelH - (view.portrait ? 14 : 22));
+        const gapY = view.portrait ? 12 : 18;
         const rw = view.w - gutter * 2;
         let best = null;
-        for (let cols = 1; cols <= n; cols += 1) {
-            const rows = Math.ceil(n / cols);
-            const cellW = rw / cols;
+        for (let rows = 1; rows <= n; rows += 1) {
+            const counts = rowCounts(n, rows);
+            const cellW = rw / Math.max(...counts);
             const avail = objBottom - top - (rows - 1) * (labelH + gapY);
-            if (avail <= 0) continue;
-            const ow = Math.min(cellW * (view.portrait ? 0.94 : 0.82), avail / rows / (CH_TOP + CH_BOTTOM), view.portrait ? 210 : 300);
-            if (!best || ow > best.ow + 0.5) best = { cols, rows, cellW, ow };
+            if (avail <= 0) break;
+            const ow = Math.min(cellW * (view.portrait ? 0.9 : 0.74), avail / rows, view.portrait ? 180 : 280);
+            if (!best || ow > best.ow + 0.5) best = { rows, counts, cellW, ow };
         }
-        const { cols, rows, cellW, ow } = best;
-        const objH = ow * (CH_TOP + CH_BOTTOM);
-        const usedH = rows * objH + (rows - 1) * (labelH + gapY);
-        // 남는 세로 여백은 위 4 : 아래 6으로 나눈다(무게가 아래에 실리게).
-        const y0 = top + Math.max(0, objBottom - top - usedH) * 0.6;
+        const { rows, counts, cellW, ow } = best;
+        const pitchY = ow + labelH + gapY;
+        const usedH = rows * ow + (rows - 1) * (labelH + gapY);
+        // 남는 세로 여백은 위 7 : 아래 3(마지막 줄이 바닥 가까이 서게).
+        const y0 = top + Math.max(0, objBottom - top - usedH) * 0.7;
         const wpp = worldPerPx() * (CH_DEPTH / rig.depth);
-        const Wd = ow * wpp;
-        channels.forEach((c, k) => {
-            const r = Math.floor(k / cols);
-            const inRow = r === rows - 1 ? n - r * cols : cols;
-            const col = k - r * cols;
-            const cx = gutter + (cols - inRow) * cellW * 0.5 + (col + 0.5) * cellW;
-            const cy = y0 + r * (objH + labelH + gapY) + CH_TOP * ow;
-            c.anchor.copy(planePoint(cx, cy, CH_DEPTH));
-            const nx = (cx / view.w) * 2 - 1;
-            const yaw = (view.portrait ? -0.05 : -0.14) * nx;
-            const place = (part, dx, dy, dz, scale, roll) => {
-                part.slot.pos.copy(c.anchor).addScaledVector(RIGHT, dx * Wd).addScaledVector(rig.up, dy * Wd).addScaledVector(rig.fwd, dz * Wd);
-                part.slot.rot.set(-rig.pitch, yaw, roll);
-                part.slot.s = scale * Wd;
-            };
-            c.boards.forEach((board, i) => {
-                if (i === 0) place(board, 0, 0.02, 0, 0.9, 0);
-                else if (i === 1) place(board, -0.09, 0.17, 0.12, 0.82, 0.03);
-                else place(board, 0.1, 0.3, 0.24, 0.74, -0.025);
-            });
-            place(c.avatar, -0.33, -0.26, -0.1, 0.32, 0);
-            // 이름표: 묶음 아래 끝 바로 밑, 칸 폭 안에서.
-            c.labelPx.x = cx;
-            c.labelPx.y = cy + CH_BOTTOM * ow + (view.portrait ? 6 : 8);
-            c.labelPx.w = Math.min(cellW - 8, Math.max(ow * 1.15, 120));
-            if (c.label) c.label.style.width = `${Math.round(c.labelPx.w)}px`;
+        let k = 0;
+        let bandMin = Infinity;
+        let bandMax = -Infinity;
+        counts.forEach((inRow, r) => {
+            const cy = y0 + r * pitchY + ow / 2;
+            for (let col = 0; col < inRow; col += 1, k += 1) {
+                const c = channels[k];
+                const cx = view.w / 2 + (col - (inRow - 1) / 2) * cellW;
+                const a = c.avatar;
+                a.slot.pos.copy(planePoint(cx, cy, CH_DEPTH));
+                // 가장자리 판은 가운데를 향해 살짝 돈다.
+                a.slot.rot.set(-rig.pitch, (view.portrait ? -0.06 : -0.16) * ((cx / view.w) * 2 - 1), 0);
+                a.slot.s = ow * wpp;
+                if (r === rows - 1) {
+                    bandMin = Math.min(bandMin, a.slot.pos.x);
+                    bandMax = Math.max(bandMax, a.slot.pos.x);
+                    chBand.z = a.slot.pos.z;
+                }
+                // 이름표: 판 아래 끝 바로 밑, 칸 폭 안에서.
+                c.labelPx.x = cx;
+                c.labelPx.y = cy + ow / 2 + (view.portrait ? 8 : 12);
+                c.labelPx.w = Math.min(cellW - 6, Math.max(ow * 1.2, 120));
+                if (c.label) c.label.style.width = `${Math.round(c.labelPx.w)}px`;
+            }
         });
+        // 바닥 빛: 마지막 줄 발치, 줄 폭보다 조금 넓게.
+        chBand.x = (bandMin + bandMax) / 2;
+        chBand.w = (bandMax - bandMin) / 2 + ow * wpp;
     }
 
     function measureMarks() {
@@ -1588,10 +1581,20 @@ function init() {
         stageState.wall = eb;
         stageState.story = storyMix;
         stageState.yaw = (storyCam.yaw + STORY_ENV_TURN) * storyMix;
-        stageState.bandX = storyCam.bandX;
-        stageState.bandZ = 0;
-        stageState.bandW = 0.95;
-        stageState.band = storyMix * clamp01((m.p - story.items[0].arrive + 0.1) / 0.4);
+        // 띠 조명이 바닥에 떨어지는 자리: 출시 탑에서는 지금 달 탑 발치, 채널 장면에서는 프로필 판 마지막 줄 발치.
+        const storyBand = storyMix * clamp01((m.p - story.items[0].arrive + 0.1) / 0.4);
+        const channelBand = channelMix * 0.9;
+        if (channelBand > storyBand) {
+            stageState.bandX = chBand.x;
+            stageState.bandZ = chBand.z;
+            stageState.bandW = chBand.w;
+            stageState.band = channelBand;
+        } else {
+            stageState.bandX = storyCam.bandX;
+            stageState.bandZ = 0;
+            stageState.bandW = 0.95;
+            stageState.band = storyBand;
+        }
         stageScene.update(stageState);
         stageScene.prepare(renderer, camera, allMeshes);
         composer.render(dt);
@@ -1621,7 +1624,8 @@ function init() {
                     .addScaledVector(rig.fwd, -0.9 * c.hover);
                 targetRot.copy(part.slot.rot);
                 if (!reduced) {
-                    targetRot.y += Math.sin(Math.PI * arrive) * 0.18 + Math.sin(time * 0.23 + k) * 0.012;
+                    // 판마다 아주 느리게 좌우로 기울어 은색 테두리에 띠 조명이 번갈아 맺힌다.
+                    targetRot.y += Math.sin(Math.PI * arrive) * 0.18 + Math.sin(time * 0.27 + k * 1.3) * 0.07;
                     target.addScaledVector(rig.up, Math.sin(time * 0.31 + k * 1.7) * 0.03);
                 }
                 const s = part.slot.s * lerp(0.6, 1, arrive) * (1 + 0.05 * c.hover);
@@ -1638,10 +1642,9 @@ function init() {
                 part.mesh.rotation.set(part.rot.x, part.rot.y, part.rot.z);
                 part.mesh.scale.setScalar(Math.max(0.0001, part.scale));
                 part.mesh.updateMatrix();
-                const light = part.role === "avatar" ? 1 : part.light;
-                part.face.emissiveIntensity = part.loaded ? light * (0.85 + 0.15 * c.hover) * shown : 0.05;
-                part.side.envMapIntensity = reveal * (0.5 + 0.5 * shown);
-                part.face.envMapIntensity = 0.4 * reveal * shown;
+                part.face.emissiveIntensity = part.loaded ? (0.88 + 0.12 * c.hover) * shown : 0.05;
+                part.side.envMapIntensity = reveal * (0.55 + 0.65 * shown);
+                part.face.envMapIntensity = 0.45 * reveal * shown;
             });
         });
     }
@@ -1869,11 +1872,11 @@ function init() {
         audit,
         stops,
         scrollForP,
-        // 검사용: 채널 k의 맨 앞 썸네일 판 가운데의 화면 좌표.
+        // 검사용: 채널 k 프로필 판 가운데의 화면 좌표.
         channelScreen(k) {
             const c = channels[k];
             if (!c) return null;
-            toScreen(c.boards[0] ? c.boards[0].pos : c.avatar.pos, screenA);
+            toScreen(c.avatar.pos, screenA);
             return { x: screenA.x, y: screenA.y };
         },
         get hero() { return heroInfo; },
