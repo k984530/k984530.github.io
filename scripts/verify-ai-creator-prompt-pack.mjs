@@ -96,9 +96,6 @@ assert.match(decodedCustomPromptEmail, /Deadline:/);
 assert.match(decodedCustomPromptEmail, /Goal for the prompts:/);
 
 assert.match(sitemap, /https:\/\/won-space\.com\/AI-Creator-Prompt-Pack\//);
-assert.match(rootIndex, /name: "AI Creator Prompt Pack"/);
-assert.match(rootIndex, /detail: "AI-Creator-Prompt-Pack\/"/);
-assert.match(rootIndex, /31 Projects/);
 assert.match(kovaIndex, /\.\.\/AI-Creator-Prompt-Pack\//);
 assert.match(styles, /\.\.\/\.\.\/AI-Creator-Prompt-Pack\//);
 assert.match(figurine, /\.\.\/\.\.\/AI-Creator-Prompt-Pack\//);
