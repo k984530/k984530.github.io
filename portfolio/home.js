@@ -1,13 +1,14 @@
 // won-space.com 첫 화면 WebGL 장면.
 // 위에서 아래로 내리면 이야기 순서대로 바뀐다. 모두 같은 무대(광택 바닥 · 띠 조명 · 반사) 위에서 일어난다.
-//   첫 화면: 최신 앱이 빛 속에 서 있다.
-//   출시 탑: 첫 앱부터 낸 순서대로 아이콘이 바닥 위 달별 탑에 하나씩 쌓인다(탑이 바닥에 비친다).
+//   첫 화면: 앱 전부가 같은 크기 · 같은 밝기로 검은 수면 위에 줄지어 떠 있다(어느 앱도 주인공으로 세우지 않는다).
+//   첫 앱으로: 전부가 거의 한꺼번에 제자리에서 수면 아래로 가라앉고, 빈 무대에 첫 앱 하나만 띠 조명 속으로 떠오른다.
+//   출시 탑: 첫 앱부터 낸 순서대로 아이콘이 수면 위 달별 탑에 하나씩 쌓인다(탑이 수면에 비친다).
 //            카메라는 시간 축을 따라 옆으로 천천히 움직이며 지금까지 지나온 달만 담고, 띠 조명이 지금 달의 탑을 비춘다.
 //            축에는 앱을 낸 달만 놓는다(앱이 없는 달은 칸을 두지 않는다).
 //   숫자: 아이콘이 모여 앱 수("43")가 된다. → 벽: 모두 한 벽에 걸린다. → 채널: 유튜브 채널마다 둥근 프로필 판 하나.
 //   끝: 비어 있는 다음 자리 하나가 앞으로 나온다.
 // 화면의 숫자 · 날짜는 모두 index.html의 자료(window.WON, portfolio/tools/render_apps.py가 채움)에서 계산한다.
-// 무대는 portfolio/stage.js의 두 판 중 하나(?bg=1|2). 움직임은 모두 느리고 묵직하게(튀는 탄성 없음).
+// 무대는 portfolio/stage.js의 검은 액체 금속 하나. 움직임은 모두 느리고 묵직하게(튀는 탄성 없음).
 // three.js 0.186.1을 portfolio/lib에 고정해 쓴다(빌드 없이 ES module로 열린다).
 import {
     Color,
@@ -29,8 +30,8 @@ import {
     Vector2,
     Vector3,
     WebGLRenderer,
-} from "./lib/three-0.186.1.min.js?v=20261122g";
-import { createStage, DepthOfFieldPass, GrainPass } from "./stage.js?v=20261122g";
+} from "./lib/three-0.186.1.min.js?v=20261122j";
+import { createStage, DepthOfFieldPass, GrainPass } from "./stage.js?v=20261122j";
 
 const W = window.WON;
 const docEl = document.documentElement;
@@ -53,10 +54,6 @@ const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)")
 
 const BLACK = 0x080808;
 const FOV = 30;
-// 기본 무대. 대표가 고르면 이 값만 남기고 다른 판은 지운다.
-const STAGE_DEFAULT = "1";
-const stageParam = new URLSearchParams(window.location.search).get("bg");
-const STAGE_KIND = ["1", "2"].includes(stageParam) ? stageParam : STAGE_DEFAULT;
 const RIGHT = new Vector3(1, 0, 0);
 
 // 출시 탑: 타일 한 변 1, 한 층 높이 1.045(얇은 틈), 달 사이 1.6, 해가 바뀌는 곳은 1.4 더 띄운다.
@@ -327,9 +324,9 @@ function init() {
     // 빛은 무대마다 무채색 스튜디오 환경광 하나. 모든 재질이 같은 회전(envRotation)을 나눠 써서 띠 조명이 함께 지나간다.
     const envRotation = new Euler();
     const lowPower = !finePointerQuery.matches || Math.min(window.screen.width, window.screen.height) < 700;
-    const view = { w: 1, h: 1, portrait: false, dpr: 1 };
+    const view = { w: 1, h: 1, portrait: false, dpr: 1, fov: FOV };
     // 접지 그림자는 아이콘 43개 + 비어 있는 다음 자리 하나.
-    const stageScene = createStage(STAGE_KIND, { renderer, scene, envRotation, lowPower, count: count + 1 });
+    const stageScene = createStage({ renderer, scene, envRotation, lowPower });
     const envMap = stageScene.envMap;
 
     const geometry = tileGeometry();
@@ -383,6 +380,7 @@ function init() {
             loaded: false,
             heroRank: 0,
             heroLight: 1,
+            wasHidden: false,
             delay: rand() * 0.3,
             delay2: rand() * 0.3,
             spin: (rand() < 0.5 ? -1 : 1) * (0.7 + rand() * 0.8),
@@ -496,7 +494,7 @@ function init() {
     // 숫자 · 벽 · 채널에서 쓰는 기준 카메라: 살짝 내려다보고, 바닥선이 화면 아래쪽(83%)에 오게 높이를 맞춘다.
     // 타일은 카메라를 마주 보는 판(거리 depth) 위에 화면 좌표로 놓는다.
     const rig = { pitch: 0.16, depth: 24, floorPx: 0, halfH: 1, halfW: 1, pos: new Vector3(), target: new Vector3(), fwd: new Vector3(), up: new Vector3() };
-    let heroInfo = { pos: new Vector3(0, 2, 14), target: new Vector3(), focal: null, bob: 0, standing: true };
+    let heroInfo = { pos: new Vector3(0, 2, 14), target: new Vector3(), focal: null, band: null, bob: 0, standing: true };
     const marks = {
         exitStart: 1,
         exitEnd: 2,
@@ -992,15 +990,19 @@ function init() {
         marks.exitStart = heroTop + h * 0.06;
         marks.exitEnd = Math.max(marks.exitStart + 1, sTop(first));
         // 장마다 앞 3/4 동안 앱이 쌓이고 나머지는 멈춰 둔다(장 글을 읽는 동안 숫자가 그대로).
-        const y0 = marks.exitEnd;
+        // 첫 앱은 무대가 다 가라앉은 직후(첫 화면을 떠나는 길의 60%)부터 떠오른다. 빈 무대로 오래 두지 않는다.
+        const y0 = marks.exitStart + (marks.exitEnd - marks.exitStart) * 0.6;
         const y1 = Math.max(y0 + 1, sTop(first) + first.offsetHeight * 0.45);
         const y2 = Math.max(y1 + 1, sTop(year));
         const y3 = Math.max(y2 + 1, sTop(year) + year.offsetHeight - h * 0.62);
         const y4 = Math.max(y3 + 1, sTop(games));
         const y5 = Math.max(y4 + 1, sTop(games) + games.offsetHeight - h * 0.85);
         const y6 = Math.max(y5 + 1, top(games) + games.offsetHeight - h * 0.9);
-        marks.tY = [y0, y1, y2, y3, y4, y5, y6];
-        marks.tP = [story.items[0].arrive - 0.25, 0.98, 0.98, firstEnd, firstEnd, lastEnd, lastEnd];
+        // 첫 앱이 떠오르는 몫은 따로 짧게(첫 장 길이의 30%) 잡는다.
+        const arrive0 = story.items[0].arrive;
+        const yr = y0 + (y1 - y0) * 0.3;
+        marks.tY = [y0, yr, y1, y2, y3, y4, y5, y6];
+        marks.tP = [arrive0, Math.min(0.98, arrive0 + STORY_ARRIVE), 0.98, 0.98, firstEnd, firstEnd, lastEnd, lastEnd];
         marks.holds = { first: [y1, y2], yearEnd: [y3, y4], games: [y5, y6] };
         const numbersTop = top(numbers);
         marks.formStart = Math.max(y6 + 1, numbersTop - h * 0.8);
@@ -1228,6 +1230,7 @@ function init() {
     // ---------- 이야기 글 ----------
     // 장 글은 제자리(위쪽)에 가까워질수록 나타나고, 다음 장에 밀려 올라가면 곧 사라진다. 한 번에 한 덩어리만 읽히게.
     const heroText = hero.querySelector(".hero-text");
+    const heroCue = hero.querySelector(".hero-cue");
     const nextText = nextSection.querySelector(".next-text");
     const wallText = wall.querySelector(".chapter-text");
     const channelsText = hasChannels ? channelsSection.querySelector(".chapter-text") : null;
@@ -1259,7 +1262,9 @@ function init() {
             setOpacity(el, o);
         });
         // 첫 화면 글은 첫 화면을 떠나며 사라지고, 끝 글은 다음 자리가 앞으로 나올 때 나타난다.
-        setOpacity(heroText, clamp01(1 - window.scrollY / (h * 0.3)));
+        const heroFade = clamp01(1 - window.scrollY / (h * 0.18));
+        setOpacity(heroText, heroFade);
+        if (heroCue) setOpacity(heroCue, heroFade);
         const r = nextText.getBoundingClientRect().top;
         setOpacity(nextText, clamp01(1 - (r - h * 0.8) / (h * 0.2)));
     }
@@ -1337,22 +1342,45 @@ function init() {
     }
 
     function compose(tile, m, out) {
-        // 단계별 자리를 차례로 섞는다: 첫 화면 S → 탑 위 대기(작게) → 출시 탑 T → 숫자 F → 벽 L.
-        const w = reduced ? m.e0 : easeInOut(clamp01((m.e0 - tile.delay * 0.5) / 0.85));
+        // 단계별 자리를 차례로 섞는다: 첫 화면 S → 수면 아래 → 출시 탑 T → 숫자 F → 벽 L.
+        // 첫 화면을 떠날 때는 모두가 거의 한꺼번에 제자리에서 수면 아래로 가라앉는다(어느 앱도 카메라 앞을 지나가지 않는다).
+        // 가라앉은 뒤에는 보이지 않게 자기 탑 위 어둠 속(크기 0)으로 옮겨 두었다가, 차례가 오면 내려와 탑에 앉는다.
+        // 첫 앱만은 빈 무대의 수면 아래에서 띠 조명 속으로 떠오른다.
+        const sink = reduced ? m.e0 : easeInOut(clamp01((m.e0 - tile.delay * 0.2) / 0.5));
         const ar = arrival(tile, m.p);
         const ta = reduced ? m.a : easeInOut(clamp01((m.a - tile.delay) / 0.7));
         const tb = reduced ? m.b : easeInOut(clamp01((m.b - tile.delay2) / 0.7));
-        // 차례가 오기 전에는 자기 탑 위 어둠 속에서 보이지 않을 만큼 작게 기다리다가, 위에서 내려와 탑에 앉는다.
+        out.sink = sink;
+        if (sink < 0.999) {
+            out.pos.copy(tile.S.pos);
+            out.pos.y -= (tile.S.pos.y + tile.S.s * 0.8 + 0.4) * sink;
+            out.rot.copy(tile.S.rot);
+            out.rot.x -= 0.3 * sink;
+            out.s = tile.S.s;
+            out.w = 0;
+            out.ar = 0;
+            out.ta = 0;
+            out.tb = 0;
+            out.hide = false;
+            return out;
+        }
+        const rises = tile.index === 0;
         wait.copy(tile.T.pos);
-        wait.y += 2.6;
-        wait.z -= 0.6;
-        out.pos.copy(tile.S.pos).lerp(wait, w).lerp(tile.T.pos, ar).lerp(tile.F.pos, ta).lerp(tile.L.pos, tb);
-        out.rot.copy(tile.S.rot).lerp(tile.T.rot, w).lerp(tile.F.rot, ta).lerp(tile.L.rot, tb);
-        out.s = lerp(lerp(lerp(tile.S.s, tile.T.s, w) * lerp(1, ar, w), tile.F.s, ta), tile.L.s, tb);
-        out.w = w;
+        if (rises) {
+            // 윗면이 물결 마루(최대 약 0.5)보다 조금 아래: 떠오르기 시작하자마자 수면을 뚫는다.
+            wait.y = -(tile.T.s * 0.5 + 0.55);
+        } else {
+            wait.y += 2.6;
+            wait.z -= 0.6;
+        }
+        out.pos.copy(wait).lerp(tile.T.pos, ar).lerp(tile.F.pos, ta).lerp(tile.L.pos, tb);
+        out.rot.copy(tile.T.rot).lerp(tile.F.rot, ta).lerp(tile.L.rot, tb);
+        out.s = lerp(lerp(tile.T.s * (rises ? 1 : ar), tile.F.s, ta), tile.L.s, tb);
+        out.w = 1;
         out.ar = ar;
         out.ta = ta;
         out.tb = tb;
+        out.hide = ar < 0.001 && ta < 0.001 && tb < 0.001;
         return out;
     }
 
@@ -1367,10 +1395,12 @@ function init() {
         out.ar = 1;
         out.ta = 1;
         out.tb = gb;
+        out.sink = 1;
+        out.hide = false;
         return out;
     }
 
-    const placed = { pos: new Vector3(), rot: new Vector3(), s: 1, w: 0, ar: 0, ta: 0, tb: 0 };
+    const placed = { pos: new Vector3(), rot: new Vector3(), s: 1, w: 0, ar: 0, ta: 0, tb: 0, sink: 0, hide: false };
 
     function storyLight(tile, p, gw) {
         // 지금 달 탑은 띠 조명 아래 원래 밝기, 지난 달은 조금 어둡게. 게임 장에서는 게임만 밝고 그 앞은 33% 안팎.
@@ -1402,7 +1432,9 @@ function init() {
         // 밝기는 채널 장면에서 0(완전히 어둠), 끝 장면에서 12%(다음 자리 뒤로 벽이 희미하게 남는다).
         const away = hasChannels ? Math.max(ech, eg) : eg;
         const dimAway = hasChannels ? 1 - ech * (1 - eg) - 0.88 * eg : 1 - 0.88 * eg;
-        const storyMix = ec * (1 - ea);
+        // 카메라는 타일이 거의 다 가라앉을 때까지 첫 화면 자리에 머물렀다가 출시 탑 쪽으로 옮겨 간다.
+        const ecam = reduced ? m.e0 : easeInOut(clamp01((m.e0 - 0.3) / 0.52));
+        const storyMix = ecam * (1 - ea);
         channelMix = hasChannels ? ech * (1 - eg) : 0;
         if (hasChannels && (m.a > 0 || m.b > 0 || m.c > 0)) loadChannelTextures();
 
@@ -1425,8 +1457,8 @@ function init() {
             storyCam.pos.lerp(storyCam.fitPos, k);
             storyCam.target.lerp(storyCam.fitTarget, k);
         }
-        camPos.lerpVectors(heroInfo.pos, storyCam.pos, ec).lerp(rig.pos, ea);
-        camTarget.lerpVectors(heroInfo.target, storyCam.target, ec).lerp(rig.target, ea);
+        camPos.lerpVectors(heroInfo.pos, storyCam.pos, ecam).lerp(rig.pos, ea);
+        camTarget.lerpVectors(heroInfo.target, storyCam.target, ecam).lerp(rig.target, ea);
         camPos.addScaledVector(rig.fwd, 1.6 * eg);
         if (!reduced) {
             viewDir.subVectors(camTarget, camPos).normalize();
@@ -1518,7 +1550,12 @@ function init() {
                 s *= 1 + tile.hover * 0.06;
             }
 
-            if (reduced) {
+            // 숨은 동안(가라앉은 뒤 · 차례를 기다리는 동안)과 다시 나타나는 순간에는 자리로 바로 옮긴다(보이는 곳을 가로질러 날아가지 않게).
+            const hide = !isGhost && placed.hide;
+            const snap = reduced || hide || tile.wasHidden;
+            tile.wasHidden = hide;
+            tile.mesh.visible = !hide;
+            if (snap) {
                 tile.pos.copy(target);
                 tile.vel.set(0, 0, 0);
                 tile.rot.copy(targetRot);
@@ -1536,15 +1573,15 @@ function init() {
             tile.mesh.scale.setScalar(Math.max(0.0001, tile.scale));
             tile.mesh.updateMatrix();
             if (!isGhost) {
-                // 아이콘은 앞쪽(초점)부터 차례로 어둠에서 떠오른다.
-                // 첫 화면: 초점 타일만 빛 한가운데, 뒤 타일은 빛 가장자리로 어둡게. 출시 탑: 탑에 앉으며 켜진다.
+                // 아이콘은 앞줄부터 차례로 어둠에서 켜진다.
+                // 첫 화면: 모두 같은 밝기(가라앉으며 어두워진다). 출시 탑: 탑에 앉으며 켜진다.
                 // 채널 · 끝: 물러난 벽과 함께 어둡게.
                 const shine = still ? 1 : easeInOut(clamp01((time - 0.45 - tile.heroRank * 1.7) / 1.3));
                 const sl = storyLight(tile, m.p, gw);
-                let lit = lerp(lerp(tile.heroLight, 0, placed.w), sl, placed.ar);
+                let lit = lerp(lerp(tile.heroLight * (1 - 0.5 * placed.sink), 0, placed.w), sl, placed.ar);
                 lit = lerp(lit, 1, Math.max(placed.ta, placed.tb)) * dimAway;
                 tile.face.emissiveIntensity = tile.loaded ? shine * lit : 1;
-                // 모서리 금속 빛: 첫 화면 뒤 줄은 낮게(머리 위로 은색 윗변이 포개지지 않게), 탑에서는 지금 달만 밝게.
+                // 모서리 금속 빛: 첫 화면은 모두 같게, 탑에서는 지금 달만 밝게.
                 const edgeStory = lerp(0.3 + 0.7 * tile.heroLight, 0.4 + 0.6 * sl, placed.w);
                 const edge = lerp(edgeStory, 1, Math.max(placed.ta, placed.tb)) * dimAway;
                 tile.side.envMapIntensity = reveal * edge;
@@ -1563,7 +1600,7 @@ function init() {
         if (hasChannels) moveChannels(m, ech, eg, dt, time, active, reveal);
 
         if (dofPass && heroInfo.focal) {
-            // 첫 화면에서만 맨 앞 타일에 초점을 두고 뒤를 흐린다. 출시 탑 · 숫자 · 벽에서는 모두 또렷하게.
+            // 첫 화면에서만 둘째 줄에 초점을 두고 앞 · 뒤를 살짝 흐린다. 출시 탑 · 숫자 · 벽에서는 모두 또렷하게.
             const aperture = stageScene.dof.aperture * (1 - ec);
             dofPass.enabled = aperture > 0.3;
             const u = dofPass.material.uniforms;
@@ -1584,7 +1621,13 @@ function init() {
         // 띠 조명이 바닥에 떨어지는 자리: 출시 탑에서는 지금 달 탑 발치, 채널 장면에서는 프로필 판 마지막 줄 발치.
         const storyBand = storyMix * clamp01((m.p - story.items[0].arrive + 0.1) / 0.4);
         const channelBand = channelMix * 0.9;
-        if (channelBand > storyBand) {
+        const heroBand = heroInfo.band ? (1 - ec) * 0.8 : 0;
+        if (heroBand > storyBand && heroBand > channelBand) {
+            stageState.bandX = heroInfo.band.x;
+            stageState.bandZ = heroInfo.band.z;
+            stageState.bandW = heroInfo.band.w;
+            stageState.band = heroBand;
+        } else if (channelBand > storyBand) {
             stageState.bandX = chBand.x;
             stageState.bandZ = chBand.z;
             stageState.bandW = chBand.w;
@@ -1600,8 +1643,17 @@ function init() {
         composer.render(dt);
         updateLabel(active);
         fadeTexts(m);
-        // 출시 탑 눈금 · 지금 선은 첫 화면을 다 떠난 뒤 나타나고, 숫자로 모이기 시작하면 사라진다.
-        placeTimeline(clamp01((m.e0 - 0.6) / 0.4) * (1 - clamp01(m.a / 0.35)), m.p);
+        // 출시 탑 눈금 · 지금 선은 첫 앱이 반쯤 떠올라 「1 APP」이 된 뒤에 나타나고(빈 무대에 「0 APPS」를 띄우지 않는다),
+        // 숫자로 모이기 시작하면 사라진다.
+        // 스크롤을 빨리 내리면 타일(스프링)이 늦게 따라오므로, 스크롤 값과 타일의 실제 높이 둘 다 본다.
+        let firstUp = 1;
+        if (tiles.length) {
+            const t0 = tiles[0];
+            const low = -(t0.T.s * 0.5 + 0.55);
+            const up = clamp01((t0.pos.y - low) / Math.max(0.01, t0.T.pos.y - low));
+            firstUp = Math.min(clamp01((arrival(t0, m.p) - 0.5) / 0.3), t0.mesh.visible ? clamp01((up - 0.4) / 0.3) : 0);
+        }
+        placeTimeline(clamp01((m.e0 - 0.6) / 0.4) * firstUp * (1 - clamp01(m.a / 0.35)), m.p);
         placeDot(still ? 1 - clamp01(ec / 0.3) : easeInOut(clamp01((time - 1.4) / 1.2)) * (1 - clamp01(ec / 0.3)));
         if (hasChannels) placeChannelLabels(m, ech, eg);
     }
@@ -1867,7 +1919,7 @@ function init() {
         rig,
         story,
         storyCam,
-        bg: STAGE_KIND,
+        camera,
         lowPower,
         audit,
         stops,

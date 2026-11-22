@@ -1,8 +1,7 @@
-// won-space.com 첫 화면의 무대(배경 · 빛 · 후처리).
-// 판 두 개를 ?bg=1 · ?bg=2 로 고른다.
-//   1 제품 공개 스튜디오: 광택 현무암 바닥 위에 아이콘 타일이 줄지어 서 있고, 긴 띠 조명이 천천히 오가며 앞면과 모서리를 쓸고 지나간다.
-//   2 검은 액체 금속: 화면 뒤를 채우는 검은 거울 액체가 아주 느리게 일렁이고, 그 위에 떠 있는 타일이 수면에 비친다.
-// 빛은 판마다 무채색 스튜디오 환경광(흰 빛 판 + PMREM) 하나에서 나온다. 블룸 · 후광 · 비네트 · 색 번짐은 쓰지 않는다.
+// won-space.com 첫 화면의 무대(배경 · 빛 · 후처리): 검은 액체 금속.
+// 화면 뒤를 채우는 검은 거울 액체가 아주 느리게 일렁이고, 그 위에 떠 있는 타일이 수면에 비친다.
+// 빛은 무채색 스튜디오 환경광(흰 빛 판 + PMREM) 하나에서 나온다. 블룸 · 후광 · 비네트 · 색 번짐은 쓰지 않는다.
+// (예전의 「제품 공개 스튜디오」 판은 대표 결정으로 지웠다. git 기록에 남아 있다.)
 import {
     BackSide,
     BoxGeometry,
@@ -11,7 +10,6 @@ import {
     Float32BufferAttribute,
     Fog,
     HalfFloatType,
-    InstancedMesh,
     LinearFilter,
     LinearMipmapLinearFilter,
     Matrix4,
@@ -21,7 +19,6 @@ import {
     MeshPhysicalMaterial,
     NearestFilter,
     NoBlending,
-    OrthographicCamera,
     PerspectiveCamera,
     PlaneGeometry,
     PMREMGenerator,
@@ -34,27 +31,11 @@ import {
     WebGLRenderTarget,
     Pass,
     FullScreenQuad,
-} from "./lib/three-0.186.1.min.js?v=20261122g";
-
-export const STAGE_NAMES = { 1: "제품 공개 스튜디오", 2: "검은 액체 금속" };
+} from "./lib/three-0.186.1.min.js?v=20261122j";
 
 const BLACK = 0x080808;
 
 // ---------- 공통 GLSL ----------
-
-const NOISE_GLSL = /* glsl */ `
-float stHash(vec2 p) {
-    vec3 p3 = fract(vec3(p.xyx) * 0.1031);
-    p3 += dot(p3, p3.yzx + 33.33);
-    return fract((p3.x + p3.y) * p3.z);
-}
-float stNoise(vec2 p) {
-    vec2 i = floor(p);
-    vec2 f = fract(p);
-    vec2 u = f * f * (3.0 - 2.0 * f);
-    return mix(mix(stHash(i), stHash(i + vec2(1.0, 0.0)), u.x), mix(stHash(i + vec2(0.0, 1.0)), stHash(i + vec2(1.0, 1.0)), u.x), u.y);
-}
-`;
 
 // 바닥 · 수면에 비친 타일(평면 반사)을 밉맵 두 단계로 읽는다.
 // 반사 텍스처의 알파는 「바닥에서 가까운 정도」라서, 닿은 곳은 또렷하고 위로 갈수록 흐려진다.
@@ -196,108 +177,6 @@ class PlanarMirror {
         renderer.setClearColor(this._clear, alpha);
         scene.background = background;
         hidden.forEach((object, i) => { object.visible = shown[i]; });
-    }
-}
-
-// ---------- 접지 그림자 ----------
-
-class ContactShadow {
-    // 바닥 바로 아래에서 위를 보는 정사영 카메라로 타일의 「바닥에서의 높이」를 그리고 여러 번 흐린다.
-    // 바닥에 닿은 곳은 진하고, 떠오를수록 옅고 넓어진다.
-    constructor(count, resolution, height) {
-        this.height = height;
-        this.target = new WebGLRenderTarget(resolution, resolution);
-        this.blurTarget = new WebGLRenderTarget(resolution, resolution);
-        this.camera = new OrthographicCamera(-1, 1, 1, -1, 0, height);
-        this.camera.rotation.x = Math.PI / 2;
-        this.box = new Vector4(-1, -1, 2, 2);
-        this.scene = new Scene();
-        const material = new ShaderMaterial({
-            uniforms: { uHeight: { value: height } },
-            vertexShader: /* glsl */ `
-                uniform float uHeight;
-                varying float vHeight;
-                void main() {
-                    vec4 world = modelMatrix * instanceMatrix * vec4(position, 1.0);
-                    vHeight = world.y;
-                    // 위쪽일수록 바닥 그림자가 넓게 번지도록 옆으로 조금 부풀린다.
-                    vec3 center = (modelMatrix * instanceMatrix * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
-                    world.xz += (world.xz - center.xz) * clamp(world.y / (uHeight * 0.5), 0.0, 1.0) * 0.6;
-                    gl_Position = projectionMatrix * viewMatrix * world;
-                }`,
-            fragmentShader: /* glsl */ `
-                uniform float uHeight;
-                varying float vHeight;
-                void main() {
-                    float k = 1.0 - clamp(vHeight / uHeight, 0.0, 1.0);
-                    gl_FragColor = vec4(0.0, 0.0, 0.0, k * k);
-                }`,
-        });
-        this.proxy = new InstancedMesh(new BoxGeometry(0.94, 0.94, 0.3), material, count);
-        this.proxy.frustumCulled = false;
-        this.scene.add(this.proxy);
-        this.blurMaterial = new ShaderMaterial({
-            uniforms: { tMap: { value: null }, uDir: { value: new Vector2() } },
-            vertexShader: /* glsl */ `varying vec2 vUv; void main() { vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }`,
-            fragmentShader: /* glsl */ `
-                uniform sampler2D tMap;
-                uniform vec2 uDir;
-                varying vec2 vUv;
-                void main() {
-                    vec4 s = texture2D(tMap, vUv) * 0.2270270270;
-                    s += texture2D(tMap, vUv + uDir * 1.3846153846) * 0.3162162162;
-                    s += texture2D(tMap, vUv - uDir * 1.3846153846) * 0.3162162162;
-                    s += texture2D(tMap, vUv + uDir * 3.2307692308) * 0.0702702703;
-                    s += texture2D(tMap, vUv - uDir * 3.2307692308) * 0.0702702703;
-                    gl_FragColor = s;
-                }`,
-            depthTest: false,
-            depthWrite: false,
-            blending: NoBlending,
-        });
-        this.quad = new FullScreenQuad(this.blurMaterial);
-        this.resolution = resolution;
-        this._clear = new Color();
-    }
-
-    setBox(minX, minZ, maxX, maxZ) {
-        const cx = (minX + maxX) / 2;
-        const cz = (minZ + maxZ) / 2;
-        const hw = (maxX - minX) / 2;
-        const hd = (maxZ - minZ) / 2;
-        this.camera.left = -hw;
-        this.camera.right = hw;
-        this.camera.top = hd;
-        this.camera.bottom = -hd;
-        this.camera.position.set(cx, -0.001, cz);
-        this.camera.updateProjectionMatrix();
-        this.camera.updateMatrixWorld();
-        this.box.set(minX, minZ, maxX - minX, maxZ - minZ);
-    }
-
-    render(renderer, meshes) {
-        meshes.forEach((mesh, i) => this.proxy.setMatrixAt(i, mesh.matrix));
-        this.proxy.instanceMatrix.needsUpdate = true;
-        const previous = renderer.getRenderTarget();
-        renderer.getClearColor(this._clear);
-        const alpha = renderer.getClearAlpha();
-        renderer.setClearColor(0x000000, 0);
-        renderer.setRenderTarget(this.target);
-        renderer.clear();
-        renderer.render(this.scene, this.camera);
-        const texel = 1 / this.resolution;
-        for (const radius of [3.2, 1.8, 0.9]) {
-            this.blurMaterial.uniforms.tMap.value = this.target.texture;
-            this.blurMaterial.uniforms.uDir.value.set(texel * radius, 0);
-            renderer.setRenderTarget(this.blurTarget);
-            this.quad.render(renderer);
-            this.blurMaterial.uniforms.tMap.value = this.blurTarget.texture;
-            this.blurMaterial.uniforms.uDir.value.set(0, texel * radius);
-            renderer.setRenderTarget(this.target);
-            this.quad.render(renderer);
-        }
-        renderer.setRenderTarget(previous);
-        renderer.setClearColor(this._clear, alpha);
     }
 }
 
@@ -458,6 +337,7 @@ function faceYaw(from, to) {
 
 function mirrorFade(fadeK) {
     // 타일 재질에 붙인다. 반사를 그릴 때만 바닥에서 멀어질수록 어둡고 옅게(알파 = 바닥과 가까운 정도).
+    // 수면 아래로 가라앉은 부분은 반사에 그리지 않는다(반사 카메라와 수면 사이에 끼어 위로 비쳐 보이지 않게).
     const pass = { value: 0 };
     const k = { value: fadeK };
     function decorate(material) {
@@ -469,201 +349,18 @@ function mirrorFade(fadeK) {
                 .replace("#include <project_vertex>", "#include <project_vertex>\nvStageY = (modelMatrix * vec4(transformed, 1.0)).y;");
             shader.fragmentShader = shader.fragmentShader
                 .replace("#include <common>", "#include <common>\nuniform float uMirrorPass;\nuniform float uMirrorFadeK;\nvarying float vStageY;")
-                .replace("#include <dithering_fragment>", "#include <dithering_fragment>\ngl_FragColor *= mix(1.0, exp(-max(vStageY, 0.0) * uMirrorFadeK), uMirrorPass);");
+                .replace("#include <dithering_fragment>", "#include <dithering_fragment>\ngl_FragColor *= mix(1.0, exp(-max(vStageY, 0.0) * uMirrorFadeK), uMirrorPass);\nif (uMirrorPass > 0.5 && vStageY < 0.0) discard;");
         };
         material.customProgramCacheKey = () => "stage-mirror-fade";
     }
     return { pass, k, decorate };
 }
 
-export function createStage(kind, ctx) {
-    return kind === "2" ? liquidStage(ctx) : studioStage(ctx);
+export function createStage(ctx) {
+    return liquidStage(ctx);
 }
 
-// ---------- 1. 제품 공개 스튜디오 ----------
-
-function studioStage(ctx) {
-    const { renderer, scene, envRotation, lowPower, count } = ctx;
-    scene.fog = new Fog(BLACK, 15, 64);
-
-    // 빛: 위 큰 소프트박스(고르게), 카메라 뒤 긴 세로 띠(앞면을 쓸고 지나가는 주 띠 조명),
-    // 옆의 가는 띠(모서리 윤곽), 타일 뒤 낮고 넓은 판(바닥에 길게 비치는 광택).
-    const envMap = buildEnvironment(renderer, [
-        { w: 26, h: 14, intensity: 0.4, pos: [0, 34, 0], look: [0, 0, 0] },
-        { w: 1.3, h: 40, intensity: 13, pos: [0, 12, 36], look: [0, 12, 0] },
-        { w: 1.1, h: 40, intensity: 2.4, pos: [-34, 12, -10], look: [0, 12, -10] },
-        { w: 1.8, h: 7, intensity: 3, pos: [9, 3.5, -40], look: [0, 3.5, 0] },
-        { w: 0.8, h: 40, intensity: 1.1, pos: [34, 12, 6], look: [0, 12, 6] },
-        { w: 64, h: 6, intensity: 0.22, pos: [0, 4, -48], look: [0, 4, 0] },
-    ], lowPower ? 256 : 512);
-
-    const mirror = new PlanarMirror(lowPower ? 0.34 : 0.5);
-    const shadow = new ContactShadow(count, lowPower ? 256 : 512, 2.6);
-    const fade = mirrorFade(1.25);
-
-    const uniforms = {
-        tMirror: { value: mirror.target.texture },
-        uMirrorMatrix: { value: mirror.matrix },
-        uMirrorTexel: { value: mirror.texel },
-        uMirrorLod: { value: lowPower ? new Vector2(0.4, 1.8) : new Vector2(0.6, 2.6) },
-        uReflect: { value: 0.62 },
-        tShadow: { value: shadow.target.texture },
-        uShadowBox: { value: shadow.box },
-        uShadow: { value: 0.9 },
-        uBand: { value: new Vector4(0, 0, 1, 0) },
-    };
-    // 광택 현무암: 아주 어두운 바탕 + 맑은 코팅(띠 조명이 길게 비침). 넓은 결로 거칠기가 조금씩 다르고, 판이 아주 완만하게 굽어 반사가 살짝 흔들린다.
-    const floorMaterial = new MeshPhysicalMaterial({
-        color: 0x121212,
-        roughness: 0.42,
-        metalness: 0,
-        clearcoat: 1,
-        clearcoatRoughness: 0.1,
-        envMap,
-        envMapIntensity: 1,
-    });
-    floorMaterial.envMapRotation = envRotation;
-    floorMaterial.onBeforeCompile = (shader) => {
-        Object.assign(shader.uniforms, uniforms);
-        shader.vertexShader = shader.vertexShader
-            .replace("#include <common>", "#include <common>\nuniform mat4 uMirrorMatrix;\nvarying vec4 vMirrorCoord;\nvarying vec3 vStone;")
-            .replace("#include <project_vertex>", "#include <project_vertex>\nvec4 stoneWorld = modelMatrix * vec4(transformed, 1.0);\nvStone = stoneWorld.xyz;\nvMirrorCoord = uMirrorMatrix * stoneWorld;");
-        shader.fragmentShader = shader.fragmentShader
-            .replace("#include <common>", `#include <common>
-${NOISE_GLSL}
-${MIRROR_GLSL}
-${BAND_GLSL}
-uniform sampler2D tShadow;
-uniform vec4 uShadowBox;
-uniform float uShadow;
-uniform float uReflect;
-varying vec4 vMirrorCoord;
-varying vec3 vStone;
-float slabHeight(vec2 p) {
-    return stNoise(p * 0.21) * 0.7 + stNoise(p * 0.53 + 4.1) * 0.3;
-}`)
-            .replace("#include <roughnessmap_fragment>", `#include <roughnessmap_fragment>
-float stoneWide = stNoise(vStone.xz * 0.07) * 0.6 + stNoise(vStone.xz * 0.23 + 11.0) * 0.4;
-roughnessFactor = clamp(roughnessFactor * (0.7 + 0.6 * stoneWide), 0.05, 1.0);`)
-            .replace("#include <normal_fragment_maps>", `#include <normal_fragment_maps>
-float slabFade = 1.0 - smoothstep(14.0, 60.0, length(vViewPosition));
-float sh0 = slabHeight(vStone.xz);
-vec2 slabGrad = vec2(slabHeight(vStone.xz + vec2(0.05, 0.0)) - sh0, slabHeight(vStone.xz + vec2(0.0, 0.05)) - sh0) / 0.05;
-slabGrad *= slabFade * 0.018;
-normal = normalize(normal - (viewMatrix * vec4(slabGrad.x, 0.0, slabGrad.y, 0.0)).xyz);`)
-            .replace("#include <clearcoat_normal_fragment_maps>", `#include <clearcoat_normal_fragment_maps>
-#ifdef USE_CLEARCOAT
-clearcoatNormal = normalize(clearcoatNormal - (viewMatrix * vec4(slabGrad.x, 0.0, slabGrad.y, 0.0)).xyz);
-#endif`)
-            .replace("#include <opaque_fragment>", `{
-    vec2 shadowUv = (vStone.xz - uShadowBox.xy) / uShadowBox.zw;
-    float inBox = step(0.0, shadowUv.x) * step(shadowUv.x, 1.0) * step(0.0, shadowUv.y) * step(shadowUv.y, 1.0);
-    float contact = texture2D(tShadow, shadowUv).a * inBox * uShadow;
-    vec4 refl = readMirror(vMirrorCoord.xy / vMirrorCoord.w + slabGrad * 0.4);
-    float NoV = saturate(dot(geometryNormal, geometryViewDir));
-    float fres = 0.045 + 0.955 * pow(1.0 - NoV, 5.0);
-    outgoingLight *= 1.0 - contact;
-    outgoingLight = outgoingLight * (1.0 - refl.a * fres) + refl.rgb * fres * uReflect;
-    outgoingLight += vec3(bandLight(vStone.xz)) * (1.0 - contact * 0.6);
-}
-#include <opaque_fragment>`);
-    };
-    const floor = new Mesh(new PlaneGeometry(600, 600), floorMaterial);
-    floor.rotation.x = -Math.PI / 2;
-    floor.position.z = -200;
-    scene.add(floor);
-
-    // 붉은 점 하나의 자리: 맨 앞 타일 오른쪽 앞 바닥(촬영장 자리 표시). 점은 home.js가 화면 위에 정확한 색 원으로 찍는다.
-    const markPos = new Vector3();
-
-    const hidden = [floor];
-    const heroCam = { pos: new Vector3(), target: new Vector3() };
-    const ROWS = [1, 4, 5, 8, 9, 16];
-    // 세로 화면은 카메라가 높아 바닥에 비친 뒤쪽 띠 조명이 타일 사이에 크게 걸린다. 그만큼 바닥 광택을 줄인다.
-    let floorGloss = 1;
-
-    function heroLayout(tiles, view) {
-        // 최신 앱이 맨 앞 가운데(초점). 뒤로 갈수록 줄이 넓어지는 엇갈린 줄로 서 있고, 오래된 앱일수록 뒤 줄에 선다.
-        const n = tiles.length;
-        const s = 2.2;
-        const r = mulberry32(2026);
-        floorGloss = view.portrait ? 0.5 : 1;
-        if (view.portrait) {
-            heroCam.pos.set(0.9, 3.3, 16.5);
-            heroCam.target.set(-0.1, 1.05, -4);
-        } else {
-            heroCam.pos.set(2.0, 2.6, 10.6);
-            heroCam.target.set(-0.3, 1.0, -4);
-        }
-        let k = 0;
-        let row = 0;
-        let minX = Infinity;
-        let maxX = -Infinity;
-        let minZ = Infinity;
-        let maxZ = -Infinity;
-        while (k < n) {
-            const inRow = Math.min(ROWS[Math.min(row, ROWS.length - 1)], n - k);
-            // 뒤 줄은 넓게 벌리고 줄마다 옆으로 엇갈려, 빗살처럼 같은 간격이 되풀이되지 않게 한다.
-            const dx = s * ((view.portrait ? 2.3 : 2.05) + row * 0.06);
-            const z0 = row === 0 ? 0 : -(1.6 + row * 1.3) * s;
-            const shift = row === 0 ? 0 : (r() - 0.5) * dx * 0.5;
-            for (let j = 0; j < inRow; j += 1) {
-                const tile = tiles[n - 1 - k];
-                const x = row === 0 ? 0 : (j - (inRow - 1) / 2) * dx + shift + (r() - 0.5) * 0.5;
-                const z = z0 - (row === 0 ? 0 : 0.012 * x * x + (r() - 0.5) * 1.8);
-                tile.S.pos.set(x, s / 2 + 0.004, z);
-                tile.S.s = s;
-                tile.S.rot.set(0, faceYaw(tile.S.pos, heroCam.pos) + (row === 0 ? -0.18 : (r() - 0.5) * 0.24), 0);
-                tile.heroRank = k / (n - 1);
-                tile.heroLight = row === 0 ? 1 : 0.15 * Math.pow(0.74, row - 1);
-                if (row < 4) {
-                    minX = Math.min(minX, x);
-                    maxX = Math.max(maxX, x);
-                    minZ = Math.min(minZ, z);
-                    maxZ = Math.max(maxZ, z);
-                }
-                k += 1;
-            }
-            row += 1;
-        }
-        const focal = tiles[n - 1];
-        markPos.set(focal.S.pos.x + 1.55, 0.004, focal.S.pos.z + 1.35);
-        // 접지 그림자 범위: 앞쪽 네 줄과 숫자 · 벽 아래쪽을 함께 덮는다.
-        shadow.setBox(Math.min(minX, -16) - 2, Math.min(minZ, -4) - 2, Math.max(maxX, 16) + 2, Math.max(maxZ, 4) + 2);
-        return { pos: heroCam.pos, target: heroCam.target, focal, bob: 0, standing: true };
-    }
-
-    function resize(width, height) {
-        mirror.setSize(width, height);
-    }
-
-    function update(state) {
-        // 띠 조명은 타일 앞을 아주 천천히 오간다(한 번 오가는 데 40초). 첫 등장 때는 바깥에서 들어와 앞면을 한 번 쓸고 지나간다.
-        // 이야기 장면(출시 탑)에서는 빛이 카메라와 함께 돌아 탑 앞면을 비추고, 바닥 광택 · 반사는 그대로 둔다(탑이 바닥에 비친다).
-        // 숫자 · 벽에서는 바닥 광택을 거의 꺼서 타일 뒤에 빛 얼룩이 뜨지 않게 한다.
-        const intro = state.reduced ? 1 : easeInOut(Math.min(1, state.time / 4.2));
-        const sway = Math.sin((state.time * Math.PI * 2) / 40) * 0.42 * (1 - 0.6 * state.story);
-        envRotation.y = (1 - intro) * -1.25 + sway + state.scrollTurn * 0.5 - 0.12 + state.yaw;
-        floorMaterial.envMapIntensity = state.reveal * (1 - 0.94 * state.form) * floorGloss * lerp(1, 0.14, state.story);
-        fade.k.value = lerp(1.25, 0.55, state.story);
-        uniforms.uBand.value.set(state.bandX, state.bandZ, state.bandW, state.band * 0.07 * state.reveal);
-        scene.fog.near = lerp(15, 60, state.story);
-        scene.fog.far = lerp(64, 220, state.story);
-    }
-
-    function prepare(renderer, camera, meshes) {
-        shadow.render(renderer, meshes);
-        fade.pass.value = 1;
-        mirror.render(renderer, scene, camera, 0, hidden);
-        fade.pass.value = 0;
-    }
-
-    function poke() {}
-
-    return { kind: "1", envMap, dof: { aperture: 21, maxPx: 18 }, faceRig: 1, markPos, decorate: fade.decorate, heroLayout, resize, update, prepare, poke, mirror };
-}
-
-// ---------- 2. 검은 액체 금속 ----------
+// ---------- 검은 액체 금속 ----------
 
 function liquidStage(ctx) {
     const { renderer, scene, envRotation, lowPower } = ctx;
@@ -819,56 +516,91 @@ normal = normalize((viewMatrix * vec4(liqN, 0.0)).xyz);`)
     liquidMesh.frustumCulled = false;
     scene.add(liquidMesh);
 
-    // 붉은 점 하나의 자리: 맨 앞 타일 오른쪽 앞, 수면 바로 위(물결을 따라 오르내린다). 점은 home.js가 찍는다.
+    // 붉은 점 하나의 자리: 앞줄 앞 수면 위 가운데(물결을 따라 오르내린다). 점은 home.js가 찍는다.
     const markPos = new Vector3();
 
     const hidden = [liquidMesh];
     const heroCam = { pos: new Vector3(), target: new Vector3() };
     const dropBase = new Vector3();
 
+    function rowCounts(n, rows, growth) {
+        // n개를 rows줄에 나눈다. 뒤 줄일수록 넓어지므로 조금씩 더 많이(큰 나머지부터 채워 합이 정확히 n).
+        const weights = Array.from({ length: rows }, (_, k) => 1 + growth * k);
+        const total = weights.reduce((a, b) => a + b, 0);
+        const raw = weights.map((w) => (n * w) / total);
+        const counts = raw.map(Math.floor);
+        const order = raw.map((v, k) => [v - Math.floor(v), k]).sort((a, b) => b[0] - a[0]);
+        const missing = n - counts.reduce((a, b) => a + b, 0);
+        for (let i = 0; i < missing; i += 1) counts[order[i][1]] += 1;
+        return counts;
+    }
+
     function heroLayout(tiles, view) {
-        // 최신 앱이 앞에 크게 떠 있고, 나머지는 수면 위로 흩어져 뒤로 물러난다(겹치지 않게 자리를 고른다).
+        // 앱 전부가 같은 크기 · 같은 밝기로 수면 위에 줄지어 떠 있다. 어느 앱도 주인공으로 세우지 않는다.
+        // 줄은 앞에서 뒤로 물러나며 넓어지고(원근) 줄마다 개수가 달라 엇갈린다. 앞쪽 수면은 비워 빛 · 반사 · 깊이가 보이게 한다.
+        // 자리는 고정된 순서로 섞되, spotlight: false인 앱은 앞쪽 줄 · 가운데(눈이 먼저 가는 자리)에 두지 않는다.
         const n = tiles.length;
-        const s = 2.1;
         const r = mulberry32(4343);
-        if (view.portrait) {
-            heroCam.pos.set(-0.8, 6.4, 19);
-            heroCam.target.set(0.3, 0.35, -5.5);
+        const portrait = view.portrait;
+        const tanH = Math.tan((view.fov * Math.PI) / 360) * (view.w / view.h);
+        if (portrait) {
+            // 휴대폰: 글(큰 43)이 위에 있으므로 앱 줄은 그 아래 화면 가운데에.
+            heroCam.pos.set(0, 7.6, 19);
+            heroCam.target.set(0, 0.5, -12);
         } else {
-            heroCam.pos.set(-1.1, 3.7, 9.9);
-            heroCam.target.set(0.5, 0.95, -6.2);
+            heroCam.pos.set(0, 5.2, 15.5);
+            heroCam.target.set(0, -1.1, -12);
         }
-        const placed = [];
-        // 카메라에서 본 초점 타일 방향. 가까운 타일이 그 바로 뒤에 겹쳐 서지 않게 한다.
-        const focalYaw = Math.atan2(-heroCam.pos.x, heroCam.pos.z);
-        for (let k = 0; k < n; k += 1) {
-            const tile = tiles[n - 1 - k];
-            let x = 0;
-            let y = 0.08 + s / 2;
-            let z = 0;
-            if (k > 0) {
-                for (let attempt = 0; attempt < 60; attempt += 1) {
-                    const depth = 5 + Math.pow(k / (n - 1), 0.62) * 58 + (r() - 0.5) * 3;
-                    const spread = 4.0 + depth * 0.62;
-                    x = (r() * 2 - 1) * spread;
-                    z = -depth;
-                    const yaw = Math.atan2(x - heroCam.pos.x, heroCam.pos.z - z);
-                    const clear = Math.abs(yaw - focalYaw) > (view.portrait ? 0.2 : 0.14) || depth > 34;
-                    const ok = clear && placed.every((p) => Math.hypot(p.x - x, p.z - z) > s * 1.55);
-                    if (ok) break;
-                }
-                y = 0.16 + r() * 0.3 + s / 2;
+        const rows = portrait ? Math.max(3, Math.round(n / 6.2)) : Math.max(3, Math.round(n / 8.6));
+        const counts = rowCounts(n, rows, portrait ? 0.14 : 0.2);
+        const z0 = portrait ? -3 : -4;
+        const dz = portrait ? 4.4 : 5.4;
+        const fill = portrait ? 0.94 : 0.86;
+        const rowZ = counts.map((_, k) => z0 - k * dz);
+        const halfW = (k) => fill * (heroCam.pos.z - rowZ[k]) * tanH;
+        const s = Math.min(1.5, ((2 * halfW(0)) / counts[0]) * 0.62);
+        const slots = [];
+        counts.forEach((c, row) => {
+            const sp = (2 * halfW(row)) / c;
+            for (let j = 0; j < c; j += 1) {
+                const xn = c > 1 ? (j - (c - 1) / 2) / ((c - 1) / 2) : 0;
+                slots.push({
+                    row,
+                    xn,
+                    x: (j - (c - 1) / 2) * sp + (r() - 0.5) * sp * 0.16,
+                    z: rowZ[row] + (r() - 0.5) * dz * 0.2,
+                });
             }
-            placed.push({ x, z });
-            tile.S.pos.set(x, y, z);
-            tile.S.s = s;
-            tile.S.rot.set(-0.08 + (r() - 0.5) * 0.1, faceYaw(tile.S.pos, heroCam.pos) + (k === 0 ? 0.26 : (r() - 0.5) * 0.5), (r() - 0.5) * 0.08);
-            tile.heroRank = k / (n - 1);
-            tile.heroLight = k === 0 ? 1 : Math.max(0.14, 0.42 - Math.hypot(x, z) * 0.012);
+        });
+        const order = tiles.map((_, i) => i);
+        for (let i = order.length - 1; i > 0; i -= 1) {
+            const j = Math.floor(r() * (i + 1));
+            [order[i], order[j]] = [order[j], order[i]];
         }
-        const focal = tiles[n - 1];
-        dropBase.set(focal.S.pos.x + 1.7, 0.1, focal.S.pos.z + 0.6);
-        return { pos: heroCam.pos, target: heroCam.target, focal, bob: 0.35, standing: false };
+        // 눈에 띄는 자리: 앞쪽 절반 줄 전부와 모든 줄의 가운데. spotlight: false 앱은 뒤쪽 절반 줄의 양옆에만 선다.
+        const prominent = (slot) => slot.row < Math.ceil(rows / 2) || Math.abs(slot.xn) < 0.3;
+        const quiet = (i) => Boolean(tiles[i].project && tiles[i].project.spotlight === false);
+        slots.forEach((slot, k) => {
+            if (!prominent(slot) || !quiet(order[k])) return;
+            const free = slots.map((other, m) => m).filter((m) => !prominent(slots[m]) && !quiet(order[m]));
+            if (!free.length) return;
+            const m = free[Math.floor(r() * free.length)];
+            [order[k], order[m]] = [order[m], order[k]];
+        });
+        slots.forEach((slot, k) => {
+            const tile = tiles[order[k]];
+            tile.S.pos.set(slot.x, 0.14 + s / 2 + r() * 0.14, slot.z);
+            tile.S.s = s;
+            tile.S.rot.set(-0.07 + (r() - 0.5) * 0.08, faceYaw(tile.S.pos, heroCam.pos) + (r() - 0.5) * 0.34, (r() - 0.5) * 0.06);
+            // 켜지는 차례: 앞줄부터 뒤로. 밝기는 모두 같다(먼 줄은 안개에 저절로 묻힌다).
+            tile.heroRank = (slot.row + r() * 0.8) / rows;
+            tile.heroLight = 0.92;
+        });
+        dropBase.set(0, 0.1, rowZ[0] + dz * 0.62);
+        // 초점은 둘째 줄 가운데(앞줄은 아주 살짝 흐려 무게가 앞으로 쏠리지 않게). 바닥 빛은 앞줄 앞 수면을 넓게 비춘다.
+        const focal = { pos: new Vector3(0, s / 2, rowZ[Math.min(1, rows - 1)]) };
+        const band = { x: 0, z: rowZ[0] + dz * 0.4, w: halfW(0) * 1.3 };
+        return { pos: heroCam.pos, target: heroCam.target, focal, band, bob: 0.35, standing: false };
     }
 
     function resize(width, height) {
@@ -925,5 +657,5 @@ normal = normalize((viewMatrix * vec4(liqN, 0.0)).xyz);`)
     }
 
     // 앞면 코팅의 넓은 띠 반사가 어두운 아이콘을 뿌옇게 덮지 않게, 달력 · 숫자 · 벽에서는 앞면 반사를 1/3로.
-    return { kind: "2", envMap, dof: { aperture: 9, maxPx: 12 }, faceRig: 0.33, markPos, decorate: fade.decorate, heroLayout, resize, update, prepare, poke, surface, mirror };
+    return { kind: "liquid", envMap, dof: { aperture: 6, maxPx: 10 }, faceRig: 0.33, markPos, decorate: fade.decorate, heroLayout, resize, update, prepare, poke, surface, mirror };
 }

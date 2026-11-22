@@ -378,6 +378,13 @@ img {
     top: auto;
 }
 
+/* 첫 화면의 주인공은 앱 하나가 아니라 숫자다. */
+.hero-text .chapter-num {
+    margin: 6px 0 14px;
+    font-size: clamp(7rem, 14vw, 13rem);
+    line-height: 0.8;
+}
+
 .js .hero-text > * {
     animation: rise 1.6s cubic-bezier(0.22, 1, 0.36, 1) 1.1s both;
 }
@@ -890,10 +897,15 @@ img {
         top: calc(var(--screen) - 104px);
     }
 
-    /* 휴대폰 첫 화면: 글은 위, 최신 앱은 가운데. */
+    /* 휴대폰 첫 화면: 글은 위, 앱들은 그 아래 수면 위에 줄지어. */
     .hero-text {
         top: 76px;
         bottom: auto;
+    }
+
+    .hero-text .chapter-num {
+        margin: 4px 0 10px;
+        font-size: clamp(5.6rem, 30vw, 7.6rem);
     }
 
     .next-text {

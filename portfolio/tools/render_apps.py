@@ -90,6 +90,9 @@ def data_block(apps, stats, channels):
             parts.append(f'android: {js_str(a["android"])}')
         if a.get("detail"):
             parts.append(f'detail: {js_str(a["detail"])}')
+        if a.get("spotlight") is False:
+            # 첫 화면 앞줄 · 가운데 같은 눈에 띄는 자리에 세우지 않는다(목록 · 숫자 · 벽 · 탑에는 그대로 있다).
+            parts.append("spotlight: false")
         lines.append("            { " + ", ".join(parts) + " },")
     lines[-1] = lines[-1].rstrip(",")
     lines.append("        ];")
