@@ -12,14 +12,14 @@
     <meta property="og:url" content="https://won-space.com/">
     <meta property="og:title" content="won-space.com · 앱 43개">
     <meta property="og:description" content="App Store · Google Play에 공개된 앱 43개를 3D 갤러리로 봅니다.">
-    <meta property="og:image" content="https://won-space.com/portfolio/og.jpg?v=20261122b">
+    <meta property="og:image" content="https://won-space.com/portfolio/og.jpg?v=20261122e">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="어두운 3D 공간 위에 떠 있는 앱 아이콘 타일들">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="won-space.com · 앱 43개">
     <meta name="twitter:description" content="App Store · Google Play에 공개된 앱 43개를 3D 갤러리로 봅니다.">
-    <meta name="twitter:image" content="https://won-space.com/portfolio/og.jpg?v=20261122b">
+    <meta name="twitter:image" content="https://won-space.com/portfolio/og.jpg?v=20261122e">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon.png?v=20260424">
     <link rel="icon" type="image/x-icon" href="./favicon.ico?v=20260424">
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico?v=20260424">
@@ -27,8 +27,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="portfolio/home.css?v=20261122b">
-    <link rel="modulepreload" href="portfolio/lib/three-0.186.1.min.js">
+    <link rel="stylesheet" href="portfolio/home.css?v=20261122e">
+    <link rel="modulepreload" href="portfolio/lib/three-0.186.1.min.js?v=20261122e">
+    <link rel="modulepreload" href="portfolio/stage.js?v=20261122e">
 </head>
 <body>
     <a class="skip-link" href="#apps">앱 목록으로 건너뛰기</a>
@@ -45,6 +46,8 @@
         <div class="stage" id="stage">
             <div class="stage-sticky">
                 <canvas id="scene" aria-hidden="true"></canvas>
+                <div class="timeline" id="timeline" aria-hidden="true"></div>
+                <span class="stage-dot" id="stageDot" aria-hidden="true"></span>
                 <div class="tile-label" id="tileLabel" aria-hidden="true">
                     <strong></strong>
                     <span></span>
@@ -54,22 +57,74 @@
 
             <div class="stage-content">
                 <section class="hero" id="hero" aria-label="첫 화면">
+                    <div class="chapter-text hero-text">
+                        <p class="chapter-kicker">2025 — 2026</p>
+                        <h2 class="chapter-title">앱 <span data-stat="total">43</span>개를 냈습니다.</h2>
+                        <p class="chapter-line">맨 앞은 가장 최근에 낸 앱. 내리면 첫 앱부터 이어집니다.</p>
+                    </div>
                     <span class="hero-cue" aria-hidden="true"></span>
+                </section>
+
+                <section class="chapter" id="chFirst" style="--len: 1.3">
+                    <div class="chapter-text">
+                        <p class="chapter-kicker">2025.02.18</p>
+                        <h2 class="chapter-title">첫 앱, AnyPick</h2>
+                        <p class="chapter-line">여기서 시작했습니다.</p>
+                    </div>
+                </section>
+
+                <section class="chapter" id="chYear" style="--len: 2">
+                    <div class="chapter-text">
+                        <p class="chapter-kicker">2025</p>
+                        <h2 class="chapter-title">그해에만 31개</h2>
+                        <p class="chapter-line">대화 AI, 투자 · 차트, 반려동물, 잠, 일정, 개발 도구.</p>
+                    </div>
+                </section>
+
+                <section class="chapter" id="chPause" style="--len: 1">
+                    <div class="chapter-text">
+                        <p class="chapter-kicker">2026.01 — 04</p>
+                        <h2 class="chapter-title">넉 달 동안 0개</h2>
+                        <p class="chapter-line">그리고 5월에 다시 내기 시작했습니다.</p>
+                    </div>
+                </section>
+
+                <section class="chapter" id="chGames" style="--len: 1.5" data-from="2026-09-29">
+                    <div class="chapter-text">
+                        <p class="chapter-kicker">2026.09.29 — 11.05</p>
+                        <h2 class="chapter-title">다섯 주 남짓, 게임 8개</h2>
+                        <p class="chapter-line">디펜스, 액션, 리듬, RPG, 스토리 게임.</p>
+                    </div>
                 </section>
 
                 <section class="numbers" id="numbers" aria-label="숫자">
                     <div class="numbers-pin">
                         <p class="numbers-big" aria-hidden="true" data-stat="total">43</p>
-                        <dl class="stats">
-                            <div><dt>Apps</dt><dd data-stat="total">43</dd></div>
-                            <div><dt>App Store</dt><dd data-stat="appStore">37</dd></div>
-                            <div><dt>Google Play</dt><dd data-stat="googlePlay">42</dd></div>
-                        </dl>
+                        <div class="numbers-foot">
+                            <p class="numbers-caption">지금 스토어에 있는 앱 · <span data-stat="checked">2026-11-22</span> 기준</p>
+                            <dl class="stats">
+                                <div><dt>Apps</dt><dd data-stat="total">43</dd></div>
+                                <div><dt>App Store</dt><dd data-stat="appStore">37</dd></div>
+                                <div><dt>Google Play</dt><dd data-stat="googlePlay">42</dd></div>
+                            </dl>
+                        </div>
                     </div>
                 </section>
 
                 <section class="wall" id="wall" aria-label="전체 앱">
+                    <div class="chapter-text wall-text">
+                        <h2 class="chapter-title">하나씩 눌러 보세요</h2>
+                        <p class="chapter-line">스토어나 소개 페이지가 열립니다.</p>
+                    </div>
                     <div class="wall-fallback" id="wallFallback"></div>
+                </section>
+
+                <section class="next" id="next" aria-label="다음 앱">
+                    <div class="chapter-text next-text">
+                        <p class="chapter-kicker"><span data-stat="next">44</span>번째</p>
+                        <h2 class="chapter-title">다음 자리는 비어 있습니다.</h2>
+                        <p class="chapter-line"><a class="next-mail" href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></p>
+                    </div>
                 </section>
             </div>
         </div>
@@ -204,6 +259,6 @@
 
         window.WON = { projects, appStats, userOS, getStoreUrl, openProject };
     </script>
-    <script type="module" src="portfolio/home.js?v=20261122b"></script>
+    <script type="module" src="portfolio/home.js?v=20261122e"></script>
 </body>
 </html>

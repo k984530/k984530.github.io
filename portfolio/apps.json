@@ -3,7 +3,7 @@
   "sources": [
     "https://itunes.apple.com/lookup?id=1659403932&entity=software&limit=200&country=us",
     "https://itunes.apple.com/lookup?id=1659403932&entity=software&limit=200&country=kr",
-    "https://play.google.com/store/apps/details?id=<package> (200 = public, developer alyduho.develop)"
+    "https://play.google.com/store/apps/details?id=<package> (200 = public)"
   ],
   "apps": [
     {
