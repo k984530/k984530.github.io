@@ -30,8 +30,8 @@ import {
     Vector2,
     Vector3,
     WebGLRenderer,
-} from "./lib/three-0.186.1.min.js?v=20261122j";
-import { createStage, DepthOfFieldPass, GrainPass } from "./stage.js?v=20261122j";
+} from "./lib/three-0.186.1.min.js?v=20261122k";
+import { createStage, DepthOfFieldPass, GrainPass } from "./stage.js?v=20261122k";
 
 const W = window.WON;
 const docEl = document.documentElement;

@@ -31,7 +31,7 @@ import {
     WebGLRenderTarget,
     Pass,
     FullScreenQuad,
-} from "./lib/three-0.186.1.min.js?v=20261122j";
+} from "./lib/three-0.186.1.min.js?v=20261122k";
 
 const BLACK = 0x080808;
 
@@ -548,17 +548,18 @@ normal = normalize((viewMatrix * vec4(liqN, 0.0)).xyz);`)
             heroCam.pos.set(0, 7.6, 19);
             heroCam.target.set(0, 0.5, -12);
         } else {
-            heroCam.pos.set(0, 5.2, 15.5);
-            heroCam.target.set(0, -1.1, -12);
+            // 데스크톱: 조금 내려다봐서 줄과 줄 사이를 벌린다(뒷줄 앱이 앞줄에 가리지 않게).
+            heroCam.pos.set(0, 7.4, 15.5);
+            heroCam.target.set(0, -2.4, -12);
         }
         const rows = portrait ? Math.max(3, Math.round(n / 6.2)) : Math.max(3, Math.round(n / 8.6));
         const counts = rowCounts(n, rows, portrait ? 0.14 : 0.2);
         const z0 = portrait ? -3 : -4;
-        const dz = portrait ? 4.4 : 5.4;
+        const dz = portrait ? 4.4 : 6.0;
         const fill = portrait ? 0.94 : 0.86;
         const rowZ = counts.map((_, k) => z0 - k * dz);
         const halfW = (k) => fill * (heroCam.pos.z - rowZ[k]) * tanH;
-        const s = Math.min(1.5, ((2 * halfW(0)) / counts[0]) * 0.62);
+        const s = Math.min(1.5, ((2 * halfW(0)) / counts[0]) * (portrait ? 0.62 : 0.56));
         const slots = [];
         counts.forEach((c, row) => {
             const sp = (2 * halfW(row)) / c;
