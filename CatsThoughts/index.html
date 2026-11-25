@@ -3,261 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CatsThoughts - Cat Thoughts & Emotion Analysis App</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Analyze your cat's thoughts and emotions with AI. A smart way to build deeper connections with your feline companion.">
-    <meta name="keywords" content="cat emotion analysis, AI pet care, cat psychology, pet app, cat behavior analysis">
+    <title>Cat's Thoughts (고양이의 생각) 2.0 — 3D Cat Tower Building Game</title>
+    <meta name="description" content="Cat's Thoughts (고양이의 생각) 2.0 is a 100% free 3D cat tower building game with 5 growth stages. No paid in-app purchases, no subscriptions, no ads, no accounts, and 100% local on-device storage.">
+    <meta name="keywords" content="Cat's Thoughts, 고양이의 생각, 3D cat tower game, 3D 캣타워 짓기 게임, free cat game, offline cat game, local storage">
     <link rel="canonical" href="https://won-space.com/CatsThoughts/">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="CatsThoughts - Cat Thoughts & Emotion Analysis App">
-    <meta property="og:description" content="Read your cat's mind and analyze emotions with AI technology.">
+    <meta property="og:title" content="Cat's Thoughts (고양이의 생각) 2.0 — 3D Cat Tower Building Game">
+    <meta property="og:description" content="A 100% free 3D cat tower building game across 5 growth stages. No paid in-app purchases, no subscriptions, no ads, and 100% local on-device storage.">
     <meta property="og:image" content="https://won-space.com/CatsThoughts/download/Icon.png">
     <meta property="og:url" content="https://won-space.com/CatsThoughts/">
     <meta property="og:type" content="website">
-    
-    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CatsThoughts - Cat Thoughts & Emotion Analysis App">
-    <meta name="twitter:description" content="Read your cat's mind and analyze emotions with AI technology.">
+    <meta name="twitter:title" content="Cat's Thoughts (고양이의 생각) 2.0 — 3D Cat Tower Building Game">
+    <meta name="twitter:description" content="A 100% free 3D cat tower building game across 5 growth stages with no ads, no paid IAP, no subscriptions, and 100% local storage.">
     <meta name="twitter:image" content="https://won-space.com/CatsThoughts/download/Icon.png">
-    
+    <link rel="stylesheet" href="../app-detail.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 60px 20px 40px;
-            color: white;
-        }
-        
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            margin-bottom: 30px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        .tagline {
-            font-size: 1.5em;
-            opacity: 0.9;
-            margin-bottom: 40px;
-        }
-        
-        .download-section {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-        }
-        
-        .download-buttons {
+        .page-links,
+        .lang-nav {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 30px;
+            margin-top: 20px;
         }
-        
-        .download-btn {
-            display: inline-block;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .lang-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: border-color 0.2s ease, background 0.2s ease;
         }
-        
-        .download-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+        .lang-link:hover {
+            border-color: var(--primary-color);
+            background: rgba(129, 140, 248, 0.14);
         }
-        
-        .download-btn img {
-            height: 60px;
-            width: auto;
+
+        .store-note {
+            max-width: 760px;
+            margin: 18px auto 0;
+            color: var(--text-secondary);
+            text-align: center;
+            font-size: 0.95rem;
         }
-        
-        .features {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+        .status-note {
+            max-width: 760px;
+            margin: 0 auto 24px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .meta-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .meta-item {
+            padding: 18px;
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            overflow-wrap: break-word;
+        }
+
+        .meta-label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .meta-value {
+            display: block;
+            margin-top: 6px;
+            color: var(--text-primary);
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+        .feature-grid {
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: 24px;
+        }
+
+        .feature-item {
+            overflow-wrap: break-word;
+        }
+
+        .notice-box {
+            margin-top: 26px;
+            padding: 20px 22px;
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-secondary);
+            overflow-wrap: break-word;
+        }
+
+        .notice-box strong {
+            color: var(--text-primary);
+        }
+
+        .notice-box a {
+            color: var(--primary-color);
         }
 
         .kova-promo {
             display: grid;
-            grid-template-columns: 86px minmax(0, 1fr) minmax(220px, auto);
+            grid-template-columns: 84px minmax(0, 1fr);
             gap: 22px;
             align-items: center;
-            background: white;
-            border-radius: 20px;
+            margin-top: 28px;
             padding: 26px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            overflow-wrap: break-word;
         }
 
         .kova-promo img {
-            width: 86px;
-            height: 86px;
+            width: 84px;
+            height: 84px;
             border-radius: 20px;
-        }
-
-        .kova-promo h2 {
-            margin-bottom: 8px;
-            color: #fa709a;
-            font-size: 1.55em;
-        }
-
-        .kova-promo p {
-            color: #666;
-            line-height: 1.7;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
         }
 
         .kova-eyebrow {
             margin-bottom: 6px;
-            color: #be185d;
-            font-size: 0.82em;
-            font-weight: 800;
-            letter-spacing: 0;
+            color: var(--secondary-color);
+            font-size: 0.82rem;
+            font-weight: 700;
             text-transform: uppercase;
+        }
+
+        .kova-promo h2 {
+            margin: 0 0 10px;
+            text-align: left;
+            color: var(--text-primary);
+            font-size: 1.35rem;
+        }
+
+        .kova-promo p {
+            margin: 0;
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
 
         .kova-actions {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: stretch;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
         }
 
         .kova-link {
             display: inline-flex;
-            min-height: 48px;
             align-items: center;
             justify-content: center;
-            border-radius: 999px;
-            padding: 0 18px;
-            background: #111827;
-            color: white;
-            font-weight: 800;
+            min-height: 44px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: var(--primary-color);
+            color: var(--bg-primary);
+            font-weight: 700;
             text-decoration: none;
-            white-space: nowrap;
+            text-align: center;
         }
 
-        .kova-link.secondary {
-            background: white;
-            color: #111827;
-            border: 1px solid rgba(17, 24, 39, 0.14);
+        .kova-link:hover {
+            opacity: 0.92;
         }
-        
-        .features h2 {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            color: #fa709a;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-item {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .feature-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-        
-        .feature-title {
-            font-size: 1.3em;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .feature-description {
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        .contact {
-            text-align: center;
-            color: white;
-            padding: 40px 20px;
-        }
-        
-        .contact h2 {
-            font-size: 2em;
-            margin-bottom: 15px;
-        }
-        
-        .contact a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2em;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-        
-        .contact a:hover {
-            border-bottom-color: white;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
-            
-            .tagline {
-                font-size: 1.2em;
-            }
-            
-            .features h2 {
-                font-size: 2em;
-            }
-            
-            .download-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
 
+        .download-buttons img {
+            max-width: 100%;
+            height: 50px;
+            width: auto;
+        }
+
+        .footer-meta {
+            margin-top: 12px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 640px) {
             .kova-promo {
                 grid-template-columns: 1fr;
+                text-align: center;
+                padding: 22px;
+            }
+
+            .kova-promo h2 {
                 text-align: center;
             }
 
@@ -266,11 +212,7 @@
             }
 
             .kova-actions {
-                width: 100%;
-            }
-
-            .kova-link {
-                white-space: normal;
+                justify-content: center;
             }
         }
     </style>
@@ -278,94 +220,132 @@
 <body>
     <header>
         <div class="container">
-            <img src="download/Icon.png" alt="CatsThoughts App Icon" class="app-icon">
-            <h1>CatsThoughts</h1>
-            <p class="tagline">Understanding your cat's mind with AI</p>
+            <img src="download/Icon.png" alt="Cat's Thoughts app icon" class="app-icon">
+            <h1>Cat's Thoughts</h1>
+            <p class="tagline">고양이의 생각 2.0 · 3D Cat Tower Building Game</p>
+            <div class="page-links">
+                <a href="https://apps.apple.com/app/id6743672789" class="download-btn" target="_blank" rel="noopener">App Store</a>
+                <a href="https://play.google.com/store/apps/details?id=com.aly.CatsThoughts" class="download-btn" target="_blank" rel="noopener">Google Play</a>
+                <a href="terms.html" class="download-btn">Terms · 이용약관</a>
+                <a href="privacy.html" class="download-btn">Privacy · 개인정보처리방침</a>
+                <a href="support.html" class="download-btn">Support · 고객지원</a>
+            </div>
+            <p class="store-note">
+                Cat's Thoughts (고양이의 생각) 2.0 — 100% free 3D cat tower building game across 5 growth stages. No paid in-app purchases, no subscriptions, no ads, no accounts, and 100% local on-device storage.<br>
+                5단계 성장 무대를 즐기는 100% 무료 3D 캣타워 짓기 게임 — 유료 인앱 결제·정기구독·광고·회원가입 없음, 100% 기기 로컬 저장.
+            </p>
+            <nav class="lang-nav" aria-label="Language selection">
+                <a class="lang-link" href="#en">English</a>
+                <a class="lang-link" href="#ko">한국어</a>
+            </nav>
         </div>
     </header>
-    
-    <main class="container">
-        <section class="kova-promo" id="catsthoughtsKovaPetShortcut" aria-label="Fast Kova pet portrait path for CatsThoughts visitors">
-            <img src="../Kova/download/Icon.png" alt="Kova AI Photo Editor icon">
-            <div>
-                <p class="kova-eyebrow">Fast Kova pet portrait path</p>
-                <h2>CatsThoughts visitors: turn one cat mood photo into a paid Kova portrait</h2>
-                <p>Try Kova with 20 starter credits, enough for about 2 standard image generations, then use the prefilled pet portrait sprint for a 50,000 KRW memory portrait path.</p>
-            </div>
-            <div class="kova-actions">
-                <a class="kova-link" href="https://gumroad.com/checkout?product=nffhl&quantity=1" aria-label="Buy AI Creator Prompt Pack on Gumroad">Buy prompt pack · 29,000 KRW</a>
-                <a class="kova-link secondary" href="../Kova/ai-pet-portrait-generator/?source=catsthoughts&package=pet-memory&goal=Pet%20memory%20portrait&petType=Cat&aov=50000&petPhotoLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.CatsThoughts&deadline=This%20week&notes=Source%20app%20visitor%20wants%20cat%20portrait#petPortraitBuilder">Open Kova · Pet portrait sprint</a>
-                <a class="kova-link secondary" href="https://gumroad.com/checkout?product=ithrs&quantity=1" target="_blank" rel="noopener" aria-label="Pay Kova Studio Sprint Creator Campaign deposit on Gumroad">Pay creator deposit · 2,900,000 KRW</a>
-            </div>
-        </section>
 
-        <div class="download-section">
+    <main class="container">
+        <section class="download-section" aria-labelledby="downloadHeading">
+            <h2 id="downloadHeading">Download &amp; 2.0 Overview</h2>
+            <p class="status-note">
+                Available 100% free on Apple App Store and Google Play. Build your 3D cat tower across 5 growth stages offline with all progress saved locally on your device.
+            </p>
             <div class="download-buttons">
-                <a href="https://apps.apple.com/app/cats-thoughts/id6743672789" class="download-btn" target="_blank" rel="noopener">
+                <a href="https://apps.apple.com/app/cats-thoughts/id6743672789" target="_blank" rel="noopener">
                     <img src="../appstore.png" alt="Download on the App Store">
                 </a>
-                <a href="https://play.google.com/store/apps/details?id=com.aly.CatsThoughts" class="download-btn" target="_blank" rel="noopener">
+                <a href="https://play.google.com/store/apps/details?id=com.aly.CatsThoughts" target="_blank" rel="noopener">
                     <img src="../googleplay.png" alt="Get it on Google Play">
                 </a>
             </div>
-            <p style="text-align: center; color: #666; font-size: 1.1em;">
-                Available on iOS and Android devices
-            </p>
-        </div>
-
-        <div class="features">
-            <h2>Key Features</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">😺</div>
-                    <h3 class="feature-title">Cat Emotion Analysis</h3>
-                    <p class="feature-description">Accurately identify your cat's current emotional state through photos or videos.</p>
+            <div class="meta-list" aria-label="App details">
+                <div class="meta-item">
+                    <span class="meta-label">Store IDs · 스토어 ID</span>
+                    <span class="meta-value">iOS id6743672789 · Android com.aly.CatsThoughts</span>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">💬</div>
-                    <h3 class="feature-title">Thought Translator</h3>
-                    <p class="feature-description">AI analyzes your cat's behavior and translates their thoughts into human language.</p>
+                <div class="meta-item">
+                    <span class="meta-label">Pricing · 요금 모델</span>
+                    <span class="meta-value">100% Free · No IAP · No Subscriptions · No Ads</span>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📈</div>
-                    <h3 class="feature-title">Behavior Pattern Tracking</h3>
-                    <p class="feature-description">Record daily patterns and visualize your cat's emotional changes.</p>
+                <div class="meta-item">
+                    <span class="meta-label">Gameplay · 게임 구성</span>
+                    <span class="meta-value">3D Cat Tower · 5 Growth Stages (5단계 성장 무대)</span>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Personalized Care Guide</h3>
-                    <p class="feature-description">Provides personalized care methods and advice based on analysis results.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🔔</div>
-                    <h3 class="feature-title">Real-time Notifications</h3>
-                    <p class="feature-description">Get instant alerts about your cat's unusual behavior or emotional changes.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">😻</div>
-                    <h3 class="feature-title">Cat Personality Analysis</h3>
-                    <p class="feature-description">Analyze long-term data to identify your cat's personality type.</p>
+                <div class="meta-item">
+                    <span class="meta-label">Data &amp; Privacy · 데이터 저장</span>
+                    <span class="meta-value">100% Local On-Device · No Login · No Tracking</span>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section class="features" id="en" lang="en" aria-labelledby="enHeading">
+            <h2 id="enHeading">Cat's Thoughts 2.0 (English)</h2>
+            <div class="feature-grid">
+                <article class="feature-item">
+                    <span class="feature-icon">01</span>
+                    <h3 class="feature-title">3D Cat Tower Across 5 Growth Stages</h3>
+                    <p class="feature-description">Design and expand a 3D cat tower through five growth stages as you collect in-game coins and unlock new pieces for your cats.</p>
+                </article>
+                <article class="feature-item">
+                    <span class="feature-icon">02</span>
+                    <h3 class="feature-title">100% Free Without Interruptions</h3>
+                    <p class="feature-description">Enjoy the full game completely free with no paid in-app purchases, no subscriptions, and no advertisements.</p>
+                </article>
+                <article class="feature-item">
+                    <span class="feature-icon">03</span>
+                    <h3 class="feature-title">Offline &amp; 100% Local Storage</h3>
+                    <p class="feature-description">No registration or login is required. Tower placement, coins, and unlock states are saved solely in your device's local storage with no external servers, AD_ID, tracking, or analytics SDKs.</p>
+                </article>
+            </div>
+            <div class="notice-box">
+                <strong>Local Data Notice:</strong> Because Cat's Thoughts 2.0 does not use accounts or external servers, deleting the app or resetting your device removes your local game data and the developer cannot recover it. Read the <a href="terms.html">Terms of Service</a>, <a href="privacy.html">Privacy Policy</a>, or <a href="support.html">Support &amp; FAQ</a> for full details.
+            </div>
+        </section>
+
+        <section class="features" id="ko" lang="ko" aria-labelledby="koHeading">
+            <h2 id="koHeading">고양이의 생각 2.0 (한국어)</h2>
+            <div class="feature-grid">
+                <article class="feature-item">
+                    <span class="feature-icon">01</span>
+                    <h3 class="feature-title">5단계 성장 무대 3D 캣타워</h3>
+                    <p class="feature-description">게임 플레이로 코인을 모으고 파츠를 해금하며, 5단계 성장 무대를 따라 나만의 3D 캣타워를 차곡차곡 완성해 보세요.</p>
+                </article>
+                <article class="feature-item">
+                    <span class="feature-icon">02</span>
+                    <h3 class="feature-title">결제·구독·광고 없는 100% 무료</h3>
+                    <p class="feature-description">유료 인앱 결제, 정기구독, 광고가 전혀 없는 완전 무료 게임으로 방해 없이 편안하게 즐길 수 있습니다.</p>
+                </article>
+                <article class="feature-item">
+                    <span class="feature-icon">03</span>
+                    <h3 class="feature-title">회원가입 없는 100% 기기 로컬 저장</h3>
+                    <p class="feature-description">회원가입·로그인 및 외부 서버 전송 없이 타워 배치·코인·해금 상태가 기기 내부(앱 로컬 저장소/localStorage)에만 저장되며, 광고 ID(AD_ID)·트래킹·외부 분석 SDK를 사용하지 않습니다.</p>
+                </article>
+            </div>
+            <div class="notice-box">
+                <strong>로컬 데이터 안내:</strong> 외부 서버에 데이터를 보관하지 않으므로 앱을 삭제하거나 기기를 초기화하면 기기에 저장된 게임 진행 데이터가 삭제되며 개발자가 복구할 수 없습니다. 자세한 내용은 <a href="terms.html#ko">이용약관</a>, <a href="privacy.html#ko">개인정보처리방침</a>, <a href="support.html#ko">고객지원 및 FAQ</a>에서 확인하실 수 있습니다.
+            </div>
+        </section>
+
+        <section class="kova-promo" id="catsthoughtsKovaPetShortcut" lang="en" aria-labelledby="catsthoughtsKovaPetShortcutTitle">
+            <img src="../Kova/download/Icon.png" alt="Kova AI Photo Editor icon">
+            <div>
+                <p class="kova-eyebrow">Another app from the same developer · Separate app</p>
+                <h2 id="catsthoughtsKovaPetShortcutTitle">Turn your cat photo into a pet portrait with Kova</h2>
+                <p>Separate from Cat's Thoughts 2.0, you can try Kova with 20 starter credits, enough for about 2 standard image generations, and explore the prefilled pet portrait sprint.</p>
+                <div class="kova-actions">
+                    <a class="kova-link" href="../Kova/ai-pet-portrait-generator/?source=catsthoughts&package=pet-memory&goal=Pet%20memory%20portrait&petType=Cat&aov=50000&petPhotoLink=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.aly.CatsThoughts&deadline=This%20week&notes=Source%20app%20visitor%20wants%20cat%20portrait#petPortraitBuilder">Open Kova · Pet portrait sprint</a>
+                </div>
+            </div>
+        </section>
     </main>
-    
+
     <footer class="contact">
-        <h2>Contact</h2>
-        <p>Have questions or feedback?</p>
-        <p><a href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a></p>
+        <h2>Need help? · 문의</h2>
+        <p><a href="mailto:hello@choiwon.dev?subject=Cat%27s%20Thoughts%20Support">hello@choiwon.dev</a></p>
+        <p class="footer-meta">
+            <a href="terms.html">Terms of Service · 이용약관</a> ·
+            <a href="privacy.html">Privacy Policy · 개인정보처리방침</a> ·
+            <a href="support.html">Support · 고객지원</a> ·
+            <a href="../">Portfolio</a>
+        </p>
+        <p class="footer-meta">Effective date / 시행일: 2026-11-25</p>
     </footer>
-    
-    <script>
-        // Smooth scroll for any future anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
