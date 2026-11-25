@@ -18,6 +18,7 @@ assert.match(appAds, /google\.com,\s*pub-/);
 const requiredFiles = [
   "StarDiary/index.html",
   "StarDiary/privacy.html",
+  "StarDiary/terms.html",
   "StarDiary/support.html",
   "StarDiary/download/Icon.png"
 ];
@@ -26,9 +27,10 @@ for (const file of requiredFiles) {
   await access(file);
 }
 
-const [index, privacy, support] = await Promise.all([
+const [index, privacy, terms, support] = await Promise.all([
   readFile("StarDiary/index.html", "utf8"),
   readFile("StarDiary/privacy.html", "utf8"),
+  readFile("StarDiary/terms.html", "utf8"),
   readFile("StarDiary/support.html", "utf8")
 ]);
 
@@ -39,19 +41,48 @@ assert.match(index, /Paid download/);
 assert.match(index, /\$2\.99/);
 assert.match(index, /Data Not Collected/);
 assert.match(index, /privacy\.html/);
+assert.match(index, /terms\.html/);
 assert.match(index, /support\.html/);
 
 assert.match(privacy, /Privacy Policy/);
-assert.match(privacy, /Star Diary/);
-assert.match(privacy, /does not collect personal data/i);
+assert.match(privacy, /개인정보처리방침/);
+assert.match(privacy, /Star Diary \(별빛 일기\) 2\.0/);
+assert.match(privacy, /2026-11-25/);
+assert.match(privacy, /100% on your device/i);
+assert.match(privacy, /100% 로컬 저장/);
 assert.match(privacy, /Apple App Store/);
+assert.match(privacy, /Google Play/);
+assert.match(privacy, /RevenueCat/);
+assert.match(privacy, /never sell/i);
+assert.match(privacy, /AI/);
 assert.match(privacy, /children/i);
-assert.doesNotMatch(privacy, /RevenueCat|AdMob/i);
+assert.match(privacy, /terms\.html/);
+assert.match(privacy, /support\.html/);
+assert.doesNotMatch(privacy, /AdMob/i);
+
+assert.match(terms, /Terms of Service/);
+assert.match(terms, /이용약관/);
+assert.match(terms, /Star Diary \(별빛 일기\) 2\.0/);
+assert.match(terms, /2026-11-25/);
+assert.match(terms, /Apple App Store/);
+assert.match(terms, /Google Play/);
+assert.match(terms, /24 hours/i);
+assert.match(terms, /24시간/);
+assert.match(terms, /v1\.0/);
+assert.match(terms, /lifetime Pro/i);
+assert.match(terms, /영구 Pro/);
+assert.match(terms, /medical/i);
+assert.match(terms, /의료/);
+assert.match(terms, /privacy\.html/);
+assert.match(terms, /support\.html/);
+assert.match(terms, /mailto:hello@choiwon\.dev/);
 
 assert.match(support, /Support/);
 assert.match(support, /Star Diary/);
 assert.match(support, /App Store/);
 assert.match(support, /id6756995556/);
+assert.match(support, /privacy\.html/);
+assert.match(support, /terms\.html/);
 assert.match(support, /mailto:/);
 
 console.log("StarDiary public pages verification passed");
