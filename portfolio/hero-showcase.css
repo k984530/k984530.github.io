@@ -851,13 +851,14 @@ body.is-inspecting .site-header .contact-mail {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
 }
 
 .archive-drawer.is-open {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    transition: opacity 0.35s ease, visibility 0s;
 }
 
 .archive-sheet {

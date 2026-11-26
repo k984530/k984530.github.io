@@ -607,25 +607,45 @@ function initShowcase() {
         });
     }
 
-    // Build WebGL fallback triptych (shown only when .no-webgl is active)
-    if (fallbackWrap) {
+    // Build WebGL fallback triptych synced with activeCarousel (shown when .no-webgl is active)
+    function renderFallbackTriptych() {
+        if (!fallbackWrap || !flagshipEntries.length) return;
         fallbackWrap.textContent = "";
-        [0, 1, 2].forEach((slotIdx) => {
+        const n = flagshipEntries.length;
+        [-1, 0, 1].forEach((offset) => {
+            const slotIdx = ((activeCarousel + offset) % n + n) % n;
             const entry = flagshipEntries[slotIdx];
             if (!entry) return;
             const btn = document.createElement("button");
             btn.type = "button";
             btn.className = "fallback-monograph";
-            btn.innerHTML = `
-                <span>Edition ${entry.edition}</span>
-                <img src="${entry.project.icon}" alt="" width="84" height="84">
-                <strong>${entry.project.title}</strong>
-                <span>${formatDate(entry.project.date)} · ${entry.project.genre || "App"}</span>
-            `;
-            btn.addEventListener("click", () => openInspection(entry));
+            if (offset === 0) btn.setAttribute("aria-current", "true");
+
+            const editionSpan = document.createElement("span");
+            editionSpan.textContent = `Edition ${entry.edition}`;
+
+            const img = document.createElement("img");
+            img.src = entry.project.icon;
+            img.alt = "";
+            img.width = 84;
+            img.height = 84;
+
+            const strong = document.createElement("strong");
+            strong.textContent = entry.project.title;
+            if (hasKorean(entry.project.title)) strong.lang = "ko";
+
+            const metaSpan = document.createElement("span");
+            metaSpan.textContent = `${formatDate(entry.project.date)} · ${entry.project.genre || "App"}`;
+
+            btn.append(editionSpan, img, strong, metaSpan);
+            btn.addEventListener("click", () => {
+                setCarouselIndex(slotIdx);
+                openInspection(entry);
+            });
             fallbackWrap.appendChild(btn);
         });
     }
+    renderFallbackTriptych();
 
     // ---------- Archive Drawer Logic (All 43 Apps) ----------
     const genreOrder = ["All", "Games", "Lifestyle", "Entertainment", "Finance", "Productivity", "Developer Tools", "Photo & Video", "Health & Fitness", "Social Networking"];
@@ -685,8 +705,9 @@ function initShowcase() {
             inspectBtn.className = "archive-row-inspect";
             inspectBtn.textContent = "Inspect";
             inspectBtn.addEventListener("click", () => {
-                closeArchiveDrawer();
+                closeArchiveDrawer(false);
                 openInspection(entry);
+                if (closeBtn) closeBtn.focus();
             });
 
             li.append(img, info, inspectBtn);
@@ -694,35 +715,76 @@ function initShowcase() {
         });
     }
 
+    const pageHeader = document.querySelector(".site-header");
+    const pageMain = document.querySelector("main");
+    let drawerReturnFocus = null;
+
+    function setBackgroundInert(isInert) {
+        [pageHeader, pageMain].forEach((el) => {
+            if (!el) return;
+            el.inert = isInert;
+            if (isInert) el.setAttribute("aria-hidden", "true");
+            else el.removeAttribute("aria-hidden");
+        });
+    }
+
+    function drawerFocusables() {
+        if (!archiveDrawer) return [];
+        return [...archiveDrawer.querySelectorAll('button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])')];
+    }
+
     function openArchiveDrawer() {
         if (!archiveDrawer) return;
+        drawerReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : archiveToggle;
         renderArchiveFilters();
         renderArchiveList();
         archiveDrawer.classList.add("is-open");
         archiveDrawer.setAttribute("aria-hidden", "false");
+        setBackgroundInert(true);
         if (archiveToggle) archiveToggle.setAttribute("aria-expanded", "true");
+        if (archiveClose) {
+            void archiveDrawer.offsetHeight;
+            archiveClose.focus();
+        }
     }
 
-    function closeArchiveDrawer() {
+    function closeArchiveDrawer(restoreFocus = true) {
         if (!archiveDrawer) return;
         archiveDrawer.classList.remove("is-open");
         archiveDrawer.setAttribute("aria-hidden", "true");
-        if (archiveToggle) {
-            archiveToggle.setAttribute("aria-expanded", "false");
-            archiveToggle.blur();
+        setBackgroundInert(false);
+        if (archiveToggle) archiveToggle.setAttribute("aria-expanded", "false");
+        if (restoreFocus) {
+            const target = drawerReturnFocus || archiveToggle;
+            if (target && typeof target.focus === "function") target.focus();
         }
+        drawerReturnFocus = null;
     }
 
     if (archiveToggle) {
         archiveToggle.addEventListener("click", () => {
-            if (archiveDrawer && archiveDrawer.classList.contains("is-open")) closeArchiveDrawer();
+            if (archiveDrawer && archiveDrawer.classList.contains("is-open")) closeArchiveDrawer(true);
             else openArchiveDrawer();
         });
     }
-    if (archiveClose) archiveClose.addEventListener("click", closeArchiveDrawer);
+    if (archiveClose) archiveClose.addEventListener("click", () => closeArchiveDrawer(true));
     if (archiveDrawer) {
         archiveDrawer.addEventListener("click", (event) => {
-            if (event.target === archiveDrawer) closeArchiveDrawer();
+            if (event.target === archiveDrawer) closeArchiveDrawer(true);
+        });
+        archiveDrawer.addEventListener("keydown", (event) => {
+            if (event.key !== "Tab" || !archiveDrawer.classList.contains("is-open")) return;
+            const focusables = drawerFocusables();
+            if (!focusables.length) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
         });
     }
 
@@ -842,6 +904,7 @@ function initShowcase() {
         activeCarousel = ((nextIdx % n) + n) % n;
         updateDots();
         updateCaption(flagshipEntries[activeCarousel]);
+        renderFallbackTriptych();
         if (sceneController) sceneController.onCarouselChange(activeCarousel);
     }
 
@@ -853,6 +916,7 @@ function initShowcase() {
         if (flagIdx >= 0) {
             activeCarousel = flagIdx;
             updateDots();
+            renderFallbackTriptych();
         }
         populateDetailPanel(entry);
         heroEl.classList.add("is-inspecting");
