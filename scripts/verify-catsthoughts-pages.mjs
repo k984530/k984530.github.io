@@ -56,6 +56,7 @@ const forbiddenPatterns = [
     { label: "Paid app model copy", regex: /one-time paid app|단일 유료 구매/i },
     { label: "Cloud sync claim", regex: /cloud sync|클라우드 동기화/i },
     { label: "Legacy v1.0 AI emotion copy", regex: /Cat Emotion Analysis|Thought Translator|alyduho984530@gmail\.com/i },
+    { label: "Stale 2.0.0 brand title copy", regex: /Cat's Thoughts 2\.0|고양이의 생각 2\.0|Back to Cat's Thoughts|subject=Cat%27s%20Thoughts/i },
     { label: "Forbidden gold/yellow color", regex: /\bgold\b|\byellow\b|#ffd700|#fee140|#f59e0b|#eab308|#facc15|#ffdf00|#ffcc00/i },
     { label: "Placeholder anchor link", regex: /href="#"/ },
     { label: "External target=_blank without rel=noopener", regex: /href="https:\/\/[^"]+"[^>]*target="_blank"(?![^>]*rel="noopener")/ },
@@ -66,11 +67,15 @@ for (const [file, html] of Object.entries(pages)) {
     assert.match(html, /href="\.\.\/app-detail\.css"/, `${file}: missing ../app-detail.css`);
     assert.match(html, /id="en"\s+lang="en"/, `${file}: missing English section`);
     assert.match(html, /id="ko"\s+lang="ko"/, `${file}: missing Korean section`);
-    assert.match(html, /mailto:hello@choiwon\.dev/, `${file}: missing hello@choiwon.dev mailto`);
+    assert.match(html, /mailto:hello@choiwon\.dev\?subject=Cat%20Tower%20Builder/, `${file}: missing hello@choiwon.dev mailto with Cat Tower Builder subject`);
     assert.match(html, /hello@choiwon\.dev/, `${file}: missing hello@choiwon.dev text`);
-    assert.match(html, /2026-11-25/, `${file}: missing effective date 2026-11-25`);
-    assert.match(html, /Cat's Thoughts/, `${file}: missing EN app name`);
-    assert.match(html, /고양이의 생각/, `${file}: missing KO app name`);
+    assert.match(html, /2026-11-26/, `${file}: missing effective date 2026-11-26`);
+    assert.match(html, /<title>[^<]*Cat Tower Builder[^<]*캣타워 빌더[^<]*<\/title>/, `${file}: missing bilingual title with Cat Tower Builder & 캣타워 빌더`);
+    assert.match(html, /Cat Tower Builder/, `${file}: missing EN app name (Cat Tower Builder)`);
+    assert.match(html, /formerly (?:<strong>)?Cat's Thoughts(?:<\/strong>)?/, `${file}: missing EN former app name attribution`);
+    assert.match(html, /캣타워 빌더/, `${file}: missing KO app name (캣타워 빌더)`);
+    assert.match(html, /구 고양이의 생각 · Cat's Thoughts/, `${file}: missing KO former app name attribution`);
+    assert.match(html, /2\.0\.1/, `${file}: missing 2.0.1 version`);
     assert.match(html, /id6743672789/, `${file}: missing iOS App Store ID`);
     assert.match(html, /com\.aly\.CatsThoughts/, `${file}: missing Android package ID`);
     assert.match(html, /100% free/i, `${file}: missing 100% free EN statement`);
@@ -84,6 +89,7 @@ for (const [file, html] of Object.entries(pages)) {
 
 // Page-specific assertions
 assert.match(index, /<link rel="canonical" href="https:\/\/won-space\.com\/CatsThoughts\/">/);
+assert.match(index, /<h1>Cat Tower Builder<\/h1>/);
 assert.match(index, /https:\/\/apps\.apple\.com\/app\/id6743672789/);
 assert.match(index, /https:\/\/apps\.apple\.com\/app\/cats-thoughts\/id6743672789/);
 assert.match(index, /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.aly\.CatsThoughts/);
