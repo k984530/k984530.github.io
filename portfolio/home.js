@@ -39,7 +39,7 @@ const canvas = document.getElementById("scene");
 const stage = document.getElementById("stage");
 const stageSticky = stage ? stage.querySelector(".stage-sticky") : null;
 const label = document.getElementById("tileLabel");
-const hero = document.getElementById("hero");
+const hero = document.getElementById("storyEntry") || document.getElementById("hero");
 const numbers = document.getElementById("numbers");
 const wall = document.getElementById("wall");
 const channelsSection = document.getElementById("channels");
@@ -1263,7 +1263,7 @@ function init() {
         });
         // 첫 화면 글은 첫 화면을 떠나며 사라지고, 끝 글은 다음 자리가 앞으로 나올 때 나타난다.
         const heroFade = clamp01(1 - window.scrollY / (h * 0.18));
-        setOpacity(heroText, heroFade);
+        if (heroText) setOpacity(heroText, heroFade);
         if (heroCue) setOpacity(heroCue, heroFade);
         const r = nextText.getBoundingClientRect().top;
         setOpacity(nextText, clamp01(1 - (r - h * 0.8) / (h * 0.2)));
@@ -1941,9 +1941,28 @@ function init() {
 }
 
 fillNextNumber();
-try {
-    init();
-} catch (error) {
-    console.warn("WebGL scene disabled:", error);
-    showFallback();
+if (stage) {
+    let storyStarted = false;
+    const bootStory = () => {
+        if (storyStarted) return;
+        storyStarted = true;
+        try {
+            init();
+        } catch (error) {
+            console.warn("WebGL scene disabled:", error);
+            showFallback();
+        }
+    };
+    const rect = stage.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 360 || !("IntersectionObserver" in window)) {
+        bootStory();
+    } else {
+        const bootObserver = new IntersectionObserver((entries) => {
+            if (entries[0] && entries[0].isIntersecting) {
+                bootObserver.disconnect();
+                bootStory();
+            }
+        }, { rootMargin: "360px 0px" });
+        bootObserver.observe(stage);
+    }
 }

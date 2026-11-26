@@ -26,23 +26,104 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=20261123d">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="portfolio/home.css?v=20261122k">
+    <link rel="stylesheet" href="portfolio/hero-showcase.css?v=20261126a">
     <link rel="modulepreload" href="portfolio/lib/three-0.186.1.min.js?v=20261122k">
+    <link rel="modulepreload" href="portfolio/hero-showcase.js?v=20261126a">
     <link rel="modulepreload" href="portfolio/stage.js?v=20261122k">
 </head>
 <body>
     <a class="skip-link" href="#apps">Skip to index</a>
 
-    <nav class="contact-bar" aria-label="Contact">
-        <a class="contact-mail" href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a>
-        <a class="contact-github" href="https://github.com/k984530" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-        </a>
-    </nav>
+    <header class="site-header">
+        <div class="header-brand">
+            <a class="brand-mark" href="#top">won-space.com</a>
+            <span class="brand-meta"><span data-stat="total">43</span> APPS · <span data-stat="span">2025.02 — 2026.11</span></span>
+        </div>
+        <nav class="header-actions" aria-label="Contact">
+            <a class="header-link" href="#chFirst">Timeline</a>
+            <a class="header-link" href="#channels">Channels</a>
+            <a class="contact-mail" href="mailto:alyduho984530@gmail.com">alyduho984530@gmail.com</a>
+            <a class="contact-github" href="https://github.com/k984530" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            </a>
+            <button type="button" class="archive-pill" id="archiveToggle" aria-expanded="false" aria-controls="archiveDrawer">The Archive · <span data-stat="total">43</span></button>
+        </nav>
+    </header>
 
     <main id="top">
         <h1 class="sr-only">won-space.com — <span data-stat="total">43</span> apps, <span data-stat="channels">7</span> YouTube channels</h1>
+
+        <section class="showcase-hero" id="hero" aria-label="Apps">
+            <div class="showcase-backdrop-word" aria-hidden="true">
+                <p class="showcase-word-kicker" id="showcaseWordKicker"><span data-stat="total">43</span> APPS · <span data-stat="span">2025.02 — 2026.11</span></p>
+                <p class="showcase-word-display">won-space</p>
+            </div>
+
+            <div class="showcase-canvas-wrap">
+                <canvas class="showcase-canvas" id="showcaseScene" aria-label="Interactive 3D showcase of won-space.com app monographs"></canvas>
+            </div>
+
+            <div class="showcase-a11y-triggers" id="showcaseA11yTriggers" aria-label="Featured app editions"></div>
+            <div class="showcase-fallback" id="showcaseFallback" aria-label="Featured apps"></div>
+
+            <button type="button" class="showcase-close" id="showcaseClose" aria-label="Close detail view">&times;</button>
+            <span class="showcase-orbit-hint" aria-hidden="true">Drag edition to inspect in 3D</span>
+
+            <div class="showcase-footer">
+                <div class="showcase-caption">
+                    <span class="showcase-caption-kicker" id="showcaseCaptionKicker"><span class="showcase-caption-dot" aria-hidden="true"></span>Edition II · Photo &amp; Video · 2026.05.18</span>
+                    <h2 class="showcase-caption-title" id="showcaseCaptionTitle">Kova</h2>
+                    <p class="showcase-caption-sub" id="showcaseCaptionSub">AI Photo Studio · Share-Ready Styles · iOS · Android</p>
+                </div>
+
+                <div class="showcase-controls" role="group" aria-label="Edition showcase controls">
+                    <button type="button" class="showcase-arrow" id="showcasePrev" aria-label="Previous edition">&larr;</button>
+                    <div class="showcase-dots" id="showcaseDots"></div>
+                    <button type="button" class="showcase-arrow" id="showcaseNext" aria-label="Next edition">&rarr;</button>
+                </div>
+
+                <div class="showcase-hint-col">
+                    <button type="button" class="showcase-inspect-cta" id="showcaseInspectCta">Inspect Edition</button>
+                    <a class="showcase-scroll-link" href="#chFirst">Timeline &darr;</a>
+                </div>
+            </div>
+
+            <aside class="inspect-panel" id="inspectPanel" aria-label="App edition details" aria-hidden="true">
+                <div class="inspect-head">
+                    <p class="inspect-kicker" id="inspectKicker">Edition II · Photo &amp; Video</p>
+                    <span class="inspect-catalog-no" id="inspectCatalogNo">Catalog #32 / 43</span>
+                </div>
+                <div class="inspect-title-row">
+                    <img class="inspect-icon" id="inspectIcon" src="portfolio/icons/kova.webp" alt="Kova" width="52" height="52">
+                    <h2 class="inspect-title" id="inspectTitle">Kova</h2>
+                </div>
+                <p class="inspect-lead" id="inspectLead"></p>
+
+                <div class="inspect-body">
+                    <p class="inspect-section-label">Edition Notes</p>
+                    <ol class="inspect-notes" id="inspectNotes"></ol>
+                    <div class="inspect-tags" id="inspectTags"></div>
+                </div>
+
+                <div class="inspect-meta-bar">
+                    <span class="inspect-status" id="inspectStatus"><span class="inspect-status-dot" aria-hidden="true"></span>Live</span>
+                    <span id="inspectDate">2026.05.18</span>
+                </div>
+
+                <div class="inspect-actions">
+                    <a class="inspect-btn-primary" id="inspectPrimary" href="Kova/">Open App Page &rarr;</a>
+                    <a class="inspect-btn-secondary" id="inspectIos" href="https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914" target="_blank" rel="noopener">App Store</a>
+                    <a class="inspect-btn-secondary" id="inspectAndroid" href="https://play.google.com/store/apps/details?id=com.aly.kova&amp;referrer=utm_source%3Dwon_space%26utm_medium%3Dkova_web%26utm_campaign%3Dplay_5_downloads" target="_blank" rel="noopener">Google Play</a>
+                    <div class="inspect-nav-group">
+                        <button type="button" class="inspect-step-btn" id="inspectPrev" aria-label="Previous edition">&larr;</button>
+                        <button type="button" class="inspect-step-btn" id="inspectNext" aria-label="Next edition">&rarr;</button>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
         <div class="stage" id="stage">
             <div class="stage-sticky">
                 <canvas id="scene" aria-hidden="true"></canvas>
@@ -56,14 +137,7 @@
             </div>
 
             <div class="stage-content">
-                <section class="hero" id="hero" aria-label="Apps">
-                    <div class="chapter-text hero-text">
-                        <p class="chapter-kicker">Apps</p>
-                        <h2 class="chapter-title chapter-num" data-stat="total">43</h2>
-                        <p class="chapter-line" data-stat="span">2025.02 — 2026.11</p>
-                    </div>
-                    <span class="hero-cue" aria-hidden="true"></span>
-                </section>
+                <div class="story-entry" id="storyEntry" aria-hidden="true"></div>
 
                 <section class="chapter" id="chFirst" style="--len: 1.3">
                     <div class="chapter-text">
@@ -192,55 +266,69 @@
         </section>
     </main>
 
+    <aside class="archive-drawer" id="archiveDrawer" aria-label="Complete app archive" aria-hidden="true">
+        <div class="archive-sheet">
+            <div class="archive-sheet-head">
+                <div>
+                    <h2 class="archive-sheet-title">The Archive</h2>
+                    <p class="archive-sheet-sub"><span data-stat="total">43</span> Shipped Apps · <span data-stat="span">2025.02 — 2026.11</span></p>
+                </div>
+                <button type="button" class="archive-close" id="archiveClose" aria-label="Close archive">&times;</button>
+            </div>
+            <div class="archive-filters" id="archiveFilters" role="group" aria-label="Filter by genre"></div>
+            <ul class="archive-grid" id="archiveGrid"></ul>
+        </div>
+    </aside>
+
     <script>
         document.documentElement.classList.add("js");
 /* apps-data:start */
         // 2026-11-22 조회: App Store(lookup us+kr) 37 · Google Play(공개 페이지 200) 42 · 합계 43
         // 고칠 때는 portfolio/apps.json · portfolio/channels.json을 바꾸고 python3 portfolio/tools/render_apps.py를 돌린다.
         const projects = [
-            { name: "AnyPick", title: "AnyPick", year: 2025, date: "2025-02-18", icon: "portfolio/icons/anypick.webp", ios: "https://apps.apple.com/kr/app/anypick/id6740760810", android: "https://play.google.com/store/apps/details?id=com.aly.anypick", detail: "Anypick/" },
-            { name: "LoveExpert", title: "Chat Vibe Check", year: 2025, date: "2025-03-06", icon: "portfolio/icons/loveexpert.webp", ios: "https://apps.apple.com/app/chat-vibe-check-chat-analyzer/id6742811212", android: "https://play.google.com/store/apps/details?id=com.aly.loveExpert", detail: "ChatVibe/" },
-            { name: "RizzChat", title: "Rizzet", year: 2025, date: "2025-03-07", icon: "portfolio/icons/rizzchat.webp", ios: "https://apps.apple.com/app/rizzet/id6742974140", android: "https://play.google.com/store/apps/details?id=com.aly.rizzChat", detail: "Rizzet/" },
-            { name: "FaceMatch", title: "Moonlit Fortunes", year: 2025, date: "2025-03-12", icon: "portfolio/icons/facematch.webp", ios: "https://apps.apple.com/app/face-match-ai/id6743154306", android: "https://play.google.com/store/apps/details?id=com.aly.faceMatch", detail: "faceMatch/" },
-            { name: "MODEE", title: "MODEE", year: 2025, date: "2025-03-20", icon: "portfolio/icons/modee.webp", ios: "https://apps.apple.com/app/modee-fashion-assistant/id6743519137", android: "https://play.google.com/store/apps/details?id=com.aly.MODEE", detail: "MODEE/" },
-            { name: "Anythoughts", title: "MoodPop", year: 2025, date: "2025-03-22", icon: "portfolio/icons/anythoughts.webp", ios: "https://apps.apple.com/app/any-thoughts/id6743646601", android: "https://play.google.com/store/apps/details?id=com.aly.EmotiCam", detail: "AnyThoughts/" },
-            { name: "CatsThoughts", title: "Cat's Thoughts", year: 2025, date: "2025-03-23", icon: "portfolio/icons/catsthoughts.webp", ios: "https://apps.apple.com/app/cats-thoughts/id6743672789", android: "https://play.google.com/store/apps/details?id=com.aly.CatsThoughts", detail: "CatsThoughts/" },
-            { name: "DogsThoughts", title: "Dog Daily Diary", year: 2025, date: "2025-03-24", icon: "portfolio/icons/dogsthoughts.webp", ios: "https://apps.apple.com/app/dogs-thoughts/id6743701891", android: "https://play.google.com/store/apps/details?id=com.aly.DogsThoughts", detail: "DogsThoughts/" },
-            { name: "GeniePlanner", title: "Genie Planner", year: 2025, date: "2025-03-31", icon: "portfolio/icons/genieplanner.webp", ios: "https://apps.apple.com/app/genie-planner/id6743991901", android: "https://play.google.com/store/apps/details?id=com.aly.GeniePlanner", detail: "GeniePlanner/" },
-            { name: "Lookey", title: "Lookey", year: 2025, date: "2025-04-06", icon: "portfolio/icons/lookey.webp", ios: "https://apps.apple.com/app/lookey-ai/id6744290690", android: "https://play.google.com/store/apps/details?id=com.aly.Lookey", detail: "Lookey/" },
-            { name: "BlahChats", title: "BlahChat", year: 2025, date: "2025-04-30", icon: "portfolio/icons/blahchats.webp", ios: "https://apps.apple.com/kr/app/id6744993951", android: "https://play.google.com/store/apps/details?id=com.aly.BlahChat", detail: "BlahChat/" },
-            { name: "Selah", title: "Selah", year: 2025, date: "2025-05-07", icon: "portfolio/icons/selah.webp", ios: "https://apps.apple.com/us/app/a-bible-verse-selah/id6745543908", android: "https://play.google.com/store/apps/details?id=com.aly.Selah", detail: "Selah/" },
-            { name: "AppHub", title: "App Hub", year: 2025, date: "2025-05-14", icon: "portfolio/icons/apphub.webp", ios: "https://apps.apple.com/app/app-hub-manage-plan-apps/id6745819583", android: "https://play.google.com/store/apps/details?id=com.aly.AppHub", detail: "AppHub/" },
-            { name: "Growvi", title: "Growvi", year: 2025, date: "2025-05-16", icon: "portfolio/icons/growvi.webp", ios: "https://apps.apple.com/app/parenting-tips-growvi/id6746027004", android: "https://play.google.com/store/apps/details?id=com.aly.Growvi", detail: "Growvi/" },
-            { name: "Wealtha", title: "Wealtha", year: 2025, date: "2025-05-21", icon: "portfolio/icons/wealtha.webp", ios: "https://apps.apple.com/app/stocks-crypto-fin-wealtha/id6746156248", android: "https://play.google.com/store/apps/details?id=com.aly.Wealtha", detail: "Wealtha/" },
-            { name: "ChartingSkill", title: "Charting Skill", year: 2025, date: "2025-05-28", icon: "portfolio/icons/chartingskill.webp", ios: "https://apps.apple.com/app/crypto-stock-charting-skill/id6746440165", android: "https://play.google.com/store/apps/details?id=com.aly.ChartingSkill", detail: "ChartingSkills/" },
-            { name: "CryptoSkills", title: "Crypto Skills", year: 2025, date: "2025-06-10", icon: "portfolio/icons/cryptoskills.webp", ios: "https://apps.apple.com/app/crypto-skills-ai-signal/id6747077362", android: "https://play.google.com/store/apps/details?id=com.aly.CryptoSkills", detail: "CryptoSkills/" },
-            { name: "MobileCode", title: "Mobile Code", year: 2025, date: "2025-06-25", icon: "portfolio/icons/mobilecode.webp", ios: "https://apps.apple.com/us/app/mobile-code-remote-desktop/id6747654271", android: "https://play.google.com/store/apps/details?id=com.aly.MobileCode", detail: "MobileCode/" },
-            { name: "TheArtOfSeduction", title: "Seduction Rules", year: 2025, date: "2025-07-11", icon: "portfolio/icons/theartofseduction.webp", ios: "https://apps.apple.com/app/seduction-rules/id6748376070", android: "https://play.google.com/store/apps/details?id=com.aly.SeductionRules", detail: "SeductionRules/" },
-            { name: "VibePlanning", title: "App Vibe Planning", year: 2025, date: "2025-07-14", icon: "portfolio/icons/vibeplanning.webp", ios: "https://apps.apple.com/app/app-vibe-planning/id6748576063", android: "https://play.google.com/store/apps/details?id=com.aly.VibePlanning", detail: "VibePlanning/" },
-            { name: "FriendAI", title: "Friend Chat", year: 2025, date: "2025-07-24", icon: "portfolio/icons/friendai.webp", ios: "https://apps.apple.com/app/friend-ai-personal-friend/id6749029092", android: "https://play.google.com/store/apps/details?id=com.aly.FriendAI", detail: "FriendAI/" },
-            { name: "CryptoAI", title: "Crypto AI", year: 2025, date: "2025-07-27", icon: "portfolio/icons/cryptoai.webp", ios: "https://apps.apple.com/app/crypto-ai-bitcoin-assistant/id6749213360", android: "https://play.google.com/store/apps/details?id=com.aly.CryptoAI", detail: "CryptoAI/" },
-            { name: "HeartAI", title: "Heart AI", year: 2025, date: "2025-08-11", icon: "portfolio/icons/heartai.webp", ios: "https://apps.apple.com/us/app/heart-ai-personal-friend/id6749819872", android: "https://play.google.com/store/apps/details?id=com.aly.HeartAI", detail: "HeartAI/", spotlight: false },
-            { name: "SweetSleep", title: "Sweet Sleep", year: 2025, date: "2025-08-18", icon: "portfolio/icons/sweetsleep.webp", ios: "https://apps.apple.com/app/sweet-sleep-solving-insomnia/id6751185069", android: "https://play.google.com/store/apps/details?id=com.aly.SweetSleep", detail: "SweetSleep/" },
-            { name: "MindMapAI", title: "MindMap AI", year: 2025, date: "2025-08-25", icon: "portfolio/icons/mindmapai.webp", ios: "https://apps.apple.com/us/app/idea-note-mindmap-ai/id6751484503", android: "https://play.google.com/store/apps/details?id=com.aly.MindMapAI", detail: "MindMapAI/" },
-            { name: "SecretMinds", title: "Secret Mind", year: 2025, date: "2025-08-26", icon: "portfolio/icons/secretminds.webp", android: "https://play.google.com/store/apps/details?id=com.aly.SecretMind", detail: "SecretMind/" },
-            { name: "CatsDiary", title: "Cat's Diary", year: 2025, date: "2025-09-01", icon: "portfolio/icons/catsdiary.webp", ios: "https://apps.apple.com/us/app/cats-diary-photo-reminder/id6751799793", android: "https://play.google.com/store/apps/details?id=com.aly.CatsDiary", detail: "CatsDiary/" },
-            { name: "StatUP", title: "StatUP", year: 2025, date: "2025-09-09", icon: "portfolio/icons/statup.webp", ios: "https://apps.apple.com/us/app/statup-goals-to-do-journal/id6752215390", android: "https://play.google.com/store/apps/details?id=com.aly.StatUP", detail: "StatUP/" },
-            { name: "GhostLens", title: "Ghost Lens", year: 2025, date: "2025-09-23", icon: "portfolio/icons/ghostlens.webp", ios: "https://apps.apple.com/us/app/ghost-lens/id6752831954", android: "https://play.google.com/store/apps/details?id=com.aly.GhostLens", detail: "GhostLens/", spotlight: false },
-            { name: "CryptoInsight", title: "Crypto Insight", year: 2025, date: "2025-10-05", icon: "portfolio/icons/cryptoinsight.webp", ios: "https://apps.apple.com/us/app/crypto-insight-ai-crypto/id6753616682", android: "https://play.google.com/store/apps/details?id=com.aly.CryptoInsight", detail: "cryptoinsight/" },
-            { name: "StarDiary", title: "Star Diary", year: 2025, date: "2025-12-26", icon: "portfolio/icons/stardiary.webp", ios: "https://apps.apple.com/us/app/star-diary-stella-notes/id6756995556", android: "https://play.google.com/store/apps/details?id=com.aly.StarDiary", detail: "StarDiary/" },
-            { name: "Kova", title: "Kova", year: 2026, date: "2026-05-18", icon: "portfolio/icons/kova.webp", ios: "https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914", android: "https://play.google.com/store/apps/details?id=com.aly.kova&referrer=utm_source%3Dwon_space%26utm_medium%3Dkova_web%26utm_campaign%3Dplay_5_downloads", detail: "Kova/" },
-            { name: "LifeGame", title: "Life Game", year: 2026, date: "2026-05-21", icon: "portfolio/icons/lifegame.webp", ios: "https://apps.apple.com/us/app/life-game/id6770162106", android: "https://play.google.com/store/apps/details?id=com.aly.lifegame" },
-            { name: "RagePal", title: "RagePal", year: 2026, date: "2026-05-27", icon: "portfolio/icons/ragepal.webp", ios: "https://apps.apple.com/us/app/ragepal-voodoo-doll-ritual/id6771215764", android: "https://play.google.com/store/apps/details?id=com.aly.ragepal", spotlight: false },
-            { name: "MyIdol", title: "My Idol", year: 2026, date: "2026-06-12", icon: "portfolio/icons/myidol.webp", ios: "https://apps.apple.com/us/app/my-idol-chat/id6775717936" },
-            { name: "Starlight", title: "Starlight", year: 2026, date: "2026-09-29", icon: "portfolio/icons/starlight.webp", ios: "https://apps.apple.com/us/app/starlight-hardcore-tower-td/id6816612386", android: "https://play.google.com/store/apps/details?id=com.alydoit.starlightdefense" },
-            { name: "LastFlame", title: "Last Flame", year: 2026, date: "2026-10-11", icon: "portfolio/icons/lastflame.webp", android: "https://play.google.com/store/apps/details?id=com.alydoit.lastflame" },
-            { name: "SquadRush", title: "Squad Rush", year: 2026, date: "2026-10-11", icon: "portfolio/icons/squadrush.webp", android: "https://play.google.com/store/apps/details?id=com.alydoit.squadrush" },
-            { name: "AuctionDefense", title: "Auction Defense", year: 2026, date: "2026-10-12", icon: "portfolio/icons/auctiondefense.webp", android: "https://play.google.com/store/apps/details?id=com.alyduho.auctiondefense" },
-            { name: "PianoShower", title: "Piano Shower", year: 2026, date: "2026-10-12", icon: "portfolio/icons/pianoshower.webp", android: "https://play.google.com/store/apps/details?id=com.alydoit.pianoshower" },
-            { name: "SummonDefense", title: "Summon Defense", year: 2026, date: "2026-10-12", icon: "portfolio/icons/summondefense.webp", android: "https://play.google.com/store/apps/details?id=com.alydoit.summondefense" },
-            { name: "Muryang", title: "무량대수", year: 2026, date: "2026-10-22", icon: "portfolio/icons/muryang.webp", ios: "https://apps.apple.com/us/app/%EB%AC%B4%ED%95%9C-%EB%A0%88%EB%B2%A8%EC%97%85-rpg-%EB%AC%B4%EB%9F%89%EB%8C%80%EC%88%98/id6825623066", android: "https://play.google.com/store/apps/details?id=com.alydoit.muryang" },
-            { name: "NorthernDuke", title: "Northern Duke's Secret Bride", year: 2026, date: "2026-11-05", icon: "portfolio/icons/northernduke.webp", ios: "https://apps.apple.com/us/app/northern-dukes-secret-bride/id6827559889", android: "https://play.google.com/store/apps/details?id=com.alyduho.struckthrough", spotlight: false }
+            { name: "AnyPick", title: "AnyPick", year: 2025, date: "2025-02-18", icon: "portfolio/icons/anypick.webp", genre: "Lifestyle", ios: "https://apps.apple.com/kr/app/anypick/id6740760810", android: "https://play.google.com/store/apps/details?id=com.aly.anypick", detail: "Anypick/" },
+            { name: "LoveExpert", title: "Chat Vibe Check", year: 2025, date: "2025-03-06", icon: "portfolio/icons/loveexpert.webp", genre: "Lifestyle", storeTitle: "Chat Vibe Check: Chat Analyzer", ios: "https://apps.apple.com/app/chat-vibe-check-chat-analyzer/id6742811212", android: "https://play.google.com/store/apps/details?id=com.aly.loveExpert", detail: "ChatVibe/" },
+            { name: "RizzChat", title: "Rizzet", year: 2025, date: "2025-03-07", icon: "portfolio/icons/rizzchat.webp", genre: "Lifestyle", storeTitle: "Rizzet: Dating Text Coach", ios: "https://apps.apple.com/app/rizzet/id6742974140", android: "https://play.google.com/store/apps/details?id=com.aly.rizzChat", detail: "Rizzet/" },
+            { name: "FaceMatch", title: "Moonlit Fortunes", year: 2025, date: "2025-03-12", icon: "portfolio/icons/facematch.webp", genre: "Entertainment", ios: "https://apps.apple.com/app/face-match-ai/id6743154306", android: "https://play.google.com/store/apps/details?id=com.aly.faceMatch", detail: "faceMatch/" },
+            { name: "MODEE", title: "MODEE", year: 2025, date: "2025-03-20", icon: "portfolio/icons/modee.webp", genre: "Lifestyle", storeTitle: "MODEE - Fashion Assistant", ios: "https://apps.apple.com/app/modee-fashion-assistant/id6743519137", android: "https://play.google.com/store/apps/details?id=com.aly.MODEE", detail: "MODEE/" },
+            { name: "Anythoughts", title: "MoodPop", year: 2025, date: "2025-03-22", icon: "portfolio/icons/anythoughts.webp", genre: "Entertainment", storeTitle: "MoodPop - Mood Cards", ios: "https://apps.apple.com/app/any-thoughts/id6743646601", android: "https://play.google.com/store/apps/details?id=com.aly.EmotiCam", detail: "AnyThoughts/" },
+            { name: "CatsThoughts", title: "Cat's Thoughts", year: 2025, date: "2025-03-23", icon: "portfolio/icons/catsthoughts.webp", genre: "Entertainment", ios: "https://apps.apple.com/app/cats-thoughts/id6743672789", android: "https://play.google.com/store/apps/details?id=com.aly.CatsThoughts", detail: "CatsThoughts/" },
+            { name: "DogsThoughts", title: "Dog Daily Diary", year: 2025, date: "2025-03-24", icon: "portfolio/icons/dogsthoughts.webp", genre: "Entertainment", storeTitle: "Dog Daily Diary: Dog Mind", ios: "https://apps.apple.com/app/dogs-thoughts/id6743701891", android: "https://play.google.com/store/apps/details?id=com.aly.DogsThoughts", detail: "DogsThoughts/" },
+            { name: "GeniePlanner", title: "Genie Planner", year: 2025, date: "2025-03-31", icon: "portfolio/icons/genieplanner.webp", genre: "Productivity", ios: "https://apps.apple.com/app/genie-planner/id6743991901", android: "https://play.google.com/store/apps/details?id=com.aly.GeniePlanner", detail: "GeniePlanner/" },
+            { name: "Lookey", title: "Lookey", year: 2025, date: "2025-04-06", icon: "portfolio/icons/lookey.webp", genre: "Entertainment", storeTitle: "AI Color & Style App Lookey", ios: "https://apps.apple.com/app/lookey-ai/id6744290690", android: "https://play.google.com/store/apps/details?id=com.aly.Lookey", detail: "Lookey/" },
+            { name: "BlahChats", title: "BlahChat", year: 2025, date: "2025-04-30", icon: "portfolio/icons/blahchats.webp", genre: "Social Networking", storeTitle: "블라챗 - 대화 수다 동네친구 만들기", ios: "https://apps.apple.com/kr/app/id6744993951", android: "https://play.google.com/store/apps/details?id=com.aly.BlahChat", detail: "BlahChat/" },
+            { name: "Selah", title: "Selah", year: 2025, date: "2025-05-07", icon: "portfolio/icons/selah.webp", genre: "Lifestyle", storeTitle: "Selah: Bible Verses & Prayer", ios: "https://apps.apple.com/us/app/a-bible-verse-selah/id6745543908", android: "https://play.google.com/store/apps/details?id=com.aly.Selah", detail: "Selah/" },
+            { name: "AppHub", title: "App Hub", year: 2025, date: "2025-05-14", icon: "portfolio/icons/apphub.webp", genre: "Developer Tools", storeTitle: "App Hub: App Idea Planner", ios: "https://apps.apple.com/app/app-hub-manage-plan-apps/id6745819583", android: "https://play.google.com/store/apps/details?id=com.aly.AppHub", detail: "AppHub/" },
+            { name: "Growvi", title: "Growvi", year: 2025, date: "2025-05-16", icon: "portfolio/icons/growvi.webp", genre: "Lifestyle", storeTitle: "Growvi: For First-Time Parents", ios: "https://apps.apple.com/app/parenting-tips-growvi/id6746027004", android: "https://play.google.com/store/apps/details?id=com.aly.Growvi", detail: "Growvi/" },
+            { name: "Wealtha", title: "Wealtha", year: 2025, date: "2025-05-21", icon: "portfolio/icons/wealtha.webp", genre: "Finance", storeTitle: "Stocks, Crypto, Fin : Wealtha", ios: "https://apps.apple.com/app/stocks-crypto-fin-wealtha/id6746156248", android: "https://play.google.com/store/apps/details?id=com.aly.Wealtha", detail: "Wealtha/" },
+            { name: "ChartingSkill", title: "Charting Skill", year: 2025, date: "2025-05-28", icon: "portfolio/icons/chartingskill.webp", genre: "Finance", storeTitle: "Crypto, stock : Charting Skill", ios: "https://apps.apple.com/app/crypto-stock-charting-skill/id6746440165", android: "https://play.google.com/store/apps/details?id=com.aly.ChartingSkill", detail: "ChartingSkills/" },
+            { name: "CryptoSkills", title: "Crypto Skills", year: 2025, date: "2025-06-10", icon: "portfolio/icons/cryptoskills.webp", genre: "Finance", storeTitle: "Crypto Skills: AI Signal", ios: "https://apps.apple.com/app/crypto-skills-ai-signal/id6747077362", android: "https://play.google.com/store/apps/details?id=com.aly.CryptoSkills", detail: "CryptoSkills/" },
+            { name: "MobileCode", title: "Mobile Code", year: 2025, date: "2025-06-25", icon: "portfolio/icons/mobilecode.webp", genre: "Developer Tools", storeTitle: "Mobile Code Remote Desktop", ios: "https://apps.apple.com/us/app/mobile-code-remote-desktop/id6747654271", android: "https://play.google.com/store/apps/details?id=com.aly.MobileCode", detail: "MobileCode/" },
+            { name: "TheArtOfSeduction", title: "Seduction Rules", year: 2025, date: "2025-07-11", icon: "portfolio/icons/theartofseduction.webp", genre: "Lifestyle", storeTitle: "Seduction Rules: Love Coach", ios: "https://apps.apple.com/app/seduction-rules/id6748376070", android: "https://play.google.com/store/apps/details?id=com.aly.SeductionRules", detail: "SeductionRules/" },
+            { name: "VibePlanning", title: "App Vibe Planning", year: 2025, date: "2025-07-14", icon: "portfolio/icons/vibeplanning.webp", genre: "Productivity", ios: "https://apps.apple.com/app/app-vibe-planning/id6748576063", android: "https://play.google.com/store/apps/details?id=com.aly.VibePlanning", detail: "VibePlanning/" },
+            { name: "FriendAI", title: "Friend Chat", year: 2025, date: "2025-07-24", icon: "portfolio/icons/friendai.webp", genre: "Lifestyle", storeTitle: "Friend Chat – Getting Closer", ios: "https://apps.apple.com/app/friend-ai-personal-friend/id6749029092", android: "https://play.google.com/store/apps/details?id=com.aly.FriendAI", detail: "FriendAI/" },
+            { name: "CryptoAI", title: "Crypto AI", year: 2025, date: "2025-07-27", icon: "portfolio/icons/cryptoai.webp", genre: "Finance", storeTitle: "Crypto AI: Bitcoin Assistant", ios: "https://apps.apple.com/app/crypto-ai-bitcoin-assistant/id6749213360", android: "https://play.google.com/store/apps/details?id=com.aly.CryptoAI", detail: "CryptoAI/" },
+            { name: "HeartAI", title: "Heart AI", year: 2025, date: "2025-08-11", icon: "portfolio/icons/heartai.webp", genre: "Lifestyle", storeTitle: "Heart AI: Personal Friend", ios: "https://apps.apple.com/us/app/heart-ai-personal-friend/id6749819872", android: "https://play.google.com/store/apps/details?id=com.aly.HeartAI", detail: "HeartAI/", spotlight: false },
+            { name: "SweetSleep", title: "Sweet Sleep", year: 2025, date: "2025-08-18", icon: "portfolio/icons/sweetsleep.webp", genre: "Health & Fitness", storeTitle: "Sweet Sleep : Solving insomnia", ios: "https://apps.apple.com/app/sweet-sleep-solving-insomnia/id6751185069", android: "https://play.google.com/store/apps/details?id=com.aly.SweetSleep", detail: "SweetSleep/" },
+            { name: "MindMapAI", title: "MindMap AI", year: 2025, date: "2025-08-25", icon: "portfolio/icons/mindmapai.webp", genre: "Productivity", storeTitle: "Idea Note : MindMap AI", ios: "https://apps.apple.com/us/app/idea-note-mindmap-ai/id6751484503", android: "https://play.google.com/store/apps/details?id=com.aly.MindMapAI", detail: "MindMapAI/" },
+            { name: "SecretMinds", title: "Secret Mind", year: 2025, date: "2025-08-26", icon: "portfolio/icons/secretminds.webp", genre: "Lifestyle", storeTitle: "Secret Mind: Mind Analysis", android: "https://play.google.com/store/apps/details?id=com.aly.SecretMind", detail: "SecretMind/" },
+            { name: "CatsDiary", title: "Cat's Diary", year: 2025, date: "2025-09-01", icon: "portfolio/icons/catsdiary.webp", genre: "Lifestyle", storeTitle: "Cat's Diary – Photo & Reminder", ios: "https://apps.apple.com/us/app/cats-diary-photo-reminder/id6751799793", android: "https://play.google.com/store/apps/details?id=com.aly.CatsDiary", detail: "CatsDiary/" },
+            { name: "StatUP", title: "StatUP", year: 2025, date: "2025-09-09", icon: "portfolio/icons/statup.webp", genre: "Lifestyle", storeTitle: "StatUP : Goals·To-Do·Journal", ios: "https://apps.apple.com/us/app/statup-goals-to-do-journal/id6752215390", android: "https://play.google.com/store/apps/details?id=com.aly.StatUP", detail: "StatUP/" },
+            { name: "GhostLens", title: "Ghost Lens", year: 2025, date: "2025-09-23", icon: "portfolio/icons/ghostlens.webp", genre: "Entertainment", ios: "https://apps.apple.com/us/app/ghost-lens/id6752831954", android: "https://play.google.com/store/apps/details?id=com.aly.GhostLens", detail: "GhostLens/", spotlight: false },
+            { name: "CryptoInsight", title: "Crypto Insight", year: 2025, date: "2025-10-05", icon: "portfolio/icons/cryptoinsight.webp", genre: "Finance", storeTitle: "Crypto Insight - AI Crypto", ios: "https://apps.apple.com/us/app/crypto-insight-ai-crypto/id6753616682", android: "https://play.google.com/store/apps/details?id=com.aly.CryptoInsight", detail: "cryptoinsight/" },
+            { name: "StarDiary", title: "Star Diary", year: 2025, date: "2025-12-26", icon: "portfolio/icons/stardiary.webp", genre: "Lifestyle", storeTitle: "Star Diary -  Stella Notes", ios: "https://apps.apple.com/us/app/star-diary-stella-notes/id6756995556", android: "https://play.google.com/store/apps/details?id=com.aly.StarDiary", detail: "StarDiary/" },
+            { name: "Kova", title: "Kova", year: 2026, date: "2026-05-18", icon: "portfolio/icons/kova.webp", genre: "Photo & Video", storeTitle: "Kova: AI Photo Editor", ios: "https://apps.apple.com/us/app/kova-ai-photo-editor/id6766026914", android: "https://play.google.com/store/apps/details?id=com.aly.kova&referrer=utm_source%3Dwon_space%26utm_medium%3Dkova_web%26utm_campaign%3Dplay_5_downloads", detail: "Kova/" },
+            { name: "LifeGame", title: "Life Game", year: 2026, date: "2026-05-21", icon: "portfolio/icons/lifegame.webp", genre: "Productivity", ios: "https://apps.apple.com/us/app/life-game/id6770162106", android: "https://play.google.com/store/apps/details?id=com.aly.lifegame" },
+            { name: "RagePal", title: "RagePal", year: 2026, date: "2026-05-27", icon: "portfolio/icons/ragepal.webp", genre: "Games", storeTitle: "RagePal: Voodoo Doll Ritual", ios: "https://apps.apple.com/us/app/ragepal-voodoo-doll-ritual/id6771215764", android: "https://play.google.com/store/apps/details?id=com.aly.ragepal", spotlight: false },
+            { name: "MyIdol", title: "My Idol", year: 2026, date: "2026-06-12", icon: "portfolio/icons/myidol.webp", genre: "Lifestyle", storeTitle: "My Idol: Chat", ios: "https://apps.apple.com/us/app/my-idol-chat/id6775717936" },
+            { name: "Starlight", title: "Starlight", year: 2026, date: "2026-09-29", icon: "portfolio/icons/starlight.webp", genre: "Games", storeTitle: "Starlight: Hardcore Tower TD", ios: "https://apps.apple.com/us/app/starlight-hardcore-tower-td/id6816612386", android: "https://play.google.com/store/apps/details?id=com.alydoit.starlightdefense" },
+            { name: "LastFlame", title: "Last Flame", year: 2026, date: "2026-10-11", icon: "portfolio/icons/lastflame.webp", genre: "Games", storeTitle: "Last Flame: Frozen Survival", android: "https://play.google.com/store/apps/details?id=com.alydoit.lastflame" },
+            { name: "SquadRush", title: "Squad Rush", year: 2026, date: "2026-10-11", icon: "portfolio/icons/squadrush.webp", genre: "Games", storeTitle: "Squad Rush: Zombie Road", android: "https://play.google.com/store/apps/details?id=com.alydoit.squadrush" },
+            { name: "AuctionDefense", title: "Auction Defense", year: 2026, date: "2026-10-12", icon: "portfolio/icons/auctiondefense.webp", genre: "Games", android: "https://play.google.com/store/apps/details?id=com.alyduho.auctiondefense" },
+            { name: "PianoShower", title: "Piano Shower", year: 2026, date: "2026-10-12", icon: "portfolio/icons/pianoshower.webp", genre: "Games", android: "https://play.google.com/store/apps/details?id=com.alydoit.pianoshower" },
+            { name: "SummonDefense", title: "Summon Defense", year: 2026, date: "2026-10-12", icon: "portfolio/icons/summondefense.webp", genre: "Games", android: "https://play.google.com/store/apps/details?id=com.alydoit.summondefense" },
+            { name: "Muryang", title: "무량대수", year: 2026, date: "2026-10-22", icon: "portfolio/icons/muryang.webp", genre: "Games", storeTitle: "무한 레벨업 RPG : 무량대수", ios: "https://apps.apple.com/us/app/%EB%AC%B4%ED%95%9C-%EB%A0%88%EB%B2%A8%EC%97%85-rpg-%EB%AC%B4%EB%9F%89%EB%8C%80%EC%88%98/id6825623066", android: "https://play.google.com/store/apps/details?id=com.alydoit.muryang" },
+            { name: "NorthernDuke", title: "Northern Duke's Secret Bride", year: 2026, date: "2026-11-05", icon: "portfolio/icons/northernduke.webp", genre: "Games", ios: "https://apps.apple.com/us/app/northern-dukes-secret-bride/id6827559889", android: "https://play.google.com/store/apps/details?id=com.alyduho.struckthrough", spotlight: false }
         ];
         const appStats = {"total": 43, "appStore": 37, "googlePlay": 42, "both": 36, "span": "2025.02 — 2026.11", "firstDate": "2025.02.18", "firstTitle": "AnyPick", "firstYear": 2025, "firstYearCount": 31, "firstYearRange": "2025.02 — 2025.12", "gamesCount": 8, "gamesStart": 35, "gamesRange": "2026.09.29 — 2026.11.05", "latestTitle": "Northern Duke's Secret Bride", "latestDate": "2026.11.05", "next": 44, "channels": 7, "checked": "2026-11-22", "checkedLabel": "2026.11.22"};
         const channels = [
@@ -279,6 +367,7 @@
 
         window.WON = { projects, appStats, channels, userOS, getStoreUrl, openProject };
     </script>
-    <script type="module" src="portfolio/home.js?v=20261122k"></script>
+    <script type="module" src="portfolio/hero-showcase.js?v=20261126a"></script>
+    <script type="module" src="portfolio/home.js?v=20261126a"></script>
 </body>
 </html>
