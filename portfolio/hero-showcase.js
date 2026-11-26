@@ -651,23 +651,34 @@ function initShowcase() {
     const genreOrder = ["All", "Games", "Lifestyle", "Entertainment", "Finance", "Productivity", "Developer Tools", "Photo & Video", "Health & Fitness", "Social Networking"];
     const presentGenres = genreOrder.filter((g) => g === "All" || allEntries.some((e) => e.project.genre === g));
 
+    const archiveFilterButtons = [];
+
     function renderArchiveFilters() {
         if (!archiveFilters) return;
-        archiveFilters.textContent = "";
-        presentGenres.forEach((genre) => {
-            const count = genre === "All"
-                ? allEntries.length
-                : allEntries.filter((e) => e.project.genre === genre).length;
-            const btn = document.createElement("button");
-            btn.type = "button";
-            btn.className = `archive-filter-btn${genre === activeGenreFilter ? " is-active" : ""}`;
-            btn.textContent = `${genre} (${count})`;
-            btn.addEventListener("click", () => {
-                activeGenreFilter = genre;
-                renderArchiveFilters();
-                renderArchiveList();
+        if (!archiveFilterButtons.length) {
+            archiveFilters.textContent = "";
+            presentGenres.forEach((genre) => {
+                const count = genre === "All"
+                    ? allEntries.length
+                    : allEntries.filter((e) => e.project.genre === genre).length;
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "archive-filter-btn";
+                btn.dataset.genre = genre;
+                btn.textContent = `${genre} (${count})`;
+                btn.addEventListener("click", () => {
+                    activeGenreFilter = genre;
+                    renderArchiveFilters();
+                    renderArchiveList();
+                });
+                archiveFilters.appendChild(btn);
+                archiveFilterButtons.push(btn);
             });
-            archiveFilters.appendChild(btn);
+        }
+        archiveFilterButtons.forEach((btn) => {
+            const active = btn.dataset.genre === activeGenreFilter;
+            btn.classList.toggle("is-active", active);
+            btn.setAttribute("aria-pressed", active ? "true" : "false");
         });
     }
 
@@ -707,7 +718,10 @@ function initShowcase() {
             inspectBtn.addEventListener("click", () => {
                 closeArchiveDrawer(false);
                 openInspection(entry);
-                if (closeBtn) closeBtn.focus();
+                if (closeBtn) {
+                    void heroEl.offsetHeight;
+                    closeBtn.focus();
+                }
             });
 
             li.append(img, info, inspectBtn);
@@ -715,12 +729,13 @@ function initShowcase() {
         });
     }
 
+    const skipLink = document.querySelector(".skip-link");
     const pageHeader = document.querySelector(".site-header");
     const pageMain = document.querySelector("main");
     let drawerReturnFocus = null;
 
     function setBackgroundInert(isInert) {
-        [pageHeader, pageMain].forEach((el) => {
+        [skipLink, pageHeader, pageMain].forEach((el) => {
             if (!el) return;
             el.inert = isInert;
             if (isInert) el.setAttribute("aria-hidden", "true");
@@ -1714,8 +1729,11 @@ function initShowcase() {
     };
     if (motionQuery.addEventListener) motionQuery.addEventListener("change", onMotionChange);
 
-    // Clean WebGL resource disposal on page unload
+    // Clean WebGL resource disposal on genuine unload (preserve bfcache restores)
+    let disposed = false;
     function dispose() {
+        if (disposed) return;
+        disposed = true;
         stopLoop();
         io.disconnect();
         disposableGeometries.forEach((g) => g.dispose());
@@ -1723,7 +1741,19 @@ function initShowcase() {
         disposableTextures.forEach((t) => t.dispose());
         renderer.dispose();
     }
-    window.addEventListener("pagehide", dispose, { once: true });
+    window.addEventListener("pagehide", (event) => {
+        if (event.persisted) {
+            stopLoop();
+            return;
+        }
+        dispose();
+    });
+    window.addEventListener("pageshow", (event) => {
+        if (!event.persisted || disposed) return;
+        resize();
+        if (visibleInViewport && !document.hidden) startLoop();
+        requestRender();
+    });
 
     // Expose clean test/debug hook
     window.__wonHero = {

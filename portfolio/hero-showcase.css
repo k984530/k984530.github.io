@@ -490,7 +490,7 @@ body.is-inspecting .site-header .contact-mail {
     opacity: 0;
     visibility: hidden;
     transform: translate(-50%, -10px) scale(0.92);
-    transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, background-color 0.25s ease, visibility 0.4s;
+    transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, background-color 0.25s ease, visibility 0s linear 0.4s;
 }
 
 .showcase-close:hover {
@@ -502,6 +502,7 @@ body.is-inspecting .site-header .contact-mail {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, 0) scale(1);
+    transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, background-color 0.25s ease, visibility 0s;
 }
 
 .showcase-orbit-hint {
