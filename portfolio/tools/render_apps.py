@@ -84,6 +84,10 @@ def data_block(apps, stats, channels):
     ]
     for a in apps:
         parts = [f'name: {js_str(a["name"])}', f'title: {js_str(a["title"])}', f'year: {int(a["date"][:4])}', f'date: {js_str(a["date"])}', f'icon: {js_str(a["icon"])}']
+        if a.get("genre"):
+            parts.append(f'genre: {js_str(a["genre"])}')
+        if a.get("storeTitle") and a.get("storeTitle") != a.get("title"):
+            parts.append(f'storeTitle: {js_str(a["storeTitle"])}')
         if a.get("ios"):
             parts.append(f'ios: {js_str(a["ios"])}')
         if a.get("android"):
