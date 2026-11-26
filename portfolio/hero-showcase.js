@@ -1695,29 +1695,51 @@ function initShowcase() {
         frameCount += 1;
     }
 
-    function loop(now) {
-        if (!running) return;
-        step(now);
-        requestAnimationFrame(loop);
+    let disposed = false;
+    let loopRafId = 0;
+    let renderRafId = 0;
+    let loopGen = 0;
+
+    function scheduleLoop(gen) {
+        loopRafId = requestAnimationFrame((now) => {
+            loopRafId = 0;
+            if (!running || disposed || gen !== loopGen) return;
+            step(now);
+            if (running && !disposed && gen === loopGen) {
+                scheduleLoop(gen);
+            }
+        });
     }
 
     function startLoop() {
-        if (running || reduced || !visibleInViewport || document.hidden) return;
+        if (running || disposed || reduced || !visibleInViewport || document.hidden) return;
+        if (renderRafId) {
+            cancelAnimationFrame(renderRafId);
+            renderRafId = 0;
+            frameQueued = false;
+        }
         running = true;
+        loopGen += 1;
         lastTime = performance.now();
-        requestAnimationFrame(loop);
+        scheduleLoop(loopGen);
     }
 
     function stopLoop() {
         running = false;
+        loopGen += 1;
+        if (loopRafId) {
+            cancelAnimationFrame(loopRafId);
+            loopRafId = 0;
+        }
     }
 
     function requestRender() {
-        if (running || frameQueued) return;
+        if (running || disposed || frameQueued) return;
         frameQueued = true;
-        requestAnimationFrame((now) => {
+        renderRafId = requestAnimationFrame((now) => {
+            renderRafId = 0;
             frameQueued = false;
-            if (!running) step(now);
+            if (!running && !disposed) step(now);
         });
     }
 
@@ -1762,11 +1784,15 @@ function initShowcase() {
     if (motionQuery.addEventListener) motionQuery.addEventListener("change", onMotionChange);
 
     // Clean WebGL resource disposal on genuine unload (preserve bfcache restores)
-    let disposed = false;
     function dispose() {
         if (disposed) return;
         disposed = true;
         stopLoop();
+        if (renderRafId) {
+            cancelAnimationFrame(renderRafId);
+            renderRafId = 0;
+            frameQueued = false;
+        }
         io.disconnect();
         disposableGeometries.forEach((g) => g.dispose());
         disposableMaterials.forEach((m) => m.dispose());
