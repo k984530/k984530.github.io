@@ -83,6 +83,7 @@
 body.is-inspecting .header-link,
 body.is-inspecting .site-header .contact-mail {
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
 }
 
@@ -287,18 +288,25 @@ body.is-inspecting .site-header .contact-mail {
     padding: 20px var(--gutter) 24px;
     pointer-events: none;
     background: linear-gradient(0deg, rgba(8, 8, 8, 0.94) 0%, rgba(8, 8, 8, 0.56) 54%, rgba(8, 8, 8, 0) 100%);
-    transition: opacity 0.5s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 0.5s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
 }
 
 .showcase-hero.is-inspecting .showcase-footer {
     opacity: 0;
+    visibility: hidden;
     transform: translateY(20px);
     pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.5s;
 }
 
 .showcase-footer a,
 .showcase-footer button {
     pointer-events: auto;
+}
+
+.showcase-hero.is-inspecting .showcase-footer a,
+.showcase-hero.is-inspecting .showcase-footer button {
+    pointer-events: none;
 }
 
 .showcase-caption {

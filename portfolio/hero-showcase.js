@@ -913,6 +913,23 @@ function initShowcase() {
     }
 
     let sceneController = null;
+    const showcaseFooter = heroEl.querySelector(".showcase-footer");
+    let inspectReturnFocus = null;
+
+    if (inspectPanel) inspectPanel.inert = true;
+
+    function setHeroChromeInert(isInspecting) {
+        [showcaseFooter, a11yTriggers, fallbackWrap].forEach((el) => {
+            if (!el) return;
+            el.inert = isInspecting;
+            if (isInspecting) el.setAttribute("aria-hidden", "true");
+            else el.removeAttribute("aria-hidden");
+        });
+        if (inspectPanel) {
+            inspectPanel.inert = !isInspecting;
+            inspectPanel.setAttribute("aria-hidden", isInspecting ? "false" : "true");
+        }
+    }
 
     function setCarouselIndex(nextIdx) {
         const n = flagshipEntries.length;
@@ -923,8 +940,14 @@ function initShowcase() {
         if (sceneController) sceneController.onCarouselChange(activeCarousel);
     }
 
-    function openInspection(entry) {
+    function openInspection(entry, moveFocus = true) {
         if (!entry) return;
+        const wasInspecting = Boolean(inspectedEntry);
+        if (!wasInspecting) {
+            inspectReturnFocus = document.activeElement instanceof HTMLElement && heroEl.contains(document.activeElement)
+                ? document.activeElement
+                : inspectCta;
+        }
         inspectedEntry = entry;
         inspectedIndexInAll = entry.catalogIndex;
         const flagIdx = flagshipEntries.findIndex((f) => f.project.name === entry.project.name);
@@ -936,8 +959,12 @@ function initShowcase() {
         populateDetailPanel(entry);
         heroEl.classList.add("is-inspecting");
         document.body.classList.add("is-inspecting");
-        if (inspectPanel) inspectPanel.setAttribute("aria-hidden", "false");
+        setHeroChromeInert(true);
         if (sceneController) sceneController.onInspect(entry, flagIdx);
+        if (moveFocus && !wasInspecting && closeBtn) {
+            void heroEl.offsetHeight;
+            closeBtn.focus();
+        }
         // Smoothly return to top of hero if user invoked from slightly scrolled position
         if (window.scrollY > 40) {
             window.scrollTo({ top: 0, behavior: motionQuery.matches ? "auto" : "smooth" });
@@ -949,9 +976,14 @@ function initShowcase() {
         inspectedEntry = null;
         heroEl.classList.remove("is-inspecting");
         document.body.classList.remove("is-inspecting");
-        if (inspectPanel) inspectPanel.setAttribute("aria-hidden", "true");
+        setHeroChromeInert(false);
         updateCaption(flagshipEntries[activeCarousel]);
         if (sceneController) sceneController.onCloseInspect();
+        if (inspectReturnFocus && typeof inspectReturnFocus.focus === "function") {
+            void heroEl.offsetHeight;
+            inspectReturnFocus.focus();
+        }
+        inspectReturnFocus = null;
     }
 
     function stepInspection(delta) {
